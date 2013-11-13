@@ -1,0 +1,1 @@
+var TRADE = window.TRADE = {};
