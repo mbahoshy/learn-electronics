@@ -6,7 +6,15 @@ TRADE.Router = Backbone.Router.extend({
     },
 
     chapterlistview: function () {
-        
+        TRADE.ChapterCollection1 = new TRADE.ChapterCollection ();
+        TRADE.ChapterCollection1.fetch({
+            success: function () {
+                console.dir(TRADE.ChapterCollection1);
+                TRADE.ChapterListView1 = new TRADE.ChapterListView ({collection: TRADE.ChapterCollection1});
+                TRADE.ChapterListView1.render();
+                $('#wrapper').append(TRADE.ChapterListView1.$el);
+            }
+        });
     },
 
 });

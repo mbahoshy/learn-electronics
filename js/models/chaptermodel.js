@@ -3,7 +3,6 @@ TRADE.Chapter = Backbone.Model.extend({
 		id: "",
 		name: "",
 		snippet:"",
-		description:"",
 		content:""
 	}
 });

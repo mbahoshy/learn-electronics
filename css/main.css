@@ -16,6 +16,14 @@ body {
     src: url(../fonts/Artifika-Regular.ttf) format("truetype");
 }
 
+.fright {
+	float:right;
+
+}
+.fleft{
+	float:left;
+}
+
 #header {
 	width:100%;
 	height:100px;
@@ -358,14 +366,6 @@ body {
 }
 
 
-.fright {
-	float:right;
-
-}
-.fleft{
-	float:left;
-}
-
 .spstswitch {
 	position:absolute;
 	width: 60px;
@@ -429,6 +429,16 @@ body {
 	background-color:red;
 	padding:20px;
 }
+
+.chapter-list {
+	width:950px;
+	height:100px;
+	background-color: blue;
+	margin: 20px 0 0;
+	border-radius:15px;
+}
+
+
 
 #mycanvas {
 	position:relative;
