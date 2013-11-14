@@ -1,7 +1,7 @@
 TRADE.ChapterView = Backbone.View.extend({
         tagName: 'div',
         className: 'chapter-list',
-        template: _.template("<h1><%= name %></h1><h2><%= snippet %></h2>"),
+        template: _.template("<a href='/classroom/#HVAC/<%= id %>'><h1><%= name %></h1><h2><%= snippet %></h2></a>"),
         events: {
                 "mouseover": "chapterMouseover",
                 "mouseout": "chapterMouseout"

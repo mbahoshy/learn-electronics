@@ -1,11 +1,10 @@
 TRADE.Router = Backbone.Router.extend({
     routes: {
-        "chapterview": "chapterlistview",
-        "second": "secondRoute",
-        "manual-list": "manualResults"
+        "HVAC": "HVACChapterView",
+        "HVAC/:id": "lessonRoute"
     },
 
-    chapterlistview: function () {
+    HVACChapterView: function () {
         TRADE.ChapterCollection1 = new TRADE.ChapterCollection ();
         TRADE.ChapterCollection1.fetch({
             success: function () {
@@ -32,6 +31,11 @@ TRADE.Router = Backbone.Router.extend({
             $('#wrapper').prepend(TRADE.classview1.$el);
         });
 
+    },
+
+    lessonRoute: function (id) {
+        $('#wrapper').html(id);
+        console.dir(id);
     },
 
 });

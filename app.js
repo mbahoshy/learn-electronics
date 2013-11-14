@@ -1,5 +1,5 @@
 var path = require("path"),
-    express = require("express");
+    express = require("express"),
     _ = require("underscore");
 
 var app = express()
@@ -63,5 +63,5 @@ var UsersDB = [
 ];
 
 var classrooms = [
-	{id:"0", name:"HVAC", snippet:"Learn HVAC Ciruits"}
+	{id:"0", name:"HVAC", snippet:"Become a service technician"}
 ];
