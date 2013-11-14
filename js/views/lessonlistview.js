@@ -19,9 +19,9 @@ TRADE.LessonListView = Backbone.View.extend({
 
         addOne: function (model) {
 
-                var ChapterView1 = new TRADE.ChapterView({
+                var LessonView1 = new TRADE.LessonView({
                     model: model
                 });
-                this.$el.append(ChapterView1.render().el);
+                this.$el.append(LessonView1.render().el);
         }
 });

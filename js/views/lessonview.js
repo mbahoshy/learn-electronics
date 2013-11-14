@@ -1,20 +1,18 @@
 TRADE.LessonView = Backbone.View.extend({
         tagName: 'div',
-        className: 'lesson-list',
-        template: _.template("<a href='/classroom/#HVAC/<%= id %>'><h1><%= name %></h1><h2><%= snippet %></h2></a>"),
+        className: '',
+        template: _.template("<a href='#slides/<%= id %>'><div class='lesson-list'><h1><%= name %></h1><h2><%= snippet %></h2></div></a>"),
         events: {
-                "mouseover": "chapterMouseover",
-                "mouseout": "chapterMouseout"
+                "mouseover": "lessonMouseover",
+                "mouseout": "lessonMouseout"
         },
-        chapterMouseover: function () {
-                $(this.el).addClass('chapter-hover');
-                //$(this).css('background-color': 'red');
+        lessonMouseover: function () {
+                $(this.el).children().children().addClass('card-hover');
 
         },
 
-        chapterMouseout: function () {
-                $(this.el).removeClass('chapter-hover');
-                //$(this).css('background-color': 'red');
+        lessonMouseout: function () {
+                $(this.el).children().children().removeClass('card-hover');
 
         },
 

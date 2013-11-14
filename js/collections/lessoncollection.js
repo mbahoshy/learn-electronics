@@ -1,4 +1,4 @@
 TRADE.LessonCollection = Backbone.Collection.extend({
-	model: TRADE.Chapter,
+	model: TRADE.Lesson,
 	url: ""
 });

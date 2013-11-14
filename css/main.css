@@ -467,8 +467,8 @@ body {
 	box-shadow: 5px 5px 2px #DEDEDE;
 }
 
-.chapter-hover {
-	background-color: #FFBABA;
+.card-hover {
+	background-color: #FFBABA !important;
 }
 
 .user-card {
@@ -485,6 +485,24 @@ body {
 .class-title {
 	width:950px;
 
+}
+
+
+.lesson-list {
+	width:560px;
+	height:50px;
+	background-color: #FFFFFF;
+	padding: 15px 20px;
+	border: 1px solid #2C0E78;
+	margin:0;
+}
+
+.lesson-list h1 {
+	font-size: 16px;
+}
+
+.lesson-list h2 {
+	font-size: 14px;
 }
 
 /* ------------------------------------------------- */
