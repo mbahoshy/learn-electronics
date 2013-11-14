@@ -1,6 +1,6 @@
 TRADE.ChapterListView = Backbone.View.extend({
         tagName: 'div',
-        className: '',
+        className: 'fleft',
         events: {
                 "click .chapter-list": "chapterClick"
 

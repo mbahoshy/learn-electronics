@@ -2,8 +2,8 @@ TRADE.Classroom = Backbone.Model.extend({
 	defaults: {
 		id: "",
 		name: "",
+		snippet: "",
 		chapters:""
 	}
 });
 
-var classrooms = [{id:0, name:"HVAC", chapters:{}}];

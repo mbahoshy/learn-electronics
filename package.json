@@ -10,6 +10,7 @@
   "license": "BSD-2-Clause",
   "dependencies": {
     "express": "~3.4.4",
-    "path": "~0.4.9"
+    "path": "~0.4.9",
+    "underscore": "~1.5.2"
   }
 }

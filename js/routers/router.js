@@ -15,6 +15,23 @@ TRADE.Router = Backbone.Router.extend({
                 $('#wrapper').append(TRADE.ChapterListView1.$el);
             }
         });
+
+        $.get("/users/2", function(data, status){
+            console.dir(data);
+            TRADE.user1 = new TRADE.User (data);
+            TRADE.cardView1 = new TRADE.UserView ({model: TRADE.user1});
+            TRADE.cardView1.render();
+            $('#wrapper').append(TRADE.cardView1.$el);
+        });
+
+        $.get("/class/0", function(data, status){
+            console.dir(data);
+            TRADE.class1 = new TRADE.Classroom (data);
+            TRADE.classview1 = new TRADE.ClassTitleView ({model: TRADE.class1});
+            TRADE.classview1.render();
+            $('#wrapper').prepend(TRADE.classview1.$el);
+        });
+
     },
 
 });
