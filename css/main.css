@@ -464,7 +464,7 @@ body {
 	border-radius:10px;
 	border: 1px solid #2C0E78;
 	margin:0 0 20px;
-	box-shadow: 5px 5px 2px #888888;
+	box-shadow: 5px 5px 2px #DEDEDE;
 }
 
 .chapter-hover {
@@ -478,7 +478,7 @@ body {
 	border-radius: 8px;
 	background-color: red;
 	padding:20px;
-	box-shadow: 5px 5px 2px #888888;
+	box-shadow: 5px 5px 2px #DEDEDE;
 
 }
 

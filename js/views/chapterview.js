@@ -1,21 +1,17 @@
 TRADE.ChapterView = Backbone.View.extend({
         tagName: 'div',
-        className: 'chapter-list',
-        template: _.template("<a href='/classroom/#HVAC/<%= id %>'><h1><%= name %></h1><h2><%= snippet %></h2></a>"),
+        className: '',
+        template: _.template("<a href='#lessons/<%= id %>'><div class='chapter-list' ><h1><%= name %></h1><h2><%= snippet %></h2></div></a>"),
         events: {
                 "mouseover": "chapterMouseover",
                 "mouseout": "chapterMouseout"
         },
         chapterMouseover: function () {
-                $(this.el).addClass('chapter-hover');
-                //$(this).css('background-color': 'red');
-
+                $(this.el).children().children().addClass('chapter-hover');
         },
 
         chapterMouseout: function () {
-                $(this.el).removeClass('chapter-hover');
-                //$(this).css('background-color': 'red');
-
+                $(this.el).children().children().removeClass('chapter-hover');
         },
 
         render : function () {
