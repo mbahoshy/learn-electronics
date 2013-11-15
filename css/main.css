@@ -32,15 +32,6 @@ body {
 	background-color: #2C0E78;
 }
 
-#header_wrapper {
-	width:950px;
-	display:block;
-	margin-left:auto;
-	margin-right:auto;
-	font-size:16px;
-	color:white;
-}
-
 #header h1 {
 	margin:0px;
 	font-size: 40px;
@@ -84,6 +75,15 @@ body {
 	height:100px;
 }
 
+#header_wrapper {
+	width:950px;
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	font-size:16px;
+	color:white;
+}
+
 #wrapper {
 	width:950px;
 	display:block;
@@ -92,6 +92,18 @@ body {
 	font-size:16px;
 	margin-top: 20px;
 
+}
+
+#title_wrapper {
+	width:950px;
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+#title_wrapper h1 {
+	color:#2C0E78;
+	font-size:24px;
 }
 
 #canvas {
@@ -458,13 +470,25 @@ body {
 
 .chapter-list {
 	width:560px;
-	height:150px;
+	height:80px;
 	background-color: #FFFFFF;
 	padding: 15px 20px;
-	border-radius:10px;
-	border: 1px solid #2C0E78;
+	border-radius:8px;
+	border: 1px solid #9094FF;
 	margin:0 0 20px;
 	box-shadow: 5px 5px 2px #DEDEDE;
+}
+
+.chapter-list h1 {
+	font-size:18px;
+}
+
+.chapter-list h2 {
+	font-size:16px;
+}
+
+.no-decoration {
+	text-decoration: none;
 }
 
 .card-hover {
@@ -472,12 +496,14 @@ body {
 }
 
 .user-card {
+	color:white;
 	width:260px;
 	float:right;
 	height:200px;
 	border-radius: 8px;
-	background-color: red;
+	background-color: rgba(255, 129, 45, 0.97);
 	padding:20px;
+	border: 1px solid #FAFF87;
 	box-shadow: 5px 5px 2px #DEDEDE;
 
 }
@@ -487,13 +513,22 @@ body {
 
 }
 
+.chapter-title {
+	width:950px;
+	background-color:white;
+	border: 1px solid #9094FF;
+	border-top: 0;
+	padding:0 10px;
+}
+
 
 .lesson-list {
 	width:560px;
 	height:50px;
-	background-color: #FFFFFF;
+	background-color: #DDD6FF;
 	padding: 15px 20px;
-	border: 1px solid #2C0E78;
+	border: 1px solid #9094FF;
+	border-top: 0;
 	margin:0;
 }
 

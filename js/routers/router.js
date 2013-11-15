@@ -1,16 +1,15 @@
 TRADE.Router = Backbone.Router.extend({
     routes: {
-        ":classid": "HVACClassView",
-        "lessons/:chapterid": "HVACChapterView"
+        ":classid": "HVACChapterListView",
+        "lessons/:chapterid": "HVACLessonListView"
     },
-    
-    HVACClassView: function (classid) {
 
-        //clear html
-        $('#wrapper').html('');
+    HVACChapterListView: function (classid) {
 
-        //get chapter info and render chapter cards
-        $.get("/class/" + classid, function(data, status){
+        $('#wrapper').html(''); //clear html
+        $('#title_wrapper').html(''); //clear html
+
+        $.get("/class/" + classid, function(data, status){ //get chapter info and render chapter cards
 
             //creates classroom title view and renders
             TRADE.class1 = new TRADE.Classroom (data);
@@ -25,35 +24,40 @@ TRADE.Router = Backbone.Router.extend({
 
             //append to dom
             $('#wrapper').append(TRADE.ChapterListView1.$el);
-            $('#wrapper').prepend(TRADE.classview1.$el);
+            $('#title_wrapper').append(TRADE.classview1.$el);
             TRADE.NavData = data;
         });
-
-
-        //get user info and render user card
-        $.get("/users/2", function(data, status){
+      
+        $.get("/users/2", function(data, status){ //get user info and render user card
             TRADE.user1 = new TRADE.User (data);
             TRADE.cardView1 = new TRADE.UserView ({model: TRADE.user1});
             TRADE.cardView1.render();
             $('#wrapper').append(TRADE.cardView1.$el);
         });
 
-        //alert(this.currentclass.name);
     },
 
-    HVACChapterView: function (chapterid) {
+    HVACLessonListView: function (chapterid) {
 
         //clear html
         $('#wrapper').html('');
-
+        $('#title_wrapper').html('');
+        console.dir(TRADE.NavData);
         var record = _.findWhere(TRADE.NavData.chapters, {chapterid: chapterid});
         console.dir(record);
+
+        //creates classroom title view and renders
+        TRADE.chaptertitle1 = new TRADE.Chapter (record);
+        TRADE.chaptertitleview1 = new TRADE.ChapterTitleView ({model: TRADE.chaptertitle1});
+        TRADE.chaptertitleview1.render();
+
         TRADE.LessonCollection1 = new TRADE.LessonCollection ();
         TRADE.LessonCollection1.reset(record.lessons);
 
         TRADE.LessonListView1 = new TRADE.LessonListView ({collection: TRADE.LessonCollection1});
         TRADE.LessonListView1.render();
-        $('#wrapper').html(TRADE.LessonListView1.$el);
+        $('#wrapper').append(TRADE.LessonListView1.$el);
+        $('#title_wrapper').append(TRADE.chaptertitleview1.$el);
 
     },
 
@@ -61,6 +65,7 @@ TRADE.Router = Backbone.Router.extend({
 
 TRADE.router = new TRADE.Router();
 Backbone.history.start({root: "/"});
+
 
 
         //get class info and render title card
