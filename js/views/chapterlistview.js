@@ -19,9 +19,12 @@ TRADE.ChapterListView = Backbone.View.extend({
 
         addOne: function (model) {
 
-                var ChapterView1 = new TRADE.ChapterView({
-                    model: model
-                });
+                if (model.toJSON().active === true) {
+                    var ChapterView1 = new TRADE.ChapterView({ model: model });
+                } else {
+                    var ChapterView1 = new TRADE.ChapterViewInactive({ model: model }); 
+                }
+
                 this.$el.append(ChapterView1.render().el);
         }
 });

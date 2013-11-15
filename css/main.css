@@ -94,6 +94,10 @@ body {
 
 }
 
+.hidden{
+	display:none;
+}
+
 #title_wrapper {
 	width:950px;
 	display:block;
@@ -477,6 +481,10 @@ body {
 	border: 1px solid #9094FF;
 	margin:0 0 20px;
 	box-shadow: 5px 5px 2px #DEDEDE;
+}
+
+.inactive {
+	background-color: grey !important;
 }
 
 .chapter-list h1 {

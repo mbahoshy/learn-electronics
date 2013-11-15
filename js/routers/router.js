@@ -94,18 +94,32 @@ TRADE.Router = Backbone.Router.extend({
         $('#wrapper').html('');
         $('#title_wrapper').html('');
 
+        
+
         console.dir(TRADE.NavData);
-        console.log(TRADE.Chapter)
+        console.log(TRADE.Chapter);
 
         var record = _.findWhere(TRADE.NavData.chapters, {chapterid: TRADE.Chapter});
         var lesson_record = _.findWhere(record.lessons, {lessonid: lessonid});
 
         console.dir(lesson_record.slides[0]);
 
-        var template = $("#" + lesson_record.slides[0]).html();
+        
         
         $('#wrapper').append("<div id='level_container'></div>");
-        $("#wrapper").prepend(_.template(template,{lesson_record: lesson_record}));
+        
+
+        $.get('/slides/0', function(data, status){
+            console.dir(data);
+            var j = $(data).find('#holder');
+            console.dir(j);
+
+            $('#wrapper').append('<div class="hidden">' + data + '</div>');
+            var template = $("#" + lesson_record.slides[0]).html();
+
+            
+            $("#wrapper-hidden").prepend(_.template(template ,{lesson_record: lesson_record}));
+        });
 
         TRADE.Lesson = lessonid;
     }
