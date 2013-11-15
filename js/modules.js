@@ -36,14 +36,20 @@ exports.getUser = getUser;
 var MainDB = [
 	{classroomid: "0", name:"HVAC", snippet:"Become a service technician", chapters:[
 		{chapterid:"0", name:"The Basics", snippet:"Volts, Amps, and Ohms - an introduction", lessons: [
-			{lessonid:"0", name:"Chapter 1 Lesson 1", snippet:"Volts, Amps, and Ohms - an introduction", content:{}},
-			{lessonid:"1", name:"Chapter 1 Lesson 2", snippet:"Learn how Volts, Amps, and Ohms work together", content:{}},
-			{lessonid:"2", name:"Chapter 1 Lesson 3", snippet:"Swithes and Relays - an introduction", content:{}}
+			{lessonid:"0", name:"Chapter 1 Lesson 1", snippet:"Volts, Amps, and Ohms - an introduction", slides:['slide1']},
+			{lessonid:"1", name:"Chapter 1 Lesson 2", snippet:"Learn how Volts, Amps, and Ohms work together", slides:[]},
+			{lessonid:"2", name:"Chapter 1 Lesson 3", snippet:"Swithes and Relays - an introduction", slides:[]}
 		]},
 		{chapterid:"1", name:"Putting It Together", snippet:"Learn how Volts, Amps, and Ohms work together", lessons:[
-			{lessonid:"0", name:"Chapter 2 Lesson 1", snippet:"Volts, Amps, and Ohms - an introduction", content:{}},
-			{lessonid:"1", name:"Chapter 2 Lesson 2", snippet:"Learn how Volts, Amps, and Ohms work together", content:{}},
-			{lessonid:"2", name:"Chapter 2 Lesson 3", snippet:"Swithes and Relays - an introduction", content:{}}
+			{lessonid:"0", name:"Chapter 2 Lesson 1", snippet:"Volts, Amps, and Ohms - an introduction", slides:[
+
+			]},
+			{lessonid:"1", name:"Chapter 2 Lesson 2", snippet:"Learn how Volts, Amps, and Ohms work together", slides:[
+
+			]},
+			{lessonid:"2", name:"Chapter 2 Lesson 3", snippet:"Swithes and Relays - an introduction", slides:[
+
+			]}
 		]},
 		{chapterid:"2", name:"Switches and Relays", snippet:"Swithes and Relays - an introduction", lessons:[
 			{lessonid:"0", name:"Chapter 3 Lesson 1", snippet:"Volts, Amps, and Ohms - an introduction", content:{}},
@@ -61,18 +67,18 @@ var UsersDB = [{
 	level:"Journeyman",
 	totalprogress:'75',
 	progress: [
-	{classroomid: "0", progress:"50%", chapterscompleted:"2", lessonscomleted:"22", problemscompleted:null, averagescore:null, chapters:[
-		{chapterid:"0", progress: "100%", lessonscompleted:"10", problemscomleted:"5", lessons: [
+	{classroomid: "0", progress:"50%", chapterscompleted:"2", lessonscomleted:"22", problemscompleted:null, averagescore:null, progress:[
+		{chapterid:"0", progress: "100%", lessonscompleted:"10", problemscompleted:"5", lessons: [
 			{lessonid:"0", completed:true, content:{}},
 			{lessonid:"1", completed:false, content:{}},
 			{lessonid:"2", completed:true, content:{}}
 		]},
-		{chapterid:"1", progress: "100%", lessonscompleted:"10", problemscomleted:"5", lessons:[
+		{chapterid:"1", progress: "100%", lessonscompleted:"10", problemscompleted:"5", lessons:[
 			{lessonid:"0", completed:false, content:{}},
 			{lessonid:"1", completed:false, content:{}},
 			{lessonid:"2", completed:true, content:{}}
 		]},
-		{chapterid:"2", progress: "100%", lessonscompleted:"10", problemscomleted:"5", lessons:[
+		{chapterid:"2", progress: "100%", lessonscompleted:"10", problemscompleted:"5", lessons:[
 			{lessonid:"0", completed:true, content:{}},
 			{lessonid:"1", completed:false, content:{}},
 			{lessonid:"2", completed:false, content:{}}

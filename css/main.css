@@ -508,17 +508,33 @@ body {
 
 }
 
+.user-chapter-card {
+	color:#2C0E78;
+	width:307px;
+	float:right;
+	height:200px;
+	background-color: #FFFFFF;
+	padding:20px;
+	border: 1px solid #9094FF;
+	border-top: 0;
+	border-left:0;
+
+}
+
 .class-title {
 	width:950px;
 
 }
 
 .chapter-title {
-	width:950px;
+	width:948px;
 	background-color:white;
 	border: 1px solid #9094FF;
 	border-top: 0;
-	padding:0 10px;
+}
+
+.chapter-title h1 {
+	padding:0 15px;
 }
 
 
