@@ -36,9 +36,9 @@ exports.getUser = getUser;
 var MainDB = [
 	{classroomid: "0", name:"HVAC", snippet:"Become a service technician", chapters:[
 		{chapterid:"0", name:"The Basics", snippet:"Volts, Amps, and Ohms - an introduction", lessons: [
-			{lessonid:"0", name:"Chapter 1 Lesson 1", snippet:"Volts, Amps, and Ohms - an introduction", slides:['slide1']},
-			{lessonid:"1", name:"Chapter 1 Lesson 2", snippet:"Learn how Volts, Amps, and Ohms work together", slides:[]},
-			{lessonid:"2", name:"Chapter 1 Lesson 3", snippet:"Swithes and Relays - an introduction", slides:[]}
+			{lessonid:"0", name:"Chapter 1 Lesson 1", snippet:"Volts, Amps, and Ohms - an introduction", slides:['slide1', 'slide2']},
+			{lessonid:"1", name:"Chapter 1 Lesson 2", snippet:"Learn how Volts, Amps, and Ohms work together", slides:['slide1b', 'slide2b']},
+			{lessonid:"2", name:"Chapter 1 Lesson 3", snippet:"Swithes and Relays - an introduction", slides:['slide1c', 'slide2c']}
 		]},
 		{chapterid:"1", name:"Putting It Together", snippet:"Learn how Volts, Amps, and Ohms work together", lessons:[
 			{lessonid:"0", name:"Chapter 2 Lesson 1", snippet:"Volts, Amps, and Ohms - an introduction", slides:[

@@ -9,14 +9,14 @@ TRADE.Router = Backbone.Router.extend({
 
         $('#wrapper').html(''); //clear html
         $('#title_wrapper').html(''); //clear html
-
+        
         $.get("/class/" + classid, function(data, status){ //get chapter info and render chapter cards
 
             //creates classroom title view and renders
             var class1 = new TRADE.Classroom (data);
             var classview1 = new TRADE.ClassTitleView ({model: class1});
             classview1.render();
-
+            
             //creates chapter list view and render chapter cards
             var ChapterCollection1 = new TRADE.ChapterCollection ();
             ChapterCollection1.reset(data.chapters);
@@ -30,8 +30,9 @@ TRADE.Router = Backbone.Router.extend({
             //sets nav data to variable
             TRADE.NavData = data;
             TRADE.Class = classid;
+            
         });
-      
+        
         $.get("/users/2", function(data, status){ //get user info and render user card
 
             //creates user card and renders
@@ -44,7 +45,7 @@ TRADE.Router = Backbone.Router.extend({
             TRADE.UserData = _.findWhere(data.progress, {classroomid: classid});
 
         });
-
+        
     },
 
     HVACLessonListView: function (chapterid) {
@@ -53,32 +54,36 @@ TRADE.Router = Backbone.Router.extend({
         $('#wrapper').html('');
         $('#title_wrapper').html('');
 
+        console.log (chapterid);
         console.dir(TRADE.UserData.progress);
         var record = _.findWhere(TRADE.NavData.chapters, {chapterid: chapterid});
         var userrecord = _.findWhere(TRADE.UserData.progress, {chapterid: chapterid});
-        console.dir(TRADE.UserData.progress);
+        console.dir(record);
 
         //creates chapter title view and renders
-        TRADE.chaptertitle1 = new TRADE.Chapter (record);
-        TRADE.chaptertitleview1 = new TRADE.ChapterTitleView ({model: TRADE.chaptertitle1});
-        TRADE.chaptertitleview1.render();
+        
+        var chaptertitle1 = new TRADE.ChapterModel (record);
+        console.dir(chaptertitle1);
 
+        var chaptertitleview1 = new TRADE.ChapterTitleView ({model: chaptertitle1});
+        chaptertitleview1.render();
+        
         //creates lesson list view and renders
-        TRADE.LessonCollection1 = new TRADE.LessonCollection ();
-        TRADE.LessonCollection1.reset(record.lessons);
-        TRADE.LessonListView1 = new TRADE.LessonListView ({collection: TRADE.LessonCollection1});
-        TRADE.LessonListView1.render();
+        var LessonCollection1 = new TRADE.LessonCollection ();
+        LessonCollection1.reset(record.lessons);
+        var LessonListView1 = new TRADE.LessonListView ({collection: LessonCollection1});
+        LessonListView1.render();
 
         //creates chapter title view and renders
-        TRADE.userchapter1 = new TRADE.User (userrecord);
-        TRADE.userchapterview1 = new TRADE.UserChapterView ({model: TRADE.userchapter1});
-        TRADE.userchapterview1.render();
+        var userchapter1 = new TRADE.User (userrecord);
+        var userchapterview1 = new TRADE.UserChapterView ({model: userchapter1});
+        userchapterview1.render();
 
 
         //append to dom
-        $('#wrapper').append(TRADE.LessonListView1.$el);
-        $('#wrapper').append(TRADE.userchapterview1.$el);
-        $('#title_wrapper').append(TRADE.chaptertitleview1.$el);
+        $('#wrapper').append(LessonListView1.$el);
+        $('#wrapper').append(userchapterview1.$el);
+        $('#title_wrapper').append(chaptertitleview1.$el);
 
         TRADE.Chapter = chapterid;
 
@@ -89,12 +94,15 @@ TRADE.Router = Backbone.Router.extend({
         $('#wrapper').html('');
         $('#title_wrapper').html('');
 
+        console.dir(TRADE.NavData);
+        console.log(TRADE.Chapter)
+
         var record = _.findWhere(TRADE.NavData.chapters, {chapterid: TRADE.Chapter});
         var lesson_record = _.findWhere(record.lessons, {lessonid: lessonid});
 
         console.dir(lesson_record.slides[0]);
 
-        var template = $("#slide1").html();
+        var template = $("#" + lesson_record.slides[0]).html();
         
         $('#wrapper').append("<div id='level_container'></div>");
         $("#wrapper").prepend(_.template(template,{lesson_record: lesson_record}));

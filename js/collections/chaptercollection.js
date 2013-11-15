@@ -1,4 +1,4 @@
 TRADE.ChapterCollection = Backbone.Collection.extend({
-	model: TRADE.Chapter,
+	model: TRADE.ChapterModel,
 	url: ""
 });

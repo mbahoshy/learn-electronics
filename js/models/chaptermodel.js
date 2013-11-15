@@ -1,4 +1,4 @@
-TRADE.Chapter = Backbone.Model.extend({
+TRADE.ChapterModel = Backbone.Model.extend({
 	defaults: {
 		id: "",
 		name: "",
@@ -6,5 +6,3 @@ TRADE.Chapter = Backbone.Model.extend({
 		content:""
 	}
 });
-
-var contents = ['lessonid1', 'lessonid2', 'lessonid3'];
