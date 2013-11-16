@@ -523,9 +523,7 @@ body {
 	height:200px;
 	background-color: #FFFFFF;
 	padding:20px;
-	border: 1px solid #9094FF;
-	border-top: 0;
-	border-left:0;
+
 
 }
 
@@ -535,10 +533,11 @@ body {
 }
 
 .chapter-title {
+	margin-top: 15px;
 	width:948px;
 	background-color:white;
 	border: 1px solid #9094FF;
-	border-top: 0;
+	border-bottom: 0;
 }
 
 .chapter-title h1 {
@@ -552,9 +551,11 @@ body {
 	background-color: #DDD6FF;
 	padding: 15px 20px;
 	border: 1px solid #9094FF;
-	border-top: 0;
+	border-top:0;
+	border-left: 0;
 	margin:0;
 }
+
 
 .lesson-list h1 {
 	font-size: 16px;
@@ -562,6 +563,11 @@ body {
 
 .lesson-list h2 {
 	font-size: 14px;
+}
+
+#lesson_list_container {
+	border: 1px solid #9094FF;
+	float:left;
 }
 
 /* ------------------------------------------------- */

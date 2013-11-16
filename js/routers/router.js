@@ -54,23 +54,18 @@ TRADE.Router = Backbone.Router.extend({
         $('#wrapper').html('');
         $('#title_wrapper').html('');
 
-        console.log (chapterid);
-        console.dir(TRADE.UserData.progress);
+        //uses TRADE.NavData to find chapter -- uses TRADE.UserData to find user progress for chapter
         var record = _.findWhere(TRADE.NavData.chapters, {chapterid: chapterid});
         var userrecord = _.findWhere(TRADE.UserData.progress, {chapterid: chapterid});
-        console.dir(record);
 
         //creates chapter title view and renders
-        
         var chaptertitle1 = new TRADE.ChapterModel (record);
-        console.dir(chaptertitle1);
-
         var chaptertitleview1 = new TRADE.ChapterTitleView ({model: chaptertitle1});
         chaptertitleview1.render();
         
         //creates lesson list view and renders
         var LessonCollection1 = new TRADE.LessonCollection ();
-        LessonCollection1.reset(record.lessons);
+        LessonCollection1.reset(record.lessons); //loads collection with lessons from chapter
         var LessonListView1 = new TRADE.LessonListView ({collection: LessonCollection1});
         LessonListView1.render();
 
@@ -81,8 +76,9 @@ TRADE.Router = Backbone.Router.extend({
 
 
         //append to dom
-        $('#wrapper').append(LessonListView1.$el);
-        $('#wrapper').append(userchapterview1.$el);
+        $('#wrapper').append("<div id='lesson_list_container'></div>")
+        $('#lesson_list_container').append(LessonListView1.$el);
+        $('#lesson_list_container').append(userchapterview1.$el);
         $('#title_wrapper').append(chaptertitleview1.$el);
 
         TRADE.Chapter = chapterid;
@@ -104,6 +100,11 @@ TRADE.Router = Backbone.Router.extend({
         
         $('#wrapper').append("<div id='level_container'></div>");
         
+        $.get('/json/' + lesson_record.slides, function(data, status) {
+            console.log('hello world');
+            console.log(data);
+            console.dir(data);
+        });
 
         $.get('/slides/' + lesson_record.slides, function(data, status){
 
@@ -111,15 +112,7 @@ TRADE.Router = Backbone.Router.extend({
             var slides = $('#slide_holder > .slide');
 
             var template = $(slides[0]).html();
-
-            console.log(slides[0]);
-            //var template = slides[0].innerHTML();
-
-            //console.log(template);
-
-
-
-            
+        
             $("#wrapper-hidden").prepend(_.template(template ,{lesson_record: lesson_record}));
         });
 

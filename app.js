@@ -22,10 +22,9 @@ app.get("/class/:id", mod.getClass);
 //respond with user info
 app.get("/users/:id", mod.getUser);
 
-app.get('/slides/:id', function(req, res) {
-	var id = req.param("id");
-	res.sendfile('slides/' + id + '.html');
-});
+app.get('/slides/:id', mod.returnSlides);
+
+app.get('/json/:id', mod.returnJson);
 
 //set port
 var port = process.env.PORT || 3000;
