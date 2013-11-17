@@ -115,7 +115,7 @@ body {
 	background-color: white;
 	/*width:700px;
 	height:500px;*/
-	border: 1px solid #424242;
+	border: 1px solid #C0C0C0;
 	border-radius:15px;
 	-webkit-user-select: none;  /* Chrome all / Safari all */
 	-moz-user-select: none;     /* Firefox all */
@@ -127,7 +127,7 @@ body {
 }
 
 #level_container {
-	width:950px;
+
 	margin-top:50px;
 }
 
@@ -580,12 +580,15 @@ body {
 .slide-nav {
 	width:950px;
 	float:left;
+	border: 1px solid #9094FF;
+	background-color: #FFFFFF;
 }
 
 .slide-left {
 	width:50px;
 	height:50px;
 	background-color: blue;
+	float:left;
 }
 
 
@@ -593,6 +596,26 @@ body {
 	width:50px;
 	height:50px;
 	background-color: red;
+	float:right;
+}
+
+#slide_index {
+	float:left;
+	text-align:center;
+}
+
+.slide-active {
+	font-size:20px;
+	font-weight:bold;
+}
+
+#slide_wrapper {
+	background-color: #FFFFFF;
+	border: 1px solid #9094FF;
+	border-top:0;
+	float:left;
+	padding:20px;
+	width:910px;
 }
 
 

@@ -125,6 +125,8 @@ TRADE.Router = Backbone.Router.extend({
             TRADE.SlideIndex = 0; //manage with cookies
         
             $("#slide_container").html(_.template(template));
+            slideIndexNav();
+            $('#slide_nav_' + TRADE.SlideIndex).addClass('slide-active');
         });
 
         //TRADE.Lesson = lessonid;
