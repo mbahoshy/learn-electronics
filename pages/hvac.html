@@ -36,8 +36,31 @@
 
 
 
+	<script>
 
 
+		function slideChange () {
+			var slides = $('#slide_holder > .slide'); // get slide array
+			var slidesNumber = (slides.length - 1); // get number of slides
+			var direction = $(this).data('direction'); // get the direction to move the slide
+			console.log('slide-number' + slidesNumber);
+			if (direction === 'left' && TRADE.SlideIndex !== 0) {
+				$('#level_container').html('');
+				TRADE.SlideIndex --; // decrease index by one
+				console.log('slide-index' + TRADE.SlideIndex);
+				var template = $(slides[TRADE.SlideIndex]).html();
+				$("#slide_container").html(_.template(template));
+			}
+			if (direction === 'right' && TRADE.SlideIndex !== slidesNumber) {
+				$('#level_container').html('');
+				TRADE.SlideIndex ++;
+				console.log('slide-index' + TRADE.SlideIndex);
+				var template = $(slides[TRADE.SlideIndex]).html();
+				$("#slide_container").html(_.template(template));
+			}
+		}
+
+	</script>
 </head>
 <body>
 	<div id='header2'>

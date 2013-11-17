@@ -29,7 +29,7 @@ TRADE.Router = Backbone.Router.extend({
 
             //sets nav data to variable
             TRADE.NavData = data;
-            TRADE.Class = classid;
+            TRADE.Class = classid; // manage with cookies
             
         });
         
@@ -81,7 +81,7 @@ TRADE.Router = Backbone.Router.extend({
         $('#lesson_list_container').append(userchapterview1.$el);
         $('#title_wrapper').append(chaptertitleview1.$el);
 
-        TRADE.Chapter = chapterid;
+        TRADE.ChapterData = chapterid; // manage with cookies
 
     },
 
@@ -91,14 +91,24 @@ TRADE.Router = Backbone.Router.extend({
         $('#title_wrapper').html('');
 
 
-        var record = _.findWhere(TRADE.NavData.chapters, {chapterid: TRADE.Chapter});
+        var record = _.findWhere(TRADE.NavData.chapters, {chapterid: TRADE.ChapterData});
         var lesson_record = _.findWhere(record.lessons, {lessonid: lessonid});
 
         console.dir(lesson_record.slides);
 
         
         
-        $('#wrapper').append("<div id='level_container'></div>");
+        
+
+        $.get('/slideTemplate', function(data, status) {
+            console.dir(data);
+
+            var template = $(data).html();
+            $("#wrapper").prepend(_.template(template));
+            $('.slide-left').on('click', slideChange);
+            $('.slide-right').on('click', slideChange);
+            
+        });
         
         $.get('/json/' + lesson_record.slides, function(data, status) {
             console.log('hello world');
@@ -112,11 +122,12 @@ TRADE.Router = Backbone.Router.extend({
             var slides = $('#slide_holder > .slide');
 
             var template = $(slides[0]).html();
+            TRADE.SlideIndex = 0; //manage with cookies
         
-            $("#wrapper-hidden").prepend(_.template(template ,{lesson_record: lesson_record}));
+            $("#slide_container").html(_.template(template));
         });
 
-        TRADE.Lesson = lessonid;
+        //TRADE.Lesson = lessonid;
     }
 });
 

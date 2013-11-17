@@ -38,11 +38,16 @@ function returnSlides (req, res) {
 	res.sendfile('./slides/' + id + '.html');
 }
 
+function slideTemplate (req, res) {
+	res.sendfile('./templates/slidetemplate.html');
+}
+
 exports.getClassroom = getClassroom;
 exports.getClass = getClass;
 exports.getUser = getUser;
 exports.returnJson = returnJson;
 exports.returnSlides = returnSlides;
+exports.slideTemplate = slideTemplate;
 
 
 var MainDB = [

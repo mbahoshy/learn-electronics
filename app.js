@@ -26,6 +26,8 @@ app.get('/slides/:id', mod.returnSlides);
 
 app.get('/json/:id', mod.returnJson);
 
+app.get('/slideTemplate', mod.slideTemplate);
+
 //set port
 var port = process.env.PORT || 3000;
 app.listen(port);
