@@ -601,11 +601,14 @@ body {
 
 #slide_index {
 	float:left;
+	font-size: 18px;
 	text-align:center;
+	width:850px;
+	padding:10px 0;
 }
 
 .slide-active {
-	font-size:20px;
+	font-size:22px;
 	font-weight:bold;
 }
 
