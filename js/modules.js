@@ -2,21 +2,25 @@ var path = require("path"),
 	express = require("express"),
     _ = require("underscore");
 
+
 var mongoose = require('mongoose');
 var MONGOHQ_URL = 'mongodb://mbahoshy:07maryJ68@dharma.mongohq.com:10062/tradeTrainer';
 var Schema = mongoose.Schema;
 
 
-var GameJson = mongoose.Schema({
-    name: String
-});
 mongoose.connect(MONGOHQ_URL);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback () {
-  console.log('vaginas!');
+  console.log('successfully connected to database!');
 });
 
+var NavData = mongoose.model('navdata', 
+           new Schema({}), 
+           'NavData');
+var gamejson = mongoose.model('gamejson', 
+           new Schema({}), 
+           'GameJson');
 
 function getClassroom (req, res) {
 
@@ -25,49 +29,61 @@ function getClassroom (req, res) {
 
 function getClass (req, res){
 	var id = req.param("id");
-	var record = _.findWhere(MainDB, {classroomid: id});
-
-	if(record) {
-		res.json(record);
+	if(id!=='reset') {
+		req.session.classid = id;
 	} else {
-		res.send("Sorry, the id " + id + " doesn't exist in the DB.");
+		id = req.session.classid;
 	}
+	NavData.find({"classid": id}, function(err, documents) {
+		res.json(documents[0]);
+	});
 
 }
 
 function getUser (req, res){
+	//console.log('before' + req.session.userid);
 	var id = req.param("id");
-	var record = _.findWhere(UsersDB, {id: id});
+
+	if(id === 'reset') {
+		id = req.session.userid;
+		console.log(id);
+	} else {
+		
+		req.session.userid = id;
+		console.log(req.session.userid);
+		
+	}
+	
+	var record = _.findWhere(UsersDB, {userid: id});
 	if(record) {
+		//console.log(record);
 		res.json(record);
 	} else {
 		res.send("Sorry, the id " + id + " doesn't exist in the DB.");
 	}
+	
 }
 
 function returnJson (req, res) {
 	var id = req.param("id");
-	var gamejson = mongoose.model('gamejson', 
-               new Schema({}), 
-               'GameJson');
-
 	gamejson.find({"slideid": id}, function(err, documents) {
 		res.json(documents[0]);
-	    return console.log(documents[0]);
-	  
 	});
-
-
-	
 }
 
 function returnSlides (req, res) {
 	var id = req.param("id");
+	req.session.slideid = id;
 	res.sendfile('./slides/' + id + '.html');
 }
 
 function slideTemplate (req, res) {
 	res.sendfile('./templates/slidetemplate.html');
+}
+
+function getNav (req, res) {
+	var type = req.param("type");
+	res.send(req.session[type]);
 }
 
 exports.getClassroom = getClassroom;
@@ -76,6 +92,7 @@ exports.getUser = getUser;
 exports.returnJson = returnJson;
 exports.returnSlides = returnSlides;
 exports.slideTemplate = slideTemplate;
+exports.getNav = getNav;
 
 
 var MainDB = [
@@ -100,7 +117,7 @@ var MainDB = [
 
 
 var UsersDB = [{
-	id:"2",
+	userid:"2",
 	name:"Mountain Dew",
 	email:"mdForReal@gmail.com",
 	level:"Journeyman",

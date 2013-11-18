@@ -40,46 +40,15 @@
 	<script>
 
 
-		function slideChange () {
-			var slides = $('#slide_holder > .slide'); // get slide array
-			var slidesNumber = (slides.length - 1); // get number of slides
-			var direction = $(this).data('direction'); // get the direction to move the slide
-			console.log('slide-number' + slidesNumber);
-			if (direction === 'left' && TRADE.SlideIndex !== 0) {
-				$('.slide-active').removeClass('slide-active');
-				$('#level_container').html('');
-				TRADE.SlideIndex --; // decrease index by one
-				$('#slide_nav_' + TRADE.SlideIndex).addClass('slide-active');
-				console.log('slide-index' + TRADE.SlideIndex);
-				var template = $(slides[TRADE.SlideIndex]).html();
-				$("#slide_container").html(_.template(template));
-			}
-			if (direction === 'right' && TRADE.SlideIndex !== slidesNumber) {
-				$('#level_container').html('');
-				$('.slide-active').removeClass('slide-active')
-				TRADE.SlideIndex ++;
-				$('#slide_nav_' + TRADE.SlideIndex).addClass('slide-active');
-				console.log('slide-index' + TRADE.SlideIndex);
-				var template = $(slides[TRADE.SlideIndex]).html();
-				$("#slide_container").html(_.template(template));
-			}
-		}
-
-		function slideIndexNav () {
-			var slidesNumber = $('#slide_holder > .slide').length;
-			for (var i=0; i<slidesNumber; i++) {
-				$('#slide_index').append('<span id="slide_nav_' + i + '">' + (i + 1) + ' </span>');
-
-			}
-		}
+		
 
 	</script>
 </head>
 <body>
-	<div id='header2'>
+	<div class='header-small' id='header'>
 		<div id='header_wrapper'>
 			<div class='fleft'>
-				<h1>TRADE TRAINER</h1>
+				<a href='/classroom/#0'><h1>TRADE TRAINER</h1></a>
 			</div>
 			<span class='fright'>LogOut</span>
 		</div>

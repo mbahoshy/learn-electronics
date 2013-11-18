@@ -10,32 +10,18 @@ TRADE.Router = Backbone.Router.extend({
         $('#wrapper').html(''); //clear html
         $('#title_wrapper').html(''); //clear html
         
-        $.get("/class/" + classid, function(data, status){ //get chapter info and render chapter cards
-
-            //creates classroom title view and renders
-            var class1 = new TRADE.Classroom (data);
-            var classview1 = new TRADE.ClassTitleView ({model: class1});
-            classview1.render();
+        if(TRADE.NavObj == '') {
             
-            //creates chapter list view and render chapter cards
-            var ChapterCollection1 = new TRADE.ChapterCollection ();
-            ChapterCollection1.reset(data.chapters);
-            var ChapterListView1 = new TRADE.ChapterListView ({collection: ChapterCollection1});
-            ChapterListView1.render();
-
-            //append to dom
-            $('#wrapper').append(ChapterListView1.$el);
-            $('#title_wrapper').append(classview1.$el);
-
-            //sets nav data to variable
-            TRADE.NavData = data;
-            console.dir(data);
-
-
-            TRADE.Class = classid; // manage with cookies
-
+            $.get("/class/" + classid, function(data, status){ //get chapter info and render chapter cards
+                TRADE.NavObj = data;
+                console.dir(TRADE.NavObj);
+                TRADE.NavData.classid = classid; // manage with cookies
+                renderChapters();        
+            });
+        } else {
             
-        });
+            renderChapters();
+        }
         
         $.get("/users/2", function(data, status){ //get user info and render user card
 
@@ -49,7 +35,25 @@ TRADE.Router = Backbone.Router.extend({
             TRADE.UserData = _.findWhere(data.progress, {classroomid: classid});
 
         });
-        
+  
+        function renderChapters () {
+            //creates classroom title view and renders
+            var class1 = new TRADE.Classroom (TRADE.NavObj);
+            var classview1 = new TRADE.ClassTitleView ({model: class1});
+            classview1.render();
+            
+            //creates chapter list view and render chapter cards
+            var ChapterCollection1 = new TRADE.ChapterCollection ();
+            ChapterCollection1.reset(TRADE.NavObj.chapters);
+            var ChapterListView1 = new TRADE.ChapterListView ({collection: ChapterCollection1});
+            ChapterListView1.render();
+
+            //append to dom
+            $('#wrapper').append(ChapterListView1.$el);
+            $('#title_wrapper').append(classview1.$el);
+        }
+
+
     },
 
     HVACLessonListView: function (chapterid) {
@@ -57,35 +61,67 @@ TRADE.Router = Backbone.Router.extend({
         //clear html
         $('#wrapper').html('');
         $('#title_wrapper').html('');
+        if(TRADE.NavObj == '') {
+            $.get("/class/reset", function(data, status){ //get chapter info and render chapter cards
+                TRADE.NavObj = data;
+                renderLessons();      
+            });
+        } else {
+            renderLessons();
+        }
+        if(TRADE.UserData == ''){
+            console.log("vaginers");
+            $.get("/nav/classid", function(data, status){
+                TRADE.NavData.classid = data;
+                console.dir('class id' + TRADE.NavData.classid);
+                
+                (function () {
+                    $.get("/users/2", function(data, status){ //get user info and render user card
+                        console.dir(data);
+                        TRADE.UserData = _.findWhere(data.progress, {classroomid: TRADE.NavData.classid});;
+                       
+                        renderUserLesson();
+                     });   
+                })();
 
-        //uses TRADE.NavData to find chapter -- uses TRADE.UserData to find user progress for chapter
-        var record = _.findWhere(TRADE.NavData.chapters, {chapterid: chapterid});
-        var userrecord = _.findWhere(TRADE.UserData.progress, {chapterid: chapterid});
+            });
 
-        //creates chapter title view and renders
-        var chaptertitle1 = new TRADE.ChapterModel (record);
-        var chaptertitleview1 = new TRADE.ChapterTitleView ({model: chaptertitle1});
-        chaptertitleview1.render();
-        
-        //creates lesson list view and renders
-        var LessonCollection1 = new TRADE.LessonCollection ();
-        LessonCollection1.reset(record.lessons); //loads collection with lessons from chapter
-        var LessonListView1 = new TRADE.LessonListView ({collection: LessonCollection1});
-        LessonListView1.render();
+                      
+        } else {
+            renderUserLesson();
+        }
+        function renderLessons () {
+            //uses TRADE.NavData to find chapter -- uses TRADE.UserData to find user progress for chapter
+            var record = _.findWhere(TRADE.NavObj.chapters, {chapterid: chapterid});
 
-        //creates chapter title view and renders
-        var userchapter1 = new TRADE.User (userrecord);
-        var userchapterview1 = new TRADE.UserChapterView ({model: userchapter1});
-        userchapterview1.render();
+            //creates chapter title view and renders
+            var chaptertitle1 = new TRADE.ChapterModel (record);
+            var chaptertitleview1 = new TRADE.ChapterTitleView ({model: chaptertitle1});
+            chaptertitleview1.render();
+            
+            //creates lesson list view and renders
+            var LessonCollection1 = new TRADE.LessonCollection ();
+            LessonCollection1.reset(record.lessons); //loads collection with lessons from chapter
+            var LessonListView1 = new TRADE.LessonListView ({collection: LessonCollection1});
+            LessonListView1.render();
 
+            //append to dom
+            $('#wrapper').append("<div id='lesson_list_container'></div>");
+            $('#lesson_list_container').append(LessonListView1.$el);
+            $('#title_wrapper').append(chaptertitleview1.$el);
+        }
 
-        //append to dom
-        $('#wrapper').append("<div id='lesson_list_container'></div>")
-        $('#lesson_list_container').append(LessonListView1.$el);
-        $('#lesson_list_container').append(userchapterview1.$el);
-        $('#title_wrapper').append(chaptertitleview1.$el);
-
-        TRADE.ChapterData = chapterid; // manage with cookies
+        function renderUserLesson () {
+            console.log(chapterid);
+            var userrecord = _.findWhere(TRADE.UserData.progress, {chapterid: chapterid});
+            console.dir(userrecord);
+            //creates chapter title view and renders
+            var userchapter1 = new TRADE.User (userrecord);
+            var userchapterview1 = new TRADE.UserChapterView ({model: userchapter1});
+            userchapterview1.render();
+            $('#lesson_list_container').append(userchapterview1.$el);
+        }
+        TRADE.NavData.chapterid = chapterid; // manage with cookies
 
     },
 
@@ -96,13 +132,13 @@ TRADE.Router = Backbone.Router.extend({
         $('#title_wrapper').html('');
 
 
-        var record = _.findWhere(TRADE.NavData.chapters, {chapterid: TRADE.ChapterData});
+        var record = _.findWhere(TRADE.NavObj.chapters, {chapterid: TRADE.NavData.chapterid});
         var lesson_record = _.findWhere(record.lessons, {lessonid: lessonid});
 
 
         // loads json for game
         $.get('/json/' + lesson_record.slides, function(data, status) {
-            TRADE.gamejson = data;
+            TRADE.GameData.gamejson = data;
             slideTemplate();
 
         });
@@ -114,9 +150,9 @@ TRADE.Router = Backbone.Router.extend({
 
                 var template = $(data).html();
                 $("#wrapper").prepend(_.template(template));
-                $('.slide-left').on('click', slideChange);
-                $('.slide-right').on('click', slideChange);
-                slides ();
+                $('.slide-left').on('click', TRADE.FUNC.slideChange);
+                $('.slide-right').on('click', TRADE.FUNC.slideChange);
+                slides();
             });
         } 
 
@@ -128,11 +164,11 @@ TRADE.Router = Backbone.Router.extend({
                 var slides = $('#slide_holder > .slide');
 
                 var template = $(slides[0]).html();
-                TRADE.SlideIndex = 0; //manage with cookies
+                TRADE.GameData.slideindex = 0; //manage with cookies
             
                 $("#slide_container").html(_.template(template));
-                slideIndexNav();
-                $('#slide_nav_' + TRADE.SlideIndex).addClass('slide-active');
+                TRADE.FUNC.slideIndexNav();
+                $('#slide_nav_' + TRADE.GameData.slideindex).addClass('slide-active');
             });
         }
        

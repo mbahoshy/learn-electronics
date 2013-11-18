@@ -117,7 +117,7 @@ var HVAC = (function () {
 				
 				//checks to see if light is on or off
 				function resetLightBulb () {
-					var on = TRADE.gamejson[level1.current_problem][level1.current_set][id].on;
+					var on = TRADE.GameData.gamejson[level1.current_problem][level1.current_set][id].on;
 					if (on === false) {
 						context.fillStyle = '#FFFFFF';
      					context.fill();
@@ -331,7 +331,7 @@ var HVAC = (function () {
 				this.tmp_current_set = ''; //keeps track of the current_set before the switch was hit
 				
 				function resetSPSTSwitch () {
-					var on = TRADE.gamejson[level1.current_problem][level1.current_set][id].on;
+					var on = TRADE.GameData.gamejson[level1.current_problem][level1.current_set][id].on;
 					if (on === false) {
 						$('#' + id + ' > .switch').html("<div class='switch-off'><p>OFF</p></div>")
 					} else if (on === true) {
@@ -394,7 +394,7 @@ var HVAC = (function () {
 				
 				function resetHeater () {
 					
-					var on = TRADE.gamejson[level1.current_problem][level1.current_set][id].on;
+					var on = TRADE.GameData.gamejson[level1.current_problem][level1.current_set][id].on;
 					if (on === false) {
 						//$('#' + id + '_hon').removeClass('heater-on');
 						
@@ -557,7 +557,7 @@ var HVAC = (function () {
 				this.Amps = function (wid) {
 					if (multiMeter1.mode === 'Amps') {
 						var txt = document.getElementById("answer");
-						txt.innerHTML = TRADE.gamejson[level1.current_problem][level1.current_set][wid].Amps;
+						txt.innerHTML = TRADE.GameData.gamejson[level1.current_problem][level1.current_set][wid].Amps;
 					}
 				}
 
@@ -583,8 +583,8 @@ var HVAC = (function () {
 				cid = $(this).attr('id');
 				mode = multiMeter1.mode;
 
-				p = TRADE.gamejson[level1.current_problem][level1.current_set][cid][mode];
-				d = TRADE.gamejson[level1.current_problem][level1.current_set][cid].Device;
+				p = TRADE.GameData.gamejson[level1.current_problem][level1.current_set][cid][mode];
+				d = TRADE.GameData.gamejson[level1.current_problem][level1.current_set][cid].Device;
 
 				if (multiMeter1.odd==true) {
 					$('.border-red').removeClass('border-red');

@@ -40,6 +40,16 @@ body {
 	font-weight: normal;
 }
 
+#header a {
+	text-decoration: none;
+	color:#FFFFFF;
+}
+
+#header a:visited {
+	text-decoration: none;
+	color:#FFFFFF;
+}
+
 #header h2 {
 	margin:0 15px;
 	font-size: 18px;
@@ -47,28 +57,11 @@ body {
 	font-family: 'titleh2';
 }
 
-#header2 {
-	width:100%;
-	height:60px;
-	background-color: #2C0E78;	
+.header-small {
+	height:60px !important;
 }
 
-#header2 h1 {
-	margin:0px;
-	font-size: 40px;
-	padding-top:20px;
-	font-family: 'title';
-	font-weight: normal;
-}
-
-#header2 h2 {
-	margin:0 15px;
-	color:white;
-	font-size: 18px;
-	width:600px;
-	font-family: 'titleh2';
-}
-
+/* -------------------------------------------- */
 
 #footer {
 	width:100%;
