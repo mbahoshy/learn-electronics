@@ -484,7 +484,8 @@ body {
 }
 
 .inactive {
-	background-color: grey !important;
+	color:#8C8C8C;
+	background-color: #B9B9B9 !important;
 }
 
 .chapter-list h1 {

@@ -2,7 +2,24 @@ var path = require("path"),
 	express = require("express"),
     _ = require("underscore");
 
+var mongoose = require('mongoose');
+var MONGOHQ_URL = 'mongodb://mbahoshy:07maryJ68@dharma.mongohq.com:10062/tradeTrainer';
+var Schema = mongoose.Schema;
+
+
+var GameJson = mongoose.Schema({
+    name: String
+});
+mongoose.connect(MONGOHQ_URL);
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function callback () {
+  console.log('vaginas!');
+});
+
+
 function getClassroom (req, res) {
+
     res.sendfile('pages/hvac.html');
 }
 
@@ -30,7 +47,18 @@ function getUser (req, res){
 
 function returnJson (req, res) {
 	var id = req.param("id");
-	res.json(problem_set);
+	var gamejson = mongoose.model('gamejson', 
+               new Schema({}), 
+               'GameJson');
+
+	gamejson.find({"slideid": id}, function(err, documents) {
+		res.json(documents[0]);
+	    return console.log(documents[0]);
+	  
+	});
+
+
+	
 }
 
 function returnSlides (req, res) {
@@ -57,7 +85,7 @@ var MainDB = [
 			{lessonid:"1", active:false, name:"Chapter 1 Lesson 2", snippet:"Learn how Volts, Amps, and Ohms work together", slides:"cl0_ch0_l1"},
 			{lessonid:"2", active:false, name:"Chapter 1 Lesson 3", snippet:"Swithes and Relays - an introduction", slides:"cl0_ch0_l2"}
 		]},
-		{chapterid:"1", active:true, name:"Putting It Together", snippet:"Learn how Volts, Amps, and Ohms work together", lessons:[
+		{chapterid:"1", active:false, name:"Putting It Together", snippet:"Learn how Volts, Amps, and Ohms work together", lessons:[
 			{lessonid:"0", name:"Chapter 2 Lesson 1", snippet:"Volts, Amps, and Ohms - an introduction", slides:"cl0_ch1_l0"},
 			{lessonid:"1", name:"Chapter 2 Lesson 2", snippet:"Learn how Volts, Amps, and Ohms work together", slides:"cl0_ch1_l0"},
 			{lessonid:"2", name:"Chapter 2 Lesson 3", snippet:"Swithes and Relays - an introduction", slides:"cl0_ch1_l0"}

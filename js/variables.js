@@ -1,4 +1,4 @@
-var problem_set = {
+TRADE.gamejson = {
 	"problem_01" : {
 		"switch": {
 

@@ -3,6 +3,22 @@ var path = require("path"),
     _ = require("underscore"),
     mod = require('./js/modules');
 
+var mongoose = require('mongoose');
+var mongodb = require('mongodb');
+var MONGOHQ_URL = 'mongodb://mbahoshy:07maryJ68@dharma.mongohq.com:10062/tradeTrainer';
+var Schema = mongoose.Schema;
+
+mongoose.connect(MONGOHQ_URL);
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function callback () {
+  console.log('vaginas!');
+});
+
+var GameJson = mongoose.Schema({
+    name: String
+})
+
 var app = express()
             .use(express.static(__dirname, 
                                 path.join(__dirname, "pages"),
@@ -11,7 +27,9 @@ var app = express()
 
 
 //responds with index.html
-app.get("/", function(req, res) {});
+app.get("/", function(req, res) {
+
+});
 
 //responds with hvac.html
 app.get("/classroom", mod.getClassroom);
