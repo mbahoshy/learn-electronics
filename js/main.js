@@ -1,8 +1,8 @@
 var TRADE = window.TRADE = {};
-TRADE.UserData = '';
 
+TRADE.UserData = ''; //holds an object containing data about the user
 
-TRADE.NavObj= '';
+TRADE.NavObj= ''; //holds an object containing data about the navigation
 
 TRADE.NavData = (function(){
 	this.classid='';

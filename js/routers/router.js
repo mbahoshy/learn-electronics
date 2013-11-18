@@ -9,31 +9,36 @@ TRADE.Router = Backbone.Router.extend({
 
         $('#wrapper').html(''); //clear html
         $('#title_wrapper').html(''); //clear html
-        
-        if(TRADE.NavObj == '') {
+
+        $( document ).ready(function() {
+            if(TRADE.NavObj == '') {
+                
+                $.get("/class/" + classid, function(data, status){ //get chapter info and render chapter cards
+                    TRADE.NavObj = data;
+                    console.dir(TRADE.NavObj);
+                    TRADE.NavData.classid = classid; // manage with cookies
+                    renderChapters();        
+                });
+            } else {
+                
+                renderChapters();
+            }
             
-            $.get("/class/" + classid, function(data, status){ //get chapter info and render chapter cards
-                TRADE.NavObj = data;
-                console.dir(TRADE.NavObj);
-                TRADE.NavData.classid = classid; // manage with cookies
-                renderChapters();        
+            $.get("/users/2", function(data, status){ //get user info and render user card
+
+                //creates user card and renders
+                var user1 = new TRADE.User (data);
+                var cardView1 = new TRADE.UserView ({model: user1});
+                cardView1.render();
+                $('#wrapper').append(cardView1.$el);
+
+                //sets user data to variable
+                console.dir(data.progress);
+                console.log("classid " + classid);
+                TRADE.UserData = _.findWhere(data.progress, {classroomid: classid});
+                console.log(TRADE.UserData);
+
             });
-        } else {
-            
-            renderChapters();
-        }
-        
-        $.get("/users/2", function(data, status){ //get user info and render user card
-
-            //creates user card and renders
-            var user1 = new TRADE.User (data);
-            var cardView1 = new TRADE.UserView ({model: user1});
-            cardView1.render();
-            $('#wrapper').append(cardView1.$el);
-
-            //sets user data to variable
-            TRADE.UserData = _.findWhere(data.progress, {classroomid: classid});
-
         });
   
         function renderChapters () {
@@ -61,35 +66,44 @@ TRADE.Router = Backbone.Router.extend({
         //clear html
         $('#wrapper').html('');
         $('#title_wrapper').html('');
-        if(TRADE.NavObj == '') {
-            $.get("/class/reset", function(data, status){ //get chapter info and render chapter cards
-                TRADE.NavObj = data;
-                renderLessons();      
-            });
-        } else {
-            renderLessons();
-        }
-        if(TRADE.UserData == ''){
-            console.log("vaginers");
-            $.get("/nav/classid", function(data, status){
-                TRADE.NavData.classid = data;
-                console.dir('class id' + TRADE.NavData.classid);
-                
-                (function () {
-                    $.get("/users/2", function(data, status){ //get user info and render user card
-                        console.dir(data);
-                        TRADE.UserData = _.findWhere(data.progress, {classroomid: TRADE.NavData.classid});;
-                       
-                        renderUserLesson();
-                     });   
-                })();
+        
+        $( document ).ready(function() {
+            $('#wrapper').append("<div id='lesson_list_container'></div>");
 
-            });
+            if(TRADE.NavObj == '') {
+                $.get("/class/reset", function(data, status){ //get chapter info and render chapter cards
+                    TRADE.NavObj = data;
+                    renderLessons();      
+                });
+            } else {
+                renderLessons();
+            }
+            if(TRADE.UserData == ''){
+                console.log("vaginers");
+                $.get("/nav/classid", function(data, status){
+                    TRADE.NavData.classid = data;
+                    
+                    
+                    (function () {
+                        $.get("/users/2", function(data, status){ //get user info and render user card
 
-                      
-        } else {
-            renderUserLesson();
-        }
+                            console.dir('class id' + TRADE.NavData.classid);
+                            console.dir(data.progress);
+                            TRADE.UserData = _.findWhere(data.progress, {classroomid: TRADE.NavData.classid});
+                            console.dir(TRADE.UserData);
+                            renderUserLesson();
+                         });   
+                    })();
+
+                });
+
+                          
+            } else {
+                renderUserLesson();
+            }
+            TRADE.NavData.chapterid = chapterid; // manage with cookies
+        });
+
         function renderLessons () {
             //uses TRADE.NavData to find chapter -- uses TRADE.UserData to find user progress for chapter
             var record = _.findWhere(TRADE.NavObj.chapters, {chapterid: chapterid});
@@ -106,7 +120,7 @@ TRADE.Router = Backbone.Router.extend({
             LessonListView1.render();
 
             //append to dom
-            $('#wrapper').append("<div id='lesson_list_container'></div>");
+            
             $('#lesson_list_container').append(LessonListView1.$el);
             $('#title_wrapper').append(chaptertitleview1.$el);
         }
@@ -121,7 +135,7 @@ TRADE.Router = Backbone.Router.extend({
             userchapterview1.render();
             $('#lesson_list_container').append(userchapterview1.$el);
         }
-        TRADE.NavData.chapterid = chapterid; // manage with cookies
+        
 
     },
 
