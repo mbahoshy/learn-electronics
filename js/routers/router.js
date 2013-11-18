@@ -94,11 +94,14 @@ TRADE.Router = Backbone.Router.extend({
         var record = _.findWhere(TRADE.NavData.chapters, {chapterid: TRADE.ChapterData});
         var lesson_record = _.findWhere(record.lessons, {lessonid: lessonid});
 
-        console.dir(lesson_record.slides);
 
+
+         $.get('/json/' + lesson_record.slides, function(data, status) {
+            TRADE.gamejson = data;
+            console.dir(TRADE.gamejson);
         
         
-        
+         });
 
         $.get('/slideTemplate', function(data, status) {
             console.dir(data);
@@ -109,12 +112,8 @@ TRADE.Router = Backbone.Router.extend({
             $('.slide-right').on('click', slideChange);
             
         });
-        
-        $.get('/json/' + lesson_record.slides, function(data, status) {
-            console.log('hello world');
-            console.log(data);
-            console.dir(data);
-        });
+            
+
 
         $.get('/slides/' + lesson_record.slides, function(data, status){
 
@@ -128,7 +127,7 @@ TRADE.Router = Backbone.Router.extend({
             slideIndexNav();
             $('#slide_nav_' + TRADE.SlideIndex).addClass('slide-active');
         });
-
+       
         //TRADE.Lesson = lessonid;
     }
 });
