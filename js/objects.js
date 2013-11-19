@@ -1,5 +1,5 @@
 
-var HVAC = (function () {
+TRADE.CIRC = (function () {
 			var level1;
 			var multiMeter1;
 			var stage;
