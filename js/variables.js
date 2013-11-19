@@ -36,8 +36,8 @@ TRADE.GameData.gamejson = {
 			"fan1": {"on": true},
 			"f1": {"Volts": "g", "Ohms": 14, "Ferads": '', "Device": 'ss'},
 			"f2": {"Volts": "g", "Ohms": 14, "Ferads": '', "Device": 'ss'},
-			"f3": {"Volts": "g", "Ohms": 14, "Ferads": '', "Device": 'ss'}
-
+			"f3": {"Volts": "g", "Ohms": 14, "Ferads": '', "Device": 'ss'},
+			"break1": {"on": true}
 
 		},
 		"noswitch": {
@@ -51,8 +51,8 @@ TRADE.GameData.gamejson = {
 						
 			//switch
 			"spst1": {"on": false},
-			"sc1": {"Volts": "l1", "Ohms": 14, "Ferads": '', "Device": 'ss'},
-			"sc2": {"Volts": "g", "Ohms": 14, "Ferads": '', "Device": 'ss'},
+			"s0": {"Volts": "l1", "Ohms": 14, "Ferads": '', "Device": 'ss'},
+			"s1": {"Volts": "g", "Ohms": 14, "Ferads": '', "Device": 'ss'},
 
 			//wires
 			"w1": {"Amps": 0},
@@ -71,7 +71,8 @@ TRADE.GameData.gamejson = {
 			"heat1": {"on": false},
 			"heat2": {"on": true},
 			"heat3": {"on": true},
-			"fan1": {"on": false}
+			"fan1": {"on": false},
+			"break1": {"on": false}
 		}
 	}
 };

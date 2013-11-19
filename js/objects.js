@@ -328,7 +328,7 @@ TRADE.CIRC = (function () {
 
 			this.SPSTSwitch = function (id, c0, c1, left, top, newswitch) {
 
-				this.tmp_current_set = ''; //keeps track of the current_set before the switch was hit
+				var tmp_current_set; //keeps track of the current_set before the switch was hit
 				
 				function resetSPSTSwitch () {
 					var on = TRADE.GameData.gamejson[level1.current_problem][level1.current_set][id].on;
@@ -344,21 +344,18 @@ TRADE.CIRC = (function () {
 				(function () {
 					var $html = $("<div style='top:" + top + "px;left:" + left + "px' id = '" + id + "' class='spstswitch'><div class='switch'></div><div id='" + c0 + "' class='contact' style='top:0px;left:-10px'></div><div id='" + c1 + "' class='contact' style='top:91px;right:-10px;'></div></div>");
 					$('#canvas').append($html);
-					var that = this;
-					$("#" + id).on('click', '.switch', function(){that.switch(newswitch);}); //assigns click event for newly created switch
+					$("#" + id).on('click', '.switch', spstSwitch); //assigns click event for newly created switch
 				})();
 
 
-				this.switch = function (set1) {
+				function spstSwitch () {
 
-					if (level1.current_set == set1 ) {
-						level1.current_set = this.tmp_current_set;
-						//level1.setPset();
+					if (level1.current_set == newswitch ) {
+						level1.current_set = tmp_current_set;
 						multiMeter1.clearMeter();
 					} else {
-						this.tmp_current_set = level1.current_set;
-						level1.current_set = set1;
-						//level1.setPset();
+						tmp_current_set = level1.current_set;
+						level1.current_set = newswitch;
 						multiMeter1.clearMeter();
 					}
 					
@@ -370,11 +367,43 @@ TRADE.CIRC = (function () {
 			}
 
 			this.Breaker = function (id, c0, c1, c2, c3, left, top, newswitch) {
-				(function () {
-					var $html = $("<div style='top:" + top + "px;left:" + left + "px' id = '" + id + "' class='breaker'></div>");
-					$('#canvas').append($html);
 
+				var tmp_current_set;
+				var that;
+				that = this;
+
+				$(this).on('reset.Breaker', resetBreaker);
+				(function () {
+					var $html = $("<div style='top:" + top + "px;left:" + left + "px' id = '" + id + "' class='breaker'><div id='bs_on_" + id + "' class='breaker-switch'><div class='breaker-wide'></div><div class='breaker-skinny'></div></div><div id='bs_off_" + id + "' class='breaker-switch hidden'><div class='breaker-skinny'></div><div class='breaker-wide'></div></div></div>");
+					$('#canvas').append($html);
+					$(".breaker-wide").on('click', breakerSwitch);
 				})();
+
+				function breakerSwitch () {
+					
+					if (level1.current_set == newswitch ) {
+						level1.current_set = tmp_current_set;
+						multiMeter1.clearMeter();
+					} else {
+						tmp_current_set = level1.current_set;
+						level1.current_set = newswitch;
+						multiMeter1.clearMeter();
+					}
+					
+					$('#canvas').trigger('reset');
+
+				}
+
+				function resetBreaker () {
+					var on = TRADE.GameData.gamejson[level1.current_problem][level1.current_set][id].on;
+					if (on === true) {
+						$('#bs_off_' + id).addClass('hidden');
+						$('#bs_on_' + id).removeClass('hidden');
+					} else {
+						$('#bs_on_' + id).addClass('hidden');
+						$('#bs_off_' + id).removeClass('hidden');
+					}
+				}
 			}
 
 

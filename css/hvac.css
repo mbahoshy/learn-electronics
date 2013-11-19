@@ -84,8 +84,34 @@
 
 .breaker {
 	position:absolute;
-	width:50px;
-	height:100px;
+	width:75px;
+	height:110px;
 	background-color:grey;
-	border-radius:5px;
+	border-radius:3px;
+}
+
+.breaker-switch {
+	position:absolute;
+	width:60px;
+	left:7.5px;
+	top:28px;
+}
+
+.breaker-wide {
+	float:left;
+	width:60px;
+	height:30px;
+	background-color: yellow;
+	border-radius: 3px;
+}
+
+.breaker-skinny {
+	float:left;
+	display:block;
+	margin-left:10px;
+	margin-right:10px;
+	background-color: red;
+	width:40px;
+	height:23px;
+	border-radius: 0 0 3px 3px;
 }
