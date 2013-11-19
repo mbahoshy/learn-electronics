@@ -79,7 +79,6 @@ TRADE.Router = Backbone.Router.extend({
                 renderLessons();
             }
             if(TRADE.UserData == ''){
-                console.log("vaginers");
                 $.get("/nav/classid", function(data, status){
                     TRADE.NavData.classid = data;
                     
@@ -145,17 +144,27 @@ TRADE.Router = Backbone.Router.extend({
         $('#wrapper').html('');
         $('#title_wrapper').html('');
 
+        if(TRADE.NavObj == '') {
+            $.get("/nav/lessonid", function(data, status){
+                TRADE.NavData.lessonid = data;
+                getJson();
+            });
+        } else {
+            var record = _.findWhere(TRADE.NavObj.chapters, {chapterid: TRADE.NavData.chapterid});
+            var lesson_record = _.findWhere(record.lessons, {lessonid: lessonid});
+            TRADE.NavData.lessonid = lesson_record.slides;
+            getJson();
+        }
+        
 
-        var record = _.findWhere(TRADE.NavObj.chapters, {chapterid: TRADE.NavData.chapterid});
-        var lesson_record = _.findWhere(record.lessons, {lessonid: lessonid});
+        function getJson () {
+            // loads json for game
+            $.get('/json/' + TRADE.NavData.lessonid, function(data, status) {
+                TRADE.GameData.gamejson = data;
+                slideTemplate();
 
-
-        // loads json for game
-        $.get('/json/' + lesson_record.slides, function(data, status) {
-            TRADE.GameData.gamejson = data;
-            slideTemplate();
-
-        });
+            });
+        }
 
         //loads outer slide template after json is complete
         function slideTemplate () {
@@ -172,7 +181,7 @@ TRADE.Router = Backbone.Router.extend({
 
         //loads individual slides after slide template is loaded
         function slides () {
-            $.get('/slides/' + lesson_record.slides, function(data, status){
+            $.get('/slides/' + TRADE.NavData.lessonid, function(data, status){
 
                 $('#wrapper').append('<div class="hidden">' + data + '</div>');
                 var slides = $('#slide_holder > .slide');

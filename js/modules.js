@@ -73,7 +73,7 @@ function returnJson (req, res) {
 
 function returnSlides (req, res) {
 	var id = req.param("id");
-	req.session.slideid = id;
+	req.session.lessonid = id;
 	res.sendfile('./slides/' + id + '.html');
 }
 
