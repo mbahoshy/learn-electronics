@@ -238,7 +238,12 @@ TRADE.CIRC = (function () {
 				$('#' + id).css({'top': top, 'left': left});
 			}
 
-			this.Relay = function (id, c0, c1, c2, c3, c4, left, top) {
+			this.StatStrip5 = function (id, left, top, c0, c1, c2, c3, c4) {
+				var $html = $("<div id ='" + id + "' class='stat-strip-5' style='left:" + left + "px;top:" + top + "px' ><div id='" + c0 + "' class='contact contact-small' style='top:7px;left:-1px'></div><div id='" + c1 + "' class='contact contact-small' style='top:43px;left:-1px'></div><div id='" + c2 + "' class='contact contact-small' style='top:79px;left:-1px'></div><div id='" + c3 + "' class='contact contact-small' style='bottom:43px;left:-1px'></div><div id='" + c4 + "' class='contact contact-small' style='bottom:7px;left:-1px'></div></div>");
+				$('#canvas').append($html);
+			}
+
+			this.Relay = function (id, left, top, c0, c1, c2, c3, c4) {
 				var $html = $("<div id ='" + id + "' class='relay'><canvas id='" + id + "_rcanvas' width=120 height=90></canvas><div id='" + c0 + "' style='top:5px;left:-5px' class='contact'></div><div id='" + c1 + "' style='top:5px;right:-5px' class='contact'></div><div id='" + c2 + "' style='top:40px;right:-5px' class='contact'></div><div id='" + c3 + "' style='top:90px;left:0px' class='contact contact-small-half'></div><div id='" + c4 + "' style='top:90px;right:0px' class='contact contact-small-half'></div></div>");
 				$('#canvas').append($html);
 				$('#' + id).css({'top': top, 'left': left});
@@ -281,7 +286,7 @@ TRADE.CIRC = (function () {
 
 			}
 
-			this.Transformer = function (id, c0, c1, c2, c3, left, top) {
+			this.Transformer = function (id, left, top, c0, c1, c2, c3) {
 				var $html = $("<div id='" + id + "' class='transformer'><div class='tr-left'><canvas id='" + id + "_trcanvas1' height=90 width=40 ></canvas><div id='" + c0 + "' style='top:0px;left:-15px' class='contact'></div><div id='" + c1 + "' style='bottom:0px;left:-15px' class='contact'></div></div><div class='tr-center'></div><div class='tr-right'><canvas id='" + id +"_trcanvas2' height=90 width=40></canvas><div style='top:5px;right:-10px;' id='" + c2 + "' class='contact contact-small'></div><div style='bottom:5px;right:-10px' id='" + c3 + "' class='contact contact-small'></div></div></div> ");
 				$('#canvas').append($html);
 				$('#' + id).css({'top': top, 'left': left});
@@ -326,7 +331,7 @@ TRADE.CIRC = (function () {
 				//context.bezierCurveTo(-72, -30, 168, -30, 68, 125);
 			}
 
-			this.SPSTSwitch = function (id, c0, c1, left, top, newswitch) {
+			this.SPSTSwitch = function (id, left, top, c0, c1, newswitch) {
 
 				var tmp_current_set; //keeps track of the current_set before the switch was hit
 				
@@ -366,15 +371,13 @@ TRADE.CIRC = (function () {
 				resetSPSTSwitch ();
 			}
 
-			this.Breaker = function (id, c0, c1, c2, c3, left, top, newswitch) {
+			this.Breaker = function (id, left, top, c0, c1, c2, c3, newswitch) {
 
 				var tmp_current_set;
-				var that;
-				that = this;
 
 				$(this).on('reset.Breaker', resetBreaker);
 				(function () {
-					var $html = $("<div style='top:" + top + "px;left:" + left + "px' id = '" + id + "' class='breaker'><div id='bs_on_" + id + "' class='breaker-switch'><div class='breaker-wide'></div><div class='breaker-skinny'></div></div><div id='bs_off_" + id + "' class='breaker-switch hidden'><div class='breaker-skinny'></div><div class='breaker-wide'></div></div></div>");
+					var $html = $("<div style='top:" + top + "px;left:" + left + "px' id = '" + id + "' class='breaker'><div style='top:-10px;left:0px' class='contact' id='" + c0 + "'></div><div style='top:-10px;right:0px' class='contact' id='" + c1 + "'></div><div class='contact' style='bottom:-10px;left:0px'  id='" + c2 + "'></div><div style='bottom:-10px;right:0px' class='contact' id='" + c3 + "'></div><div id='bs_on_" + id + "' class='breaker-switch'><div class='breaker-skinny'>ON</div><div style='top:25px' class='breaker-wide'></div></div><div id='bs_off_" + id + "' class='breaker-switch hidden'><div class='breaker-skinny'>OFF</div><div style='top:65px' class='breaker-wide'></div></div></div>");
 					$('#canvas').append($html);
 					$(".breaker-wide").on('click', breakerSwitch);
 				})();
@@ -412,7 +415,7 @@ TRADE.CIRC = (function () {
 					level1.current_set = set;
 			}
 
-			this.Heater = function (id, c0, c1, left, top) {
+			this.Heater = function (id, left, top, c0, c1) {
 				var setint;
 				
 				//create html and append
@@ -487,7 +490,7 @@ TRADE.CIRC = (function () {
 				resetHeater();
 			}
 
-			this.Fan = function (id, c0, c1, c2, left, top) {
+			this.Fan = function (id, left, top, c0, c1, c2) {
 				var stage,
 					layer,
 					circle,

@@ -88,30 +88,48 @@
 	height:110px;
 	background-color:grey;
 	border-radius:3px;
+	color:#FFFFFF;
+	font-weight: bold;
+	text-align: center;
+	font-size:14px;
+	border:1px solid #717171;
 }
 
 .breaker-switch {
 	position:absolute;
-	width:60px;
-	left:7.5px;
-	top:28px;
+	width:62px;
+	left:6.5px;
 }
 
 .breaker-wide {
-	float:left;
+	position:absolute;
 	width:60px;
-	height:30px;
-	background-color: yellow;
-	border-radius: 3px;
+	height:20px;
+	background-color: #474747;
+	border-radius: 1px;
+	border: 1px solid #000000;
 }
 
 .breaker-skinny {
-	float:left;
-	display:block;
-	margin-left:10px;
-	margin-right:10px;
-	background-color: red;
+	position:absolute;
+	top:45px;
+	left:11px;
+
+	background-color: #616161;
 	width:40px;
-	height:23px;
-	border-radius: 0 0 3px 3px;
+	height:20px;
+	padding-top:5px;
+}
+
+/* ------------------------------------ */
+
+/* ------------ STATSTRIP5 ------------ */
+
+.stat-strip-5 {
+	position:absolute;
+	width:22px;
+	height:180px;
+	background-color: #ADADAD;
+	border-radius: 3px;
+	border:1px solid #888888;
 }
