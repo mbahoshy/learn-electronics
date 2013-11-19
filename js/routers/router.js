@@ -81,15 +81,11 @@ TRADE.Router = Backbone.Router.extend({
             if(TRADE.UserData == ''){
                 $.get("/nav/classid", function(data, status){
                     TRADE.NavData.classid = data;
-                    
-                    
+                                       
                     (function () {
                         $.get("/users/2", function(data, status){ //get user info and render user card
 
-                            console.dir('class id' + TRADE.NavData.classid);
-                            console.dir(data.progress);
                             TRADE.UserData = _.findWhere(data.progress, {classroomid: TRADE.NavData.classid});
-                            console.dir(TRADE.UserData);
                             renderUserLesson();
                          });   
                     })();
