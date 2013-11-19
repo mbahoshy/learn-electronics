@@ -12,7 +12,7 @@ TRADE.CIRC = (function () {
 				var $html = $("<div style='float:right;'><div id='canvas'><div id='mycanvas'></div></div></div>");
 				$('#level_container').append($html);
 				$('#canvas').css({'width': width, 'height': height});
-				$('#canvas').on('click', '.contact, .neutral, .l1, .l2, .contact-small', contactClickHandler);
+				$('#canvas').on('click', '.contact', contactClickHandler);
 				
 				$('.multimeter_button').click(meterClickHandler);
 
@@ -215,31 +215,31 @@ TRADE.CIRC = (function () {
 			}
 
 			this.ContactSmall = function (id, left, top) {
-				var $html = $("<div id='" + id + "' class='contact-small'	></div>");
+				var $html = $("<div id='" + id + "' class='contact contact-small'	></div>");
 				$('#canvas').append($html);
 				$('#' + id).css({'top': top, 'left': left});
 			}
 
 			this.Neutral = function (id, left, top) {
-				var $html = $("<div id='" + id + "' class='neutral'	>N</div>");
+				var $html = $("<div id='" + id + "' class='contact neutral'	>N</div>");
 				$('#canvas').append($html);
 				$('#' + id).css({'top': top, 'left': left});
 			}
 
 			this.Line1 = function (id, left, top) {
-				var $html = $("<div id='" + id + "' class='l1'	>L1</div>");
+				var $html = $("<div id='" + id + "' class='contact l1'	>L1</div>");
 				$('#canvas').append($html);
 				$('#' + id).css({'top': top, 'left': left});
 			}
 
 			this.Line2 = function (id, left, top) {
-				var $html = $("<div id='" + id + "' class='l2'	>L2</div>");
+				var $html = $("<div id='" + id + "' class='contact l2'	>L2</div>");
 				$('#canvas').append($html);
 				$('#' + id).css({'top': top, 'left': left});
 			}
 
 			this.Relay = function (id, c0, c1, c2, c3, c4, left, top) {
-				var $html = $("<div id ='" + id + "' class='relay'><canvas id='" + id + "_rcanvas' width=120 height=90></canvas><div id='" + c0 + "' style='top:5px;left:-5px' class='contact'></div><div id='" + c1 + "' style='top:5px;right:-5px' class='contact'></div><div id='" + c2 + "' style='top:40px;right:-5px' class='contact'></div><div id='" + c3 + "' style='top:90px;left:0px' class='contact-small-half'></div><div id='" + c4 + "' style='top:90px;right:0px' class='contact-small-half'></div></div>");
+				var $html = $("<div id ='" + id + "' class='relay'><canvas id='" + id + "_rcanvas' width=120 height=90></canvas><div id='" + c0 + "' style='top:5px;left:-5px' class='contact'></div><div id='" + c1 + "' style='top:5px;right:-5px' class='contact'></div><div id='" + c2 + "' style='top:40px;right:-5px' class='contact'></div><div id='" + c3 + "' style='top:90px;left:0px' class='contact contact-small-half'></div><div id='" + c4 + "' style='top:90px;right:0px' class='contact contact-small-half'></div></div>");
 				$('#canvas').append($html);
 				$('#' + id).css({'top': top, 'left': left});
 
@@ -282,7 +282,7 @@ TRADE.CIRC = (function () {
 			}
 
 			this.Transformer = function (id, c0, c1, c2, c3, left, top) {
-				var $html = $("<div id='" + id + "' class='transformer'><div class='tr-left'><canvas id='" + id + "_trcanvas1' height=90 width=40 ></canvas><div id='" + c0 + "' style='top:0px;left:-15px' class='contact'></div><div id='" + c1 + "' style='bottom:0px;left:-15px' class='contact'></div></div><div class='tr-center'></div><div class='tr-right'><canvas id='" + id +"_trcanvas2' height=90 width=40></canvas><div style='top:5px;right:-10px;' id='" + c2 + "' class='contact-small'></div><div style='bottom:5px;right:-10px' id='" + c3 + "' class='contact-small'></div></div></div> ");
+				var $html = $("<div id='" + id + "' class='transformer'><div class='tr-left'><canvas id='" + id + "_trcanvas1' height=90 width=40 ></canvas><div id='" + c0 + "' style='top:0px;left:-15px' class='contact'></div><div id='" + c1 + "' style='bottom:0px;left:-15px' class='contact'></div></div><div class='tr-center'></div><div class='tr-right'><canvas id='" + id +"_trcanvas2' height=90 width=40></canvas><div style='top:5px;right:-10px;' id='" + c2 + "' class='contact contact-small'></div><div style='bottom:5px;right:-10px' id='" + c3 + "' class='contact contact-small'></div></div></div> ");
 				$('#canvas').append($html);
 				$('#' + id).css({'top': top, 'left': left});
 
@@ -341,13 +341,12 @@ TRADE.CIRC = (function () {
 				
 				$(this).on('reset.SPSTSwitch', resetSPSTSwitch);
 
-				this.create = function (id, c0, c1, left, top, newswitch) {
-
+				(function () {
 					var $html = $("<div style='top:" + top + "px;left:" + left + "px' id = '" + id + "' class='spstswitch'><div class='switch'></div><div id='" + c0 + "' class='contact' style='top:0px;left:-10px'></div><div id='" + c1 + "' class='contact' style='top:91px;right:-10px;'></div></div>");
 					$('#canvas').append($html);
 					var that = this;
 					$("#" + id).on('click', '.switch', function(){that.switch(newswitch);}); //assigns click event for newly created switch
-				}
+				})();
 
 
 				this.switch = function (set1) {
@@ -366,11 +365,18 @@ TRADE.CIRC = (function () {
 					$('#canvas').trigger('reset');
 
 				}
-
-				this.create(id, c0, c1, left, top, newswitch);
 				
 				resetSPSTSwitch ();
 			}
+
+			this.Breaker = function (id, c0, c1, c2, c3, left, top, newswitch) {
+				(function () {
+					var $html = $("<div style='top:" + top + "px;left:" + left + "px' id = '" + id + "' class='breaker'></div>");
+					$('#canvas').append($html);
+
+				})();
+			}
+
 
 			this.Set = function (problem, set) {
 					level1.current_problem = problem;
@@ -463,15 +469,13 @@ TRADE.CIRC = (function () {
 					anim,
 					angleDiff;
 
-
-				var fan_spin = "y";
-
 				$(this).on('reset.Fan', resetFan); //assign reset event
 
 				//creates fan html and appends
 				(function (){
 					var $html = $("<div class='fan' style='position:absolute;top:" + top + "px;left:" + left + "px'><div class='contact' style='top:-10px;left:80px' id='" + c0 + "'></div><div class='contact' style='top:25px;left:25px' id='" + c1 + "'></div><div class='contact' style='top:80px;left:-10px' id='" + c2 + "'></div><div id='" + id + "'></div></div>");
 					$('#canvas').append($html);
+
 				})();
 
 				(function () {

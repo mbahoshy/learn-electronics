@@ -4,3 +4,88 @@
 	height:280px;
 	width:280px;
 }
+
+
+
+/* ------------- contact ----------------- */
+.contact {
+	position: absolute;
+	background-color: #dcdcdc;
+	border-style:solid;
+	border-width:2px;
+	border-color:#a4a4a4;
+	border-radius:50%;
+	-moz-border-radius:50%;
+	-webkit-border-radius:50%;
+	width:25px;
+	height:25px;
+	cursor:pointer;
+	z-index:1;
+}
+
+.contact-small {
+	width:20px;
+	height:20px;
+}
+
+.contact-small-half {
+	border-radius:0% 0% 50% 50%;
+	-moz-border-radius:0% 0% 50% 50%;
+	-webkit-border-radius:0% 0% 50% 50%;
+	width:20px;
+	height:15px;
+}
+
+.contact-small-half-right {
+	border-radius:0% 50% 50% 0%;
+	-moz-border-radius:0% 50% 50% 0%;
+	-webkit-border-radius:0% 50% 50% 0%;
+	width:15px;
+	height:20px;
+}
+
+.neutral {
+	background-color: #FFF600;
+
+	font-weight: bold;
+	border-radius: 5px;
+	text-align: center;
+}
+
+.l1 {
+
+	background-color: #00FF00;
+	font-weight: bold;
+	border-radius: 5px;
+	text-align: center;
+
+}
+
+.l2 {
+
+	background-color: #FD0205;
+
+	font-weight: bold;
+	border-radius: 5px;
+	text-align: center;
+}
+
+.border-red {
+	border:2px solid red !important;
+}
+
+.border-black {
+	border:2px solid black !important;
+}
+
+/* ---------------------------------------- */
+
+/* --------------- BREAKER ---------------- */
+
+.breaker {
+	position:absolute;
+	width:50px;
+	height:100px;
+	background-color:grey;
+	border-radius:5px;
+}

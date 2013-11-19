@@ -197,106 +197,6 @@ body {
 	background-color:#c3c10c;
 }
 
-
-/* contact styling */
-.contact {
-	position: absolute;
-	background-color: #dcdcdc;
-	border-style:solid;
-	border-width:2px;
-	border-color:#a4a4a4;
-	border-radius:50%;
-	-moz-border-radius:50%;
-	-webkit-border-radius:50%;
-	width:25px;
-	height:25px;
-	cursor:pointer;
-}
-
-.contact-small {
-	position: absolute;
-	background-color: #dcdcdc;
-	border-style:solid;
-	border-width:2px;
-	border-color:#a4a4a4;
-	border-radius:50%;
-	-moz-border-radius:50%;
-	-webkit-border-radius:50%;
-	width:20px;
-	height:20px;
-	cursor:pointer;
-}
-
-.contact-small-half {
-	position: absolute;
-	background-color: #dcdcdc;
-	border-style:solid;
-	border-width:2px;
-	border-color:#a4a4a4;
-	border-radius:0% 0% 50% 50%;
-	-moz-border-radius:0% 0% 50% 50%;
-	-webkit-border-radius:0% 0% 50% 50%;
-	width:20px;
-	height:15px;
-	cursor:pointer;
-}
-
-.contact-small-half-right {
-	position: absolute;
-	background-color: #dcdcdc;
-	border-style:solid;
-	border-width:2px;
-	border-color:#a4a4a4;
-	border-radius:0% 50% 50% 0%;
-	-moz-border-radius:0% 50% 50% 0%;
-	-webkit-border-radius:0% 50% 50% 0%;
-	width:15px;
-	height:20px;
-	cursor:pointer;
-}
-
-.neutral {
-	position: absolute;
-	background-color: #FFF600;
-	border-style:solid;
-	border-width:2px;
-	border-color:#a4a4a4;
-	width:25px;
-	height:25px;
-	font-weight: bold;
-	border-radius: 5px;
-	text-align: center;
-	cursor:pointer;
-}
-
-.l1 {
-	position: absolute;
-	background-color: #00FF00;
-	border-style:solid;
-	border-width:2px;
-	border-color:#a4a4a4;
-	width:25px;
-	height:25px;
-	font-weight: bold;
-	border-radius: 5px;
-	text-align: center;
-	cursor:pointer;
-}
-
-.l2 {
-	position: absolute;
-	background-color: #FD0205;
-	border-style:solid;
-	border-width:2px;
-	border-color:#a4a4a4;
-	width:25px;
-	height:25px;
-	font-weight: bold;
-	border-radius: 5px;
-	text-align: center;
-	cursor:pointer;
-}
-
 #res_canvas {
 	position: absolute;
 	top:0px;
@@ -385,19 +285,6 @@ body {
 
 }
 
-
-
-.border-red {
-	border-style:solid;
-	border-width:2px;
-	border-color:red;
-}
-
-.border-black {
-	border-style:solid;
-	border-width:2px;
-	border-color:black;
-}
 
 
 .spstswitch {
