@@ -452,6 +452,129 @@ TRADE.CIRC = (function () {
 				resetHeater();
 			}
 
+			this.Fan = function (id, c0, c1, c2, left, top) {
+				var stage,
+					layer,
+					circle,
+					canvas,
+					fanblade1,
+					fanblade2;
+
+				var fan_spin = "y";
+
+				$(this).on('reset.Fan', resetFan); //assign reset event
+
+				//creates fan html and appends
+				(function (){
+					var $html = $("<div class='fan' id='" + id + "' style='position:absolute;top:" + top + "px;left:" + left + "px'></div>");
+					$('#canvas').append($html);
+				})();
+
+				//create Kinetic stage
+				stage = new Kinetic.Stage({
+				  container: id,
+				  width: 280,
+				  height: 280
+				});
+				
+				//create new kinetic layer
+				layer = new Kinetic.Layer();
+
+				// create fan center
+				circle = new Kinetic.Circle({
+					x: stage.getWidth() / 2,
+					y: stage.getHeight() / 2,
+					radius: 15,
+					fill: 'red',
+					stroke: 'black',
+					strokeWidth: 4
+				});
+			
+	
+				//fan blade 1
+				/*
+				fanblade1 = new Kinetic.Rect({
+				  x: 140,
+				  y: 140,
+				  width: 20,
+				  height: 220,
+				  fill: '#cfcfcf',
+				  stroke: 'black',
+				  strokeWidth: 4,
+				  offset: [10, 110]
+				});
+				*/
+
+				fanblade1 = new Kinetic.Shape({
+				    drawFunc: function(canvas) {
+				        var context = canvas.getContext();
+				        var radius=10;
+				        context.beginPath();
+				        context.moveTo(0, 0);
+				        context.lineTo(0, 20);
+				        context.bezierCurveTo(-50, 160, 70, 160, 20, 20);
+				        context.lineTo(20, -20);
+				        context.bezierCurveTo(70, -160, -50, -160, 0, -20);
+				        context.lineTo(0, 0);
+				        //context.lineTo(50, 180);
+				        //context.arcTo(50, 180, 50, 180-radius, radius);
+				        context.closePath();
+				        canvas.fillStroke(this);
+				    },
+				    x: 140,
+				  y: 140,
+				    offset: [10, 0],
+				    fill: '#979797',
+				    stroke: 'black',
+				    strokeWidth: 1
+				});		
+		
+				fanblade2 = new Kinetic.Rect({
+				  x: 140,
+				  y: 140,
+				  width: 220,
+				  height: 20,
+				  fill: '#cfcfcf',
+				  stroke: 'black',
+				  strokeWidth: 4,
+				  offset: [110, 10]
+				});
+			
+
+				// add shapes to layer
+				layer.add(fanblade1);
+				layer.add(fanblade2);
+				layer.add(circle);
+				//layer.add(circle2);
+				//layer.add(circle2_0);
+				//layer.add(circle3);
+			
+				// add layers to stage
+				stage.add(layer);
+			
+
+			
+		        // set rotation
+				var angularSpeed = Math.PI / 1.25;
+				var anim = new Kinetic.Animation(function(frame) {
+				  var angleDiff = frame.timeDiff * angularSpeed / 1000;
+				  circle.rotate(angleDiff);
+				  //circle2.rotate(angleDiff);
+				  fanblade1.rotate(angleDiff);
+				  fanblade2.rotate(angleDiff);
+				}, layer);
+					
+				// check if fan_spin = y
+				if (fan_spin=='y'){
+					anim.start();	
+				} else {
+					anim.stop();
+				}
+
+				function resetFan () {}
+			}
+
+
 			
 			function Level () {
 				this.current_problem = "";

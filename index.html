@@ -5,6 +5,7 @@
 	<meta charset="UTF-8">
 	<title>HVAC Game</title>
 	<link rel='stylesheet' href='css/main.css'	/>
+	<link rel='stylesheet' href='css/hvac.css'	/>
 	
 	<!-- load scripts -->
 	<!--<script src='http://code.jquery.com/jquery-1.9.1.js'></script>
@@ -28,22 +29,7 @@
 		$(document).ready(function(){
 			TRADE.CIRC.Create(700, 350);
 			TRADE.CIRC.Set('problem_01', 'switch');
-			TRADE.CIRC.Line1('line1', 50, 40);
-			TRADE.CIRC.Contact('c2', 50, 120);
-			TRADE.CIRC.Contact('c3', 625, 212);
-			
-			TRADE.CIRC.Neutral('n1', 625, 40);
-
-			TRADE.CIRC.SPSTSwitch('spst1', 'sc1', 'sc2', 120, 120, 'noswitch');
-			TRADE.CIRC.LightBulb('l1', 'lc1', 'lc2', 290, 60);
-
-			TRADE.CIRC.DrawWire('w1', 'blue', 3, [50, 40, 50, 120]);
-			TRADE.CIRC.DrawWire('w2', 'blue', 3, [50, 120, 120, 120]);
-			TRADE.CIRC.DrawWire('w3', 'blue', 3, [160, 210, 290, 210]);
-			TRADE.CIRC.DrawWire('w4', 'blue', 3, [360, 210, 625, 210]);
-			TRADE.CIRC.DrawWire('w5', 'blue', 3, [625, 210, 625, 40]);
-
-
+			TRADE.CIRC.Fan('fan1', 'f1', 'f2', 'f3', '150', '50');
 
 		});
 
