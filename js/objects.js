@@ -489,32 +489,40 @@ TRADE.CIRC = (function () {
 					stroke: 'black',
 					strokeWidth: 4
 				});
-			
-	
-				//fan blade 1
-				/*
-				fanblade1 = new Kinetic.Rect({
-				  x: 140,
-				  y: 140,
-				  width: 20,
-				  height: 220,
-				  fill: '#cfcfcf',
-				  stroke: 'black',
-				  strokeWidth: 4,
-				  offset: [10, 110]
-				});
-				*/
 
 				fanblade1 = new Kinetic.Shape({
+				    drawFunc: function(canvas) {
+				        var context = canvas.getContext();
+				        //var radius=10;
+				        context.beginPath();
+				        context.moveTo(0, 0);
+				        context.lineTo(0, 20);
+				        context.bezierCurveTo(-70, 160, 90, 160, 20, 20);
+				        context.lineTo(20, -20);
+				        context.bezierCurveTo(90, -160, -70, -160, 0, -20);
+				        context.lineTo(0, 0);
+				        context.closePath();
+				        canvas.fillStroke(this);
+				    },
+				    x: 140,
+				  y: 140,
+				    offset: [10, 0],
+				    fill: '#D2D2D2',
+				    stroke: 'black',
+				    strokeWidth: 1
+				});		
+		
+				fanblade2 = new Kinetic.Shape({
 				    drawFunc: function(canvas) {
 				        var context = canvas.getContext();
 				        var radius=10;
 				        context.beginPath();
 				        context.moveTo(0, 0);
-				        context.lineTo(0, 20);
-				        context.bezierCurveTo(-50, 160, 70, 160, 20, 20);
-				        context.lineTo(20, -20);
-				        context.bezierCurveTo(70, -160, -50, -160, 0, -20);
+				        context.lineTo(20, 0);
+				        context.bezierCurveTo(160, 70, 160, -90, 20, -20);
+				        context.lineTo(-20, -20);
+				        context.bezierCurveTo(-160, -90, -160, 70, -20, 0);
+				        //context.bezierCurveTo(70, -160, -50, -160, 0, -20);
 				        context.lineTo(0, 0);
 				        //context.lineTo(50, 180);
 				        //context.arcTo(50, 180, 50, 180-radius, radius);
@@ -523,22 +531,12 @@ TRADE.CIRC = (function () {
 				    },
 				    x: 140,
 				  y: 140,
-				    offset: [10, 0],
-				    fill: '#979797',
+				    offset: [0, -10],
+				    fill: '#D2D2D2',
 				    stroke: 'black',
 				    strokeWidth: 1
-				});		
-		
-				fanblade2 = new Kinetic.Rect({
-				  x: 140,
-				  y: 140,
-				  width: 220,
-				  height: 20,
-				  fill: '#cfcfcf',
-				  stroke: 'black',
-				  strokeWidth: 4,
-				  offset: [110, 10]
-				});
+				});	
+				
 			
 
 				// add shapes to layer
@@ -557,7 +555,7 @@ TRADE.CIRC = (function () {
 		        // set rotation
 				var angularSpeed = Math.PI / 1.25;
 				var anim = new Kinetic.Animation(function(frame) {
-				  var angleDiff = frame.timeDiff * angularSpeed / 1000;
+				  var angleDiff = frame.timeDiff * angularSpeed / 1100;
 				  circle.rotate(angleDiff);
 				  //circle2.rotate(angleDiff);
 				  fanblade1.rotate(angleDiff);

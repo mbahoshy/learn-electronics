@@ -1,4 +1,6 @@
-#fan1 {
-	background-color: red;
+.fan {
+	background-color: #848484;
 	border-radius: 50%;
+	height:280px;
+	width:280px;
 }
