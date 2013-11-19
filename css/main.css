@@ -66,6 +66,7 @@ body {
 #footer {
 	width:100%;
 	height:100px;
+	float:left;
 }
 
 #header_wrapper {

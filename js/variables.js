@@ -1,4 +1,4 @@
-TRADE.gamejson = {
+TRADE.GameData.gamejson = {
 	"problem_01" : {
 		"switch": {
 
@@ -12,8 +12,8 @@ TRADE.gamejson = {
 			
 			//switch
 			"spst1": {"on": true},
-			"sc1": {"Volts": "l1", "Ohms": 14, "Ferads": '', "Device": 'ss'},
-			"sc2": {"Volts": "l1", "Ohms": 14, "Ferads": '', "Device": 'ss'},
+			"s0": {"Volts": "l1", "Ohms": 14, "Ferads": '', "Device": 'ss'},
+			"s1": {"Volts": "l1", "Ohms": 14, "Ferads": '', "Device": 'ss'},
 
 			//wires
 			"w1": {"Amps": 1.2},
@@ -32,7 +32,8 @@ TRADE.gamejson = {
 			//heater
 			"heat1": {"on": true},
 			"heat2": {"on": false},
-			"heat3": {"on": false}
+			"heat3": {"on": false},
+			"fan1": {"on": true}
 
 
 		},
@@ -66,8 +67,8 @@ TRADE.gamejson = {
 			//heater
 			"heat1": {"on": false},
 			"heat2": {"on": true},
-			"heat3": {"on": true}
-			
+			"heat3": {"on": true},
+			"fan1": {"on": false}
 		}
 	}
 };

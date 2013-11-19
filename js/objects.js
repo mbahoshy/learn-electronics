@@ -457,8 +457,12 @@ TRADE.CIRC = (function () {
 					layer,
 					circle,
 					canvas,
-					fanblade1,
-					fanblade2;
+					fanblade1,					
+					fanblade2,
+					angularSpeed,
+					anim,
+					angleDiff;
+
 
 				var fan_spin = "y";
 
@@ -466,110 +470,117 @@ TRADE.CIRC = (function () {
 
 				//creates fan html and appends
 				(function (){
-					var $html = $("<div class='fan' id='" + id + "' style='position:absolute;top:" + top + "px;left:" + left + "px'></div>");
+					var $html = $("<div class='fan' style='position:absolute;top:" + top + "px;left:" + left + "px'><div class='contact' style='top:-10px;left:80px' id='" + c0 + "'></div><div class='contact' style='top:25px;left:25px' id='" + c1 + "'></div><div class='contact' style='top:80px;left:-10px' id='" + c2 + "'></div><div id='" + id + "'></div></div>");
 					$('#canvas').append($html);
 				})();
 
-				//create Kinetic stage
-				stage = new Kinetic.Stage({
-				  container: id,
-				  width: 280,
-				  height: 280
-				});
-				
-				//create new kinetic layer
-				layer = new Kinetic.Layer();
-
-				// create fan center
-				circle = new Kinetic.Circle({
-					x: stage.getWidth() / 2,
-					y: stage.getHeight() / 2,
-					radius: 15,
-					fill: 'red',
-					stroke: 'black',
-					strokeWidth: 4
-				});
-
-				fanblade1 = new Kinetic.Shape({
-				    drawFunc: function(canvas) {
-				        var context = canvas.getContext();
-				        //var radius=10;
-				        context.beginPath();
-				        context.moveTo(0, 0);
-				        context.lineTo(0, 20);
-				        context.bezierCurveTo(-70, 160, 90, 160, 20, 20);
-				        context.lineTo(20, -20);
-				        context.bezierCurveTo(90, -160, -70, -160, 0, -20);
-				        context.lineTo(0, 0);
-				        context.closePath();
-				        canvas.fillStroke(this);
-				    },
-				    x: 140,
-				  y: 140,
-				    offset: [10, 0],
-				    fill: '#D2D2D2',
-				    stroke: 'black',
-				    strokeWidth: 1
-				});		
-		
-				fanblade2 = new Kinetic.Shape({
-				    drawFunc: function(canvas) {
-				        var context = canvas.getContext();
-				        var radius=10;
-				        context.beginPath();
-				        context.moveTo(0, 0);
-				        context.lineTo(20, 0);
-				        context.bezierCurveTo(160, 70, 160, -90, 20, -20);
-				        context.lineTo(-20, -20);
-				        context.bezierCurveTo(-160, -90, -160, 70, -20, 0);
-				        //context.bezierCurveTo(70, -160, -50, -160, 0, -20);
-				        context.lineTo(0, 0);
-				        //context.lineTo(50, 180);
-				        //context.arcTo(50, 180, 50, 180-radius, radius);
-				        context.closePath();
-				        canvas.fillStroke(this);
-				    },
-				    x: 140,
-				  y: 140,
-				    offset: [0, -10],
-				    fill: '#D2D2D2',
-				    stroke: 'black',
-				    strokeWidth: 1
-				});	
-				
-			
-
-				// add shapes to layer
-				layer.add(fanblade1);
-				layer.add(fanblade2);
-				layer.add(circle);
-				//layer.add(circle2);
-				//layer.add(circle2_0);
-				//layer.add(circle3);
-			
-				// add layers to stage
-				stage.add(layer);
-			
-
-			
-		        // set rotation
-				var angularSpeed = Math.PI / 1.25;
-				var anim = new Kinetic.Animation(function(frame) {
-				  var angleDiff = frame.timeDiff * angularSpeed / 1100;
-				  circle.rotate(angleDiff);
-				  //circle2.rotate(angleDiff);
-				  fanblade1.rotate(angleDiff);
-				  fanblade2.rotate(angleDiff);
-				}, layer);
+				(function () {
+					//create Kinetic stage
+					stage = new Kinetic.Stage({
+					  container: id,
+					  width: 280,
+					  height: 280
+					});
 					
-				// check if fan_spin = y
-				if (fan_spin=='y'){
-					anim.start();	
-				} else {
-					anim.stop();
-				}
+					//create new kinetic layer
+					layer = new Kinetic.Layer();
 
-				function resetFan () {}
+					// create fan center
+					circle = new Kinetic.Circle({
+						x: stage.getWidth() / 2,
+						y: stage.getHeight() / 2,
+						radius: 15,
+						fill: 'red',
+						stroke: 'black',
+						strokeWidth: 4
+					});
+
+					fanblade1 = new Kinetic.Shape({
+					    drawFunc: function(canvas) {
+					        var context = canvas.getContext();
+					        //var radius=10;
+					        context.beginPath();
+					        context.moveTo(0, 0);
+					        context.lineTo(0, 20);
+					        context.bezierCurveTo(-70, 160, 90, 160, 20, 20);
+					        context.lineTo(20, -20);
+					        context.bezierCurveTo(90, -160, -70, -160, 0, -20);
+					        context.lineTo(0, 0);
+					        context.closePath();
+					        canvas.fillStroke(this);
+					    },
+					    x: 140,
+					 	y: 140,
+					    offset: [10, 0],
+					    fill: '#D2D2D2',
+					    stroke: 'black',
+					    strokeWidth: 1
+					});		
+			
+					fanblade2 = new Kinetic.Shape({
+					    drawFunc: function(canvas) {
+					        var context = canvas.getContext();
+					        context.beginPath();
+					        context.moveTo(0, 0);
+					        context.lineTo(20, 0);
+					        context.bezierCurveTo(160, 70, 160, -90, 20, -20);
+					        context.lineTo(-20, -20);
+					        context.bezierCurveTo(-160, -90, -160, 70, -20, 0);
+					        //context.bezierCurveTo(70, -160, -50, -160, 0, -20);
+					        context.lineTo(0, 0);
+					        //context.lineTo(50, 180);
+					        //context.arcTo(50, 180, 50, 180-radius, radius);
+					        context.closePath();
+					        canvas.fillStroke(this);
+					    },
+					    x: 140,
+					 	y: 140,
+					    offset: [0, -10],
+					    fill: '#D2D2D2',
+					    stroke: 'black',
+					    strokeWidth: 1
+					});	
+					
+				
+
+					// add shapes to layer
+					layer.add(fanblade1);
+					layer.add(fanblade2);
+					layer.add(circle);
+					//layer.add(circle2);
+					//layer.add(circle2_0);
+					//layer.add(circle3);
+				
+					// add layers to stage
+					stage.add(layer);
+				
+
+				
+			        // set rotation
+					angularSpeed = Math.PI / 1.25;
+					anim = new Kinetic.Animation(function(frame) {
+					  angleDiff = frame.timeDiff * angularSpeed / 1100;
+					  circle.rotate(angleDiff);
+					  //circle2.rotate(angleDiff);
+					  fanblade1.rotate(angleDiff);
+					  fanblade2.rotate(angleDiff);
+					}, layer);
+				})();
+				
+
+				
+				//checks to see if fan is on or off
+				function resetFan () {
+					var on = TRADE.GameData.gamejson[level1.current_problem][level1.current_set][id].on;
+					// check if fan_spin = y
+					if (on === true){
+						anim.start();	
+					} else {
+						anim.stop();
+					}
+				}
+				
+				resetFan ();
 			}
 
 
