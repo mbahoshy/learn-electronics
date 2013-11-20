@@ -1,3 +1,15 @@
+/* ---------- GENERAL --------------------- */
+
+
+#tools {
+	width:192px;
+}
+
+
+/* ---------------------------------------- */
+
+/* ------------------ FAN ----------------- */
+
 .fan {
 	background-color: #848484;
 	border-radius: 50%;
@@ -5,6 +17,8 @@
 	width:280px;
 }
 
+
+/* ---------------------------------------- */
 
 
 /* ------------- contact ----------------- */
@@ -195,4 +209,159 @@
 	margin:0;
 	padding:0;
 }
+
+/* ---------------------------------------- */
+
+/* ------------- MULTIMETER --------------- */
+
+
+#multimeter {
+	float:left;
+
+	width:190px;
+	height:250px;
+	background-color:#f6ff0e;
+
+	border: 1px solid #CACA05;
+	border-radius:15px;
+	-moz-border-radius:15px;
+	-webkit-border-radius:15px;
+}
+
+#multimeter_screen {
+	width:140px;
+	height:40px;
+	margin-top:15px;
+	margin-left:auto;
+	margin-right:auto;
+	padding-left:10px;
+	padding-right:10px;
+	padding-top:20px;
+	background-color:#d4d4d4;
+	border-style:solid;
+	border-width:1px;
+	border-color:#424242;
+	border-radius: 15px 15px 0px 0px;
+	-moz-border-radius: 15px 15px 0px 0px;
+	-webkit-border-radius: 15px 15px 0px 0px;
+	font-size:20px;
+	text-align:right;
+}
+
+#multimeter_screen txt {
+	padding-top:10px;
+	margin-left:10px;
+}
+
+.multimeter_button {
+	width:65px;
+	margin-top:20px;
+	padding-top:10px;
+	height:30px;
+	text-align:center;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-style:solid;
+	border-width:1px;
+	border-color:#424242;
+	cursor:pointer;
+}
+
+.multimeter_button:first-child {
+	margin-left:15px;
+}
+
+.multimeter_button:last-child {
+	margin-right:15px;
+}
+
+.multimeter_button:hover {
+	background-color:#ff8282;
+	color:#f30000;
+	font-weight:bold;
+}
+
+.multimeter_active {
+	background-color:#c3c10c;
+}
+
+/* --------------------------------------- */
+
+/* ------------- THERMOSTAT -------------- */
+
+#thermostat {
+	float:left;
+	width:190px;
+	height:190px;
+	background-color:#F1F1F1;
+	border: 1px solid #989898;
+	border-radius:15px;
+	-moz-border-radius:15px;
+	-webkit-border-radius:15px;
+	margin-bottom:15px;
+}
+
+
+#thermostat_screen {
+	width:140px;
+	height:40px;
+	margin-top:15px;
+	margin-left:auto;
+	margin-right:auto;
+	padding-left:10px;
+	padding-right:10px;
+	padding-top:20px;
+	background-color:#d4d4d4;
+	border-style:solid;
+	border-width:1px;
+	border-color:#909090;
+	border-radius: 10px 10px 10px 10px;
+	-moz-border-radius: 10px 10px 10px 10px;
+	-webkit-border-radius: 10px 10px 10px 10px;
+	font-size:20px;
+	text-align:right;
+}
+
+
+#thermostat_screen txt {
+	padding-top:10px;
+	margin-left:10px;
+}
+
+.thermostat_button {
+	width:65px;
+	margin-top:20px;
+	padding-top:5px;
+	height:20px;
+	text-align:center;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+
+	border:1px solid #909090;
+	cursor:pointer;
+}
+
+.thermostat_button:first-child {
+	margin-left:15px;
+}
+
+.thermostat_button:last-child {
+	margin-right:15px;
+}
+
+.thermostat_button:hover {
+	background-color:#ff8282;
+	color:#f30000;
+	font-weight:bold;
+}
+
+.thermostat_active {
+	background-color:#C5C5C5;
+}
+
+
+
+
 

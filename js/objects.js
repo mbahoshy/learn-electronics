@@ -8,9 +8,10 @@ TRADE.CIRC = (function () {
 			this.Create = function (width, height) {
 				var styles = ["float:right"];
 				level1 = new Level();
-				multiMeter1 = new MultiMeter();
-				var $html = $("<div style='float:right;'><div id='canvas'><div id='mycanvas'></div></div></div>");
+				
+				var $html = $("<div id='tools' class='fleft'></div><div style='float:right;'><div id='canvas'><div id='mycanvas'></div></div></div>");
 				$('#level_container').append($html);
+				multiMeter1 = new MultiMeter();
 				$('#canvas').css({'width': width, 'height': height});
 				$('#canvas').on('click', '.contact', contactClickHandler);
 				
@@ -409,6 +410,15 @@ TRADE.CIRC = (function () {
 				}
 			}
 
+			this.AddThermostat = function () {
+				var one;
+				if(one !== true) {
+					thermostat1 = new Thermostat();
+					thermostat1.create();
+					one = true;
+				}
+			}
+
 
 			this.Set = function (problem, set) {
 					level1.current_problem = problem;
@@ -644,7 +654,7 @@ TRADE.CIRC = (function () {
 
 				this.create = function () {
 					var $html = $("<div id='multimeter'><div id='multimeter_screen'><span id='answer'></span> <span id='unit'>Volts</span></div><div><div id='Volts' class='fleft multimeter_button multimeter_active'>Volts</div><div id='Ohms' class='fright multimeter_button'>Ohms</div></div><div><div id='Amps' class='fleft multimeter_button'>Amps</div><div id='Ferads' class='fright multimeter_button'>Ferads</div></div></div>");
-					$('#level_container').append($html);
+					$('#tools').append($html);
 				}
 
 				this.Volts = function () {
@@ -749,6 +759,18 @@ TRADE.CIRC = (function () {
 
 			}
 
+			function Thermostat () {
+				this.create = function () {
+					var $html = $("<div id='thermostat'><div id='thermostat_screen'><span id=''></span></div><div><div id='Heat' class='fleft thermostat_button thermostat_active'>Heat</div><div id='Cool' class='fright thermostat_button'>Cool</div></div><div><div id='Fan' class='fleft thermostat_button'>Fan</div><div id='Off' class='fright thermostat_button'>Off</div></div></div>");
+					$('#tools').prepend($html);
+					$('.thermostat_button').on('click', thermostatClickHandler);
+				}
+				function thermostatClickHandler () {
+					$('.thermostat_active').removeClass('thermostat_active');
+					$(this).addClass('thermostat_active');
+					alert(this.id);
+				}
+			}
 
 			// CONTACT CLICK HANDLER 
 			function contactClickHandler () {
