@@ -132,4 +132,12 @@
 	background-color: #ADADAD;
 	border-radius: 3px;
 	border:1px solid #888888;
+	font-size: 14px;
+	text-align: center;
+	color: #949494;
+}
+
+.stat-strip-5 p {
+	margin:0;
+	padding:2px;
 }

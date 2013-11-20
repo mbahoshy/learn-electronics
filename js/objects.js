@@ -239,7 +239,7 @@ TRADE.CIRC = (function () {
 			}
 
 			this.StatStrip5 = function (id, left, top, c0, c1, c2, c3, c4) {
-				var $html = $("<div id ='" + id + "' class='stat-strip-5' style='left:" + left + "px;top:" + top + "px' ><div id='" + c0 + "' class='contact contact-small' style='top:7px;left:-1px'></div><div id='" + c1 + "' class='contact contact-small' style='top:43px;left:-1px'></div><div id='" + c2 + "' class='contact contact-small' style='top:79px;left:-1px'></div><div id='" + c3 + "' class='contact contact-small' style='bottom:43px;left:-1px'></div><div id='" + c4 + "' class='contact contact-small' style='bottom:7px;left:-1px'></div></div>");
+				var $html = $("<div id ='" + id + "' class='stat-strip-5' style='left:" + left + "px;top:" + top + "px' ><div id='" + c0 + "' class='contact contact-small' style='top:7px;left:-1px'><p>R</p></div><div id='" + c1 + "' class='contact contact-small' style='top:43px;left:-1px'><p>Y</p></div><div id='" + c2 + "' class='contact contact-small' style='top:79px;left:-1px'><p>W</p></div><div id='" + c3 + "' class='contact contact-small' style='bottom:43px;left:-1px'><p>G</p></div><div id='" + c4 + "' class='contact contact-small' style='bottom:7px;left:-1px'><p>C</p></div></div>");
 				$('#canvas').append($html);
 			}
 
