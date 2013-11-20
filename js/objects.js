@@ -2,6 +2,8 @@
 TRADE.CIRC = (function () {
 			var level1;
 			var multiMeter1;
+			var thermostat1;
+			var breaker1;
 			var stage;
 			var layer;
 
@@ -372,24 +374,29 @@ TRADE.CIRC = (function () {
 				resetSPSTSwitch ();
 			}
 
-			this.Breaker = function (id, left, top, c0, c1, c2, c3, newswitch) {
+			this.AddBreaker = function (id, left, top, c0, c1, c2, c3, newswitch) {
+				breaker1 = new Breaker(id, left, top, c0, c1, c2, c3, newswitch);
+			}
 
-				var tmp_current_set;
+			function Breaker (id, left, top, c0, c1, c2, c3, newswitch) {
 
-				$(this).on('reset.Breaker', resetBreaker);
+				this.tmp_current_set = '';
+
+				
 				(function () {
 					var $html = $("<div style='top:" + top + "px;left:" + left + "px' id = '" + id + "' class='breaker'><div style='top:-10px;left:0px' class='contact' id='" + c0 + "'></div><div style='top:-10px;right:0px' class='contact' id='" + c1 + "'></div><div class='contact' style='bottom:-10px;left:0px'  id='" + c2 + "'></div><div style='bottom:-10px;right:0px' class='contact' id='" + c3 + "'></div><div id='bs_on_" + id + "' class='breaker-switch'><div class='breaker-skinny'>ON</div><div style='top:25px' class='breaker-wide'></div></div><div id='bs_off_" + id + "' class='breaker-switch hidden'><div class='breaker-skinny'>OFF</div><div style='top:65px' class='breaker-wide'></div></div></div>");
 					$('#canvas').append($html);
 					$(".breaker-wide").on('click', breakerSwitch);
+					$(this).on('reset.Breaker', resetBreaker);
 				})();
 
 				function breakerSwitch () {
 					
 					if (level1.current_set == newswitch ) {
-						level1.current_set = tmp_current_set;
+						level1.current_set = breaker1.tmp_current_set;
 						multiMeter1.clearMeter();
 					} else {
-						tmp_current_set = level1.current_set;
+						breaker1.tmp_current_set = level1.current_set;
 						level1.current_set = newswitch;
 						multiMeter1.clearMeter();
 					}
@@ -403,18 +410,30 @@ TRADE.CIRC = (function () {
 					if (on === true) {
 						$('#bs_off_' + id).addClass('hidden');
 						$('#bs_on_' + id).removeClass('hidden');
+						if (typeof thermostat1 === 'object') {
+							thermostat1.breaker = true;
+							console.log(thermostat1.breaker);
+						}
 					} else {
+
 						$('#bs_on_' + id).addClass('hidden');
 						$('#bs_off_' + id).removeClass('hidden');
+						if (typeof thermostat1 === 'object') {
+							thermostat1.breaker = false;
+							console.log(thermostat1.breaker);
+						}
 					}
 				}
+
+				resetBreaker();
 			}
 
-			this.AddThermostat = function () {
+			this.AddThermostat = function (initial) {
+				alert(initial);
 				var one;
 				if(one !== true) {
 					thermostat1 = new Thermostat();
-					thermostat1.create();
+					thermostat1.create(initial);
 					one = true;
 				}
 			}
@@ -760,15 +779,22 @@ TRADE.CIRC = (function () {
 			}
 
 			function Thermostat () {
-				this.create = function () {
-					var $html = $("<div id='thermostat'><div id='thermostat_screen'><span id=''></span></div><div><div id='Heat' class='fleft thermostat_button thermostat_active'>Heat</div><div id='Cool' class='fright thermostat_button'>Cool</div></div><div><div id='Fan' class='fleft thermostat_button'>Fan</div><div id='Off' class='fright thermostat_button'>Off</div></div></div>");
+				this.breaker;
+				this.create = function (initial) {
+					var $html = $("<div id='thermostat'><div id='thermostat_screen'><span id=''></span></div><div><div id='Heat' class='fleft thermostat_button'>Heat</div><div id='Cool' class='fright thermostat_button'>Cool</div></div><div><div id='Fan' class='fleft thermostat_button'>Fan</div><div id='Off' class='fright thermostat_button'>Off</div></div></div>");
 					$('#tools').prepend($html);
+					$('#' + initial).addClass('thermostat_active');
 					$('.thermostat_button').on('click', thermostatClickHandler);
 				}
 				function thermostatClickHandler () {
 					$('.thermostat_active').removeClass('thermostat_active');
 					$(this).addClass('thermostat_active');
-					alert(this.id);
+					if (thermostat1.breaker === false) {
+						breaker1.tmp_current_set = this.id;
+					} else {
+						level1.current_set = this.id;
+						$('#canvas').trigger('reset');
+					}
 				}
 			}
 
