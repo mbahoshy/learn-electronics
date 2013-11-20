@@ -46,11 +46,11 @@ function getUser (req, res){
 
 	if(id === 'reset') {
 		id = req.session.userid;
-		console.log(id);
+		
 	} else {
 		
 		req.session.userid = id;
-		console.log(req.session.userid);
+		
 		
 	}
 	
@@ -71,19 +71,36 @@ function returnJson (req, res) {
 	});
 }
 
-function returnSlides (req, res) {
-	var id = req.param("id");
-	req.session.lessonid = id;
-	res.sendfile('./slides/' + id + '.html');
+function slideTemplate (req, res) {
+	var type = req.param("type");
+	console.log(type);
+	if (type === 'lesson') {
+		res.sendfile('./templates/slidetemplate.html');
+	} else if (type === 'problem') {
+		res.sendfile('./templates/problemtemplate.html');
+	}
 }
 
-function slideTemplate (req, res) {
-	res.sendfile('./templates/slidetemplate.html');
+function returnSlides (req, res) {
+	var id = req.param("id");
+	var type = req.param("type");
+
+	req.session.lessonid = id; // sets lesson id
+	req.session.lessontype = type; // sets lesson type
+
+	console.log('return slides called');
+	console.log('lesson id: ' + req.session.lessonid); //log lesson id
+
+	res.sendfile('./slides/' + id + '.html');
 }
 
 function getNav (req, res) {
 	var type = req.param("type");
-	res.send(req.session[type]);
+	
+	//console.log(req.session[type]);
+	console.log('lesson id: ' + req.session.lessonid); // log lesson id
+
+	res.send(req.session[type]); //sends requested session data
 }
 
 exports.getClassroom = getClassroom;
@@ -95,6 +112,10 @@ exports.slideTemplate = slideTemplate;
 exports.getNav = getNav;
 
 
+
+
+
+/*
 var MainDB = [
 	{classroomid: "0", name:"HVAC", snippet:"Become a service technician", chapters:[
 		{chapterid:"0", active:true, name:"The Basics", snippet:"Volts, Amps, and Ohms - an introduction", lessons: [
@@ -114,7 +135,7 @@ var MainDB = [
 		]}
 	]}
 ];
-
+*/
 
 var UsersDB = [{
 	userid:"2",
@@ -143,7 +164,7 @@ var UsersDB = [{
 	]
 }];
 
-
+/*
 var problem_set = {
 	"problem_0" : {
 		"switch": {
@@ -288,3 +309,5 @@ var problem_set = {
 		}
 	}
 };
+
+*/

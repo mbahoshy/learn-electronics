@@ -134,22 +134,35 @@ TRADE.Router = Backbone.Router.extend({
 
     },
 
-    HVACSlideView: function (lessonid) {
+    HVACSlideView: function (lessonnum) {
 
         //clear html
         $('#wrapper').html('');
         $('#title_wrapper').html('');
 
+
+
         if(TRADE.NavObj == '') {
-            $.get("/nav/lessonid", function(data, status){
+            
+            $.get("/nav/lessonid", function(data, status){ //refreshes lessonid
                 TRADE.NavData.lessonid = data;
-                getJson();
+                slideType();
             });
+            function slideType () {
+                $.get("/nav/lessontype", function(data, status){
+                    TRADE.NavData.lessontype = data;
+                    getJson();
+                    slideTemplate();
+                });
+            }
         } else {
             var record = _.findWhere(TRADE.NavObj.chapters, {chapterid: TRADE.NavData.chapterid});
-            var lesson_record = _.findWhere(record.lessons, {lessonid: lessonid});
+            var lesson_record = _.findWhere(record.lessons, {lessonid: lessonnum});
             TRADE.NavData.lessonid = lesson_record.slides;
+            TRADE.NavData.lessontype = lesson_record.lessontype;
+            console.log(TRADE.NavData.lessontype);
             getJson();
+            slideTemplate();
         }
         
 
@@ -157,37 +170,40 @@ TRADE.Router = Backbone.Router.extend({
             // loads json for game
             $.get('/json/' + TRADE.NavData.lessonid, function(data, status) {
                 TRADE.GameData.gamejson = data;
-                slideTemplate();
-
             });
         }
 
         //loads outer slide template after json is complete
         function slideTemplate () {
-            $.get('/slideTemplate', function(data, status) {
+            $.get('/slideTemplate/' + TRADE.NavData.lessontype, function(data, status) {
                 console.dir(data);
 
                 var template = $(data).html();
                 $("#wrapper").prepend(_.template(template));
-                $('.slide-left').on('click', TRADE.FUNC.slideChange);
-                $('.slide-right').on('click', TRADE.FUNC.slideChange);
                 slides();
             });
         } 
 
         //loads individual slides after slide template is loaded
         function slides () {
-            $.get('/slides/' + TRADE.NavData.lessonid, function(data, status){
+            $.get('/slides/' + TRADE.NavData.lessonid + '/' + TRADE.NavData.lessontype, function(data, status){
 
                 $('#wrapper').append('<div class="hidden">' + data + '</div>');
                 var slides = $('#slide_holder > .slide');
 
                 var template = $(slides[0]).html();
-                TRADE.GameData.slideindex = 0; //manage with cookies
-            
+                TRADE.GameData.slideindex = 0; //keeps track of current slide
+                
                 $("#slide_container").html(_.template(template));
-                TRADE.FUNC.slideIndexNav();
-                $('#slide_nav_' + TRADE.GameData.slideindex).addClass('slide-active');
+                if (TRADE.NavData.lessontype === 'lesson') {
+                    
+                    $('.slide-left').on('click', TRADE.FUNC.slideChange);
+                    $('.slide-right').on('click', TRADE.FUNC.slideChange);
+                    $('#slide_nav_' + TRADE.GameData.slideindex).addClass('slide-active');
+                    TRADE.FUNC.slideIndexNav();
+                } else if (TRADE.NavData.lessontype === 'problem') {
+                    TRADE.FUNC.problemIndexNav();
+                }
             });
         }
        

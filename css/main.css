@@ -431,6 +431,19 @@ body {
 	width:910px;
 }
 
+.problem-index {
+	display:inline-block;
+	padding:5px 8px;
+	width:30px;
+	border-radius: 8px;
+	margin:0 5px;
+	text-align: center;
+	font-size: 16px;
+	color:red;
+	border: 1px solid red;
+	background-color: #FFFFFF;
+}
+
 
 /* -------------------------------------------------- */
 

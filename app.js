@@ -29,11 +29,11 @@ app.get("/class/:id", mod.getClass);
 //respond with user info
 app.get("/users/:id", mod.getUser);
 
-app.get('/slides/:id', mod.returnSlides);
+app.get('/slides/:id/:type', mod.returnSlides);
 
 app.get('/json/:id', mod.returnJson);
 
-app.get('/slideTemplate', mod.slideTemplate);
+app.get('/slideTemplate/:type', mod.slideTemplate);
 
 app.get('/nav/:type', mod.getNav);
 

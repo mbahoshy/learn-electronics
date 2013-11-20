@@ -429,7 +429,6 @@ TRADE.CIRC = (function () {
 			}
 
 			this.AddThermostat = function (initial) {
-				alert(initial);
 				var one;
 				if(one !== true) {
 					thermostat1 = new Thermostat();
