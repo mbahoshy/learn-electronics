@@ -44,6 +44,14 @@
 	height:20px;
 }
 
+.contact-small-half-top {
+	border-radius:50% 50% 0% 0%;
+	-moz-border-radius:50% 50% 0% 0%;
+	-webkit-border-radius:50% 50% 0% 0%;
+	width:20px;
+	height:15px;
+}
+
 .neutral {
 	background-color: #FFF600;
 
@@ -141,3 +149,50 @@
 	margin:0;
 	padding:2px;
 }
+
+/* ------------------------------------- */
+
+/* ------------- CAPACITOR ------------- */
+
+.capacitor-container {
+	width:82px;
+	height:114px;
+}
+
+.capacitor-top {
+	position: absolute;
+	top:0px;
+	left:5px;
+	height: 0; 
+	width: 60px;
+	border-top: 12px solid #292929;
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	border-radius: 8px 8px 2px 2px;
+	z-index: 2;
+}
+
+.capacitor {
+	position:absolute;
+	top:12px;
+	width:80px;
+	height:100px;
+	background-color: #D0D0D0;
+	border-radius: 3px 3px 10px 10px;
+	border: 1px solid #808080;
+	text-align: center;
+}
+
+.capacitor p:first-child {
+	font-size:24px;
+	margin:15px 0 0 0;
+	padding:0;
+	font-weight: bold;
+}
+
+.capacitor p:last-child {
+	font-size:14px;
+	margin:0;
+	padding:0;
+}
+

@@ -490,6 +490,11 @@ TRADE.CIRC = (function () {
 				resetHeater();
 			}
 
+			this.Capacitor = function (id, left, top, c0, c1, rating) {
+				var $html = $("<div class='capacitor-container' style='position:absolute;top:" + top + "px;left:" + left + "px'><div class='capacitor'><p>" + rating + "</p><p>MFD</p></div><div class='contact contact-small-half-top' style='top:-15px;left:12px' id='" + c0 + "'></div><div class='contact contact-small-half-top' style='top:-15px;right:12px' id='" + c1 + "'></div><div class='capacitor-top'></div></div>");
+				$('#canvas').append($html);
+			}
+
 			this.Fan = function (id, left, top, c0, c1, c2) {
 				var stage,
 					layer,
