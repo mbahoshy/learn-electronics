@@ -206,12 +206,17 @@ TRADE.Router = Backbone.Router.extend({
 
                     //creates chapter list view and render chapter cards
                     var answercollection1 = new TRADE.AnswerCollection ();
-                    answercollection1.reset(TRADE.GameData.answer);
+                    answercollection1.reset(TRADE.GameData.answeroptions);
                     var answerlistview1 = new TRADE.AnswerListView ({collection: answercollection1});
                     answerlistview1.render();
 
                     //append to dom
-                    $('#answer_question').append(answerlistview1.$el);
+                    $('#answer_categories').append(answerlistview1.$el);
+                    $('#answer_question').on('click', function () {
+                        $('#answer_container').slideToggle(function(){
+                            $('#answer_options').html('');
+                        });
+                    });
                 }
             });
         }

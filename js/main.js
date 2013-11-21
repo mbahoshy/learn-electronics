@@ -14,6 +14,7 @@ TRADE.NavData = (function(){
 
 TRADE.GameData = {
 	gamejson:'',
+	answeroptions:'',
 	answer:'',
 	slideindex:''
 };

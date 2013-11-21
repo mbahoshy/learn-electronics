@@ -436,7 +436,8 @@ body {
 
 .problem-nav {
 	width:950px;
-	float:left;
+
+	position: relative;
 	background-color: red;
 	border-radius: 20px 20px 0 0;
 	border: 1px solid #FF9390;
@@ -468,12 +469,56 @@ body {
 }
 
 #answer_question {
-	float:left;
+	position:absolute;
+	top:15px;
+	left:20px;
 	font-size: 20px;
 	color:#FFFFFF;
 	font-weight:bold;
+	margin:0;
+	padding:0;
+
 }
 
+#answer_container {
+	float:left;
+	width:950px;
+	margin:0;
+	padding:0;
+	color:white;
+	font-size:18px;
+	background-color: #FF4C55;
+	border: 1px solid #FF9390 !important;
+	border: 0 1px 0 1px;
+}
+
+.bold {
+	font-weight:bold;
+}
+
+#answer_container ul {
+	margin:0 0 0 20px;
+	padding:10px 0 10px 0;
+	list-style: none;
+}
+
+#answer_container li {
+	font-size: 16px;
+	margin:3px 20px 3px 0;
+	padding:3px 0 3px 30px;
+}
+
+#answer_categories {
+	float:left;
+	width:175px;
+	border-right:1px solid red;
+}
+
+#answer_options {
+	float:left;
+	width:300px;
+	height:100%;
+}
 
 /* -------------------------------------------------- */
 

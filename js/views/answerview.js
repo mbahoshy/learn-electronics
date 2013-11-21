@@ -3,18 +3,7 @@ TRADE.AnswerView = Backbone.View.extend({
         className: '',
         template: _.template("<%= title %>"),
         events: {
-                "mouseover": "lessonMouseover",
-                "mouseout": "lessonMouseout",
                 "click": "expand"
-        },
-        lessonMouseover: function () {
-                $(this.el).children().children().addClass('card-hover');
-
-        },
-
-        lessonMouseout: function () {
-                $(this.el).children().children().removeClass('card-hover');
-
         },
 
         render : function () {
@@ -23,18 +12,21 @@ TRADE.AnswerView = Backbone.View.extend({
         },
         
         expand: function () {
-                console.dir(this);
-                
+
+                $('.bold').removeClass('bold');
+                $('#answer_options').html('');
+
                 var answercollection2 = new TRADE.AnswerCollection ();
                 answercollection2.reset(this.model.attributes.options);
 
                 var answerlistview2 = new TRADE.AnswerSubListView ({collection: answercollection2});
                 answerlistview2.render();
                 
-                $(this.$el[0]).append(answerlistview2.$el);
-                
-
-
+                $('#answer_options').append(answerlistview2.$el);
+                //$(this.$el[0]).append(answerlistview2.$el);
+                //$(this.$el[0]).find('.answer-sub-list').slideToggle();
+                $('#answer_options').find('.answer-sub-list').slideToggle();
+                this.$el.addClass('bold');
 
         }
         

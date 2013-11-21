@@ -3,8 +3,6 @@ TRADE.AnswerListView = Backbone.View.extend({
         className: '',
         template: _.template(""),
         events: {
-                "mouseover": "chapterMouseover",
-                "mouseout": "chapterMouseout",
                 "click": "expand"
         },
         render : function () {

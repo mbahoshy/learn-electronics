@@ -1,12 +1,23 @@
 <div id='slide_holder'>
 	<script>
-		TRADE.GameData.answer = [
+		TRADE.GameData.answeroptions = [
 			{title:'Thermostat', options:[
 				{answerid:'0', txt:'red is open'},
 				{answerid:'1', txt:'blue is open'},
 				{answerid:'2', txt:'yellow is open'}
 			]},
-			{title:'Breaker', options:[]}
+			{title:'Breaker', options:[
+				{answerid:'3', txt:'breaker stuck closed'},
+				{answerid:'4', txt:'breaker stuck open'}
+			]},
+			{title:'Transformer', options:[
+				{answerid:'5', txt:'24v coil failed'},
+				{answerid:'6', txt:'240v coil failed'}
+			]},
+			{title:'Relay', options:[
+				{answerid:'7', txt:'relay stuck closed'},
+				{answerid:'8', txt:'relay coil failed'}
+			]},
 		];
 	</script>
 	<script type="text/html" class='slide' id='slide1b'>
@@ -14,6 +25,7 @@
 		<div class='test1'>
 			Hello problem
 		</div>
+		<% TRADE.GameData.answer = '0'; %>
 
 	</script>
 
@@ -24,6 +36,7 @@
 
 
 		%>
+		<% TRADE.GameData.answer = '2'; %>
 		
 	</script>
 
@@ -51,6 +64,7 @@
 			TRADE.CIRC.DrawWire('w5', 'blue', 3, [625, 210, 625, 40]);
 			
 		%>
+		<% TRADE.GameData.answer = '7'; %>
 	</script>
 
 	<script type="text/html" class='slide' id='slide1'>
