@@ -14,6 +14,7 @@ TRADE.NavData = (function(){
 
 TRADE.GameData = {
 	gamejson:'',
+	answer:'',
 	slideindex:''
 };
 
@@ -52,10 +53,20 @@ TRADE.FUNC = (function () {
 		}
 
 		this.problemIndexNav = function () {
-			var slidesNumber = $('#slide_holder > .slide').length;
+			var slides = $('#slide_holder > .slide'); // get slide array
+			var slidesNumber = slides.length;
 			for (var i=0; i<slidesNumber; i++) {
-				$('#slide_index').append('<span class="problem-index" id="slide_nav_' + i + '">' + (i + 1) + ' </span>');
+				$('#slide_index').append('<span class="problem-index" data-nav="' + i + '" id="slide_nav_' + i + '">' + (i + 1) + ' </span>');
 			}
+			$("#slide_nav_0").addClass('unlocked');
+			$('#slide_index').on('click', '.unlocked', function () {
+				$("#level_container").html('');
+				var template = $(slides[$(this).data('nav')]).html();
+				$("#slide_container").html(_.template(template));
+			});
+			$('#answer_question').on('click', function(){
+
+			});
 		}
 
 		return this;

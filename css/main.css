@@ -394,6 +394,7 @@ body {
 	background-color: #FFFFFF;
 }
 
+
 .slide-left {
 	width:50px;
 	height:50px;
@@ -410,11 +411,13 @@ body {
 }
 
 #slide_index {
-	float:left;
+
 	font-size: 18px;
 	text-align:center;
-	width:850px;
 	padding:10px 0;
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
 }
 
 .slide-active {
@@ -431,6 +434,18 @@ body {
 	width:910px;
 }
 
+.problem-nav {
+	width:950px;
+	float:left;
+	background-color: red;
+	border-radius: 20px 20px 0 0;
+	border: 1px solid #FF9390;
+}
+
+.problem-wrapper{
+	border: 1px solid #FF9390 !important;
+}
+
 .problem-index {
 	display:inline-block;
 	padding:5px 8px;
@@ -441,7 +456,22 @@ body {
 	font-size: 16px;
 	color:red;
 	border: 1px solid red;
-	background-color: #FFFFFF;
+	background-color: #A7A7A7;
+}
+
+.unlocked {
+	background-color: #FFFFFF !important;
+}
+
+.unlocked:hover {
+	background-color: #FFBABA !important;
+}
+
+#answer_question {
+	float:left;
+	font-size: 20px;
+	color:#FFFFFF;
+	font-weight:bold;
 }
 
 

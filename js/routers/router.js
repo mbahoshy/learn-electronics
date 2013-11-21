@@ -142,8 +142,7 @@ TRADE.Router = Backbone.Router.extend({
 
 
 
-        if(TRADE.NavObj == '') {
-            
+        if(TRADE.NavObj == '') { //if NavObj is empty request new navdata from server
             $.get("/nav/lessonid", function(data, status){ //refreshes lessonid
                 TRADE.NavData.lessonid = data;
                 slideType();
@@ -199,10 +198,20 @@ TRADE.Router = Backbone.Router.extend({
                     
                     $('.slide-left').on('click', TRADE.FUNC.slideChange);
                     $('.slide-right').on('click', TRADE.FUNC.slideChange);
-                    $('#slide_nav_' + TRADE.GameData.slideindex).addClass('slide-active');
                     TRADE.FUNC.slideIndexNav();
+                    $('#slide_nav_' + TRADE.GameData.slideindex).addClass('slide-active');
+                    
                 } else if (TRADE.NavData.lessontype === 'problem') {
                     TRADE.FUNC.problemIndexNav();
+
+                    //creates chapter list view and render chapter cards
+                    var answercollection1 = new TRADE.AnswerCollection ();
+                    answercollection1.reset(TRADE.GameData.answer);
+                    var answerlistview1 = new TRADE.AnswerListView ({collection: answercollection1});
+                    answerlistview1.render();
+
+                    //append to dom
+                    $('#answer_question').append(answerlistview1.$el);
                 }
             });
         }

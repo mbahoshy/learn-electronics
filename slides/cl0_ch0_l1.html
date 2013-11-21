@@ -1,4 +1,14 @@
 <div id='slide_holder'>
+	<script>
+		TRADE.GameData.answer = [
+			{title:'Thermostat', options:[
+				{answerid:'0', txt:'red is open'},
+				{answerid:'1', txt:'blue is open'},
+				{answerid:'2', txt:'yellow is open'}
+			]},
+			{title:'Breaker', options:[]}
+		];
+	</script>
 	<script type="text/html" class='slide' id='slide1b'>
 		<p>This is slide 1. </p>
 		<div class='test1'>
@@ -11,22 +21,6 @@
 		<p>This is slide 2. </p>
 		<% 
 			TRADE.CIRC.Create(700, 350);
-			TRADE.CIRC.Set('problem_1', 'switch');
-			TRADE.CIRC.Line1('line1', 50, 40);
-
-			TRADE.CIRC.Contact('c2', 50, 120);
-			TRADE.CIRC.Contact('c3', 625, 212);
-		
-			TRADE.CIRC.Neutral('n1', 625, 40);
-
-			TRADE.CIRC.SPSTSwitch('spst1', 'sc1', 'sc2', 120, 120, 'noswitch');
-			TRADE.CIRC.LightBulb('l1', 'lc1', 'lc2', 290, 60);
-
-			TRADE.CIRC.DrawWire('w1', 'blue', 3, [50, 40, 50, 120]);
-			TRADE.CIRC.DrawWire('w2', 'blue', 3, [50, 120, 120, 120]);
-			TRADE.CIRC.DrawWire('w3', 'blue', 3, [160, 210, 290, 210]);
-			TRADE.CIRC.DrawWire('w4', 'blue', 3, [360, 210, 625, 210]);
-			TRADE.CIRC.DrawWire('w5', 'blue', 3, [625, 210, 625, 40]);
 
 
 		%>
