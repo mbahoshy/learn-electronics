@@ -60,13 +60,15 @@ TRADE.FUNC = (function () {
 				$('#slide_index').append('<span class="problem-index" data-nav="' + i + '" id="slide_nav_' + i + '">' + (i + 1) + ' </span>');
 			}
 			$("#slide_nav_0").addClass('unlocked');
+			$("#slide_nav_0").addClass('problem-nav-active');
 			$('#slide_index').on('click', '.unlocked', function () {
+				var nav = $(this).data('nav');
+				$('.problem-nav-active').removeClass('problem-nav-active');
 				$("#level_container").html('');
-				var template = $(slides[$(this).data('nav')]).html();
+				TRADE.GameData.slideindex = nav;
+				$("#slide_nav_" + TRADE.GameData.slideindex).addClass('problem-nav-active');
+				var template = $(slides[nav]).html();
 				$("#slide_container").html(_.template(template));
-			});
-			$('#answer_question').on('click', function(){
-
 			});
 		}
 

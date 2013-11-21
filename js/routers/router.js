@@ -204,7 +204,7 @@ TRADE.Router = Backbone.Router.extend({
                 } else if (TRADE.NavData.lessontype === 'problem') {
                     TRADE.FUNC.problemIndexNav();
 
-                    //creates chapter list view and render chapter cards
+                    //creates answer list view and render answer cards
                     var answercollection1 = new TRADE.AnswerCollection ();
                     answercollection1.reset(TRADE.GameData.answeroptions);
                     var answerlistview1 = new TRADE.AnswerListView ({collection: answercollection1});
@@ -215,7 +215,13 @@ TRADE.Router = Backbone.Router.extend({
                     $('#answer_question').on('click', function () {
                         $('#answer_container').slideToggle(function(){
                             $('#answer_options').html('');
+                            $('.bold').removeClass('bold');
                         });
+                    });
+                    $('#shadow').on('click', function () {
+                        $(this).fadeToggle();
+                        $('#correct').css('display', 'none');
+                        $('#incorrect').css('display', 'none');
                     });
                 }
             });
