@@ -375,7 +375,7 @@
 /* -------------- DIVIDER --------------------- */
 
 .divider {
-	border-bottom: 1px solid black;
+	border-bottom: 1px solid #C0C0C0;
 }
 
 /* -------------------------------------------- */
@@ -389,9 +389,9 @@
 
 .sequencer-top {
 	position: absolute;
-	width:110px;
+	width:100px;
 	height:25px;
-	left:5px;
+	left:10px;
 	border-radius: 3px;
 	background-color: grey;
 	z-index:2;
@@ -399,8 +399,9 @@
 
 .sequencer-mid {
 	position: absolute;
-	width:120px;
+	width:110px;
 	height:25px;
+	left:5px;
 	border-radius: 3px;
 	background-color: grey;
 	z-index:2;
