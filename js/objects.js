@@ -183,6 +183,7 @@ TRADE.CIRC = (function () {
 				
 
 				wid.on('click', function () {
+					console.log(wid.getId());
 					var lines = stage.get('.selected');
 					multiMeter1.clearMeter();
 					lines.each(function (line) {
@@ -802,6 +803,7 @@ TRADE.CIRC = (function () {
 						level1.current_set = this.id;
 						$('#canvas').trigger('reset');
 					}
+					$('#canvas').trigger('reset');
 				}
 			}
 
@@ -810,6 +812,7 @@ TRADE.CIRC = (function () {
 				$('#canvas').trigger('reset.DrawWire');
 				cid = $(this).attr('id');
 				mode = multiMeter1.mode;
+				console.log(cid);
 
 				p = TRADE.GameData.gamejson[level1.current_problem][level1.current_set][cid][mode];
 				d = TRADE.GameData.gamejson[level1.current_problem][level1.current_set][cid].Device;
