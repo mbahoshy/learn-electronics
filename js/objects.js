@@ -652,8 +652,16 @@ TRADE.CIRC = (function () {
 				resetFan ();
 			}
 
-
+			this.Divider = function (top, width) {
+				var $html = $("<div class='divider' style='width:" + width + "px;position:absolute;top:" + top + "px;left:0px'></div>");
+				$('#canvas').append($html);	
+			}
 			
+			this.Sequencer = function (id, left, top, c0, c1, c2, c3, c4, c5) {
+				var $html = $("<div id='" + id + "' class='sequencer' style='position:absolute;top:" + top + "px;left:" + left + "px'><div class='sequencer-top' style='top:0px'><span class='fleft'>M1</span><span class='fright'>M2</span></div><div class='sequencer-space' style='top:25px'></div><div style='top:33px' class='sequencer-mid'><span class='fleft'>M3</span><span class='fright'>M4</span></div><div style='top:58px' class='sequencer-space'></div><div style='top:64px' class='sequencer-bottom'></div><div style='top:-15px;left:5px' id='" + c0 + "' class='contact contact-small-half-top'></div><div style='top:-15px;right:5px' id='" + c1 + "' class='contact contact-small-half-top'></div><div style='top:34px;left:-15px' id='" + c2 + "' class='contact contact-small-half-left'></div><div style='top:34px;right:-15px' id='" + c3 + "' class='contact contact-small-half-right'></div><div style='top:66px;left:-15px' id='" + c4 + "' class='contact contact-small-half-left'></div><div style='top:66px;right:-15px' id='" + c5 + "' class='contact contact-small-half-right'></div></div>");
+				$('#canvas').append($html);	
+			}
+
 			function Level () {
 				this.current_problem = "";
 				this.current_set = "";
@@ -783,10 +791,12 @@ TRADE.CIRC = (function () {
 					var $html = $("<div id='thermostat'><div id='thermostat_screen'><span id=''></span></div><div><div id='Heat' class='fleft thermostat_button'>Heat</div><div id='Cool' class='fright thermostat_button'>Cool</div></div><div><div id='Fan' class='fleft thermostat_button'>Fan</div><div id='Off' class='fright thermostat_button'>Off</div></div></div>");
 					$('#tools').prepend($html);
 					$('#' + initial).addClass('thermostat_active');
+					$('#thermostat_screen').html(initial);
 					$('.thermostat_button').on('click', thermostatClickHandler);
 				}
 				function thermostatClickHandler () {
 					$('.thermostat_active').removeClass('thermostat_active');
+					$('#thermostat_screen').html(this.id);
 					$(this).addClass('thermostat_active');
 					if (thermostat1.breaker === false) {
 						breaker1.tmp_current_set = this.id;

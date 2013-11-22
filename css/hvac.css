@@ -58,6 +58,14 @@
 	height:20px;
 }
 
+.contact-small-half-left {
+	border-radius:50% 0% 0% 50%;
+	-moz-border-radius:50% 0% 0% 50%;
+	-webkit-border-radius:50% 0% 0% 50%;
+	width:15px;
+	height:20px;
+}
+
 .contact-small-half-top {
 	border-radius:50% 50% 0% 0%;
 	-moz-border-radius:50% 50% 0% 0%;
@@ -358,10 +366,67 @@
 }
 
 .thermostat_active {
-	background-color:#C5C5C5;
+	background-color:#C0C0C0;
 }
 
 
+/* -------------------------------------------- */
 
+/* -------------- DIVIDER --------------------- */
 
+.divider {
+	border-bottom: 1px solid black;
+}
 
+/* -------------------------------------------- */
+
+/* --------------- SEQUENCER ------------------ */
+
+.sequencer {
+	width:120px;
+	height:88px;
+}
+
+.sequencer-top {
+	position: absolute;
+	width:110px;
+	height:25px;
+	left:5px;
+	border-radius: 3px;
+	background-color: grey;
+	z-index:2;
+}
+
+.sequencer-mid {
+	position: absolute;
+	width:120px;
+	height:25px;
+	border-radius: 3px;
+	background-color: grey;
+	z-index:2;
+}
+
+.sequencer-space {
+	position:absolute;
+	width:80px;
+	height:8px;
+	left:20px;
+	background-color: grey;
+	margin-left: auto;
+	margin-right:auto;
+}
+
+.sequencer-bottom {
+	position: absolute;
+	width:120px;
+	height:30px;
+	border-radius: 3px;
+	background-color: grey;
+	z-index:2;
+}
+
+.sequencer span {
+	color:#5E5E5E;
+	font-size: 16px;
+	padding:3px 3px 0 3px;
+}

@@ -28,11 +28,20 @@
 
 		$(document).ready(function(){
 
-			TRADE.CIRC.Create(700, 350);
+			TRADE.CIRC.Create(700, 850);
 			TRADE.CIRC.Set('problem_01', 'Heat');
 			//TRADE.CIRC.SPSTSwitch('spst1', 's0', 's1', 30, 10, 'noswitch');
 			//TRADE.CIRC.Fan('fan1', 150, 50, 'f1', 'f2', 'f3');
-			TRADE.CIRC.AddBreaker('break1', 10, 10, 'b1', 'b2', 'b3', 'b4', 'noswitch');
+			TRADE.CIRC.AddBreaker('break1', 20, 20, 'b1', 'b2', 'b3', 'b4', 'noswitch');
+			TRADE.CIRC.Relay('relay1', 20, 250, 'rc1', 'rc2', 'rc3', 'rc4', 'rc5');
+			TRADE.CIRC.Heater('heat1', 240, 20, 'h1', 'h2');
+			TRADE.CIRC.Heater('heat2', 240, 90, 'h3', 'h4');
+			TRADE.CIRC.StatStrip5('statstrip', 650, 20, 'ss1', 'ss2', 'ss3', 'ss4', 'ss5');
+			TRADE.CIRC.Transformer('trans1', 480, 250, 'tr1', 'tr2', 'tr3', 'tr4');
+			TRADE.CIRC.Fan('fan1', 220, 460, 'f1', 'f2', 'f3');
+			TRADE.CIRC.Capacitor('cap1', 20, 460, 'cp1', 'cp2', 15);
+			TRADE.CIRC.Divider(400, 700);
+			TRADE.CIRC.Sequencer('seq1', 300, 300, 'sq1', 'sq2', 'sq3', 'sq4', 'sq5');
 			//TRADE.CIRC.StatStrip5('stat1', 120, 10, 'q1', 'q2', 'q3', 'q4', 'q5');
 			//TRADE.CIRC.Capacitor('cap1', 200, 40, 'e1', 'e2', '30');
 			TRADE.CIRC.AddThermostat('Heat');

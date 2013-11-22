@@ -6,7 +6,10 @@ TRADE.GameData.gamejson = {
 			"b3": {"Volts": "l2", "Ohms": 14, "Ferads": '', "Device": ''},
 			"b4": {"Volts": "l2", "Ohms": 14, "Ferads": '', "Device": ''},
 			
-			"break1": {"on": true}
+			"break1": {"on": true},
+			"heat1": {"on": true},
+			"heat2": {"on": true},
+			"fan1": {"on": true},
 
 		},
 		"Cool": {
