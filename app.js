@@ -3,7 +3,28 @@ var path = require("path"),
     _ = require("underscore"),
     mod = require('./js/modules');
 
+var passport = require("passport");
 
+var mongoose = require('mongoose');
+
+
+
+
+require('./config/mongoose')();
+
+var Schema = mongoose.Schema;
+
+
+var userSchema = new mongoose.Schema({
+	username: String,
+	pword: String,
+	hash: String
+});
+
+
+var Users = mongoose.model('users', userSchema, 'Users');
+
+require('./config/passport')(passport, Users);
 
 var app = express()
             .use(express.static(__dirname, 
@@ -12,8 +33,15 @@ var app = express()
             .use(express.bodyParser());
 
 //app.use(express.cookieParser());
+/*
 app.use(express.cookieParser('1234567890QWERTY'));    
 app.use(express.cookieSession());
+*/
+app.use(express.cookieParser());
+app.use(express.bodyParser());
+app.use(express.session({ secret: 'SECRET' }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 //responds with index.html
 app.get("/", function(req, res) {
@@ -37,65 +65,20 @@ app.get('/slideTemplate/:type', mod.slideTemplate);
 
 app.get('/nav/:type', mod.getNav);
 
+app.post('/login',
+  passport.authenticate('local', { successRedirect: '/',
+                                   failureRedirect: '/login'
+                                 })
+);
+
+
+
+
+
+
 //set port
 var port = process.env.PORT || 3000;
 app.listen(port);
 console.log("Started server on port " + port);
 
 
-/*
-
-var ChaptersDB = [
-	{classid:"0", chapters:[
-		{id:"0", name:"The Basics", snippet:"Volts, Amps, and Ohms - an introduction", content:{}},
-		{id:"1", name:"Putting It Together", snippet:"Learn how Volts, Amps, and Ohms work together", content:{}},
-		{id:"2", name:"Switches and Relays", snippet:"Swithes and Relays - an introduction", content:{}}
-	]}
-]
-
-var classrooms = [
-	{id:"0", name:"HVAC", snippet:"Become a service technician"}
-];
-
-
-
-var LessonsDB = [
-	{chapterid:"0", lessons: [
-		{id:"0", name:"Chapter 1 Lesson 1", snippet:"Volts, Amps, and Ohms - an introduction", content:{}},
-		{id:"1", name:"Chapter 1 Lesson 2", snippet:"Learn how Volts, Amps, and Ohms work together", content:{}},
-		{id:"2", name:"Chapter 1 Lesson 3", snippet:"Swithes and Relays - an introduction", content:{}}
-	]},
-	{chapterid:"1", lessons:[
-		{id:"0", name:"Chapter 2 Lesson 1", snippet:"Volts, Amps, and Ohms - an introduction", content:{}},
-		{id:"1", name:"Chapter 2 Lesson 2", snippet:"Learn how Volts, Amps, and Ohms work together", content:{}},
-		{id:"2", name:"Chapter 2 Lesson 3", snippet:"Swithes and Relays - an introduction", content:{}}
-	]},
-	{chapterid:"2", lessons:[
-		{id:"0", name:"Chapter 3 Lesson 1", snippet:"Volts, Amps, and Ohms - an introduction", content:{}},
-		{id:"1", name:"Chapter 3 Lesson 2", snippet:"Learn how Volts, Amps, and Ohms work together", content:{}},
-		{id:"2", name:"Chapter 3 Lesson 3", snippet:"Swithes and Relays - an introduction", content:{}}
-	]}
-];
-
-
-//respond with chapters
-app.get("/chapters/:classid", function(req, res){
-	var id = req.param("classid");
-	var classroom = _.findWhere(MainDB);
-	var record = _.findWhere(ChaptersDB, {classid: id});
-
-	res.json(record.chapters);
-
-});
-
-
-
-app.get("/lessons/:chapterid", function(req, res){
-	var id = req.param("chapterid");
-	var record = _.findWhere(MainDB, {chapterid: id});
-	res.json(record.lessons);
-
-});
-
-
-*/
