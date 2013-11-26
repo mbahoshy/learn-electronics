@@ -391,6 +391,10 @@ body {
 	float:left;
 }
 
+.problem-list {
+	background: red !important;
+}
+
 /* ------------------------------------------------- */
 
 

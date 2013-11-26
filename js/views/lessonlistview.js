@@ -19,6 +19,7 @@ TRADE.LessonListView = Backbone.View.extend({
 
         addOne: function (model) {
 
+                
                 var LessonView1 = new TRADE.LessonView({
                     model: model
                 });
