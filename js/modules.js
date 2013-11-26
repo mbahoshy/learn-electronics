@@ -6,6 +6,7 @@ var path = require("path"),
 var mongoose = require('mongoose');
 var MONGOHQ_URL = 'mongodb://mbahoshy:07maryJ68@dharma.mongohq.com:10062/tradeTrainer';
 var Schema = mongoose.Schema;
+//var Auth = require('./authorization');
 
 
 mongoose.connect(MONGOHQ_URL);
@@ -23,8 +24,14 @@ var gamejson = mongoose.model('gamejson',
            'GameJson');
 
 function getClassroom (req, res) {
-
-    res.sendfile('pages/hvac.html');
+	if(req.isAuthenticated()){
+		console.log('welcome motha fucka');
+		res.redirect('pages/hvac.html');
+	} else {
+		console.log('stay out ho');
+		res.redirect('index.html');
+	}
+    
 }
 
 function getClass (req, res){

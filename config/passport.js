@@ -7,10 +7,7 @@ module.exports = function (passport) {
 	  function(username, password, done) {
 	  	
 	    Users.findOne({ username: username }, function(err, user) {
-	    	console.log(typeof(user));
-	    	console.log(user);
-	    	console.log(user.pword);
-	    	console.log(password);
+
 	      if (err) { return done(err); }
 	      if (!user) {
 	        return done(null, false, { message: 'Incorrect email.' });

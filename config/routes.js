@@ -1,12 +1,22 @@
 var mod = require('../js/modules');
+//var Auth = require('./authorization');
 
 module.exports = function (app, passport) {
 
 	//responds with index.html
 	app.get("/", function(req, res) {
 
+
 	});
 
+	app.get("/vagina", function(req, res){
+		console.log('wassi');
+		if(req.isAuthenticated()){
+		  console.log("authenticated user"); 
+		}else{
+			console.log("leave bitch"); 
+		}
+	});
 	//responds with hvac.html
 	app.get("/classroom", mod.getClassroom);
 
@@ -25,8 +35,8 @@ module.exports = function (app, passport) {
 	app.get('/nav/:type', mod.getNav);
 
 	app.post('/login',
-	  passport.authenticate('local', { successRedirect: '/',
-	                                   failureRedirect: '/login'
+	  passport.authenticate('local', { successRedirect: '/classroom/#0',
+	                                   failureRedirect: '/'
 	                                 })
 	);
 
