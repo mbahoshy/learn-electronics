@@ -3,18 +3,7 @@ TRADE.AnswerSubView = Backbone.View.extend({
         className: '',
         template: _.template("<%= txt %>"),
         events: {
-                "mouseover": "lessonMouseover",
-                "mouseout": "lessonMouseout",
                 "click": "answerCheck"
-        },
-        lessonMouseover: function () {
-                $(this.el).addClass('card-hover');
-
-        },
-
-        lessonMouseout: function () {
-                $(this.el).removeClass('card-hover');
-
         },
 
         render : function () {

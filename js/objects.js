@@ -454,7 +454,7 @@ TRADE.CIRC = (function () {
 				function glow () {
 					$('#' + id + ' > .heater-on').fadeIn(2500);
 					$('#' + id + ' > .heater-on').fadeOut(2500);
-					console.log($('#' + id));
+					
 				}
 				
 				function resetHeater () {

@@ -3,8 +3,6 @@ TRADE.AnswerSubListView = Backbone.View.extend({
         className: 'answer-sub-list hidden',
         template: _.template(""),
         events: {
-                "mouseover": "chapterMouseover",
-                "mouseout": "chapterMouseout",
                 "click": "expand"
         },
         render : function () {

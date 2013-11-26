@@ -100,8 +100,7 @@ body {
 }
 
 #title_wrapper h1 {
-	color:#2C0E78;
-	font-size:24px;
+
 }
 
 #canvas {
@@ -286,9 +285,8 @@ body {
 	height:80px;
 	background-color: #FFFFFF;
 	padding: 15px 20px;
-	border-radius:8px;
 	border: 1px solid #9094FF;
-	margin:0 0 20px;
+	margin:0 0 4px;
 	box-shadow: 5px 5px 2px #DEDEDE;
 }
 
@@ -315,13 +313,12 @@ body {
 
 .user-card {
 	color:white;
-	width:260px;
+	width:290px;
 	float:right;
 	height:200px;
-	border-radius: 8px;
-	background-color: rgba(255, 129, 45, 0.97);
+	background-color: rgba(74, 105, 204, 0.96);
 	padding:20px;
-	border: 1px solid #FAFF87;
+	border: 1px solid #9094FF;
 	box-shadow: 5px 5px 2px #DEDEDE;
 
 }
@@ -339,7 +336,18 @@ body {
 
 .class-title {
 	width:950px;
+	background-color: #FFFFFF;
+	border:1px solid #9094FF;
+	margin: 15px 0 5px 0;
+	box-shadow: 5px 5px 2px #DEDEDE;
 
+}
+
+.class-title h1 {
+	margin:0 0 0 20px;
+	padding:18px 0;
+	color:#2C0E78;
+	font-size:24px;
 }
 
 .chapter-title {
@@ -348,10 +356,13 @@ body {
 	background-color:white;
 	border: 1px solid #9094FF;
 	border-bottom: 0;
+
 }
 
 .chapter-title h1 {
 	padding:0 15px;
+	color:#2C0E78;
+	font-size:22px;
 }
 
 
@@ -391,14 +402,14 @@ body {
 	width:950px;
 	float:left;
 	border: 1px solid #9094FF;
-	background-color: #FFFFFF;
+	background-color: #BDCAFF;
+	border-radius: 10px 10px 0 0;
 }
 
 
 .slide-left {
 	width:50px;
 	height:50px;
-	background-color: blue;
 	float:left;
 }
 
@@ -406,7 +417,6 @@ body {
 .slide-right {
 	width:50px;
 	height:50px;
-	background-color: red;
 	float:right;
 }
 
@@ -438,8 +448,8 @@ body {
 	width:950px;
 
 	position: relative;
-	background-color: red;
-	border-radius: 20px 20px 0 0;
+	background-color: rgba(255, 0, 0, 0.77);;
+	border-radius: 10px 10px 0 0;
 	border: 1px solid #FF9390;
 }
 
@@ -485,9 +495,9 @@ body {
 	width:950px;
 	margin:0;
 	padding:0;
-	color:white;
+	color:rgb(56, 56, 56);
 	font-size:18px;
-	background-color: #FF4C55;
+	background-color: rgba(255, 144, 149, 0.83);
 	border: 1px solid #FF9390 !important;
 	border: 0 1px 0 1px;
 }
@@ -497,9 +507,10 @@ body {
 }
 
 #answer_container ul {
-	margin:0 0 0 20px;
-	padding:10px 0 10px 0;
+	margin:0;
+	padding:10px 0 10px 20px;
 	list-style: none;
+	font-size:16px;
 }
 
 #answer_container li {
@@ -511,13 +522,21 @@ body {
 #answer_categories {
 	float:left;
 	width:175px;
-	border-right:1px solid red;
+	border-right:1px solid rgb(255, 115, 115);
+}
+
+#answer_categories ul:hover {
+	background-color: white;
 }
 
 #answer_options {
 	float:left;
 	width:300px;
 	height:100%;
+}
+
+.answer-sub-list li:hover {
+	background-color: white;
 }
 
 #shadow {
