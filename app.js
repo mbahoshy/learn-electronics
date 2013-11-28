@@ -9,7 +9,6 @@ var mongoose = require('mongoose');
 
 require('./config/mongoose');
 
-
 require('./models/user');
 
 require('./config/passport')(passport);

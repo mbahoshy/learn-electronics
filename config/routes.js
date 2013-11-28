@@ -1,5 +1,5 @@
 var mod = require('../js/modules');
-//var Auth = require('./authorization');
+var Auth = require('./auth');
 
 module.exports = function (app, passport) {
 
@@ -18,7 +18,7 @@ module.exports = function (app, passport) {
 		}
 	});
 	//responds with hvac.html
-	app.get("/classroom", mod.getClassroom);
+	app.get("/classroom", Auth.isAuthenticated, mod.getClassroom);
 
 	//respond with class info
 	app.get("/class/:id", mod.getClass);
@@ -39,6 +39,11 @@ module.exports = function (app, passport) {
 	                                   failureRedirect: '/'
 	                                 })
 	);
+
+	app.get('/logout', function(req, res){
+		req.logout();
+		res.redirect('index.html');
+	});
 
 
 }

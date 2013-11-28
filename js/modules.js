@@ -24,14 +24,9 @@ var gamejson = mongoose.model('gamejson',
            'GameJson');
 
 function getClassroom (req, res) {
-	if(req.isAuthenticated()){
 		console.log('welcome motha fucka');
 		res.redirect('pages/hvac.html');
-	} else {
-		console.log('stay out ho');
-		res.redirect('index.html');
-	}
-    
+
 }
 
 function getClass (req, res){

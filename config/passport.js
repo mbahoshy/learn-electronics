@@ -3,23 +3,13 @@ var mongoose = require('mongoose')
   , Users = mongoose.model('users');
 
 module.exports = function (passport) {
-	passport.use(new LocalStrategy(
-	  function(username, password, done) {
-	  	
-	    Users.findOne({ username: username }, function(err, user) {
-
-	      if (err) { return done(err); }
-	      if (!user) {
-	        return done(null, false, { message: 'Incorrect email.' });
-	      }
-	      if (user.password == password) {
-	      	console.log('password good!');
-	        return done(null, false, { message: 'Incorrect password.' });
-	      }
-	      
-	      return done(null, user);
-	    });
-	  }
+	passport.use(new LocalStrategy({
+			usernameField: 'email', //looks at form name 'email' for username
+			passwordField: 'password' //looks at form name 'password' for password
+	    },
+		function(email, password, done) { //a function which takes three parameters
+			Users.isValidUserPassword(email, password, done);
+		}
 	));
 
 	passport.serializeUser(function(user, done) {
