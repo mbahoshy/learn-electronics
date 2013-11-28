@@ -1,7 +1,7 @@
 var path = require("path"),
     express = require("express"),
     _ = require("underscore"),
-    mod = require('./js/modules');
+    mod = require('./config/modules');
 
 var passport = require("passport"); // require passport
 
@@ -13,12 +13,16 @@ require('./models/user');
 
 require('./config/passport')(passport); // config passport, pass in passport as parameter
 
+/*
 var app = express()
             .use(express.static(__dirname, 
                                 path.join(__dirname, "pages"),
                                 path.join(__dirname, "js")))
             .use(express.bodyParser());
+*/
 
+var app = express ();
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(express.cookieParser());
 app.use(express.bodyParser());

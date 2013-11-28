@@ -1,4 +1,4 @@
-var mod = require('../js/modules');
+var mod = require('../config/modules');
 var Auth = require('./auth');
 
 module.exports = function (app, passport) {

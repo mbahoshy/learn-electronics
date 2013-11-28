@@ -1,0 +1,433 @@
+/* ---------- GENERAL --------------------- */
+
+
+#tools {
+	width:192px;
+}
+
+
+/* ---------------------------------------- */
+
+/* ------------------ FAN ----------------- */
+
+.fan {
+	background-color: #848484;
+	border-radius: 50%;
+	height:280px;
+	width:280px;
+}
+
+
+/* ---------------------------------------- */
+
+
+/* ------------- contact ----------------- */
+.contact {
+	position: absolute;
+	background-color: #dcdcdc;
+	border-style:solid;
+	border-width:2px;
+	border-color:#a4a4a4;
+	border-radius:50%;
+	-moz-border-radius:50%;
+	-webkit-border-radius:50%;
+	width:25px;
+	height:25px;
+	cursor:pointer;
+	z-index:1;
+}
+
+.contact-small {
+	width:20px;
+	height:20px;
+}
+
+.contact-small-half {
+	border-radius:0% 0% 50% 50%;
+	-moz-border-radius:0% 0% 50% 50%;
+	-webkit-border-radius:0% 0% 50% 50%;
+	width:20px;
+	height:15px;
+}
+
+.contact-small-half-right {
+	border-radius:0% 50% 50% 0%;
+	-moz-border-radius:0% 50% 50% 0%;
+	-webkit-border-radius:0% 50% 50% 0%;
+	width:15px;
+	height:20px;
+}
+
+.contact-small-half-left {
+	border-radius:50% 0% 0% 50%;
+	-moz-border-radius:50% 0% 0% 50%;
+	-webkit-border-radius:50% 0% 0% 50%;
+	width:15px;
+	height:20px;
+}
+
+.contact-small-half-top {
+	border-radius:50% 50% 0% 0%;
+	-moz-border-radius:50% 50% 0% 0%;
+	-webkit-border-radius:50% 50% 0% 0%;
+	width:20px;
+	height:15px;
+}
+
+.neutral {
+	background-color: #FFF600;
+
+	font-weight: bold;
+	border-radius: 5px;
+	text-align: center;
+}
+
+.l1 {
+
+	background-color: #00FF00;
+	font-weight: bold;
+	border-radius: 5px;
+	text-align: center;
+
+}
+
+.l2 {
+
+	background-color: #FD0205;
+
+	font-weight: bold;
+	border-radius: 5px;
+	text-align: center;
+}
+
+.border-red {
+	border:2px solid red !important;
+}
+
+.border-black {
+	border:2px solid black !important;
+}
+
+/* ---------------------------------------- */
+
+/* --------------- BREAKER ---------------- */
+
+.breaker {
+	position:absolute;
+	width:75px;
+	height:110px;
+	background-color:grey;
+	border-radius:3px;
+	color:#FFFFFF;
+	font-weight: bold;
+	text-align: center;
+	font-size:14px;
+	border:1px solid #717171;
+}
+
+.breaker-switch {
+	position:absolute;
+	width:62px;
+	left:6.5px;
+}
+
+.breaker-wide {
+	position:absolute;
+	width:60px;
+	height:20px;
+	background-color: #474747;
+	border-radius: 1px;
+	border: 1px solid #000000;
+}
+
+.breaker-skinny {
+	position:absolute;
+	top:45px;
+	left:11px;
+
+	background-color: #616161;
+	width:40px;
+	height:20px;
+	padding-top:5px;
+}
+
+/* ------------------------------------ */
+
+/* ------------ STATSTRIP5 ------------ */
+
+.stat-strip-5 {
+	position:absolute;
+	width:22px;
+	height:180px;
+	background-color: #ADADAD;
+	border-radius: 3px;
+	border:1px solid #888888;
+	font-size: 14px;
+	text-align: center;
+	color: #949494;
+}
+
+.stat-strip-5 p {
+	margin:0;
+	padding:2px;
+}
+
+/* ------------------------------------- */
+
+/* ------------- CAPACITOR ------------- */
+
+.capacitor-container {
+	width:82px;
+	height:114px;
+}
+
+.capacitor-top {
+	position: absolute;
+	top:0px;
+	left:5px;
+	height: 0; 
+	width: 60px;
+	border-top: 12px solid #292929;
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	border-radius: 8px 8px 2px 2px;
+	z-index: 2;
+}
+
+.capacitor {
+	position:absolute;
+	top:12px;
+	width:80px;
+	height:100px;
+	background-color: #D0D0D0;
+	border-radius: 3px 3px 10px 10px;
+	border: 1px solid #808080;
+	text-align: center;
+}
+
+.capacitor p:first-child {
+	font-size:24px;
+	margin:15px 0 0 0;
+	padding:0;
+	font-weight: bold;
+}
+
+.capacitor p:last-child {
+	font-size:14px;
+	margin:0;
+	padding:0;
+}
+
+/* ---------------------------------------- */
+
+/* ------------- MULTIMETER --------------- */
+
+
+#multimeter {
+	float:left;
+
+	width:190px;
+	height:250px;
+	background-color:#f6ff0e;
+
+	border: 1px solid #CACA05;
+	border-radius:15px;
+	-moz-border-radius:15px;
+	-webkit-border-radius:15px;
+}
+
+#multimeter_screen {
+	width:140px;
+	height:40px;
+	margin-top:15px;
+	margin-left:auto;
+	margin-right:auto;
+	padding-left:10px;
+	padding-right:10px;
+	padding-top:20px;
+	background-color:#d4d4d4;
+	border-style:solid;
+	border-width:1px;
+	border-color:#424242;
+	border-radius: 15px 15px 0px 0px;
+	-moz-border-radius: 15px 15px 0px 0px;
+	-webkit-border-radius: 15px 15px 0px 0px;
+	font-size:20px;
+	text-align:right;
+}
+
+#multimeter_screen txt {
+	padding-top:10px;
+	margin-left:10px;
+}
+
+.multimeter_button {
+	width:65px;
+	margin-top:20px;
+	padding-top:10px;
+	height:30px;
+	text-align:center;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-style:solid;
+	border-width:1px;
+	border-color:#424242;
+	cursor:pointer;
+}
+
+.multimeter_button:first-child {
+	margin-left:15px;
+}
+
+.multimeter_button:last-child {
+	margin-right:15px;
+}
+
+.multimeter_button:hover {
+	background-color:#ff8282;
+	color:#f30000;
+	font-weight:bold;
+}
+
+.multimeter_active {
+	background-color:#c3c10c;
+}
+
+/* --------------------------------------- */
+
+/* ------------- THERMOSTAT -------------- */
+
+#thermostat {
+	float:left;
+	width:190px;
+	height:190px;
+	background-color:#F1F1F1;
+	border: 1px solid #989898;
+	border-radius:15px;
+	-moz-border-radius:15px;
+	-webkit-border-radius:15px;
+	margin-bottom:15px;
+}
+
+
+#thermostat_screen {
+	width:140px;
+	height:40px;
+	margin-top:15px;
+	margin-left:auto;
+	margin-right:auto;
+	padding-left:10px;
+	padding-right:10px;
+	padding-top:20px;
+	background-color:#d4d4d4;
+	border-style:solid;
+	border-width:1px;
+	border-color:#909090;
+	border-radius: 10px 10px 10px 10px;
+	-moz-border-radius: 10px 10px 10px 10px;
+	-webkit-border-radius: 10px 10px 10px 10px;
+	font-size:20px;
+	text-align:right;
+}
+
+
+#thermostat_screen txt {
+	padding-top:10px;
+	margin-left:10px;
+}
+
+.thermostat_button {
+	width:65px;
+	margin-top:20px;
+	padding-top:5px;
+	height:20px;
+	text-align:center;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+
+	border:1px solid #909090;
+	cursor:pointer;
+}
+
+.thermostat_button:first-child {
+	margin-left:15px;
+}
+
+.thermostat_button:last-child {
+	margin-right:15px;
+}
+
+.thermostat_button:hover {
+	background-color:#ff8282;
+	color:#f30000;
+	font-weight:bold;
+}
+
+.thermostat_active {
+	background-color:#C0C0C0;
+}
+
+
+/* -------------------------------------------- */
+
+/* -------------- DIVIDER --------------------- */
+
+.divider {
+	border-bottom: 1px solid #C0C0C0;
+}
+
+/* -------------------------------------------- */
+
+/* --------------- SEQUENCER ------------------ */
+
+.sequencer {
+	width:120px;
+	height:88px;
+}
+
+.sequencer-top {
+	position: absolute;
+	width:100px;
+	height:25px;
+	left:10px;
+	border-radius: 3px;
+	background-color: grey;
+	z-index:2;
+}
+
+.sequencer-mid {
+	position: absolute;
+	width:110px;
+	height:25px;
+	left:5px;
+	border-radius: 3px;
+	background-color: grey;
+	z-index:2;
+}
+
+.sequencer-space {
+	position:absolute;
+	width:80px;
+	height:8px;
+	left:20px;
+	background-color: grey;
+	margin-left: auto;
+	margin-right:auto;
+}
+
+.sequencer-bottom {
+	position: absolute;
+	width:120px;
+	height:30px;
+	border-radius: 3px;
+	background-color: grey;
+	z-index:2;
+}
+
+.sequencer span {
+	color:#5E5E5E;
+	font-size: 16px;
+	padding:3px 3px 0 3px;
+}

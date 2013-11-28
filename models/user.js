@@ -6,7 +6,9 @@ var Schema = mongoose.Schema;
 var userSchema = new mongoose.Schema({
 	username: String,
 	pword: String,
-	hash: String
+	firstName:  String,
+	lastName:   String,
+	email:      String
 });
 
 userSchema.statics.isValidUserPassword = function(email, password, done) {
