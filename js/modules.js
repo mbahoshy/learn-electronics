@@ -26,6 +26,7 @@ var gamejson = mongoose.model('gamejson',
 function getClassroom (req, res) {
 		console.log('welcome motha fucka');
 		res.redirect('pages/hvac.html');
+		console.log(req.user.pword);
 
 }
 

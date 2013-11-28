@@ -9,30 +9,22 @@ module.exports = function (app, passport) {
 
 	});
 
-	app.get("/vagina", function(req, res){
-		console.log('wassi');
-		if(req.isAuthenticated()){
-		  console.log("authenticated user"); 
-		}else{
-			console.log("leave bitch"); 
-		}
-	});
 	//responds with hvac.html
 	app.get("/classroom", Auth.isAuthenticated, mod.getClassroom);
 
 	//respond with class info
-	app.get("/class/:id", mod.getClass);
+	app.get("/class/:id", Auth.isAuthenticated, mod.getClass);
 
 	//respond with user info
-	app.get("/users/:id", mod.getUser);
+	app.get("/users/:id", Auth.isAuthenticated, mod.getUser);
 
-	app.get('/slides/:id/:type', mod.returnSlides);
+	app.get('/slides/:id/:type', Auth.isAuthenticated, mod.returnSlides);
 
-	app.get('/json/:id', mod.returnJson);
+	app.get('/json/:id', Auth.isAuthenticated, mod.returnJson);
 
-	app.get('/slideTemplate/:type', mod.slideTemplate);
+	app.get('/slideTemplate/:type', Auth.isAuthenticated, mod.slideTemplate);
 
-	app.get('/nav/:type', mod.getNav);
+	app.get('/nav/:type', Auth.isAuthenticated, mod.getNav);
 
 	app.post('/login',
 	  passport.authenticate('local', { successRedirect: '/classroom/#0',
