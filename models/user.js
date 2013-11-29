@@ -27,6 +27,18 @@ userSchema.statics.isValidUserPassword = function(email, password, done) {
 	});
 };
 
+userSchema.statics.signup = function(email, password, done){
+	Users.create({
+		email : email,
+		pword : password,
+	}, function(err, user){
+		if(err) throw err;
+		// if (err) return done(err);
+		done(null, user);
+	});
+
+});
+
 
 var Users = mongoose.model('users', userSchema, 'Users');
 module.exports = Users;

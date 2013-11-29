@@ -1,32 +1,8 @@
-<!DOCTYPE HTML>
-
-<html lang="en-US">
-<head>
-	<meta charset="UTF-8">
-	<title>HVAC Game</title>
-	<link rel='stylesheet' href='css/main.css'	/>
-	<link rel='stylesheet' href='css/hvac.css'	/>
-	
-	<!-- load scripts -->
-	<!--<script src='http://code.jquery.com/jquery-1.9.1.js'></script>
-		
-		<script src='scripts/functions.js'></script>
-	-->
-	<script src='js/main.js'></script>
-	<script src="libs/jquery.js"></script>
-	<script src="libs/kinetic.js"></script>
-	<script src="libs/underscore.js"></script>
-	<script src="libs/backbone.js"></script>
-	<script src='js/objects.js'></script>
-	<script src='js/variables.js'></script>
-
-
-
-	<script src='js/routers/router.js'></script>
-	
-	<script>
-
 		$(document).ready(function(){
+			$('#sign_in').on('click', function(){
+				$('#sign_in_form').fadeToggle();
+			});
+
 
 			TRADE.CIRC.Create(720, 850);
 			TRADE.CIRC.Set('problem_01', 'Heat');
@@ -69,41 +45,3 @@
 			TRADE.CIRC.DrawWire('w20', '#B3CAFF', 2, [660, 97, 600, 97, 465, 240, 420, 240]);
 			TRADE.CIRC.DrawWire('w21', 'brown', 2, [300, 240, 300, 380]);
 		});
-
-	</script>
-</head>
-<body>
-	<div id='header'>
-
-		<div id='header_wrapper'>
-			<div class='fleft'>
-				<a href="/classroom/#0"><h1>TRADE TRAINER</h1></a>
-				<h2>Learn to diagnose electrical circuits online.<!--It's simple, it's fun, and it's free.--></h2>
-			</div>
-			<div id='sign_in'></div>
-			<div id='sign_in_form'>
-				<form action="/login" method="post">
-				    <div>
-				        <label>email:</label>
-				        <input type="text" name="email"/>
-				    </div>
-				    <div>
-				        <label>Password:</label>
-				        <input type="password" name="password"/>
-				    </div>
-				    <div>
-				        <input type="submit" value="Log In"/>
-				    </div>
-				</form>
-			</div>
-			<a href='/classroom/#0' id='signup_button'>Sign Up!</a>
-		</div>
-	</div>
-	<div id='wrapper'>
-		<div id='level_container'>
-		</div>
-	</div>
-	<div id='footer'>
-	</div>
-</body>
-</html>

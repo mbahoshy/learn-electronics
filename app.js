@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(express.cookieParser());
 app.use(express.bodyParser());
-app.use(express.session({ secret: 'SECRET' }));
+app.use(express.session({ secret: 'SECRET' }));//must be before passport session
 app.use(passport.initialize()); //initialize passport
 app.use(passport.session()); //create passport session
 

@@ -4,7 +4,6 @@ exports.isAuthenticated = function (req, res, next){
     if(req.isAuthenticated()){
         next();
     }else{
-        console.log('stay out ho');
         res.redirect("index.html");
     }
 }

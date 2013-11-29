@@ -27,10 +27,20 @@ module.exports = function (app, passport) {
 	app.get('/nav/:type', Auth.isAuthenticated, mod.getNav);
 
 	app.post('/login',
-	  passport.authenticate('local', { successRedirect: '/classroom/#0',
+	  	passport.authenticate('local', { successRedirect: '/classroom/#0',
 	                                   failureRedirect: '/'
 	                                 })
 	);
+
+	app.post("/signup", Auth.userExist, function (req, res, next) {
+		Users.signup(req.body.email, req.body.password, function(err, user){
+			if(err) throw err;
+			req.login(user, function(err){
+				if(err) return next(err);
+				return res.redirect("profile");
+			});
+		});
+	});
 
 	app.get('/logout', function(req, res){
 		req.logout();

@@ -1,0 +1,30 @@
+#sign_in {
+	color:white;
+	font-size:18px;
+	border-left: 1px solid white;
+	border-right: 1px solid white;
+	float:right;
+	padding: 0 5px;
+	font-weight: bold;
+	margin:25px 0 0 0;
+}
+
+#sign_in_form {
+	float:right;
+	margin-top:-25px;
+	padding:0;
+}
+
+
+
+
+#sign_up {
+	color:white;
+	font-size:18px;
+	border-left: 1px solid white;
+	border-right: 1px solid white;
+	float:right;
+	padding: 0 5px;
+	font-weight: bold;
+	margin-top:25px;
+}
