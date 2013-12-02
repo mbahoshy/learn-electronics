@@ -3,6 +3,11 @@
 				$('#sign_in_form').fadeToggle();
 			});
 
+			$('#sign_up').on('click', function(){
+				$('#sign_up_form').fadeToggle();
+				$('#shadow').fadeToggle();
+			});
+
 
 			TRADE.CIRC.Create(720, 850);
 			TRADE.CIRC.Set('problem_01', 'Heat');

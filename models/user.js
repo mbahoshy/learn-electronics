@@ -37,7 +37,7 @@ userSchema.statics.signup = function(email, password, done){
 		done(null, user);
 	});
 
-});
+};
 
 
 var Users = mongoose.model('users', userSchema, 'Users');

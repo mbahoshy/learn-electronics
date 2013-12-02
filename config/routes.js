@@ -1,5 +1,6 @@
 var mod = require('../config/modules');
 var Auth = require('./auth');
+var Users = require('../models/user');
 
 module.exports = function (app, passport) {
 
@@ -37,7 +38,7 @@ module.exports = function (app, passport) {
 			if(err) throw err;
 			req.login(user, function(err){
 				if(err) return next(err);
-				return res.redirect("profile");
+				return res.redirect("/classroom/#0");
 			});
 		});
 	});
