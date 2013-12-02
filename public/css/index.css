@@ -32,12 +32,13 @@
 #sign_up_container {
 	position:fixed;
 	z-index:6;
-	width:300px;
-	height:200px;
+	width:30%;
+	height:55%;
 	color:black;
-	top:200px;
-	left:500px;
+	top:30%;
+	left:35%;
 	background-color: white;
-	border: 1px solid #B6FDFF;
+	border: 3px solid #2C0E78;
+	border-radius: 15px;
 
 }

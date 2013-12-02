@@ -1,7 +1,8 @@
 var path = require("path"),
 	express = require("express"),
     _ = require("underscore"),
-    mongoose = require('mongoose');
+    mongoose = require('mongoose'),
+    Users = require('../models/user');
 
 
 var MONGOHQ_URL = 'mongodb://mbahoshy:07maryJ68@dharma.mongohq.com:10062/tradeTrainer';
@@ -102,7 +103,18 @@ function getNav (req, res) {
 	res.send(req.session[type]); //sends requested session data
 }
 
+function signUp (req, res, next) {
+	Users.signup(req.body.email, req.body.password, function(err, user){
+		if(err) throw err;
+		req.login(user, function(err){
+			if(err) return next(err);
+			return res.redirect("/classroom/#0");
+		});
+	});
+}
+
 exports.getClassroom = getClassroom;
+exports.signUp = signUp;
 exports.getClass = getClass;
 exports.getUser = getUser;
 exports.returnJson = returnJson;

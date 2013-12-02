@@ -13,14 +13,6 @@ require('./models/user');
 
 require('./config/passport')(passport); // config passport, pass in passport as parameter
 
-/*
-var app = express()
-            .use(express.static(__dirname, 
-                                path.join(__dirname, "pages"),
-                                path.join(__dirname, "js")))
-            .use(express.bodyParser());
-*/
-
 var app = express ();
 app.use(express.static(path.join(__dirname, 'public')));
 

@@ -1,6 +1,6 @@
 var mod = require('../config/modules');
 var Auth = require('./auth');
-var Users = require('../models/user');
+
 
 module.exports = function (app, passport) {
 
@@ -33,15 +33,7 @@ module.exports = function (app, passport) {
 	                                 })
 	);
 
-	app.post("/signup", Auth.userExist, function (req, res, next) {
-		Users.signup(req.body.email, req.body.password, function(err, user){
-			if(err) throw err;
-			req.login(user, function(err){
-				if(err) return next(err);
-				return res.redirect("/classroom/#0");
-			});
-		});
-	});
+	app.post("/signup", Auth.userExist, mod.signUp);
 
 	app.get('/logout', function(req, res){
 		req.logout();
