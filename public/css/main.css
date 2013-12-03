@@ -28,8 +28,9 @@ body {
 
 #header {
 	width:100%;
-	height:100px;
-	background-color: #2C0E78;
+	height:60px;
+	background-color: #150246;
+	/*background-color: #2C0E78;*/
 }
 
 #header h1 {
@@ -38,6 +39,9 @@ body {
 	padding-top:20px;
 	font-family: 'title';
 	font-weight: normal;
+	display:inline;
+	margin-top:20px;
+
 }
 
 #header a {
@@ -55,6 +59,7 @@ body {
 	font-size: 18px;
 	width:600px;
 	font-family: 'titleh2';
+	display:inline;
 }
 
 .header-small {
@@ -78,8 +83,8 @@ body {
 	color:white;
 }
 
-#wrapper {
-	width:950px;
+.wrapper {
+	width:960px;
 	display:block;
 	margin-left:auto;
 	margin-right:auto;
@@ -121,7 +126,7 @@ body {
 
 #level_container {
 
-	margin-top:50px;
+	margin-top:25px;
 }
 
 #res_canvas {
@@ -392,7 +397,7 @@ body {
 }
 
 .problem-list {
-	background: red !important;
+	background: #FFCACA !important;
 }
 
 /* ------------------------------------------------- */
@@ -592,3 +597,31 @@ body {
 #mycanvas {
 	position:relative;
 }
+
+
+#logout {
+	padding-top:20px;
+}
+
+/* ------------------ COLUMN STYLES ------------------ */
+
+.column_3 {
+	width:300px;
+	float:left;
+	padding: 10px;
+	text-align:center;
+}
+
+.column_3 h3 {
+	padding:0;
+	margin:0;
+}
+
+.clear {
+	clear:both;
+}
+
+.light-blue {
+	background-color: rgba(198, 247, 255, 0.74);
+}
+

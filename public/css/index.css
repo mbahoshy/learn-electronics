@@ -4,9 +4,20 @@
 	border-left: 1px solid white;
 	border-right: 1px solid white;
 	float:right;
-	padding: 0 5px;
+	padding: 3px 5px;
 	font-weight: bold;
-	margin:25px 0 0 0;
+	margin:15px 0 0 0;
+}
+
+#sign_in:hover {
+	background-color: #535CAB;
+	cursor:pointer;
+}
+
+
+#sign_up:hover {
+	background-color: #535CAB;
+	cursor:pointer;
 }
 
 #sign_in_form {
@@ -24,9 +35,9 @@
 	border-left: 1px solid white;
 	border-right: 1px solid white;
 	float:right;
-	padding: 0 5px;
+	padding: 3px 5px;
 	font-weight: bold;
-	margin-top:25px;
+	margin-top:15px;
 }
 
 #sign_up_container {
@@ -34,11 +45,38 @@
 	z-index:6;
 	width:30%;
 	height:55%;
-	color:black;
 	top:30%;
 	left:35%;
 	background-color: white;
 	border: 3px solid #2C0E78;
-	border-radius: 15px;
+	
+	color:black;
+}
 
+#signup_header {
+	width:100%;
+	height:50px;
+	background-color: #472894;
+	color:white;
+	
+}
+
+#signup_header h1 {
+	padding:5px;
+	margin:0;
+}
+
+#mid_wrapper {
+	width:100%;
+	height:300px;
+	/*background-color: #CCB8FF;*/
+	background-color: #5935B6;
+	border-top: 8px solid rgba(198, 247, 255, 0.74);
+	/*border-top: 8px solid #CCB8FF;*/
+	float:left;
+	margin:40px 0;
+}
+
+#mid_wrapper > .wrapper{
+	margin-top:0 !important;
 }

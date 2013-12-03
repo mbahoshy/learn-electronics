@@ -27,6 +27,7 @@ function getClassroom (req, res) {
 }
 
 function getClass (req, res){
+	console.log(req.user);
 	var id = req.param("id");
 	if(id!=='reset') {
 		req.session.classid = id;
@@ -46,11 +47,8 @@ function getUser (req, res){
 	if(id === 'reset') {
 		id = req.session.userid;
 		
-	} else {
-		
+	} else {	
 		req.session.userid = id;
-		
-		
 	}
 	
 	var record = _.findWhere(UsersDB, {userid: id});

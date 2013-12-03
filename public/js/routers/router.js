@@ -7,7 +7,7 @@ TRADE.Router = Backbone.Router.extend({
 
     HVACChapterListView: function (classid) {
 
-        $('#wrapper').html(''); //clear html
+        $('.wrapper').html(''); //clear html
         $('#title_wrapper').html(''); //clear html
 
         $( document ).ready(function() {
@@ -30,7 +30,7 @@ TRADE.Router = Backbone.Router.extend({
                 var user1 = new TRADE.User (data);
                 var cardView1 = new TRADE.UserView ({model: user1});
                 cardView1.render();
-                $('#wrapper').append(cardView1.$el);
+                $('.wrapper').append(cardView1.$el);
 
                 //sets user data to variable
                 console.dir(data.progress);
@@ -54,7 +54,7 @@ TRADE.Router = Backbone.Router.extend({
             ChapterListView1.render();
 
             //append to dom
-            $('#wrapper').append(ChapterListView1.$el);
+            $('.wrapper').append(ChapterListView1.$el);
             $('#title_wrapper').append(classview1.$el);
         }
 
@@ -64,11 +64,11 @@ TRADE.Router = Backbone.Router.extend({
     HVACLessonListView: function (chapterid) {
 
         //clear html
-        $('#wrapper').html('');
+        $('.wrapper').html('');
         $('#title_wrapper').html('');
         
         $( document ).ready(function() {
-            $('#wrapper').append("<div id='lesson_list_container'></div>");
+            $('.wrapper').append("<div id='lesson_list_container'></div>");
 
             if(TRADE.NavObj == '') {
                 $.get("/class/reset", function(data, status){ //get chapter info and render chapter cards
@@ -137,7 +137,7 @@ TRADE.Router = Backbone.Router.extend({
     HVACSlideView: function (lessonnum) {
 
         //clear html
-        $('#wrapper').html('');
+        $('.wrapper').html('');
         $('#title_wrapper').html('');
 
 
@@ -178,7 +178,7 @@ TRADE.Router = Backbone.Router.extend({
                 console.dir(data);
 
                 var template = $(data).html();
-                $("#wrapper").prepend(_.template(template));
+                $(".wrapper").prepend(_.template(template));
                 slides();
             });
         } 
@@ -187,7 +187,7 @@ TRADE.Router = Backbone.Router.extend({
         function slides () {
             $.get('/slides/' + TRADE.NavData.lessonid + '/' + TRADE.NavData.lessontype, function(data, status){
 
-                $('#wrapper').append('<div class="hidden">' + data + '</div>');
+                $('.wrapper').append('<div class="hidden">' + data + '</div>');
                 var slides = $('#slide_holder > .slide');
 
                 var template = $(slides[0]).html();
