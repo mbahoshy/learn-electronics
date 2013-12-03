@@ -5,13 +5,32 @@
 	border-right: 1px solid white;
 	float:right;
 	padding: 3px 5px;
-	font-weight: bold;
-	margin:15px 0 0 0;
+	margin:0 0 0 0;
+
+/*	border-top: 2px solid #6A6CFF;
+	border-bottom: 2px solid #6A6CFF;
+	border-left: 4px solid #02005A;
+	border-right: 4px solid #02005A;*/
 }
 
 #sign_in:hover {
 	background-color: #535CAB;
 	cursor:pointer;
+}
+
+#sign_in_inputs {
+	margin-right:15px;
+	margin-top:5px;
+}
+
+.sign-in-active {
+	background-color: #8484FF !important;
+}
+
+#sign_in_form {
+	float:right;
+	margin-top:15px;
+	padding:0;
 }
 
 
@@ -20,20 +39,14 @@
 	cursor:pointer;
 }
 
-#sign_in_form {
-	float:right;
-	margin-top:-25px;
-	padding:0;
-}
-
-
-
-
 #sign_up {
-	color:red;
+	background-color: red;
+	color:white;
 	font-size:18px;
-	border-left: 1px solid red;
-	border-right: 1px solid red;
+	border-top: 2px solid #FF8686;
+	border-bottom: 2px solid #FF8686;
+	border-left: 4px solid #C80000;
+	border-right: 4px solid #C80000;
 	float:right;
 	padding: 3px 5px;
 	font-weight: bold;
