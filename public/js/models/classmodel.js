@@ -1,4 +1,4 @@
-TRADE.Classroom = Backbone.Model.extend({
+TRADE.ClassModel = Backbone.Model.extend({
 	defaults: {
 		id: "",
 		name: "",

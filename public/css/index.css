@@ -1,16 +1,11 @@
 #sign_in {
 	color:white;
-	font-size:18px;
+	font-size:14px;
 	border-left: 1px solid white;
 	border-right: 1px solid white;
 	float:right;
 	padding: 3px 5px;
-	margin:0 0 0 0;
-
-/*	border-top: 2px solid #6A6CFF;
-	border-bottom: 2px solid #6A6CFF;
-	border-left: 4px solid #02005A;
-	border-right: 4px solid #02005A;*/
+	margin:5px 0 0 0;
 }
 
 #sign_in:hover {

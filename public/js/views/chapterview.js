@@ -16,7 +16,7 @@ TRADE.ChapterView = Backbone.View.extend({
         },
         tester: function () {
                 console.dir(this.model.toJSON().lessons);
-                TRADE.router.navigate('#lessons/' + this.model.toJSON().chapterid, {trigger:true});
+                TRADE.router.navigate('#chapter/' + this.model.toJSON().chapterid, {trigger:true});
         },
         render : function () {
                 this.$el.html( this.template(this.model.toJSON()) );

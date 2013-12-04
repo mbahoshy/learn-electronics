@@ -2,7 +2,8 @@ var path = require("path"),
 	express = require("express"),
     _ = require("underscore"),
     mongoose = require('mongoose'),
-    Users = require('../models/user');
+    Users = require('../models/user'),
+    Nav = require('../models/nav');
 
 
 var MONGOHQ_URL = 'mongodb://mbahoshy:07maryJ68@dharma.mongohq.com:10062/tradeTrainer';
@@ -15,9 +16,25 @@ db.once('open', function callback () {
   console.log('successfully connected to database!');
 });
 
-var NavData = mongoose.model('navdata', 
-           new Schema({}), 
-           'NavData');
+function getClasses (req, res) {
+	Nav.find({}, 'name snippet active', function(err, documents) {
+		res.json(documents);
+	});
+}
+
+function getNav (req, res) {
+	var id = req.param("classid");
+	if (id == 'reset') {
+		id = req.session.classid;
+	} else {
+		req.session.classid = id
+	}
+
+	Nav.findById(id, function(err, documents){
+		res.json(documents);
+	});
+}
+
 var gamejson = mongoose.model('gamejson', 
            new Schema({}), 
            'GameJson');
@@ -41,23 +58,9 @@ function getClass (req, res){
 }
 
 function getUser (req, res){
-	//console.log('before' + req.session.userid);
-	var id = req.param("id");
-
-	if(id === 'reset') {
-		id = req.session.userid;
-		
-	} else {	
-		req.session.userid = id;
-	}
-	
-	var record = _.findWhere(UsersDB, {userid: id});
-	if(record) {
-		//console.log(record);
-		res.json(record);
-	} else {
-		res.send("Sorry, the id " + id + " doesn't exist in the DB.");
-	}
+	var tmpuser = {};
+	tmpuser = _.omit(req.user, 'pword', '_id', 'hash', 'salt');
+	res.json(req.user);
 	
 }
 
@@ -69,6 +72,7 @@ function returnJson (req, res) {
 }
 
 function slideTemplate (req, res) {
+	console.log(req.session.classid);
 	var type = req.param("type");
 	if (type === 'lesson') {
 		res.sendfile('./templates/slidetemplate.html');
@@ -84,19 +88,19 @@ function returnSlides (req, res) {
 	req.session.lessonid = id; // sets lesson id
 	req.session.lessontype = type; // sets lesson type
 
-	/*
+	
 	console.log('return slides called');
 	console.log('lesson id: ' + req.session.lessonid); //log lesson id
-	*/
+	
 
 	res.sendfile('./slides/' + id + '.html');
 }
 
-function getNav (req, res) {
-	var type = req.param("type");
+function getSession (req, res) {
+	var type = req.param("query");
 	
-	//console.log(req.session[type]);
-	//console.log('lesson id: ' + req.session.lessonid); // log lesson id
+	console.log(req.session[type]);
+	console.log('lesson id: ' + req.session.lessonid); // log lesson id
 
 	res.send(req.session[type]); //sends requested session data
 }
@@ -114,10 +118,12 @@ function signUp (req, res, next) {
 exports.getClassroom = getClassroom;
 exports.signUp = signUp;
 exports.getClass = getClass;
+exports.getSession = getSession;
 exports.getUser = getUser;
 exports.returnJson = returnJson;
 exports.returnSlides = returnSlides;
 exports.slideTemplate = slideTemplate;
+exports.getClasses = getClasses;
 exports.getNav = getNav;
 
 

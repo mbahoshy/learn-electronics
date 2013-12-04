@@ -10,25 +10,33 @@ module.exports = function (app, passport) {
 
 	});
 
+	app.get('/getClasses', Auth.isAuthenticated, mod.getClasses);
+
+	app.get('/getNav/:classid', Auth.isAuthenticated, mod.getNav);
+
+	app.get('/session/:query', Auth.isAuthenticated, mod.getSession);
+
 	//responds with hvac.html
-	app.get("/classroom", Auth.isAuthenticated, mod.getClassroom);
+	// app.get("/classroom", Auth.isAuthenticated, mod.getClassroom);
 
 	//respond with class info
-	app.get("/class/:id", Auth.isAuthenticated, mod.getClass);
+	// app.get("/class/:id", Auth.isAuthenticated, mod.getClass);
 
 	//respond with user info
-	app.get("/users/:id", Auth.isAuthenticated, mod.getUser);
+	app.get("/user", Auth.isAuthenticated, mod.getUser);
 
 	app.get('/slides/:id/:type', Auth.isAuthenticated, mod.returnSlides);
 
-	app.get('/json/:id', Auth.isAuthenticated, mod.returnJson);
+	// app.get('/json/:id', Auth.isAuthenticated, mod.returnJson);
 
 	app.get('/slideTemplate/:type', Auth.isAuthenticated, mod.slideTemplate);
 
-	app.get('/nav/:type', Auth.isAuthenticated, mod.getNav);
+	
+
+	
 
 	app.post('/login',
-	  	passport.authenticate('local', { successRedirect: '/classroom/#0',
+	  	passport.authenticate('local', { successRedirect: '/classroom.html',
 	                                   failureRedirect: '/'
 	                                 })
 	);
