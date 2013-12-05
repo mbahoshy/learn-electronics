@@ -84,13 +84,13 @@ TRADE.Router = Backbone.Router.extend({
                 renderLessons();
             }
             if(TRADE.UserData == ''){
-                $.get("/nav/classid", function(data, status){
+                $.get("/session/classid", function(data, status){
                     TRADE.NavData.classid = data;
                                        
                     (function () {
                         $.get("/user", function(data, status){ //get user info and render user card
 
-                            TRADE.UserData = _.findWhere(data.progress, {classroomid: TRADE.NavData.classid});
+                            TRADE.UserData = data;
                             renderUserLesson();
                          });   
                     })();
@@ -126,10 +126,10 @@ TRADE.Router = Backbone.Router.extend({
 
         function renderUserLesson () {
             console.log(chapterid);
-            var userrecord = _.findWhere(TRADE.UserData.progress, {chapterid: chapterid});
-            console.dir(userrecord);
+            // var userrecord = _.findWhere(TRADE.UserData.progress, {chapterid: chapterid});
+            // console.dir(userrecord);
             //creates chapter title view and renders
-            var userchapter1 = new TRADE.User (userrecord);
+            var userchapter1 = new TRADE.User (TRADE.UserData);
             var userchapterview1 = new TRADE.UserChapterView ({model: userchapter1});
             userchapterview1.render();
             $('#lesson_list_container').append(userchapterview1.$el);
@@ -154,7 +154,6 @@ TRADE.Router = Backbone.Router.extend({
             function resetLessonType() {
                 $.get("/session/lessontype", function(data, status){
                     TRADE.NavData.lessontype = data;
-                    getJson();
                     slideTemplate();
                 });
             }

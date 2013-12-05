@@ -39,36 +39,13 @@ var gamejson = mongoose.model('gamejson',
            new Schema({}), 
            'GameJson');
 
-function getClassroom (req, res) {
-		res.redirect('pages/hvac.html');
-}
 
-function getClass (req, res){
-	console.log(req.user);
-	var id = req.param("id");
-	if(id!=='reset') {
-		req.session.classid = id;
-	} else {
-		id = req.session.classid;
-	}
-	NavData.find({"classid": id}, function(err, documents) {
-		res.json(documents[0]);
-	});
-
-}
 
 function getUser (req, res){
 	var tmpuser = {};
 	tmpuser = _.omit(req.user, 'pword', '_id', 'hash', 'salt');
 	res.json(req.user);
 	
-}
-
-function returnJson (req, res) {
-	var id = req.param("id");
-	gamejson.find({"slideid": id}, function(err, documents) {
-		res.json(documents[0]);
-	});
 }
 
 function slideTemplate (req, res) {
@@ -115,33 +92,20 @@ function signUp (req, res, next) {
 	});
 }
 
-exports.getClassroom = getClassroom;
+
 exports.signUp = signUp;
-exports.getClass = getClass;
 exports.getSession = getSession;
 exports.getUser = getUser;
-exports.returnJson = returnJson;
 exports.returnSlides = returnSlides;
 exports.slideTemplate = slideTemplate;
 exports.getClasses = getClasses;
 exports.getNav = getNav;
 
+// exports.getClassroom = getClassroom;
+// exports.returnJson = returnJson;
+// exports.getClass = getClass;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*
 
 var UsersDB = [{
 	userid:"2",
@@ -169,3 +133,29 @@ var UsersDB = [{
 	]}
 	]
 }];
+*/
+
+// function getClassroom (req, res) {
+// 		res.redirect('pages/hvac.html');
+// }
+
+// function getClass (req, res){
+// 	console.log(req.user);
+// 	var id = req.param("id");
+// 	if(id!=='reset') {
+// 		req.session.classid = id;
+// 	} else {
+// 		id = req.session.classid;
+// 	}
+// 	NavData.find({"classid": id}, function(err, documents) {
+// 		res.json(documents[0]);
+// 	});
+
+// }
+
+// function returnJson (req, res) {
+// 	var id = req.param("id");
+// 	gamejson.find({"slideid": id}, function(err, documents) {
+// 		res.json(documents[0]);
+// 	});
+// }
