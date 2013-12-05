@@ -87,7 +87,7 @@ body {
 }
 
 #title_wrapper {
-	width:950px;
+	width:960px;
 	display:block;
 	margin-left:auto;
 	margin-right:auto;
@@ -275,13 +275,14 @@ body {
 /* ------------------- VIEWS --------------------- */
 
 .chapter-list {
-	width:560px;
 	height:80px;
-	background-color: #FFFFFF;
+	width:570px;
+	/*background-color: #FFFFFF;*/
+	background-color: rgba(0, 0, 255, 0.15);
 	padding: 15px 20px;
 	border: 1px solid #9094FF;
-	margin:0 0 4px;
-	box-shadow: 5px 5px 2px #DEDEDE;
+	margin:0;
+	/*box-shadow: 5px 5px 2px #DEDEDE;*/
 }
 
 .inactive {
@@ -302,18 +303,20 @@ body {
 }
 
 .card-hover {
-	background-color: #FFBABA !important;
+	background-color: blue !important;
+	/*background-color: #FFBABA !important;*/
 }
 
 .user-card {
 	color:white;
-	width:290px;
+	width:306px;
 	float:right;
 	height:200px;
-	background-color: rgba(74, 105, 204, 0.96);
+	/*background-color: rgba(74, 105, 204, 0.96);*/
+	background-color: rgba(0, 16, 66, 0.77);
 	padding:20px;
 	border: 1px solid #9094FF;
-	box-shadow: 5px 5px 2px #DEDEDE;
+	/*box-shadow: 5px 5px 2px #DEDEDE;*/
 
 }
 
@@ -346,7 +349,7 @@ body {
 
 .chapter-title {
 	margin-top: 15px;
-	width:948px;
+	width:958px;
 	background-color:white;
 	border: 1px solid #9094FF;
 	border-bottom: 0;
@@ -361,7 +364,7 @@ body {
 
 
 .lesson-list {
-	width:560px;
+	width:570px;
 	height:50px;
 	background-color: #DDD6FF;
 	padding: 15px 20px;
@@ -385,9 +388,9 @@ body {
 	float:left;
 }
 
-.problem-list {
+/*.problem-list {
 	background: #FFCACA !important;
-}
+}*/
 
 /* ------------------------------------------------- */
 
@@ -397,7 +400,7 @@ body {
 /* ------------------- SLIDES ---------------------- */
 
 .slide-nav {
-	width:950px;
+	width:960px;
 	float:left;
 	border: 1px solid #9094FF;
 	background-color: #BDCAFF;
@@ -438,12 +441,12 @@ body {
 	border: 1px solid #9094FF;
 	border-top:0;
 	float:left;
-	padding:20px;
-	width:910px;
+	padding:15px;
+	width:930px;
 }
 
 .problem-nav {
-	width:950px;
+	width:960px;
 
 	position: relative;
 	background-color: rgba(255, 0, 0, 0.77);;
@@ -490,7 +493,7 @@ body {
 
 #answer_container {
 	float:left;
-	width:950px;
+	width:960px;
 	margin:0;
 	padding:0;
 	color:rgb(56, 56, 56);
