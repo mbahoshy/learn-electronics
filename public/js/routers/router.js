@@ -7,7 +7,7 @@ TRADE.Router = Backbone.Router.extend({
     },
 
     classroomFunction: function () {
-        $('#main_wrapper').html(''); //clear html
+        $('#body_container').html(''); //clear html
         $('#title_wrapper').html(''); //clear html
 
         $.get("/getClasses", function(data, status){
@@ -15,13 +15,13 @@ TRADE.Router = Backbone.Router.extend({
             classCollection1.reset(data);
             var classCollectionView1 = new TRADE.ClassCollectionView ({collection: classCollection1});
             classCollectionView1.render();
-            $('#main_wrapper').append(classCollectionView1.$el);
+            $('#body_container').append(classCollectionView1.$el);
             console.dir(data);
         });
     },
 
     classFunction: function (classid) {
-        $('#main_wrapper').html(''); //clear html
+        $('#body_container').html(''); //clear html
         $('#title_wrapper').html(''); //clear html
         TRADE.NavData.classid = classid;
 
@@ -30,22 +30,22 @@ TRADE.Router = Backbone.Router.extend({
             renderChapters();
         });
 
-        $.get("/user", function(data, status){ //get user info and render user card
+        // $.get("/user", function(data, status){ //get user info and render user card
 
-            //creates user card and renders
-            var user1 = new TRADE.User (data);
-            var cardView1 = new TRADE.UserView ({model: user1});
-            cardView1.render();
-            $('#main_wrapper').append(cardView1.$el);
-            console.dir(data);
+        //     //creates user card and renders
+        //     var user1 = new TRADE.User (data);
+        //     var cardView1 = new TRADE.UserView ({model: user1});
+        //     cardView1.render();
+        //     $('#body_container').append(cardView1.$el);
+        //     console.dir(data);
             
-            //sets user data to variable
-            console.log(classid);
-            TRADE.UserData = data;
-            var x = _.where(data.progress, {classid: classid, completed:true});
-            console.dir(x);
+        //     //sets user data to variable
+        //     console.log(classid);
+        //     TRADE.UserData = data;
+        //     var x = _.where(data.progress, {classid: classid, completed:true});
+        //     console.dir(x);
           
-        });
+        // });
 
         function renderChapters () {
             //creates classroom title view and renders
@@ -60,7 +60,7 @@ TRADE.Router = Backbone.Router.extend({
             ChapterListView1.render();
 
             //append to dom
-            $('#main_wrapper').prepend(ChapterListView1.$el);
+            $('#body_container').prepend(ChapterListView1.$el);
             // $('#title_wrapper').append(classview1.$el);
         }
     },

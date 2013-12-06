@@ -14,15 +14,19 @@ TRADE.ChapterListView = Backbone.View.extend({
         },
      
         render : function () {
+                this.z = 0;
                 this.collection.forEach(this.addOne, this);
         },
 
         addOne: function (model) {
-
-                if (model.toJSON().active === true) {
+                console.log('chaptermodel');
+                console.dir(model);
+                if (this.z== 0) {
                     var ChapterView1 = new TRADE.ChapterView({ model: model });
+                    this.z = 1;
                 } else {
-                    var ChapterView1 = new TRADE.ChapterViewInactive({ model: model }); 
+                    var ChapterView1 = new TRADE.ChapterViewInactive({ model: model });
+                    this.z = 0; 
                 }
 
                 this.$el.append(ChapterView1.render().el);

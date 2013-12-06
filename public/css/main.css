@@ -275,14 +275,22 @@ body {
 /* ------------------- VIEWS --------------------- */
 
 .chapter-list {
-	height:80px;
-	width:570px;
+	width:914px;
+	height:60px;
+	float:left;
 	/*background-color: #FFFFFF;*/
-	background-color: rgba(0, 0, 255, 0.15);
-	padding: 15px 20px;
-	border: 1px solid #9094FF;
+/*	background-color: rgba(0, 0, 255, 0.15);*/
+	/*padding: 15px 20px;*/
+	/*border: 1px solid #9094FF;*/
 	margin:0;
 	/*box-shadow: 5px 5px 2px #DEDEDE;*/
+}
+
+.chapter-container {
+	width:914px;
+	padding:40px 23px;
+	border-bottom: 1px dashed black;
+	float:left;
 }
 
 .inactive {
@@ -290,12 +298,14 @@ body {
 	background-color: #B9B9B9 !important;
 }
 
-.chapter-list h1 {
+.chapter-list h3 {
 	font-size:18px;
+	display:inline;
 }
 
-.chapter-list h2 {
+.chapter-list p {
 	font-size:16px;
+	display:inline;
 }
 
 .no-decoration {
@@ -362,18 +372,25 @@ body {
 	font-size:22px;
 }
 
-
-.lesson-list {
-	width:570px;
-	height:50px;
-	background-color: #DDD6FF;
-	padding: 15px 20px;
-	border: 1px solid #9094FF;
-	border-top:0;
-	border-left: 0;
+.lesson-container {
+	width:304px;
+	float:left;
+	padding:0;
 	margin:0;
 }
 
+.lesson-list {
+	width:274px;
+
+	height:50px;
+	background-color: #DDD6FF;
+	padding:5px;
+	margin:5px 10px;
+}
+
+.odd {
+	background-color: #C2C2FF;
+}
 
 .lesson-list h1 {
 	font-size: 16px;
@@ -620,20 +637,56 @@ body {
 /* ------------- class list --------------------- */
 
 .class-list {
-	width:320px;
+	width:480px;
 
 	float:left;
-	background-color: red;
+	/*background-color: red;*/
 }
 
 .class-item {
-	width:300px;
-	padding:10px;
-	background-color: blue;
-	height:200px;
+	margin:20px 20px 0 20px;
+	width:400px;
+	height:275px;
+	padding:20px;
+	background-color: rgba(0, 0, 255, 0.15);
+	text-align: center;
 }
 
-.class-item h1 {
+.class-item h2 {
 	margin:0;
 	padding:0;
+}
+
+/* --------------------- SUBNAV --------------------- */
+
+#subnav_container {
+	width:960px;
+	background-color:white;
+	float:left;
+	/*border: 0 1px 1px 1px;*/
+	border-left:1px solid #9094FF;
+	border-right:1px solid #9094FF;
+	border-bottom:1px solid #9094FF;
+
+}
+
+#subnav_container ul {
+	margin:0;
+	padding:0;
+}
+
+#subnav_container li {
+	margin:0;
+	padding:8px 35px;
+	display:inline-block;
+}
+
+#body_container {
+	width:960px;
+	background-color:white;
+	float:left;
+	/*border: 0 1px 1px 1px;*/
+	border-left:1px solid #9094FF;
+	border-right:1px solid #9094FF;
+	border-bottom:1px solid #9094FF;
 }

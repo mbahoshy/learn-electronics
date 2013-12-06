@@ -12,7 +12,7 @@ TRADE.ClassTitleView = Backbone.View.extend({
 TRADE.ClassView = Backbone.View.extend({
         tagName: 'div',
         className: 'class-list',
-        template: _.template("<div class='class-item'><h1><%= name %></h1><h2><%= snippet %></h2></div>"),
+        template: _.template("<div class='class-item'><h3><%= name %></h3><p><%= snippet %></p><p><b>Topics Covered:</b></p></div>"),
         events: {
                 "mouseover": "chapterMouseover",
                 "mouseout": "chapterMouseout",
@@ -38,7 +38,7 @@ TRADE.ClassView = Backbone.View.extend({
 TRADE.ClassViewInactive = Backbone.View.extend({
         tagName: 'div',
         className: 'class-list',
-        template: _.template("<div class='class-item inactive' ><h1><%= name %></h1><h2><%= snippet %></h2></div>"),
+        template: _.template("<div class='class-item inactive' ><h3><%= name %></h3><p><%= snippet %></p><p><b>Topics Covered:</b></p></div>"),
 
         render : function () {
                 this.$el.html( this.template(this.model.toJSON()) );
