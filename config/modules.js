@@ -48,6 +48,37 @@ function getUser (req, res){
 	
 }
 
+function updateUserProgress (req, res) {
+	var chapterid = req.param("chapterid");
+	var lessonid = req.param("lessonid");
+	var lessontype = req.param("lessontype");
+	var date = req.param("date");
+	var classid = req.session.classid;
+	var user = req.user;
+	var userid = user._id;
+	var lessonmodel = {
+      lessonid: lessonid,
+      lessontype: lessontype,
+      attemps: "",
+      timestamp: date,
+      chapterid: chapterid,
+      classid: classid,
+      wowza: 'lollipop',
+      completed: true
+    };
+    console.log(user._id);
+   //  Users.findById(user._id, function(err, user) {
+			// 	console.log(user);
+			// });
+	Users.update({_id: userid}, {vagina:'matt'}, { multi: true }, function(err, documents){
+		console.log(err);
+		console.log(documents);
+	});
+	
+	// console.dir(user.progress);
+	console.log('Chapter:' + chapterid + " lesson:" + lessonid + " type:" + lessontype + " date:" + date + " class: " + classid);
+}
+
 function slideTemplate (req, res) {
 	var type = req.param("type");
 	if (type === 'lesson') {
@@ -92,6 +123,7 @@ function signUp (req, res, next) {
 exports.signUp = signUp;
 exports.getSession = getSession;
 exports.getUser = getUser;
+exports.updateUserProgress = updateUserProgress;
 exports.returnSlides = returnSlides;
 exports.slideTemplate = slideTemplate;
 exports.Template = Template;
