@@ -3,7 +3,8 @@ TRADE.Router = Backbone.Router.extend({
         "": "classroomFunction", //displays classes
         "class/:classid": "classFunction", //displays chapters
         // "chapter/:chapterid": "chapterFunction", //displays lessons
-        "slides/:chapterid/:lessonid/:lessontype": "slideFunction"
+        "slides/:chapterid/:lessonid/:lessontype": "slideFunction",
+        "report" : "reportFunction"
     },
 
     classroomFunction: function () {
@@ -130,6 +131,37 @@ TRADE.Router = Backbone.Router.extend({
         }
        
         //TRADE.Lesson = lessonid;
+    },
+
+    reportFunction: function () {
+        $('#body_container').html('');
+        $('#lesson_container').html('');
+        var user,
+            template,
+            wait = 0;
+
+        $.get("/user", function(data, status){
+            user = data;
+            wait ++;
+            renderTemplate();
+        });
+
+        $.get("/template/reportcardtemplate", function (data, status){
+            template = $(data).html();      
+            wait ++
+            renderTemplate();
+        });
+
+        function renderTemplate () {
+            if (wait === 2) {
+                var rtemplate = _.template(template, user);
+                $('#body_container').append(rtemplate);
+            }
+        }
+       
+           
+       
+        
     }
 });
 

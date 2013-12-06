@@ -49,13 +49,17 @@ function getUser (req, res){
 }
 
 function slideTemplate (req, res) {
-	console.log(req.session.classid);
 	var type = req.param("type");
 	if (type === 'lesson') {
 		res.sendfile('./templates/slidetemplate.html');
 	} else if (type === 'problem') {
 		res.sendfile('./templates/problemtemplate.html');
 	}
+}
+
+function Template (req, res) {
+	var name = req.param("name");
+	res.sendfile('./templates/' + name + '.html');
 }
 
 function returnSlides (req, res) {
@@ -90,6 +94,7 @@ exports.getSession = getSession;
 exports.getUser = getUser;
 exports.returnSlides = returnSlides;
 exports.slideTemplate = slideTemplate;
+exports.Template = Template;
 exports.getClasses = getClasses;
 exports.getNav = getNav;
 
