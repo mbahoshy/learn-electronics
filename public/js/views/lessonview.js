@@ -1,8 +1,8 @@
 TRADE.LessonView = Backbone.View.extend({
         tagName: 'div',
         className: 'lesson-container',
-        template: _.template("<a class='no-decoration' href='#slides/<%= lessonid %>'><div class='lesson-list'><h1><%= name %></h1><h2></h2></div></a>"),
-        problemtemplate: _.template("<a class='no-decoration' href='#slides/<%= lessonid %>'><div class='lesson-list'><h1><%= name %></h1><h2></h2></div></a>"),
+        template: _.template("<a class='no-decoration' href='#slides/<%= chapterid %>/<%= lessonid %>/<%= lessontype %>'><div class='lesson-list'><h1><%= name %></h1><h2></h2></div></a>"),
+        problemtemplate: _.template("<a class='no-decoration' href='#slides/<%= chapterid %>/<%= lessonid %>/<%= lessontype %>'><div class='lesson-list'><h1><%= name %></h1><h2></h2></div></a>"),
         events: {
                 "mouseover": "lessonMouseover",
                 "mouseout": "lessonMouseout"
@@ -16,7 +16,6 @@ TRADE.LessonView = Backbone.View.extend({
                 $(this.el).children().children().removeClass('card-hover');
 
         },
-
         render : function () {
                 console.dir(this);
                 if (this.model.lessontype === 'problem') {

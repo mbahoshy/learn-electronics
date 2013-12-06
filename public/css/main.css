@@ -421,7 +421,6 @@ body {
 	float:left;
 	border: 1px solid #9094FF;
 	background-color: #BDCAFF;
-	border-radius: 10px 10px 0 0;
 }
 
 
@@ -464,10 +463,8 @@ body {
 
 .problem-nav {
 	width:960px;
-
-	position: relative;
-	background-color: rgba(255, 0, 0, 0.77);;
-	border-radius: 10px 10px 0 0;
+	float:left;
+	background-color: rgba(255, 0, 0, 0.77);
 	border: 1px solid #FF9390;
 }
 
@@ -494,6 +491,10 @@ body {
 
 .unlocked:hover {
 	background-color: #FFBABA !important;
+}
+
+.relative {
+	position: relative;
 }
 
 #answer_question {

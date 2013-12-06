@@ -60,15 +60,7 @@ function slideTemplate (req, res) {
 
 function returnSlides (req, res) {
 	var id = req.param("id");
-	var type = req.param("type");
 
-	req.session.lessonid = id; // sets lesson id
-	req.session.lessontype = type; // sets lesson type
-
-	
-	console.log('return slides called');
-	console.log('lesson id: ' + req.session.lessonid); //log lesson id
-	
 
 	res.sendfile('./slides/' + id + '.html');
 }

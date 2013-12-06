@@ -3,11 +3,13 @@ TRADE.ChapterView = Backbone.View.extend({
         className: 'chapter-container',
         template: _.template("<div class='chapter-list' ><h3><%= name %></h3><p> - <%= snippet %></p></div>"),
         render : function () {
-                this.$el.append( this.template(this.model.toJSON()) );
+                this.$el.html( this.template(this.model.toJSON()) );
+                // console.dir(this.model.attributes.lessons);
                 this.model.attributes.lessons.forEach(this.addOne, this);
                 return this;
         },
         addOne: function (model) {
+                model.chapterid = this.model.attributes.chapterid;
                 var LessonView1 = new TRADE.LessonView({ model: model });
                 this.$el.append(LessonView1.render().el);
         }
@@ -24,6 +26,7 @@ TRADE.ChapterViewInactive = Backbone.View.extend({
                 return this;
         },
         addOne: function (model) {
+                model.chapterid = this.model.attributes.chapterid;
                 var LessonView1 = new TRADE.LessonView({ model: model });
                 this.$el.append(LessonView1.render().el);
         }

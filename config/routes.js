@@ -25,7 +25,7 @@ module.exports = function (app, passport) {
 	//respond with user info
 	app.get("/user", Auth.isAuthenticated, mod.getUser);
 
-	app.get('/slides/:id/:type', Auth.isAuthenticated, mod.returnSlides);
+	app.get('/slides/:id', Auth.isAuthenticated, mod.returnSlides);
 
 	// app.get('/json/:id', Auth.isAuthenticated, mod.returnJson);
 
