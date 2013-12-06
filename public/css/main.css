@@ -83,7 +83,9 @@ body {
 }
 
 #main_wrapper {
-	margin-top: 20px;
+	float:left;
+	width:100%;
+	/*margin-top: 20px;*/
 }
 
 #title_wrapper {
@@ -633,6 +635,7 @@ body {
 
 .light-blue {
 	background-color: rgba(198, 247, 255, 0.74);
+	color:black;
 }
 
 /* ------------- class list --------------------- */
@@ -690,4 +693,20 @@ body {
 	border-left:1px solid #9094FF;
 	border-right:1px solid #9094FF;
 	border-bottom:1px solid #9094FF;
+}
+
+.margin-top {
+	margin-top: 40px;
+}
+
+.margin-top20 {
+	margin-top: 20px;
+}
+
+.margin-bottom {
+	margin-bottom: 40px;
+}
+
+.padding-bottom {
+	padding-bottom: 40px;
 }

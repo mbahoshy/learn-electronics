@@ -75,17 +75,28 @@
 
 #mid_wrapper {
 	width:100%;
-	height:300px;
+	/*height:300px;*/
 	/*background-color: #CCB8FF;*/
-	background-color: #5935B6;
+	background-color: #3000AD;
+	/*background-color: #5935B6;*/
 	border-top: 8px solid rgba(198, 247, 255, 0.74);
 	/*border-top: 8px solid #CCB8FF;*/
 	float:left;
-	margin:40px 0;
+	/*margin: 0;*/
+	color:white;
 }
 
 #mid_wrapper > .wrapper{
 	margin-top:0 !important;
+}
+
+#mid_wrapper h3 {
+	font-size:22px;
+}
+
+#mid_wrapper p {
+	font-size:18px;
+	font-style: italic;
 }
 
 .tagline {
@@ -97,10 +108,18 @@
 }
 
 .arrow-down {
+	position:relative;
 	width: 0; 
 	height: 0; 
 	border-left: 160px solid transparent;
 	border-right: 160px solid transparent;
 	border-top: 40px solid rgba(198, 247, 255, 0.74);
 	margin:0 0 -50px -10px;
+}
+
+#bottom_wrapper {
+	width:100%;
+	height:400px;
+	background-color: #010045;
+	float:left;
 }
