@@ -16,14 +16,14 @@ TRADE.LessonView = Backbone.View.extend({
                 $(this.el).children().children().removeClass('card-hover');
 
         },
-        render : function () {
-                console.dir(this);
-                if (this.model.lessontype === 'problem') {
-                        this.$el.html( this.problemtemplate(this.model) );
-                        return this;
-                } else {
-                        this.$el.html( this.template(this.model));
-                        return this;
+        render : function (user) {
+                var completed = _.findWhere(user.progress, {lessonid: this.model.lessonid, completed:true});
+                this.$el.html( this.template(this.model));
+                console.log(completed);
+                if (completed) {
+                        this.$el.append('<div>completed</div>');
                 }
+                return this;
+                
         }
 });

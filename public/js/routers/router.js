@@ -18,7 +18,6 @@ TRADE.Router = Backbone.Router.extend({
             var classCollectionView1 = new TRADE.ClassCollectionView ({collection: classCollection1});
             classCollectionView1.render();
             $('#body_container').append(classCollectionView1.$el);
-            console.dir(data);
         });
     },
 
@@ -26,45 +25,33 @@ TRADE.Router = Backbone.Router.extend({
         $('#body_container').html(''); //clear html
         $('#lesson_container').html(''); //clear html
 
-        TRADE.NavData.classid = classid;
+        var user,
+            nav,
+            wait = 0;
 
         $.get("/getNav/" + classid, function(data, status){
-            TRADE.NavObj = data;
+            nav = data;
+            wait ++;
             renderChapters();
         });
 
-        // $.get("/user", function(data, status){ //get user info and render user card
+        $.get("/user", function(data, status){
+            user = data;
+            wait ++;
+            renderChapters();
 
-        //     //creates user card and renders
-        //     var user1 = new TRADE.User (data);
-        //     var cardView1 = new TRADE.UserView ({model: user1});
-        //     cardView1.render();
-        //     $('#body_container').append(cardView1.$el);
-        //     console.dir(data);
-            
-        //     //sets user data to variable
-        //     console.log(classid);
-        //     TRADE.UserData = data;
-        //     var x = _.where(data.progress, {classid: classid, completed:true});
-        //     console.dir(x);
-          
-        // });
+        });
 
         function renderChapters () {
-            //creates classroom title view and renders
-            // var class1 = new TRADE.ClassModel (TRADE.NavObj);
-            // var classview1 = new TRADE.ClassTitleView ({model: class1});
-            // classview1.render();
-            
-            //creates chapter list view and render chapter cards
-            var ChapterCollection1 = new TRADE.ChapterCollection ();
-            ChapterCollection1.reset(TRADE.NavObj.chapters);
-            var ChapterListView1 = new TRADE.ChapterListView ({collection: ChapterCollection1});
-            ChapterListView1.render();
+            if (wait === 2) {
+                var ChapterCollection1 = new TRADE.ChapterCollection ();
+                ChapterCollection1.reset(nav.chapters);
+                var ChapterListView1 = new TRADE.ChapterListView ({collection: ChapterCollection1});
+                ChapterListView1.render(user);
 
-            //append to dom
-            $('#body_container').prepend(ChapterListView1.$el);
-            // $('#title_wrapper').append(classview1.$el);
+                //append to dom
+                $('#body_container').prepend(ChapterListView1.$el);
+            }
         }
     },
 

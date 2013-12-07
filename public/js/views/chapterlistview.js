@@ -13,7 +13,8 @@ TRADE.ChapterListView = Backbone.View.extend({
 
         },
      
-        render : function () {
+        render : function (user) {
+                this.user = user;
                 this.z = 0;
                 this.collection.forEach(this.addOne, this);
         },
@@ -29,6 +30,8 @@ TRADE.ChapterListView = Backbone.View.extend({
                     this.z = 0; 
                 }
 
-                this.$el.append(ChapterView1.render().el);
+                this.$el.append(ChapterView1.render(this.user).el);
+               
+                
         }
 });
