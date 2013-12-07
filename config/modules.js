@@ -54,29 +54,28 @@ function updateUserProgress (req, res) {
 	var lessontype = req.param("lessontype");
 	var date = req.param("date");
 	var classid = req.session.classid;
-	var user = req.user;
-	var userid = user._id;
+	var userid = req.user._id;
+
 	var lessonmodel = {
       lessonid: lessonid,
+      chapterid: chapterid,
+      classid: classid,
       lessontype: lessontype,
       attemps: "",
       timestamp: date,
-      chapterid: chapterid,
-      classid: classid,
-      wowza: 'lollipop',
+
       completed: true
     };
-    console.log(user._id);
-   //  Users.findById(user._id, function(err, user) {
-			// 	console.log(user);
-			// });
-	Users.update({_id: userid}, {vagina:'matt'}, { multi: true }, function(err, documents){
+
+	var conditions = { _id: userid }
+	  , update = { $addToSet: { progress: lessonmodel }}
+	  , options = { multi: false };
+
+	Users.update(conditions, update, options, callback);
+
+	function callback (err, numAffected) {
 		console.log(err);
-		console.log(documents);
-	});
-	
-	// console.dir(user.progress);
-	console.log('Chapter:' + chapterid + " lesson:" + lessonid + " type:" + lessontype + " date:" + date + " class: " + classid);
+	}
 }
 
 function slideTemplate (req, res) {

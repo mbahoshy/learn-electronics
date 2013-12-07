@@ -150,6 +150,7 @@ TRADE.Router = Backbone.Router.extend({
 
         $.get("/user", function(data, status){
             user = data;
+            TRADE.UserData = data;
             wait ++;
             renderTemplate();
         });
