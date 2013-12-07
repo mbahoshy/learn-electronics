@@ -43,7 +43,7 @@ var gamejson = mongoose.model('gamejson',
 
 function getUser (req, res){
 	var tmpuser = {};
-	tmpuser = _.omit(req.user, 'pword', '_id', 'hash', 'salt');
+	tmpuser = _.omit(req.user, 'pword', 'email', 'hash', 'salt');
 	res.json(req.user);
 	
 }
@@ -74,7 +74,8 @@ function updateUserProgress (req, res) {
 	Users.update(conditions, update, options, callback);
 
 	function callback (err, numAffected) {
-		console.log(err);
+		if(err) throw err;
+		res.end();
 	}
 }
 
@@ -109,11 +110,11 @@ function getSession (req, res) {
 }
 
 function signUp (req, res, next) {
-	Users.signup(req.body.email, req.body.password, function(err, user){
+	Users.signup(req.body.lastName, req.body.firstName, req.body.email, req.body.password, function(err, user){
 		if(err) throw err;
 		req.login(user, function(err){
 			if(err) return next(err);
-			return res.redirect("/classroom/#0");
+			return res.redirect("/classroom.html");
 		});
 	});
 }

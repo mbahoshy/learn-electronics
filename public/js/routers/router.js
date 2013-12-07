@@ -91,12 +91,14 @@ TRADE.Router = Backbone.Router.extend({
                     TRADE.FUNC.slideIndexNav();
                     $('#slide_nav_' + TRADE.GameData.slideindex).addClass('slide-active');
                     $('#slide_container').on('click', ".finish", function () {
-                        console.log('vagina');
                         var date = new Date().getTime();
 
                         $.post('/user/' + chapterid + '/' + lessonid + '/' + lessontype + '/' + date, function(data){
-
+                            console.log('User updated successfully');
                         });
+                        
+                        TRADE.router.navigate('#', {trigger: true});
+                        
                     });
                     
                 } else if (lessontype === 'problem') {

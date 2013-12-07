@@ -1,6 +1,10 @@
 <script type="text/html" id='reportcard_template'>
-<div class='user-card'>
-	<%= firstName %>
-	<%= level %>
-</div>
+	Name:<br>
+	<%= firstName %><br>
+	Level:<br>
+	<%= level %><br>
+	Levels Completed:<br>
+	<% for (var i= 0; i< progress.length; i++) { %>
+		<div class='lesson-list'><%= progress[i].lessonid %></div>
+	<% } %>
 </script>

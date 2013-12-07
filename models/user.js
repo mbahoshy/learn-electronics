@@ -4,11 +4,11 @@ var Schema = mongoose.Schema;
 
 
 var userSchema = new mongoose.Schema({
-	username: String,
-	pword: String,
-	firstName:  String,
 	lastName:   String,
-	email:      String,
+	firstName:  String,
+	email: String,
+	pword: String,
+	level:      String,
 	progress:  	Array
 });
 
@@ -28,10 +28,13 @@ userSchema.statics.isValidUserPassword = function(email, password, done) {
 	});
 };
 
-userSchema.statics.signup = function(email, password, done){
+userSchema.statics.signup = function(lastName, firstName, email, password, done){
 	Users.create({
+		lastName: lastName,
+		firstName: firstName,
 		email : email,
 		pword : password,
+		level: 'rookie'
 	}, function(err, user){
 		if(err) throw err;
 		// if (err) return done(err);
