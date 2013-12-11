@@ -1,20 +1,17 @@
 TRADE.ProblemListView = Backbone.View.extend({
         tagName: 'div',
-        className: 'fright',
+        className: 'problem-list-container',
 
-        render : function (user) {
-                this.user = user;
+        render : function () {
                 this.collection.forEach(this.addOne, this);
         },
 
         addOne: function (model) {
-                console.log('problem');
-                console.dir(model);
 
-                var LessonView1 = new TRADE.ProblemView({ model: model });
+                var ProblemView1 = new TRADE.ProblemView({ model: model });
 
 
-                this.$el.append(LessonView1.render(this.user).el);
+                this.$el.append(ProblemView1.render().el);
                
                 
         }

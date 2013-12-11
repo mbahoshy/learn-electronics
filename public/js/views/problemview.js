@@ -15,9 +15,8 @@ TRADE.ProblemView = Backbone.View.extend({
                 $(this.el).children().children().removeClass('card-hover');
 
         },
-        render : function (user) {
+        render : function () {
                 // var completed = _.findWhere(user.progress, {problemid: this.model.problemid, completed:true});
-                console.dir(this.model);
                 this.$el.html( this.template(this.model.attributes));
                 // console.log(completed);
                 // if (completed) {
