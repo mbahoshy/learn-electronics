@@ -7,5 +7,3 @@ TRADE.Problem = Backbone.Model.extend({
 		slide:""
 	}
 });
-
-var pslides = ['slideid1', 'slideid2', 'slideid3'];

@@ -3,7 +3,8 @@ var path = require("path"),
     _ = require("underscore"),
     mongoose = require('mongoose'),
     Users = require('../models/user'),
-    Nav = require('../models/nav');
+    Nav = require('../models/nav'),
+    Problem = require('../models/problem');
 
 
 var MONGOHQ_URL = 'mongodb://mbahoshy:07maryJ68@dharma.mongohq.com:10062/tradeTrainer';
@@ -20,6 +21,21 @@ function getClasses (req, res) {
 	Nav.find({}, 'name snippet active', function(err, documents) {
 		res.json(documents);
 	});
+}
+
+function getProblemList (req, res) {
+	var level = req.param("level");
+	console.log(level);
+	Problem.find({level: level}, function(err, documents){
+		res.json(documents[0]);
+	});
+}
+
+function getProblemSlides (req, res) {
+	var id = req.param("id");
+	console.log(id);
+	res.sendfile('./problems/' + id + '.html');
+
 }
 
 function getNav (req, res) {
@@ -129,6 +145,8 @@ exports.slideTemplate = slideTemplate;
 exports.Template = Template;
 exports.getClasses = getClasses;
 exports.getNav = getNav;
+exports.getProblemList = getProblemList;
+exports.getProblemSlides = getProblemSlides;
 
 // exports.getClassroom = getClassroom;
 // exports.returnJson = returnJson;

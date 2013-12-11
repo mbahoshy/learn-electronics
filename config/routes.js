@@ -28,6 +28,9 @@ module.exports = function (app, passport) {
 
 	app.get('/slides/:id', Auth.isAuthenticated, mod.returnSlides);
 
+	app.get('/problems/:level', Auth.isAuthenticated, mod.getProblemList);
+	app.get('/problemslides/:id', Auth.isAuthenticated, mod.getProblemSlides);
+
 	// app.get('/json/:id', Auth.isAuthenticated, mod.returnJson);
 
 	app.get('/slideTemplate/:type', Auth.isAuthenticated, mod.slideTemplate);

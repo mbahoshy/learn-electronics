@@ -4,6 +4,8 @@ TRADE.Router = Backbone.Router.extend({
         "class/:classid": "classFunction", //displays chapters
         // "chapter/:chapterid": "chapterFunction", //displays lessons
         "slides/:chapterid/:lessonid/:lessontype": "slideFunction",
+        "problems": "problemListFunction",
+        "problemslides/:problemid": "problemSlideFunction",
         "report" : "reportFunction"
     },
 
@@ -102,27 +104,7 @@ TRADE.Router = Backbone.Router.extend({
                     });
                     
                 } else if (lessontype === 'problem') {
-                    TRADE.FUNC.problemIndexNav();
-
-                    //creates answer list view and render answer cards
-                    var answercollection1 = new TRADE.AnswerCollection ();
-                    answercollection1.reset(TRADE.GameData.answeroptions);
-                    var answerlistview1 = new TRADE.AnswerListView ({collection: answercollection1});
-                    answerlistview1.render();
-
-                    //append to dom
-                    $('#answer_categories').append(answerlistview1.$el);
-                    $('#answer_question').on('click', function () {
-                        $('#answer_container').slideToggle(function(){
-                            $('#answer_options').html('');
-                            $('.bold').removeClass('bold');
-                        });
-                    });
-                    $('#shadow').on('click', function () {
-                        $(this).fadeToggle();
-                        $('#correct').css('display', 'none');
-                        $('#incorrect').css('display', 'none');
-                    });
+                    
                 }
             });
         }
@@ -146,7 +128,7 @@ TRADE.Router = Backbone.Router.extend({
 
         $.get("/template/reportcardtemplate", function (data, status){
             template = $(data).html();      
-            wait ++
+            wait ++;
             renderTemplate();
         });
 
@@ -156,10 +138,113 @@ TRADE.Router = Backbone.Router.extend({
                 $('#body_container').append(rtemplate);
             }
         }
+    },
+
+    problemListFunction: function () {
+        $('#body_container').html('');
+        $('#lesson_container').html('');
+        var problems,
+            user,
+            wait = 0;
+
+        $.get("/problems/Rookie", function(data, status){
+            console.dir(data);
+            problems = data;
+            wait ++;
+            renderProblems();
+
+        });
+
+        $.get("/user", function(data, status){
+            user = data;
+            wait ++;
+            renderProblems();
+        });
+
+        function renderProblems () {
+            if (wait === 2) {
+                var problemCollection1 = new TRADE.ProblemCollection();
+                problemCollection1.reset(problems.list);
+
+
+                console.log('holla');
+                var ProblemListView1 = new TRADE.ProblemListView ({collection: problemCollection1});
+                ProblemListView1.render(user);
+                $('#body_container').append(ProblemListView1.$el);
+            }
+        }
+
        
+
+
+        $.get("/template/problemlisttemplate", function (data, status){
+            template = $(data).html();
            
-       
-        
+            renderTemplate();
+        });
+
+        function renderTemplate () {
+                
+                var rtemplate = _.template(template);
+                $('#body_container').prepend('<div id="problem_subnav"></div>');
+                $('#problem_subnav').append(rtemplate);
+
+            
+        }
+
+    },
+
+    problemSlideFunction: function (problemid) {
+        //clear html
+        $('#body_container').html('');
+        $('#lesson_container').html('');
+
+
+        slideTemplate();
+
+        //loads outer slide template after json is complete
+        function slideTemplate () {
+            $.get('/slideTemplate/problem', function(data, status) {
+              var template = $(data).html();
+                $("#lesson_container").append(_.template(template));
+                slides();
+            });
+        }
+
+        function slides () {
+            $.get('/problemslides/' + problemid, function(data, status){
+
+                $('#lesson_container').append('<div class="hidden">' + data + '</div>');
+                var slides = $('#slide_holder > .slide');
+
+                var template = $(slides[0]).html();
+                TRADE.GameData.slideindex = 0; //keeps track of current slide
+                
+                $("#slide_container").html(_.template(template));
+
+                TRADE.FUNC.problemIndexNav();
+
+                    //creates answer list view and render answer cards
+                    var answercollection1 = new TRADE.AnswerCollection ();
+                    answercollection1.reset(TRADE.GameData.answeroptions);
+                    var answerlistview1 = new TRADE.AnswerListView ({collection: answercollection1});
+                    answerlistview1.render();
+
+                    //append to dom
+                    $('#answer_categories').append(answerlistview1.$el);
+                    $('#answer_question').on('click', function () {
+                        $('#answer_container').slideToggle(function(){
+                            $('#answer_options').html('');
+                            $('.bold').removeClass('bold');
+                        });
+                    });
+                    $('#shadow').on('click', function () {
+                        $(this).fadeToggle();
+                        $('#correct').css('display', 'none');
+                        $('#incorrect').css('display', 'none');
+                    });
+            });
+        }
     }
 });
 
