@@ -21,7 +21,7 @@ TRADE.LessonView = Backbone.View.extend({
                 this.$el.html( this.template(this.model));
                 console.log(completed);
                 if (completed) {
-                        this.$el.append('<div>completed</div>');
+                        $(this.el).children().children().prepend('<img class="check" src="imgs/check.png"/>');
                 }
                 return this;
                 
