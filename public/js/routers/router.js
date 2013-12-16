@@ -180,6 +180,7 @@ TRADE.Router = Backbone.Router.extend({
                 template = $(data).html();
                 wait ++;
                 renderTemplate();
+                renderProblems();
             });
         } else {
             $('.problem-list-container').remove();
@@ -209,56 +210,64 @@ TRADE.Router = Backbone.Router.extend({
     },
 
     problemSlideFunction: function (problemid) {
+
+        var allSlides,
+            wait = 0;
+
         //clear html
         $('#body_container').html('');
         $('#lesson_container').html('');
 
+        $.get('/slideTemplate/problem', function(data, status) {
+            template = $(data).html();
+            $("#lesson_container").append(_.template(template));
+            $('answer_container').data('problemid', problemid);
+            wait ++;
+            renderProblemSlide();
+            
+        });
 
-        slideTemplate();
+        $.get('/problemslides/' + problemid, function(data, status){
+            allSlides = data;
+            wait ++;
+            renderProblemSlide();
+        });
 
         //loads outer slide template after json is complete
-        function slideTemplate () {
-            $.get('/slideTemplate/problem', function(data, status) {
-              var template = $(data).html();
-                $("#lesson_container").append(_.template(template));
-                slides();
-            });
-        }
-
-        function slides () {
-            $.get('/problemslides/' + problemid, function(data, status){
-
-                $('#lesson_container').append('<div class="hidden">' + data + '</div>');
+        function renderProblemSlide () {
+            if (wait === 2) {
+                $('#lesson_container').append('<div class="hidden">' + allSlides + '</div>');
                 var slides = $('#slide_holder > .slide');
 
-                var template = $(slides[0]).html();
+                var problemTemplate = $(slides[0]).html();
                 TRADE.GameData.slideindex = 0; //keeps track of current slide
-                
-                $("#slide_container").html(_.template(template));
+
+                $("#slide_container").html(_.template(problemTemplate));
 
                 TRADE.FUNC.problemIndexNav();
 
-                    //creates answer list view and render answer cards
-                    var answercollection1 = new TRADE.AnswerCollection ();
-                    answercollection1.reset(TRADE.GameData.answeroptions);
-                    var answerlistview1 = new TRADE.AnswerListView ({collection: answercollection1});
-                    answerlistview1.render();
+                //creates answer list view and render answer cards
+                var answercollection1 = new TRADE.AnswerCollection ();
+                answercollection1.reset(TRADE.GameData.answeroptions);
+                var answerlistview1 = new TRADE.AnswerListView ({collection: answercollection1});
+                answerlistview1.render();
 
-                    //append to dom
-                    $('#answer_categories').append(answerlistview1.$el);
-                    $('#answer_question').on('click', function () {
-                        $('#answer_container').slideToggle(function(){
-                            $('#answer_options').html('');
-                            $('.bold').removeClass('bold');
-                        });
+                //append to dom
+                $('#answer_categories').append(answerlistview1.$el);
+                $('#answer_question').on('click', function () {
+                    $('#answer_container').slideToggle(function(){
+                        $('#answer_options').html('');
+                        $('.bold').removeClass('bold');
                     });
-                    $('#shadow').on('click', function () {
-                        $(this).fadeToggle();
-                        $('#correct').css('display', 'none');
-                        $('#incorrect').css('display', 'none');
-                    });
-            });
-        }
+                });
+                $('#shadow').on('click', function () {
+                    $(this).fadeToggle();
+                    $('#correct').css('display', 'none');
+                    $('#incorrect').css('display', 'none');
+                });
+            }
+        }               
+        
     }
 });
 

@@ -106,12 +106,16 @@ function updateProblemProgress (req, res) {
 
 	var problemprogress = _.findWhere(user.problemProgress, {problemid: problemid, level:level});
 	
+	console.log(problemprogress);
+
 	var problemmodel = {
       problemname: problemname,
       problemid: problemid,
       level: level,
       problemnumber: problemnumber,
     };
+
+    res.end();
 }
 
 function slideTemplate (req, res) {

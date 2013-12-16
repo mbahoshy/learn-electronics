@@ -20,7 +20,7 @@ TRADE.AnswerSubView = Backbone.View.extend({
                         
 
                         if (slidesNumber === TRADE.GameData.slideindex) {
-
+                                console.log("last problem");
                         }
 
                         else {
