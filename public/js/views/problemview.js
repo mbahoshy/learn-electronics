@@ -1,7 +1,7 @@
 TRADE.ProblemView = Backbone.View.extend({
         tagName: 'div',
         className: 'problem-container',
-        template: _.template("<a href ='#/problemslides/<%= problemid %>'><%= problemname %></a>"),
+        template: _.template("<a href ='#/problemslides/<%= level %>/<%= problemname %>/<%= problemid %>'><%= problemname %></a>"),
         events: {
                 "mouseover": "lessonMouseover",
                 "mouseout": "lessonMouseout"
@@ -16,6 +16,8 @@ TRADE.ProblemView = Backbone.View.extend({
 
         },
         render : function () {
+                console.dir(this.model);
+                this.model.attributes.level = $('#subnav_container').data('problemactivenav');
                 // var completed = _.findWhere(user.progress, {problemid: this.model.problemid, completed:true});
                 this.$el.html( this.template(this.model.attributes));
                 // console.log(completed);

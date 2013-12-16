@@ -5,7 +5,7 @@ TRADE.Router = Backbone.Router.extend({
         // "chapter/:chapterid": "chapterFunction", //displays lessons
         "slides/:chapterid/:lessonid/:lessontype": "slideFunction",
         "problems/:level": "problemListFunction",
-        "problemslides/:problemid": "problemSlideFunction",
+        "problemslides/:level/:problemname/:problemid": "problemSlideFunction",
         "report" : "reportFunction"
     },
 
@@ -190,6 +190,7 @@ TRADE.Router = Backbone.Router.extend({
 
         function renderProblems () {
             if (wait === 3) {
+                $('#subnav_container').data('problemactivenav', level);
                 var problemCollection1 = new TRADE.ProblemCollection();
                 problemCollection1.reset(problems.list);
 
@@ -197,7 +198,7 @@ TRADE.Router = Backbone.Router.extend({
                 ProblemListView1.render();
                 $('#body_container').append(ProblemListView1.$el);
 
-                $('#subnav_container').data('problemactivenav', level);
+                
             }
         }
 
@@ -209,7 +210,7 @@ TRADE.Router = Backbone.Router.extend({
 
     },
 
-    problemSlideFunction: function (problemid) {
+    problemSlideFunction: function (level, problemname, problemid) {
 
         var allSlides,
             wait = 0;
@@ -221,7 +222,9 @@ TRADE.Router = Backbone.Router.extend({
         $.get('/slideTemplate/problem', function(data, status) {
             template = $(data).html();
             $("#lesson_container").append(_.template(template));
-            $('answer_container').data('problemid', problemid);
+            $('#answer_container').data('level', level);
+            $('#answer_container').data('problemname', problemname);
+            $('#answer_container').data('problemid', problemid);
             wait ++;
             renderProblemSlide();
             

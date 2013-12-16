@@ -15,22 +15,21 @@ TRADE.AnswerSubView = Backbone.View.extend({
                 if (TRADE.GameData.answer == this.model.attributes.answerid) {
                         var slides = $('#slide_holder > .slide'); // get slide array
                         var slidesNumber = slides.length;
-                        console.dir(this.model);
-                        
-                        
+
+                        var level = $('#answer_container').data('level');
+                        var problemname = $('#answer_container').data('problemname');
+                        var problemid = $('#answer_container').data('problemid');
+                        console.log("Correct Answer!");
 
                         if (slidesNumber === TRADE.GameData.slideindex) {
                                 console.log("last problem");
-                        }
-
-                        else {
+                                
+                        } else {
                                 TRADE.GameData.slideindex ++;
                                 $('.problem-nav-active').removeClass('problem-nav-active');
                                 $("#slide_nav_" + TRADE.GameData.slideindex).addClass('problem-nav-active');
                                 $("#level_container").html('');
                                 $("#slide_nav_" + TRADE.GameData.slideindex).addClass('unlocked');
-                                console.log('correct');
-                                console.log(TRADE.GameData.slideindex);
                                 $('#answer_question').trigger('click');
                                 $('#shadow').fadeToggle();
                                 $('#correct').fadeToggle();
@@ -43,6 +42,10 @@ TRADE.AnswerSubView = Backbone.View.extend({
                         $('#shadow').fadeToggle();
                         $('#incorrect').fadeToggle();
                 }
+
+                $.post('/problem/' + problemname + '/' + problemid + '/' + level + '/' + TRADE.GameData.slideindex + '/true/true', function (data) {
+                                console.log('problem successfully updated');
+                        });
                 //console.dir(this.model.attributes.answerid);
 
         }

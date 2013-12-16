@@ -84,7 +84,7 @@ function updateLessonProgress (req, res) {
     };
 
 	var conditions = { _id: userid }
-	  , update = { $addToSet: { progress: lessonmodel }}
+	  , update = { $addToSet: { lessonProgress: lessonmodel }}
 	  , options = { multi: false };
 
 	Users.update(conditions, update, options, callback);
@@ -102,18 +102,50 @@ function updateProblemProgress (req, res) {
 		problemnumber = req.param("problemnumber"),
 		attempt = req.param("attempt"),
 		unlock = req.param("unlock"),
-		user = req.user;
+		user = req.user,
+		userid = req.user._id,
+		conditions,
+		update,
+		options;
 
-	var problemprogress = _.findWhere(user.problemProgress, {problemid: problemid, level:level});
+	console.log(problemname + problemid + level + problemnumber);
+ 
+ 	var currentProblem = _.findWhere(user.problemProgress, {problemid: problemid, level:level});
 	
-	console.log(problemprogress);
+	if (currentProblem) {
+		console.log("Problem Exists");
+		var currentAttempts = currentProblem.score[problemnumber];
+		var newAttempts = currentAttempts++;
 
-	var problemmodel = {
-      problemname: problemname,
-      problemid: problemid,
-      level: level,
-      problemnumber: problemnumber,
-    };
+		currentProblem.score[problemnumber] = newAttempts;
+
+		conditions = { _id: userid };
+		update = { $set: { score: currentProblem.score }};
+		options = { multi: false };		
+	} else {
+		var problemmodel = {
+	      problemname: problemname,
+	      problemid: problemid,
+	      level: level,
+	      score: [1],
+	      unlocked: [true]
+	    };
+
+		conditions = { _id: userid };
+		update = { $addToSet: { problemProgress: problemmodel }};
+		options = { multi: false };
+
+		console.log("Problem Does Not Exist");
+	}
+
+
+
+	Users.update(conditions, update, options, callback);
+
+    function callback (err, numAffected) {
+		if(err) throw err;
+		res.end();
+	}
 
     res.end();
 }
