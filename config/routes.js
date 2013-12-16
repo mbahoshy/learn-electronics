@@ -24,7 +24,9 @@ module.exports = function (app, passport) {
 
 	//respond with user info
 	app.get("/user", Auth.isAuthenticated, mod.getUser);
-	app.post("/user/:chapterid/:lessonid/:lessontype/:date", Auth.isAuthenticated, mod.updateUserProgress);
+	app.post("/user/:chapterid/:lessonid/:lessontype/:date", Auth.isAuthenticated, mod.updateLessonProgress);
+
+	app.post("/problem/update/:problemname/:problemid/:level/:problemnumber/:attempt/:unlock", Auth.isAuthenticated, mod.updateProblemProgress);
 
 	app.get('/slides/:id', Auth.isAuthenticated, mod.returnSlides);
 

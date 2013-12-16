@@ -139,34 +139,48 @@ TRADE.Router = Backbone.Router.extend({
         }
     },
 
-    problemListFunction: function (level) {
+    problemListFunction: function (level0) {
         var problems,
+            level,
             wait = 0;
 
-            $.get("/problems/" + level , function(data, status){
-                
-                problems = data;
-                wait ++;
-                renderProblems();
+        var activenav = $('#subnav_container').data('problemactivenav'); //grabs active nav
+        var exists = $('#problem_subnav').data("exists"); //checks if template exists
 
-            });
+        if (!exists && !activenav) { 
+            level = level0;
+        } else if (!exists) {//assigns correct level to be shown
+            level = activenav;
+        } else {
+            level = level0;
+        }
+
+        $.get("/problems/" + level , function(data, status){ //gets a list of problems for level
+            problems = data;
+            wait ++;
+            renderProblems();
+        });
 
 
-        if (TRADE.UserData == '') {
-            $('#body_container').html('');
-            $('#lesson_container').html('');
-
-            $.get("/template/problemlisttemplate", function (data, status){
-                template = $(data).html();
-                renderTemplate();
-            });
-
+        if (TRADE.UserData == '') { //checks if user data is stored in memory
             $.get("/user", function(data, status){
                 TRADE.UserData = data;
                 wait ++;
                 renderProblems();
             });
+        } else {
+                wait ++;
+                renderProblems();
+        }
 
+        if (!exists) { //clears html if page does not exists
+            $('#body_container').html('');
+            $('#lesson_container').html('');
+            $.get("/template/problemlisttemplate", function (data, status){
+                template = $(data).html();
+                wait ++;
+                renderTemplate();
+            });
         } else {
             $('.problem-list-container').remove();
             wait ++;
@@ -174,19 +188,21 @@ TRADE.Router = Backbone.Router.extend({
         }
 
         function renderProblems () {
-            if (wait === 2) {
+            if (wait === 3) {
                 var problemCollection1 = new TRADE.ProblemCollection();
                 problemCollection1.reset(problems.list);
 
                 var ProblemListView1 = new TRADE.ProblemListView ({collection: problemCollection1});
                 ProblemListView1.render();
                 $('#body_container').append(ProblemListView1.$el);
+
+                $('#subnav_container').data('problemactivenav', level);
             }
         }
 
         function renderTemplate () {
             var rtemplate = _.template(template);
-            $('#body_container').prepend('<div id="problem_subnav"></div>');
+            $('#body_container').prepend('<div id="problem_subnav" data-exists=true ></div>');
             $('#problem_subnav').append(rtemplate);
         }
 

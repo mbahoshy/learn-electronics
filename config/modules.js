@@ -64,13 +64,13 @@ function getUser (req, res){
 	
 }
 
-function updateUserProgress (req, res) {
-	var chapterid = req.param("chapterid");
-	var lessonid = req.param("lessonid");
-	var lessontype = req.param("lessontype");
-	var date = req.param("date");
-	var classid = req.session.classid;
-	var userid = req.user._id;
+function updateLessonProgress (req, res) {
+	var chapterid = req.param("chapterid"),
+		lessonid = req.param("lessonid"),
+		lessontype = req.param("lessontype"),
+		date = req.param("date"),
+		classid = req.session.classid,
+		userid = req.user._id;
 
 	var lessonmodel = {
       lessonid: lessonid,
@@ -93,6 +93,25 @@ function updateUserProgress (req, res) {
 		if(err) throw err;
 		res.end();
 	}
+}
+
+function updateProblemProgress (req, res) {
+	var problemname = req.param("problemname"),
+		problemid = req.param("problemid"),
+		level = req.param("level"),
+		problemnumber = req.param("problemnumber"),
+		attempt = req.param("attempt"),
+		unlock = req.param("unlock"),
+		user = req.user;
+
+	var problemprogress = _.findWhere(user.problemProgress, {problemid: problemid, level:level});
+	
+	var problemmodel = {
+      problemname: problemname,
+      problemid: problemid,
+      level: level,
+      problemnumber: problemnumber,
+    };
 }
 
 function slideTemplate (req, res) {
@@ -139,7 +158,8 @@ function signUp (req, res, next) {
 exports.signUp = signUp;
 exports.getSession = getSession;
 exports.getUser = getUser;
-exports.updateUserProgress = updateUserProgress;
+exports.updateLessonProgress = updateLessonProgress;
+exports.updateProblemProgress = updateProblemProgress;
 exports.returnSlides = returnSlides;
 exports.slideTemplate = slideTemplate;
 exports.Template = Template;

@@ -4,14 +4,14 @@
 	Level:<br>
 	<%= level %><br>
 	Levels Completed:<br>
-	<% for (var i= 0; i< progress.length; i++) { %>
-		<div class='lesson-list'><%= progress[i].lessonid %></div>
+	<% for (var i= 0; i< lessonProgress.length; i++) { %>
+		<div class='lesson-list'><%= lessonProgress[i].lessonid %></div>
 	<% } %>
 	<br>
 
 	Problems Completed:<br>
-	<% for (var i= 0; i< progress.length; i++) { %>
-		<div class='lesson-list'><%= progress[i].problemid %></div>
+	<% for (var i= 0; i< problemProgress.length; i++) { %>
+		<div class='lesson-list'><%= problemProgress[i].problemid %></div>
 	<% } %>
 
 </script>

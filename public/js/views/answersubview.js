@@ -15,15 +15,16 @@ TRADE.AnswerSubView = Backbone.View.extend({
                 if (TRADE.GameData.answer == this.model.attributes.answerid) {
                         var slides = $('#slide_holder > .slide'); // get slide array
                         var slidesNumber = slides.length;
-
+                        console.dir(this.model);
                         
-                        TRADE.GameData.slideindex ++;
+                        
 
                         if (slidesNumber === TRADE.GameData.slideindex) {
 
                         }
 
                         else {
+                                TRADE.GameData.slideindex ++;
                                 $('.problem-nav-active').removeClass('problem-nav-active');
                                 $("#slide_nav_" + TRADE.GameData.slideindex).addClass('problem-nav-active');
                                 $("#level_container").html('');
