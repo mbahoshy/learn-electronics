@@ -314,8 +314,9 @@ body {
 }
 
 .card-hover {
-	background-color: blue !important;
-	/*background-color: #FFBABA !important;*/
+	/*background-color: rgb(231, 119, 119) !important;*/
+	background-color: rgba(77, 156, 229, 0.6)!important;
+	color:white !important;
 }
 
 .user-card {
@@ -358,10 +359,24 @@ body {
 	font-size:24px;
 }
 
+
+.classroom-title {
+	width: 960px;
+	float:left;
+	height:100%;
+
+}
+
+.classroom-title h3 {
+	font-size: 30px;
+	float:left;
+	margin:15px 0 0 0;
+}
+
 .chapter-container {
 	width:960px;
 	height:100%;
-	padding:40px 0;
+	padding:30px 0;
 	/*border-bottom: 1px dashed rgb(202, 202, 202);*/
 	float:left;
 }
@@ -468,10 +483,6 @@ body {
 	margin-top:5px;
 }
 
-
-.odd {
-
-}
 
 .problem-container {
 	width:240px;
