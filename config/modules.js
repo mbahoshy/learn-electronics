@@ -70,24 +70,31 @@ function updateLessonProgress (req, res) {
 		lessontype = req.param("lessontype"),
 		date = req.param("date"),
 		classid = req.session.classid,
+		update,
+		user = req.user,
 		userid = req.user._id;
 
-	var lessonmodel = {
-      lessonid: lessonid,
-      chapterid: chapterid,
-      classid: classid,
-      lessontype: lessontype,
-      attemps: "",
-      timestamp: date,
+	var conditions = { _id: userid },
+	    options = { multi: false };
 
-      completed: true
-    };
+	var lessonCheck = _.findWhere(user.lessonProgress, {lessonid: lessonid});
 
-	var conditions = { _id: userid }
-	  , update = { $addToSet: { lessonProgress: lessonmodel }}
-	  , options = { multi: false };
+	if (!lessonCheck) {
+		var lessonmodel = {
+	      lessonid: lessonid,
+	      chapterid: chapterid,
+	      classid: classid,
+	      lessontype: lessontype,
+	      attemps: "",
+	      timestamp: date,
 
-	Users.update(conditions, update, options, callback);
+	      completed: true
+	    };
+
+	    update = { $addToSet: { lessonProgress: lessonmodel }};
+	    Users.update(conditions, update, options, callback);
+	}
+
 
 	function callback (err, numAffected) {
 		if(err) throw err;
