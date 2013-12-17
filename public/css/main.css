@@ -8,8 +8,14 @@ body {
 
 @font-face {
     font-family: "title";
-    src: url(../fonts/PlaytimeOblique.ttf) format("truetype");
+    src: url(../fonts/absender1.ttf) format("truetype");
 }
+
+@font-face {
+    font-family: "absender";
+    src: url(../fonts/absender1.ttf) format("truetype");
+}
+
 
 @font-face {
     font-family: "titleh2";
@@ -34,7 +40,7 @@ body {
 
 #header {
 	width:100%;
-	height:50px;
+	height:60px;
 	background-color: #150246;
 	/*background-color: #2C0E78;*/
 }
@@ -42,7 +48,7 @@ body {
 #header h1 {
 	margin:0px;
 	font-size: 30px;
-	padding-top:15px;
+	padding-top:20px;
 	font-family: 'title';
 	font-weight: normal;
 
@@ -65,7 +71,9 @@ body {
 	font-family: 'titleh2';
 	display:inline;
 }
-
+#header_wrapper .relative {
+	height:60px;
+}
 
 /* -------------------------------------------- */
 
@@ -662,7 +670,20 @@ body {
 
 
 #logout {
-	padding-top:20px;
+	height:15px;
+	width:100px;
+	position: absolute;
+	text-align: center;
+	top:0px;
+	right:0px;
+	padding:10px 0;
+	background-color: rgba(255, 255, 255, 0.45);
+	float:right;
+	color:#FFFFFF;
+	font-size: 16px;
+	border-radius: 0 0 5px 5px;
+	/*font-family: 'title';*/
+	/*letter-spacing: 2px;*/
 }
 
 /* ------------------ COLUMN STYLES ------------------ */
@@ -714,26 +735,35 @@ body {
 /* --------------------- SUBNAV --------------------- */
 
 #subnav_container {
-	width:960px;
-	background-color:white;
-	float:left;
-	/*border: 0 1px 1px 1px;*/
-	border-left:1px solid #9094FF;
-	border-right:1px solid #9094FF;
-	border-bottom:1px solid #9094FF;
-
+	
+	position:absolute;
+	bottom:0px;
+	left:150px;
 }
 
 #subnav_container ul {
+	float:left;
 	margin:0;
 	padding:0;
 }
 
 #subnav_container li {
-	margin:0;
-	padding:8px 35px;
+	background-color:rgba(108, 122, 168, 0.69);
+	border-radius:0;
+	height:16px;
+	margin:0 10px;
+	padding:10px 15px;
 	display:inline-block;
+	float:left;
+	color:#FFFFFF;
+	border-radius: 5px 5px 0 0;
 }
+
+#subnav_container li:hover {
+	background-color: rgba(77, 156, 229, 0.84);
+
+}
+
 
 #body_container {
 	width:960px;
@@ -742,7 +772,7 @@ body {
 	/*border: 0 1px 1px 1px;*/
 	border-left:1px solid #9094FF;
 	border-right:1px solid #9094FF;
-	border-bottom:1px solid #9094FF;
+	border-top:1px solid #9094FF;
 }
 
 .margin-top {
