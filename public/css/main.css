@@ -760,15 +760,15 @@ body {
 }
 
 #subnav_container li {
-	background-color:rgba(108, 122, 168, 0.69);
+	background-color:#F7F7F7;
 	border-radius:0;
 	height:16px;
 	margin:0 10px;
-	padding:10px 15px;
+	padding:6px 15px;
 	display:inline-block;
 	float:left;
 	color:#FFFFFF;
-	border-radius: 5px 5px 0 0;
+	border-radius: 10px 10px 0 0;
 }
 
 #subnav_container li:hover {
@@ -779,12 +779,12 @@ body {
 
 #body_container {
 	width:960px;
-	background-color:white;
+	/*background-color:white;*/
 	float:left;
 	/*border: 0 1px 1px 1px;*/
-	border-left:1px solid #9094FF;
+/*	border-left:1px solid #9094FF;
 	border-right:1px solid #9094FF;
-	border-top:1px solid #9094FF;
+	border-top:1px solid #9094FF;*/
 }
 
 .margin-top {
