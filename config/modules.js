@@ -132,6 +132,7 @@ function updateProblemProgress (req, res) {
 		console.log(unlock);
 		console.log(currentProblem.unlocked[problemnumber]);
 		if (currentProblem.unlocked[problemnumber] === true) {
+			console.log('no update');
 			update = {};
 		} else if (unlock === true) {
 			console.log('unlock');

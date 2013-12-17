@@ -24,12 +24,13 @@ TRADE.AnswerSubView = Backbone.View.extend({
                         var slidesNumber = slides.length;
                         
                         console.log("Correct Answer!");
-
+                        TRADE.GameData.slideindex ++;
+                        
                         if (slidesNumber === TRADE.GameData.slideindex) {
                                 console.log("last problem");
                                 
                         } else {
-                                TRADE.GameData.slideindex ++;
+                                
                                 $('.problem-nav-active').removeClass('problem-nav-active');
                                 $("#slide_nav_" + TRADE.GameData.slideindex).addClass('problem-nav-active');
                                 $("#level_container").html('');
