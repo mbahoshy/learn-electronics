@@ -59,8 +59,6 @@ TRADE.FUNC = (function () {
 			for (var i=0; i<slidesNumber; i++) {
 				$('#slide_index').append('<span class="problem-index" data-nav="' + i + '" id="slide_nav_' + i + '">' + (i + 1) + ' </span>');
 			}
-			$("#slide_nav_0").addClass('unlocked');
-			$("#slide_nav_0").addClass('problem-nav-active');
 			$('#slide_index').on('click', '.unlocked', function () {
 				var nav = $(this).data('nav');
 				$('.problem-nav-active').removeClass('problem-nav-active');

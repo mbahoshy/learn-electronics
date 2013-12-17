@@ -215,6 +215,12 @@ TRADE.Router = Backbone.Router.extend({
         var allSlides,
             wait = 0;
 
+        if (TRADE.UserData == '') { //checks if user data is stored in memory
+            $.get("/user", function(data, status){
+                TRADE.UserData = data;
+            });
+        } 
+
         //clear html
         $('#body_container').html('');
         $('#lesson_container').html('');
@@ -254,6 +260,19 @@ TRADE.Router = Backbone.Router.extend({
                 answercollection1.reset(TRADE.GameData.answeroptions);
                 var answerlistview1 = new TRADE.AnswerListView ({collection: answercollection1});
                 answerlistview1.render();
+
+                var currentProblem = _.findWhere(TRADE.UserData.problemProgress, {problemid: problemid});
+                if (currentProblem) {
+                    for (var i = 0; i < currentProblem.unlocked.length; i++) {
+                        if(currentProblem.unlocked[i] === true) {
+                            $("#slide_nav_" + i).addClass('unlocked');
+                        }
+                        // $("#slide_nav_0").addClass('problem-nav-active');
+                    }
+                }
+                $("#slide_nav_0").addClass('unlocked');
+                $("#slide_nav_0").addClass('problem-nav-active');
+                
 
                 //append to dom
                 $('#answer_categories').append(answerlistview1.$el);
