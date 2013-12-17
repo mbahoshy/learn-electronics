@@ -1,7 +1,8 @@
 TRADE.ProblemView = Backbone.View.extend({
         tagName: 'div',
         className: 'problem-container',
-        template: _.template("<a href ='#/problemslides/<%= level %>/<%= problemname %>/<%= problemid %>'><%= problemname %></a>"),
+        template: _.template("<a href ='#/problemslides/<%= level %>/<%= problemname %>/<%= problemid %>'><div class='problem-list'>Problem: <%= problemname %><br>Problems Completed: <%= problemscompleted %>/<%= numproblems %></div></a>"),
+        template2: _.template("<a href ='#/problemslides/<%= level %>/<%= problemname %>/<%= problemid %>'><div class='problem-list'>Problem: <%= problemname %><br>Problems Completed: </div></a>"),
         events: {
                 "mouseover": "lessonMouseover",
                 "mouseout": "lessonMouseout"
@@ -16,14 +17,22 @@ TRADE.ProblemView = Backbone.View.extend({
 
         },
         render : function () {
-                console.dir(this.model);
                 this.model.attributes.level = $('#subnav_container').data('problemactivenav');
-                // var completed = _.findWhere(user.progress, {problemid: this.model.problemid, completed:true});
-                this.$el.html( this.template(this.model.attributes));
-                // console.log(completed);
-                // if (completed) {
-                //         this.$el.append('<div>completed</div>');
-                // }
+                console.dir(this.model);
+                var completed = _.findWhere(TRADE.UserData.problemProgress, {problemid: this.model.attributes.problemid});
+                if (completed) {
+                        var problemscompleted = completed.unlocked.length;
+                        var numproblems = completed.numberOfQuestions;
+                        
+                        this.model.attributes.problemscompleted = problemscompleted;
+                        this.model.attributes.numproblems = numproblems;
+                        this.$el.html( this.template(this.model.attributes));
+                } else {
+                        this.$el.html( this.template2(this.model.attributes));
+                }
+                
+                
+     
                 return this;
                 
         }

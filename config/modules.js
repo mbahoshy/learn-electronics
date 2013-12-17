@@ -108,6 +108,7 @@ function updateProblemProgress (req, res) {
 		level = req.param("level"),
 		problemnumber = req.param("problemnumber"),
 		unlock = req.param("unlock"),
+		numberOfQuestions = req.param("numberOfQuestions"),
 		user = req.user,
 		userid = req.user._id,
 		conditions,
@@ -156,6 +157,7 @@ function updateProblemProgress (req, res) {
 		var problemmodel = {
 	      problemname: problemname,
 	      problemid: problemid,
+	      numberOfQuestions: numberOfQuestions,
 	      level: level,
 	      score: [1],
 	      unlocked: [unlock]

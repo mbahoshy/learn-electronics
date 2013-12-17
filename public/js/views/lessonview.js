@@ -17,7 +17,7 @@ TRADE.LessonView = Backbone.View.extend({
 
         },
         render : function (user) {
-                var completed = _.findWhere(user.progress, {lessonid: this.model.lessonid, completed:true});
+                var completed = _.findWhere(user.lessonProgress, {lessonid: this.model.lessonid, completed:true});
                 this.$el.html( this.template(this.model));
                 console.log(completed);
                 if (completed) {

@@ -17,11 +17,12 @@ TRADE.AnswerSubView = Backbone.View.extend({
                 var problemname = $('#answer_container').data('problemname');
                 var problemid = $('#answer_container').data('problemid');
                 var problemnumber = TRADE.GameData.slideindex;
+                var slides = $('#slide_holder > .slide'); // get slide array
+                var slidesNumber = slides.length;
 
                 if (TRADE.GameData.answer == this.model.attributes.answerid) {
                         unlock = true;
-                        var slides = $('#slide_holder > .slide'); // get slide array
-                        var slidesNumber = slides.length;
+                        
                         
                         console.log("Correct Answer!");
                         TRADE.GameData.slideindex ++;
@@ -49,7 +50,7 @@ TRADE.AnswerSubView = Backbone.View.extend({
                         $('#incorrect').fadeToggle();
                 }
 
-                $.post('/problem/' + problemname + '/' + problemid + '/' + level + '/' + problemnumber + '/' + unlock, function (data) {
+                $.post('/problem/' + problemname + '/' + problemid + '/' + level + '/' + problemnumber + '/' + unlock + '/' + slidesNumber, function (data) {
                                 console.log('problem successfully updated');
                 });
                 //console.dir(this.model.attributes.answerid);

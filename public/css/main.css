@@ -435,39 +435,51 @@ body {
 .problem-container {
 	width:240px;
 	height:100px;
-	background-color: red;
 	float:left;
 	display:inline;
 	padding:0;
 	margin:0;
 }
 
-.problem-container a {
 
-}
 
 .problem-list-container {
 	width:720px;
 	float:left;
 }
 
+.problem-list {
+	width: 220px;
+	height:90px;
+	margin:5px 10px;
+	background-color: red;
+}
+
+
 #problem_subnav {
 	width:240px;
-	background-color: blue;
+	background-color: #FFFFFF;
 	float:left;
+	list-style: none;
+}
+
+#problem_subnav a {
+	text-decoration: none;
+	color:blue;
 }
 
 #problem_subnav li {
-	padding:10px 0;
+	padding:15px 20px;
+	font-size: 18px;
 }
 
 #problem_subnav li:hover {
 	background-color: red;
 }
 
-/*.problem-list {
-	background: #FFCACA !important;
-}*/
+
+
+
 
 /* ------------------------------------------------- */
 
