@@ -106,42 +106,61 @@ function updateProblemProgress (req, res) {
 		userid = req.user._id,
 		conditions,
 		update,
-		options;
+		options = { multi: false };
+
+	problemnumber--;
 
 	console.log(problemname + problemid + level + problemnumber);
- 
+
  	var currentProblem = _.findWhere(user.problemProgress, {problemid: problemid, level:level});
-	
+
 	if (currentProblem) {
-		console.log("Problem Exists");
+		conditions = { _id: userid, "problemProgress.problemid": problemid };
 		var currentAttempts = currentProblem.score[problemnumber];
-		var newAttempts = currentAttempts++;
+		if (isNaN(currentAttempts)) {
+			currentAttempts = 0;
+		}
 
-		currentProblem.score[problemnumber] = newAttempts;
+		currentAttempts++;
 
-		conditions = { _id: userid };
-		update = { $set: { score: currentProblem.score }};
-		options = { multi: false };		
+		var t = _.pluck(user.problemProgress, "problemid");
+		var c = _.indexOf(t, problemid);
+
+		currentProblem.score[problemnumber] = currentAttempts;
+
+		if (currentProblem.unlocked[problemnumber] === true) {
+			update = { $set: { "problemProgress.$.score": currentProblem.score }};
+		} else if (unlock === true) {
+			currentProblem.unlocked[problemnumber] = true;
+			update = { $set: { "problemProgress.$.score": currentProblem.score }, $set: {"problemProgress.$.unlocked": currentProblem.unlocked}};
+		} else {
+			update = { $set: { "problemProgress.$.score": currentProblem.score }};
+		}
+
+		
+	
 	} else {
+		conditions = { _id: userid };
 		var problemmodel = {
 	      problemname: problemname,
 	      problemid: problemid,
 	      level: level,
 	      score: [1],
-	      unlocked: [true]
+	      unlocked: [unlock]
 	    };
 
-		conditions = { _id: userid };
 		update = { $addToSet: { problemProgress: problemmodel }};
-		options = { multi: false };
 
 		console.log("Problem Does Not Exist");
 	}
 
-
-
 	Users.update(conditions, update, options, callback);
 
+	
+ 	currentProblem = _.findWhere(user.problemProgress, {problemid: problemid, level:level});
+ 	console.log('update problem');
+ 	console.log(currentProblem);
+ 	
     function callback (err, numAffected) {
 		if(err) throw err;
 		res.end();

@@ -45,7 +45,7 @@ TRADE.AnswerSubView = Backbone.View.extend({
 
                 $.post('/problem/' + problemname + '/' + problemid + '/' + level + '/' + TRADE.GameData.slideindex + '/true/true', function (data) {
                                 console.log('problem successfully updated');
-                        });
+                });
                 //console.dir(this.model.attributes.answerid);
 
         }
