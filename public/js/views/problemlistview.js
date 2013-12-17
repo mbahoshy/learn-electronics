@@ -1,8 +1,11 @@
 TRADE.ProblemListView = Backbone.View.extend({
         tagName: 'div',
         className: 'problem-list-container',
-
+        initialize: function () {
+        	this.listenTo(this.collection, 'reset', this.render);
+        },
         render : function () {
+        		$(this.el).html('');
                 this.collection.forEach(this.addOne, this);
         },
 

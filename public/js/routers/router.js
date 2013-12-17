@@ -135,24 +135,26 @@ TRADE.Router = Backbone.Router.extend({
         }
     },
 
-    problemListFunction: function (level0) {
+    problemListFunction: function (id) {
         var problems,
-            level,
             wait = 0;
 
-        var activenav = $('#subnav_container').data('problemactivenav'); //grabs active nav
-        var exists = $('#problem_subnav').data("exists"); //checks if template exists
+        // var activenav = $('#subnav_container').data('problemactivenav'); //grabs active nav
+        // var exists = $('#problem_subnav').data("exists"); //checks if template exists
 
-        if (!exists && !activenav) { 
-            level = level0;
-        } else if (!exists) {//assigns correct level to be shown
-            level = activenav;
-        } else {
-            level = level0;
-        }
+        // if (!exists && !activenav) { 
+        //     level = level0;
+        // } else if (!exists) {//assigns correct level to be shown
+        //     level = activenav;
+        // } else {
+        //     level = level0;
+        // }
+        $('#body_container').html('');
+        $('#lesson_container').html('');
 
-        $.get("/problems/" + level , function(data, status){ //gets a list of problems for level
+        $.get("/problems/" + id , function(data, status){ //gets a list of problems for level
             problems = data;
+            console.dir(problems);
             wait ++;
             renderProblems();
         });
@@ -163,32 +165,42 @@ TRADE.Router = Backbone.Router.extend({
                 renderProblems();
         });
 
-
-        if (!exists) { //clears html if page does not exists
-            $('#body_container').html('');
-            $('#lesson_container').html('');
-            $.get("/template/problemlisttemplate", function (data, status){
-                template = $(data).html();
-                wait ++;
-                renderTemplate();
-                renderProblems();
-            });
-        } else {
-            $('.problem-list-container').remove();
+        $.get("/template/problemlisttemplate", function (data, status){
+            template = $(data).html();
+            renderTemplate();
             wait ++;
             renderProblems();
-        }
+        });
+
+        // if (!exists) { //clears html if page does not exists
+           
+            
+        // } else {
+        //     
+        //     wait ++;
+        //     renderProblems();
+        // }
+
+        
 
         function renderProblems () {
             if (wait === 3) {
-                $('#subnav_container').data('problemactivenav', level);
+                var findLevel = _.where(problems.list, {problemlevel:"Rookie"});
+                // $('#subnav_container').data('problemactivenav', level);
                 var problemCollection1 = new TRADE.ProblemCollection();
-                problemCollection1.reset(problems.list);
+                problemCollection1.reset(findLevel);
 
                 var ProblemListView1 = new TRADE.ProblemListView ({collection: problemCollection1});
                 ProblemListView1.render();
                 $('#body_container').append(ProblemListView1.$el);
 
+                $('#level_list').on('click', 'li', function () {
+                    var level = $(this).data('level');
+                    console.dir(level);
+                    var newLevel = _.where(problems.list, {problemlevel:level});
+                    console.dir(newLevel);
+                    problemCollection1.reset(newLevel);
+                });
                 
             }
         }

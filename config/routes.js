@@ -30,7 +30,7 @@ module.exports = function (app, passport) {
 
 	app.get('/slides/:id', Auth.isAuthenticated, mod.returnSlides);
 
-	app.get('/problems/:level', Auth.isAuthenticated, mod.getProblemList);
+	app.get('/problems/:id', Auth.isAuthenticated, mod.getProblemList);
 	app.get('/problemslides/:id', Auth.isAuthenticated, mod.getProblemSlides);
 
 	// app.get('/json/:id', Auth.isAuthenticated, mod.returnJson);

@@ -24,10 +24,9 @@ function getClasses (req, res) {
 }
 
 function getProblemList (req, res) {
-	var level = req.param("level");
-	console.log(level);
-	Problem.find({level: level}, function(err, documents){
-		res.json(documents[0]);
+	var id = req.param("id");
+	Problem.findById(id, function(err, documents){
+		res.json(documents);
 	});
 }
 
