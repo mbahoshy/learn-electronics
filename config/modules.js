@@ -118,6 +118,8 @@ function updateProblemProgress (req, res) {
 
 	if (unlock === 'true') {
 		unlock = true;
+	} else {
+		unlock = null;
 	}
 
 	console.log(problemname + problemid + level + problemnumber);
@@ -160,8 +162,12 @@ function updateProblemProgress (req, res) {
 	      numberOfQuestions: numberOfQuestions,
 	      level: level,
 	      score: [1],
-	      unlocked: [unlock]
+	      unlocked: []
 	    };
+
+	    if(unlock === true) {
+	    	problemmodel.unlocked = [true];
+	    }
 
 		update = { $addToSet: { problemProgress: problemmodel }};
 

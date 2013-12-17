@@ -161,17 +161,12 @@ TRADE.Router = Backbone.Router.extend({
             renderProblems();
         });
 
-
-        if (TRADE.UserData == '') { //checks if user data is stored in memory
-            $.get("/user", function(data, status){
+        $.get("/user", function(data, status){
                 TRADE.UserData = data;
                 wait ++;
                 renderProblems();
-            });
-        } else {
-                wait ++;
-                renderProblems();
-        }
+        });
+
 
         if (!exists) { //clears html if page does not exists
             $('#body_container').html('');
@@ -215,11 +210,10 @@ TRADE.Router = Backbone.Router.extend({
         var allSlides,
             wait = 0;
 
-        if (TRADE.UserData == '') { //checks if user data is stored in memory
-            $.get("/user", function(data, status){
-                TRADE.UserData = data;
-            });
-        } 
+        $.get("/user", function(data, status){
+            TRADE.UserData = data;
+        });
+         
 
         //clear html
         $('#body_container').html('');
@@ -247,13 +241,30 @@ TRADE.Router = Backbone.Router.extend({
             if (wait === 2) {
                 $('#lesson_container').append('<div class="hidden">' + allSlides + '</div>');
                 var slides = $('#slide_holder > .slide');
+                TRADE.FUNC.problemIndexNav();
+                var currentProblem = _.findWhere(TRADE.UserData.problemProgress, {problemid: problemid});
+                if (currentProblem) {
+                    var unlockedlength = currentProblem.unlocked.length;
+                    for (var i = 0; i <= unlockedlength; i++) {
+                        $("#slide_nav_" + i).addClass('unlocked');
+                        if(i === unlockedlength) {
+                            $("#slide_nav_" + i).addClass('problem-nav-active');
+                            var problemTemplate = $(slides[i]).html();
+                            TRADE.GameData.slideindex = i; //keeps track of current slide
+                        }
+                        // $("#slide_nav_0").addClass('problem-nav-active');
+                    }
+                } else {
+                    $("#slide_nav_" + 0).addClass('problem-nav-active');
+                    var problemTemplate = $(slides[0]).html();
+                    TRADE.GameData.slideindex = 0; //keeps track of current slide
+                }
 
-                var problemTemplate = $(slides[0]).html();
-                TRADE.GameData.slideindex = 0; //keeps track of current slide
+                
 
                 $("#slide_container").html(_.template(problemTemplate));
 
-                TRADE.FUNC.problemIndexNav();
+                
 
                 //creates answer list view and render answer cards
                 var answercollection1 = new TRADE.AnswerCollection ();
@@ -261,17 +272,8 @@ TRADE.Router = Backbone.Router.extend({
                 var answerlistview1 = new TRADE.AnswerListView ({collection: answercollection1});
                 answerlistview1.render();
 
-                var currentProblem = _.findWhere(TRADE.UserData.problemProgress, {problemid: problemid});
-                if (currentProblem) {
-                    for (var i = 0; i < currentProblem.unlocked.length; i++) {
-                        if(currentProblem.unlocked[i] === true) {
-                            $("#slide_nav_" + i).addClass('unlocked');
-                        }
-                        // $("#slide_nav_0").addClass('problem-nav-active');
-                    }
-                }
                 $("#slide_nav_0").addClass('unlocked');
-                $("#slide_nav_0").addClass('problem-nav-active');
+                
                 
 
                 //append to dom
