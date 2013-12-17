@@ -3,7 +3,7 @@ TRADE.Router = Backbone.Router.extend({
         "": "classroomFunction", //displays classes
         "class/:classid": "classFunction", //displays chapters
         // "chapter/:chapterid": "chapterFunction", //displays lessons
-        "slides/:chapterid/:lessonid/:lessontype": "slideFunction",
+        "slides/:chapterid/:lessonid": "slideFunction",
         "problems/:level": "problemListFunction",
         "problemslides/:level/:problemname/:problemid": "problemSlideFunction",
         "report" : "reportFunction"
@@ -57,7 +57,7 @@ TRADE.Router = Backbone.Router.extend({
         }
     },
 
-    slideFunction: function (chapterid, lessonid, lessontype) {
+    slideFunction: function (chapterid, lessonid) {
 
         //clear html
         $('#body_container').html('');
@@ -68,7 +68,7 @@ TRADE.Router = Backbone.Router.extend({
 
         //loads outer slide template after json is complete
         function slideTemplate () {
-            $.get('/slideTemplate/' + lessontype, function(data, status) {
+            $.get('/slideTemplate/lesson', function(data, status) {
               var template = $(data).html();
                 $("#lesson_container").append(_.template(template));
                 slides();
@@ -86,8 +86,7 @@ TRADE.Router = Backbone.Router.extend({
                 TRADE.GameData.slideindex = 0; //keeps track of current slide
                 
                 $("#slide_container").html(_.template(template));
-                if (lessontype === 'lesson') {
-                    
+  
                     $('.slide-left').on('click', TRADE.FUNC.slideChange);
                     $('.slide-right').on('click', TRADE.FUNC.slideChange);
                     TRADE.FUNC.slideIndexNav();
@@ -95,7 +94,7 @@ TRADE.Router = Backbone.Router.extend({
                     $('#slide_container').on('click', ".finish", function () {
                         var date = new Date().getTime();
 
-                        $.post('/user/' + chapterid + '/' + lessonid + '/' + lessontype + '/' + date, function(data){
+                        $.post('/user/' + chapterid + '/' + lessonid + '/' + date, function(data){
                             console.log('User updated successfully');
                         });
                         
@@ -103,9 +102,6 @@ TRADE.Router = Backbone.Router.extend({
                         
                     });
                     
-                } else if (lessontype === 'problem') {
-                    
-                }
             });
         }
        

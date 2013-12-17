@@ -67,7 +67,6 @@ function getUser (req, res){
 function updateLessonProgress (req, res) {
 	var chapterid = req.param("chapterid"),
 		lessonid = req.param("lessonid"),
-		lessontype = req.param("lessontype"),
 		date = req.param("date"),
 		classid = req.session.classid,
 		update,
@@ -84,7 +83,6 @@ function updateLessonProgress (req, res) {
 	      lessonid: lessonid,
 	      chapterid: chapterid,
 	      classid: classid,
-	      lessontype: lessontype,
 	      attemps: "",
 	      timestamp: date,
 

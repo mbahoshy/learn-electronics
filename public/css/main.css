@@ -41,7 +41,7 @@ body {
 #header {
 	width:100%;
 	height:60px;
-	background-color: #150246;
+	background-color: rgba(21, 2, 70, 0.56);
 	/*background-color: #2C0E78;*/
 }
 
@@ -290,38 +290,23 @@ body {
 
 /* ------------------- VIEWS --------------------- */
 
-.chapter-list {
+/*.chapter-list {
 	width:914px;
 	height:30px;
 	float:left;
 	/*background-color: #FFFFFF;*/
-/*	background-color: rgba(0, 0, 255, 0.15);*/
+	/*background-color: rgba(0, 0, 255, 0.15);*/
 	/*padding: 15px 20px;*/
 	/*border: 1px solid #9094FF;*/
-	margin:0;
+	/*margin:0;*/
 	/*box-shadow: 5px 5px 2px #DEDEDE;*/
-}
+}*/
 
-.chapter-container {
-	width:914px;
-	padding:40px 23px;
-	border-bottom: 1px dashed black;
-	float:left;
-}
+
 
 .inactive {
 	color:#8C8C8C;
 	background-color: #B9B9B9 !important;
-}
-
-.chapter-list h3 {
-	font-size:18px;
-	display:inline;
-}
-
-.chapter-list p {
-	font-size:16px;
-	display:inline;
 }
 
 .no-decoration {
@@ -373,39 +358,109 @@ body {
 	font-size:24px;
 }
 
+.chapter-container {
+	width:960px;
+	height:100%;
+	padding:40px 0;
+	/*border-bottom: 1px dashed rgb(202, 202, 202);*/
+	float:left;
+}
+
+
 .chapter-title {
-	margin-top: 15px;
-	width:958px;
-	background-color:white;
-	border: 1px solid #9094FF;
-	border-bottom: 0;
+	width:960px;
+	float:left;
+	padding:10px 0;
 
 }
 
-.chapter-title h1 {
-	padding:0 15px;
-	color:#2C0E78;
-	font-size:22px;
+.chapter-title h3 {
+	font-family: 'title';
+	font-size:36px;
+	display:inline;
+	float:right;
+	margin:0;
+	opacity:.3;
+}
+
+.chapter-title h4 {
+	font-size:20px;
+	display:inline;
+	float:left;
+	margin:0;
+	font-weight: normal;
+	padding-top:6px;
+}
+
+#lesson_list_container {
+	border: 1px solid #9094FF;
+	float:left;
 }
 
 .lesson-container {
-	width:304px;
+	width:240px;
 	float:left;
 	padding:0;
-	margin:0;
+	margin:10px 0 0 0;
 }
 
 .lesson-list {
-	width:274px;
-	height:50px;
-	background-color: rgba(255, 255, 255, 0.59);
-	border-radius: 3px;
+	width:200px;
+	height:75px;
+	/*border-radius: 3px;*/
 	/*border:1px solid #150246;*/
-	border:1px solid blue;
-	padding:5px;
-	margin:5px 10px;
-	color:blue;
-	box-shadow: 3px 3px 5px #888888;
+	/*border:1px solid blue;*/
+	margin:5px 20px;
+	color:rgb(116, 116, 116);
+	box-shadow: 4px 4px 5px #CACACA;
+}
+
+.lesson-list h5 {
+	font-size: 16px;
+	font-weight: normal;
+	margin:0;
+}
+
+.lesson-list h6 {
+	font-size: 14px;
+	font-weight: normal;
+	margin:0;
+}
+
+.green {
+	color:rgb(90,209,90);
+}
+
+.green .lesson-list {
+	background-color: rgba(90,209,90,.15);
+}
+
+.green .chapter-title {
+	border-bottom: 1px solid rgba(90,209,90,.3);
+}
+
+.yellow {
+	color:rgb(255, 173, 0);
+}
+
+.yellow .lesson-list {
+	background-color: rgba(255, 173, 0, .15);
+}
+
+.yellow .chapter-title {
+	border-bottom: 1px solid rgba(255, 173, 0, .3);
+}
+
+.red {
+	color:rgb(255, 10, 10);
+}
+
+.red .lesson-list {
+	background-color: rgba(255, 10, 10, .15);
+}
+
+.red .chapter-title {
+	border-bottom: 1px solid rgba(255, 10, 10, .3);
 }
 
 .check {
@@ -415,21 +470,7 @@ body {
 
 
 .odd {
-	background-color: #C2C2FF;
-}
 
-.lesson-list h1 {
-	font-size: 16px;
-	padding-left: 10px;
-}
-
-.lesson-list h2 {
-	font-size: 14px;
-}
-
-#lesson_list_container {
-	border: 1px solid #9094FF;
-	float:left;
 }
 
 .problem-container {
@@ -682,13 +723,13 @@ body {
 
 
 #logout {
-	height:15px;
+	height:20px;
 	width:100px;
 	position: absolute;
 	text-align: center;
 	top:0px;
 	right:0px;
-	padding:10px 0;
+	padding:4px 0;
 	background-color: rgba(255, 255, 255, 0.45);
 	float:right;
 	color:#FFFFFF;
@@ -767,7 +808,7 @@ body {
 	padding:6px 15px;
 	display:inline-block;
 	float:left;
-	color:#FFFFFF;
+	color:#150246;
 	border-radius: 10px 10px 0 0;
 }
 

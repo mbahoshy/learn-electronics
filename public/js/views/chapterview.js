@@ -1,11 +1,11 @@
 TRADE.ChapterView = Backbone.View.extend({
         tagName: 'div',
         className: 'chapter-container',
-        template: _.template("<div class='chapter-list' ><h3><%= name %></h3><p> - <%= snippet %></p></div>"),
+        template: _.template("<div class='chapter-title' ><h4><%= snippet %></h4><h3><%= chaptertitle %></h3></div>"),
         render : function (user) {
                 this.user = user;
+                this.$el.addClass(this.model.attributes.color);
                 this.$el.html( this.template(this.model.toJSON()) );
-                // console.dir(this.model.attributes.lessons);
                 this.model.attributes.lessons.forEach(this.addOne, this);
                 return this;
         },
@@ -19,10 +19,11 @@ TRADE.ChapterView = Backbone.View.extend({
 TRADE.ChapterViewInactive = Backbone.View.extend({
         tagName: 'div',
         className: 'chapter-container odd',
-        template: _.template("<div class='chapter-list' ><h3><%= name %></h3><p> - <%= snippet %></p></div>"),
+        template: _.template("<div class='chapter-title' ><h4><%= snippet %></h4><h3><%= chaptertitle %></h3></div>"),
 
         render : function (user) {
                 this.user = user;
+                this.$el.addClass(this.model.attributes.color);
                 this.$el.html( this.template(this.model.toJSON()) );
                 this.model.attributes.lessons.forEach(this.addOne, this);
                 return this;

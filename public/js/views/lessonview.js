@@ -1,8 +1,7 @@
 TRADE.LessonView = Backbone.View.extend({
         tagName: 'div',
         className: 'lesson-container',
-        template: _.template("<a class='no-decoration' href='#slides/<%= chapterid %>/<%= lessonid %>/<%= lessontype %>'><div class='lesson-list'><h1><%= name %></h1><h2></h2></div></a>"),
-        problemtemplate: _.template("<a class='no-decoration' href='#slides/<%= chapterid %>/<%= lessonid %>/<%= lessontype %>'><div class='lesson-list'><h1><%= name %></h1><h2></h2></div></a>"),
+        template: _.template("<a class='no-decoration' href='#slides/<%= chapterid %>/<%= lessonid %>'><div class='lesson-list'><h5><%= name %></h5><h6><%= snippet %></h6></div></a>"),
         events: {
                 "mouseover": "lessonMouseover",
                 "mouseout": "lessonMouseout"
@@ -19,7 +18,6 @@ TRADE.LessonView = Backbone.View.extend({
         render : function (user) {
                 var completed = _.findWhere(user.lessonProgress, {lessonid: this.model.lessonid, completed:true});
                 this.$el.html( this.template(this.model));
-                console.log(completed);
                 if (completed) {
                         $(this.el).children().children().prepend('<img class="check" src="imgs/check.png"/>');
                 }
