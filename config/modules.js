@@ -100,7 +100,6 @@ function updateProblemProgress (req, res) {
 		problemid = req.param("problemid"),
 		level = req.param("level"),
 		problemnumber = req.param("problemnumber"),
-		attempt = req.param("attempt"),
 		unlock = req.param("unlock"),
 		user = req.user,
 		userid = req.user._id,
@@ -108,7 +107,10 @@ function updateProblemProgress (req, res) {
 		update,
 		options = { multi: false };
 
-	problemnumber--;
+
+	if (unlock === 'true') {
+		unlock = true;
+	}
 
 	console.log(problemname + problemid + level + problemnumber);
 
@@ -123,16 +125,18 @@ function updateProblemProgress (req, res) {
 
 		currentAttempts++;
 
-		var t = _.pluck(user.problemProgress, "problemid");
-		var c = _.indexOf(t, problemid);
+		// var t = _.pluck(user.problemProgress, "problemid");
+		// var c = _.indexOf(t, problemid);
 
 		currentProblem.score[problemnumber] = currentAttempts;
-
+		console.log(unlock);
+		console.log(currentProblem.unlocked[problemnumber]);
 		if (currentProblem.unlocked[problemnumber] === true) {
-			update = { $set: { "problemProgress.$.score": currentProblem.score }};
+			update = {};
 		} else if (unlock === true) {
+			console.log('unlock');
 			currentProblem.unlocked[problemnumber] = true;
-			update = { $set: { "problemProgress.$.score": currentProblem.score }, $set: {"problemProgress.$.unlocked": currentProblem.unlocked}};
+			update = { $set: { "problemProgress.$.score": currentProblem.score, "problemProgress.$.unlocked": currentProblem.unlocked }};
 		} else {
 			update = { $set: { "problemProgress.$.score": currentProblem.score }};
 		}
@@ -160,7 +164,7 @@ function updateProblemProgress (req, res) {
  	currentProblem = _.findWhere(user.problemProgress, {problemid: problemid, level:level});
  	console.log('update problem');
  	console.log(currentProblem);
- 	
+
     function callback (err, numAffected) {
 		if(err) throw err;
 		res.end();

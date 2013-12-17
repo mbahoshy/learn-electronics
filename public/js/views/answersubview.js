@@ -12,13 +12,17 @@ TRADE.AnswerSubView = Backbone.View.extend({
         },
 
         answerCheck: function () {
+                var unlock;
+                var level = $('#answer_container').data('level');
+                var problemname = $('#answer_container').data('problemname');
+                var problemid = $('#answer_container').data('problemid');
+                var problemnumber = TRADE.GameData.slideindex;
+
                 if (TRADE.GameData.answer == this.model.attributes.answerid) {
+                        unlock = true;
                         var slides = $('#slide_holder > .slide'); // get slide array
                         var slidesNumber = slides.length;
-
-                        var level = $('#answer_container').data('level');
-                        var problemname = $('#answer_container').data('problemname');
-                        var problemid = $('#answer_container').data('problemid');
+                        
                         console.log("Correct Answer!");
 
                         if (slidesNumber === TRADE.GameData.slideindex) {
@@ -39,11 +43,12 @@ TRADE.AnswerSubView = Backbone.View.extend({
                                 $("#slide_container").html(_.template(template));
                         }
                 } else {
+                        unlock = false;
                         $('#shadow').fadeToggle();
                         $('#incorrect').fadeToggle();
                 }
 
-                $.post('/problem/' + problemname + '/' + problemid + '/' + level + '/' + TRADE.GameData.slideindex + '/true/true', function (data) {
+                $.post('/problem/' + problemname + '/' + problemid + '/' + level + '/' + problemnumber + '/' + unlock, function (data) {
                                 console.log('problem successfully updated');
                 });
                 //console.dir(this.model.attributes.answerid);
