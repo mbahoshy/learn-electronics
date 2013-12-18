@@ -185,27 +185,33 @@ TRADE.Router = Backbone.Router.extend({
 
         function renderProblems () {
             if (wait === 3) {
-                var findLevel = _.where(problems.list, {problemlevel:"Rookie"});
+                // var findLevel = _.where(problems.list, {problemlevel:"Rookie"});
                 // $('#subnav_container').data('problemactivenav', level);
                 var problemCollection1 = new TRADE.ProblemCollection();
-                problemCollection1.reset(findLevel);
+                problemCollection1.reset(problems.list);
 
                 var ProblemListView1 = new TRADE.ProblemListView ({collection: problemCollection1});
                 ProblemListView1.render();
                 $('#body_container').append(ProblemListView1.$el);
 
                 $('#level_list').on('click', 'li', function () {
+                    $('.problem-list-container').html('');
                     var level = $(this).data('level');
-                    console.dir(level);
-                    var newLevel = _.where(problems.list, {problemlevel:level});
-                    console.dir(newLevel);
+                    var newLevel;
+                    if (level === 'All') {
+                        newLevel = problems.list;
+                    } else {
+                        newLevel = _.where(problems.list, {problemlevel:level});
+                    }
+
                     problemCollection1.reset(newLevel);
                 });
                 $('#classroom_list').on('click', 'li', function () {
+                    $('.problem-list-container').html('');
                     var newid = $(this).data('classroomid');
-                    console.log(newid);
-                    var x = $(this).html();
-                    $('#current_classroom').html(x);
+
+                    $('.active-problem-nav').removeClass('active-problem-nav');
+                    $(this).addClass('active-problem-nav');
                     $.get("/problems/" + newid , function(data, status){ //gets a list of problems for level
 
                         // $('#current_classroom').html();
@@ -219,8 +225,8 @@ TRADE.Router = Backbone.Router.extend({
 
         function renderTemplate () {
             var rtemplate = _.template(template);
-            $('#body_container').prepend('<div id="problem_subnav" data-exists=true ></div>');
-            $('#problem_subnav').append(rtemplate);
+            $('#body_container').prepend(rtemplate);
+            // $('#problem_subnav').append();
         }
 
     },
