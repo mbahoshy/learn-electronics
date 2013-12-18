@@ -1,7 +1,7 @@
 TRADE.LessonView = Backbone.View.extend({
         tagName: 'div',
         className: 'lesson-container',
-        template: _.template("<a class='no-decoration' href='#slides/<%= chapterid %>/<%= lessonid %>'><div class='lesson-list'><h5><%= name %></h5><h6><%= snippet %></h6></div></a>"),
+        template: _.template("<a class='no-decoration' href='#slides/<%= chapterid %>/<%= lessonid %>'><div class='lesson-list'><h5><%= name %></h5><h6><%= snippet %></h6><img class='lesson-img' src='imgs/lessons/<%= img %>'/></div></a>"),
         events: {
                 "mouseover": "lessonMouseover",
                 "mouseout": "lessonMouseout"

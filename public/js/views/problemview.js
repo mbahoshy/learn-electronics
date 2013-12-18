@@ -1,8 +1,8 @@
 TRADE.ProblemView = Backbone.View.extend({
         tagName: 'div',
         className: 'problem-container',
-        template: _.template("<a href ='#/problemslides/<%= level %>/<%= problemname %>/<%= problemid %>'><div class='problem-list'>Problem: <%= problemname %><br>Problems Completed: <%= problemscompleted %>/<%= numproblems %></div></a>"),
-        template2: _.template("<a href ='#/problemslides/<%= level %>/<%= problemname %>/<%= problemid %>'><div class='problem-list'>Problem: <%= problemname %><br>Problems Completed: </div></a>"),
+        template: _.template("<a href ='#/problemslides/<%= problemlevel %>/<%= problemname %>/<%= problemid %>'><div class='problem-list'>Problem: <%= problemname %><br>Problems Completed: <%= problemscompleted %>/<%= numproblems %></div></a>"),
+        template2: _.template("<a href ='#/problemslides/<%= problemlevel %>/<%= problemname %>/<%= problemid %>'><div class='problem-list'>Problem: <%= problemname %><br>Problems Completed: </div></a>"),
         events: {
                 "mouseover": "lessonMouseover",
                 "mouseout": "lessonMouseout"
@@ -17,7 +17,7 @@ TRADE.ProblemView = Backbone.View.extend({
 
         },
         render : function () {
-                this.model.attributes.level = $('#subnav_container').data('problemactivenav');
+                // this.model.attributes.level = $('#subnav_container').data('problemactivenav');
                 var completed = _.findWhere(TRADE.UserData.problemProgress, {problemid: this.model.attributes.problemid});
                 if (completed) {
                         var problemscompleted = completed.unlocked.length;
@@ -29,9 +29,19 @@ TRADE.ProblemView = Backbone.View.extend({
                 } else {
                         this.$el.html( this.template2(this.model.attributes));
                 }
-                
-                
-     
+                var colorClass;
+                switch (this.model.attributes.problemlevel) {
+                        case "Rookie":
+                                colorClass = "green";
+                                break;
+                        case "Apprentice":
+                                colorClass = "yellow";
+                                break;
+                        case "Journeyman":
+                                colorClass = "red";
+                                break;
+                }
+                $(this.el).addClass(colorClass);
                 return this;
                 
         }

@@ -421,10 +421,7 @@ body {
 
 .lesson-list {
 	width:190px;
-	height:75px;
-	/*border-radius: 3px;*/
-	/*border:1px solid #150246;*/
-	/*border:1px solid blue;*/
+	height:190px;
 	margin:5px 15px;
 	padding:10px;
 	color:rgb(116, 116, 116);
@@ -443,11 +440,21 @@ body {
 	margin:8px 0 0 0;
 }
 
+.lesson-img {
+	float:left;
+	margin:10px 35px;
+	opacity:.8;
+}
+
 .green {
 	color:rgb(90,209,90);
 }
 
 .green .lesson-list {
+	background-color: rgba(90,209,90,.3);
+}
+
+.green .problem-list {
 	background-color: rgba(90,209,90,.3);
 }
 
@@ -463,6 +470,10 @@ body {
 	background-color: rgba(255, 173, 0, .3);
 }
 
+.yellow .problem-list {
+	background-color: rgba(255, 173, 0, .3);
+}
+
 .yellow .chapter-title {
 	border-bottom: 1px solid rgba(255, 173, 0, .3);
 }
@@ -472,6 +483,10 @@ body {
 }
 
 .red .lesson-list {
+	background-color: rgba(255, 10, 10, .3);
+}
+
+.red .problem-list {
 	background-color: rgba(255, 10, 10, .3);
 }
 
@@ -514,7 +529,6 @@ body {
 
 .problem-container {
 	width:240px;
-	height:100px;
 	float:left;
 	display:inline;
 	padding:0;
@@ -529,10 +543,12 @@ body {
 }
 
 .problem-list {
-	width: 220px;
-	height:90px;
-	margin:5px 10px;
-	background-color: rgb(255, 208, 208);
+	width:190px;
+	height:190px;
+	margin:5px 15px;
+	padding:10px;
+	color:rgb(116, 116, 116);
+	box-shadow: 4px 4px 5px #CACACA;
 }
 
 
