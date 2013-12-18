@@ -22,6 +22,6 @@
 			});
 
 
-			TRADE.CIRC.Create(720, 360);
+			TRADE.CIRC.Create(720, 260);
 			
 		});

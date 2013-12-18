@@ -1,8 +1,8 @@
 TRADE.ProblemView = Backbone.View.extend({
         tagName: 'div',
         className: 'problem-container',
-        template: _.template("<a href ='#/problemslides/<%= problemlevel %>/<%= problemname %>/<%= problemid %>'><div class='problem-list'>Problem: <%= problemname %><br>Problems Completed: <%= problemscompleted %>/<%= numproblems %></div></a>"),
-        template2: _.template("<a href ='#/problemslides/<%= problemlevel %>/<%= problemname %>/<%= problemid %>'><div class='problem-list'>Problem: <%= problemname %><br></div></a>"),
+        template: _.template("<a href ='#/problemslides/<%= problemlevel %>/<%= problemname %>/<%= problemid %>'><div class='problem-list'><h5><%= problemname %></h5><br>Problems Completed: <%= problemscompleted %>/<%= numproblems %></div></a>"),
+        template2: _.template("<a href ='#/problemslides/<%= problemlevel %>/<%= problemname %>/<%= problemid %>'><div class='problem-list'><h5><%= problemname %></h5><br></div></a>"),
         events: {
                 "mouseover": "lessonMouseover",
                 "mouseout": "lessonMouseout"

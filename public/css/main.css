@@ -373,6 +373,12 @@ body {
 	margin:15px 0 0 0;
 }
 
+#lesson_container {
+	float:left;
+	height:100%;
+	margin-top:30px;
+}
+
 .chapter-container {
 	width:960px;
 	height:100%;
@@ -515,15 +521,17 @@ body {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00d3daff', endColorstr='#00d3daff',GradientType=0 );
 	*/
 
-	background: -moz-linear-gradient(top,  rgba(211,218,255,0) 0%, rgba(255,216,216,0.8) 51%, rgba(211,218,255,0) 100%);
+/*	background: -moz-linear-gradient(top,  rgba(211,218,255,0) 0%, rgba(255,216,216,0.8) 51%, rgba(211,218,255,0) 100%);
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(211,218,255,0)), color-stop(51%,rgba(255,216,216,0.8)), color-stop(100%,rgba(211,218,255,0)));
 	background: -webkit-linear-gradient(top,  rgba(211,218,255,0) 0%,rgba(255,216,216,0.8) 51%,rgba(211,218,255,0) 100%);
 	background: -o-linear-gradient(top,  rgba(211,218,255,0) 0%,rgba(255,216,216,0.8) 51%,rgba(211,218,255,0) 100%);
 	background: -ms-linear-gradient(top,  rgba(211,218,255,0) 0%,rgba(255,216,216,0.8) 51%,rgba(211,218,255,0) 100%);
 	background: linear-gradient(to bottom,  rgba(211,218,255,0) 0%,rgba(255,216,216,0.8) 51%,rgba(211,218,255,0) 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00d3daff', endColorstr='#00d3daff',GradientType=0 );
-
-
+*/
+	background-color: rgba(21, 2, 70, 0.56)!important;
+	color:white !important;
+	font-weight: bold;
 
 }
 
@@ -535,7 +543,9 @@ body {
 	margin:0;
 }
 
-
+.problem-container a {
+	text-decoration: none;
+}
 
 .problem-list-container {
 	width:720px;
@@ -549,6 +559,14 @@ body {
 	padding:10px;
 	color:rgb(116, 116, 116);
 	box-shadow: 4px 4px 5px #CACACA;
+}
+
+.problem-list h5 {
+	font-weight: normal;
+	font-style: italic;
+	font-size:16px;
+	margin:0;
+	padding:0;
 }
 
 
@@ -574,10 +592,14 @@ body {
 	font-size: 18px;
 	list-style:none;
 	cursor:pointer;
+	font-weight: bold;
+	border-top: 1px solid rgba(0, 0, 255, 0.34);
+	border-bottom: 1px solid rgba(0, 0, 255, 0.34);
 }
 
 #problem_subnav li:hover {
-	background-color: red;
+	background-color: rgba(77, 156, 229, 0.6)!important;
+	color:white !important;
 }
 
 #level_list {
@@ -608,6 +630,7 @@ body {
 	float:left;
 	border: 1px solid #9094FF;
 	background-color: #BDCAFF;
+	border-radius: 8px 8px 0 0;
 }
 
 
@@ -653,6 +676,7 @@ body {
 	float:left;
 	background-color: rgba(255, 0, 0, 0.77);
 	border: 1px solid #FF9390;
+	border-radius: 8px 8px 0 0;
 }
 
 .problem-wrapper{
@@ -831,10 +855,7 @@ body {
 	clear:both;
 }
 
-.light-blue {
-	background-color: rgba(198, 247, 255, 0.74);
-	color:black;
-}
+
 
 /* ------------- class list --------------------- */
 
