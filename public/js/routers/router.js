@@ -209,6 +209,7 @@ TRADE.Router = Backbone.Router.extend({
                     $.get("/problems/" + newid , function(data, status){ //gets a list of problems for level
 
                         // $('#current_classroom').html();
+                        problems = data;
                         var newLevel = _.where(data.list, {problemlevel:"Rookie"});
                         problemCollection1.reset(newLevel);
                     });
