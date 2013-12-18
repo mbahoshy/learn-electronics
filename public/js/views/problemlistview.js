@@ -5,7 +5,7 @@ TRADE.ProblemListView = Backbone.View.extend({
         	this.listenTo(this.collection, 'reset', this.render);
         },
         render : function () {
-        		$(this.el).html('');
+                $(this.el).html('');
                 this.collection.forEach(this.addOne, this);
         },
 

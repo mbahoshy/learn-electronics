@@ -18,7 +18,6 @@ TRADE.ProblemView = Backbone.View.extend({
         },
         render : function () {
                 this.model.attributes.level = $('#subnav_container').data('problemactivenav');
-                console.dir(this.model);
                 var completed = _.findWhere(TRADE.UserData.problemProgress, {problemid: this.model.attributes.problemid});
                 if (completed) {
                         var problemscompleted = completed.unlocked.length;

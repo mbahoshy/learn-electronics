@@ -201,7 +201,18 @@ TRADE.Router = Backbone.Router.extend({
                     console.dir(newLevel);
                     problemCollection1.reset(newLevel);
                 });
-                
+                $('#classroom_list').on('click', 'li', function () {
+                    var newid = $(this).data('classroomid');
+                    console.log(newid);
+                    var x = $(this).html();
+                    $('#current_classroom').html(x);
+                    $.get("/problems/" + newid , function(data, status){ //gets a list of problems for level
+
+                        // $('#current_classroom').html();
+                        var newLevel = _.where(data.list, {problemlevel:"Rookie"});
+                        problemCollection1.reset(newLevel);
+                    });
+                });
             }
         }
 

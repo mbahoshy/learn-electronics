@@ -19,7 +19,7 @@ TRADE.LessonView = Backbone.View.extend({
                 var completed = _.findWhere(user.lessonProgress, {lessonid: this.model.lessonid, completed:true});
                 this.$el.html( this.template(this.model));
                 if (completed) {
-                        $(this.el).children().children().prepend('<img class="check" src="imgs/check.png"/>');
+                        $(this.el).children().children().prepend('<img class="check" src="imgs/lessoncheck.png"/>');
                 }
                 return this;
                 
