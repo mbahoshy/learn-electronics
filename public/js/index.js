@@ -1,9 +1,13 @@
 		$(document).ready(function(){
-			$('#sign_in').on('click', function(){
+			// $('#submit_button').on('click', function (e) {
+				
+			// })
+			$('#submit_button').on('click', function(e){
+				e.preventDefault();
 				$('#sign_in_inputs').fadeToggle();
 				$('#sign_in').addClass('sign-in-active');
-				$('#sign_in').off('click');
-				$('#sign_in').on('click', function () {
+				$('#submit_button').off('click');
+				$('#submit_button').on('click', function () {
 					// $(this).parent().form.submit();
 					$('#sign_in_form').submit();
 					console.dir($(this).parent().form);
