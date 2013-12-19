@@ -5,7 +5,7 @@ TRADE.Router = Backbone.Router.extend({
         // "chapter/:chapterid": "chapterFunction", //displays lessons
         "slides/:chapterid/:lessonid": "slideFunction",
         "problems/:level": "problemListFunction",
-        "problemslides/:level/:problemname/:problemid": "problemSlideFunction",
+        "problemslides/:classid/:level/:problemname/:problemid": "problemSlideFunction",
         "report" : "reportFunction"
     },
 
@@ -113,6 +113,7 @@ TRADE.Router = Backbone.Router.extend({
         $('#lesson_container').html('');
         var user,
             template,
+            nav,
             wait = 0;
 
         $.get("/user", function(data, status){
@@ -127,10 +128,23 @@ TRADE.Router = Backbone.Router.extend({
             renderTemplate();
         });
 
+        $.get("/getNav/all", function(data, status){
+            nav = data;
+            wait ++;
+            renderTemplate();
+        });
+
         function renderTemplate () {
-            if (wait === 2) {
+            if (wait === 3) {
                 var rtemplate = _.template(template, user);
                 $('#body_container').append(rtemplate);
+
+                var classCollection1 = new TRADE.ClassCollection();
+                classCollection1.reset(nav);
+                var classCollectionReport1 = new TRADE.ClassCollectionReport ({collection: classCollection1});
+                classCollectionReport1.render(user);
+                $('#report_card_body').append(classCollectionReport1.$el);
+
             }
         }
     },
@@ -154,7 +168,6 @@ TRADE.Router = Backbone.Router.extend({
 
         $.get("/problems/" + id , function(data, status){ //gets a list of problems for level
             problems = data;
-            console.dir(problems);
             wait ++;
             renderProblems();
         });
@@ -188,6 +201,7 @@ TRADE.Router = Backbone.Router.extend({
                 // var findLevel = _.where(problems.list, {problemlevel:"Rookie"});
                 // $('#subnav_container').data('problemactivenav', level);
                 var problemCollection1 = new TRADE.ProblemCollection();
+                problemCollection1.classid = id;
                 problemCollection1.reset(problems.list);
 
                 var ProblemListView1 = new TRADE.ProblemListView ({collection: problemCollection1});
@@ -216,6 +230,7 @@ TRADE.Router = Backbone.Router.extend({
 
                         // $('#current_classroom').html();
                         problems = data;
+                        problemCollection1.classid = newid;
                         problemCollection1.reset(data.list);
                     });
                 });
@@ -230,7 +245,7 @@ TRADE.Router = Backbone.Router.extend({
 
     },
 
-    problemSlideFunction: function (level, problemname, problemid) {
+    problemSlideFunction: function (classid, level, problemname, problemid) {
 
         var allSlides,
             wait = 0;
@@ -247,9 +262,11 @@ TRADE.Router = Backbone.Router.extend({
         $.get('/slideTemplate/problem', function(data, status) {
             template = $(data).html();
             $("#lesson_container").append(_.template(template));
+            //save data about problem, so it can be posted later in answersubview
             $('#answer_container').data('level', level);
             $('#answer_container').data('problemname', problemname);
             $('#answer_container').data('problemid', problemid);
+            $('#answer_container').data('classid', classid);
             wait ++;
             renderProblemSlide();
             

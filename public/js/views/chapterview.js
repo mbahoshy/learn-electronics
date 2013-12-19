@@ -13,7 +13,6 @@ TRADE.ChapterView = Backbone.View.extend({
                 var x = _.where(user.lessonProgress, {chapterid: this.model.attributes.chapterid});
                 if (x.length === this.model.attributes.lessons.length) {
                     this.$el.children().append("<img class='star' src='imgs/complete.png'/>");
-                    console.log('wwwwwww');
                 }
                 this.model.attributes.lessons.forEach(this.addOne, this);
                 return this;

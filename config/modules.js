@@ -39,15 +39,21 @@ function getProblemSlides (req, res) {
 
 function getNav (req, res) {
 	var id = req.param("classid");
-	if (id == 'reset') {
-		id = req.session.classid;
+	if (id === 'all') {
+		Nav.find({}, function(err, documents) {
+			res.json(documents);
+		});	
 	} else {
-		req.session.classid = id
-	}
+		if (id == 'reset') {
+			id = req.session.classid;
+		} else {
+			req.session.classid = id
+		}
 
-	Nav.findById(id, function(err, documents){
-		res.json(documents);
-	});
+		Nav.findById(id, function(err, documents){
+			res.json(documents);
+		});
+	}
 }
 
 var gamejson = mongoose.model('gamejson', 
@@ -101,6 +107,7 @@ function updateLessonProgress (req, res) {
 
 function updateProblemProgress (req, res) {
 	var problemname = req.param("problemname"),
+		classid = req.param("classid"),
 		problemid = req.param("problemid"),
 		level = req.param("level"),
 		problemnumber = req.param("problemnumber"),
@@ -154,6 +161,7 @@ function updateProblemProgress (req, res) {
 	} else {
 		conditions = { _id: userid };
 		var problemmodel = {
+		  classid: classid,
 	      problemname: problemname,
 	      problemid: problemid,
 	      numberOfQuestions: numberOfQuestions,

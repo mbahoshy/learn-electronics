@@ -930,3 +930,16 @@ body {
 	float:right;
 	margin-right:15px;
 }
+
+#report_card_holder {
+	margin-top:30px;
+	width:960px;
+	background-color: #C58420;
+	float:left;
+	height:100%;
+}
+
+#report_card_header {
+	width:960px;
+	background-color: #C52B20;
+}
