@@ -430,7 +430,7 @@ body {
 	height:190px;
 	margin:5px 15px;
 	padding:10px;
-	color:rgb(116, 116, 116);
+	color:black;
 	box-shadow: 4px 4px 5px #CACACA;
 }
 
@@ -449,19 +449,14 @@ body {
 .lesson-img {
 	float:left;
 	margin:10px 35px;
-	opacity:.8;
 }
 
 .green {
 	color:rgb(90,209,90);
 }
 
-.green .lesson-list {
-	background-color: rgba(90,209,90,.3);
-}
-
-.green .problem-list {
-	background-color: rgba(90,209,90,.3);
+.green .lesson-list, .green .problem-list {
+	background-color: rgba(90,209,90,.8);
 }
 
 .green .chapter-title {
@@ -472,12 +467,8 @@ body {
 	color:rgb(255, 173, 0);
 }
 
-.yellow .lesson-list {
-	background-color: rgba(255, 173, 0, .3);
-}
-
-.yellow .problem-list {
-	background-color: rgba(255, 173, 0, .3);
+.yellow .lesson-list, .yellow .problem-list {
+	background-color: rgba(255, 173, 0, .8);
 }
 
 .yellow .chapter-title {
@@ -488,12 +479,8 @@ body {
 	color:rgb(255, 10, 10);
 }
 
-.red .lesson-list {
-	background-color: rgba(255, 10, 10, .3);
-}
-
-.red .problem-list {
-	background-color: rgba(255, 10, 10, .3);
+.red .lesson-list, .red .problem-list {
+	background-color: rgba(255, 10, 10, .8);
 }
 
 .red .chapter-title {
@@ -557,12 +544,12 @@ body {
 	height:140px;
 	margin:10px 15px;
 	padding:10px;
-	color:rgb(116, 116, 116);
+	color:black;
 	box-shadow: 4px 4px 5px #CACACA;
 }
 
 .problem-list h5 {
-	font-weight: normal;
+	font-weight: bold;
 	font-style: italic;
 	font-size:16px;
 	margin:0;
