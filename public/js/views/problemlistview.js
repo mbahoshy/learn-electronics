@@ -11,6 +11,7 @@ TRADE.ProblemListView = Backbone.View.extend({
 
         addOne: function (model) {
                 model.attributes.classid = this.collection.classid;
+                console.log(this.collection.classid);
                 var ProblemView1 = new TRADE.ProblemView({ model: model });
                 this.$el.append(ProblemView1.render().el);     
         }

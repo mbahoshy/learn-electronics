@@ -25,8 +25,8 @@ function getClasses (req, res) {
 
 function getProblemList (req, res) {
 	var id = req.param("id");
-	Problem.findById(id, function(err, documents){
-		res.json(documents);
+	Problem.find({classroomid: id}, function(err, documents){
+		res.json(documents[0]);
 	});
 }
 

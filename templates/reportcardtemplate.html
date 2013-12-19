@@ -1,29 +1,23 @@
 <script type="text/html" id='reportcard_template'>
 	<div id='report_card_holder'>
-		<div id='report_card_header'>
-			Name:<br>
-			<%= firstName %><br>
-			Level:<br>
-			<%= level %><br>
-			Lessons Completed:<br>
-			Problems Completed:<br>
-			Tests Completed:
-			Avg Test Score:<br>
-			Avg Attempts/ Question:
-
-		</div>
+		
 		<div id ='report_card_body'>
-			Levels Completed:<br>
-			<% for (var i= 0; i< lessonProgress.length; i++) { %>
-				<div class='lesson-list'><%= lessonProgress[i].lessonid %></div>
-			<% } %>
-			<br>
-
-			Problems Completed:<br>
-			<% for (var i= 0; i< problemProgress.length; i++) { %>
-				<div class='lesson-list'><%= problemProgress[i].problemid %></div>
-			<% } %>
 		</div>
 	</div>
 
 </script>
+
+
+<!-- 
+// <div id='report_card_header'>
+		// 	Name:<br>
+		// 	<%= firstName %><br>
+		// 	Level:<br>
+		// 	<%= level %><br>
+		// 	Lessons Completed:<br>
+		// 	Problems Completed:<br>
+		// 	Tests Completed:
+		// 	Avg Test Score:<br>
+		// 	Avg Attempts/ Question:
+
+		// </div> -->

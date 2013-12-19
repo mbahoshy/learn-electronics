@@ -112,18 +112,11 @@ TRADE.Router = Backbone.Router.extend({
         $('#body_container').html('');
         $('#lesson_container').html('');
         var user,
-            template,
             nav,
             wait = 0;
 
         $.get("/user", function(data, status){
             user = data;
-            wait ++;
-            renderTemplate();
-        });
-
-        $.get("/template/reportcardtemplate", function (data, status){
-            template = $(data).html();      
             wait ++;
             renderTemplate();
         });
@@ -135,15 +128,15 @@ TRADE.Router = Backbone.Router.extend({
         });
 
         function renderTemplate () {
-            if (wait === 3) {
-                var rtemplate = _.template(template, user);
-                $('#body_container').append(rtemplate);
+            if (wait === 2) {
+                // var rtemplate = _.template(template, user);
+                // $('#body_container').append(rtemplate);
 
                 var classCollection1 = new TRADE.ClassCollection();
                 classCollection1.reset(nav);
                 var classCollectionReport1 = new TRADE.ClassCollectionReport ({collection: classCollection1});
                 classCollectionReport1.render(user);
-                $('#report_card_body').append(classCollectionReport1.$el);
+                $('#body_container').append(classCollectionReport1.$el);
 
             }
         }
@@ -168,14 +161,15 @@ TRADE.Router = Backbone.Router.extend({
 
         $.get("/problems/" + id , function(data, status){ //gets a list of problems for level
             problems = data;
+            console.dir(problems);
             wait ++;
             renderProblems();
         });
 
         $.get("/user", function(data, status){
-                TRADE.UserData = data;
-                wait ++;
-                renderProblems();
+            TRADE.UserData = data;
+            wait ++;
+            renderProblems();
         });
 
         $.get("/template/problemlisttemplate", function (data, status){
@@ -266,7 +260,7 @@ TRADE.Router = Backbone.Router.extend({
             $('#answer_container').data('level', level);
             $('#answer_container').data('problemname', problemname);
             $('#answer_container').data('problemid', problemid);
-            $('#answer_container').data('classid', classid);
+            $('#answer_container').data('classroomid', classid);
             wait ++;
             renderProblemSlide();
             

@@ -20,8 +20,9 @@ TRADE.ClassCollectionView = Backbone.View.extend({
 
 TRADE.ClassCollectionReport = Backbone.View.extend({
         tagName: 'div',
-        className: 'report-class-container',
-        template: _.template('<%= name %> <%= snippet %><br> Lessons Completed: <%= lessonscompleted %>'),
+        className: 'report_card_holder',
+        template: _.template('<div id="report_card_header"><%= name %><br>Lessons Completed: <%= lessonscompleted %> Lessons Remaining: <%= lessonsremain %><br>Problems Completed: <%= problemscompleted %><br>Average Attempts: <%= averageattempts %></div>'),
+
         events: {
 
         },
@@ -29,19 +30,78 @@ TRADE.ClassCollectionReport = Backbone.View.extend({
 
         },
         render : function (user) {
-                console.dir(user);
+                var progress = {};
+                progress.lessonscompleted = user.lessonProgress.length;
+                var problemscompleted = 0;
+                _.each(user.problemProgress, function (element, index){
+                    if (element.numberOfQuestions == element.unlocked.length) {
+                        problemscompleted ++;
+                    }
+                });
+                progress.problemscompleted = problemscompleted;
+
+                var totalquestions = 0;
+                var totalattempts = 0;
+                var totallessons = 0;
+                
+                _.each(this.collection.models, function (element, index) {
+                    _.each(element.attributes.chapters, function (element, index) {
+                        totallessons += element.lessons.length;
+                    });
+                });
+                progress.lessonsremain = (totallessons - progress.lessonscompleted);
+                _.each(user.problemProgress, function (element, index){
+                    totalquestions += element.score.length;
+                    var attempts = _.reduce(element.score, function(memo, num) {return memo + num;}, 0);
+                    totalattempts += attempts;
+                })
+
+             
+                var averageattempts = (Math.floor(totalattempts * 100)/100)/totalquestions;
+                progress.averageattempts = averageattempts;
+                $(this.el).prepend(this.template(progress));
                 this.user = user;
-                console.dir(this.collection);
                 this.collection.models.forEach(this.addOne, this);
                 
 
         },
 
         addOne: function (model) {
-                console.dir(model.attributes);
-                console.dir(this.user.problemProgress);
-                model.attributes.lessonscompleted = _.where(this.user.lessonProgress, {classid: model.attributes._id}).length;
-                this.$el.append( this.template(model.attributes));
+
+                var lessonscompleted = _.where(this.user.lessonProgress, {classid: model.attributes._id}).length;
+                model.attributes.lessonscompleted = lessonscompleted
+                var classproblems = _.where(this.user.problemProgress, {classid: model.attributes._id});
+                
+                var problemscompleted = 0;
+                _.each(classproblems, function (element, index){
+                    if (element.numberOfQuestions == element.unlocked.length) {
+                        problemscompleted ++;
+                    }
+                });
+                var totalquestions = 0;
+                var totalattempts = 0;
+                var totallessons = 0;
+                
+                _.each(model.attributes.chapters, function(element, index) {
+                    totallessons += element.lessons.length;
+                });
+                model.attributes.lessonsremain = (totallessons - lessonscompleted);
+                // console.log('total lessons ' + totallessons);
+                _.each(classproblems, function (element, index){
+                    totalquestions += element.score.length;
+                    var attempts = _.reduce(element.score, function(memo, num) {return memo + num;}, 0);
+                    totalattempts += attempts;
+                })
+
+                
+                var averageattempts = (Math.floor(totalattempts * 100)/100)/totalquestions;
+                model.attributes.averageattempts = averageattempts;
+                model.attributes.problemscompleted = problemscompleted;
+
+                var ChapterReportView1 = new TRADE.ChapterReportView({ model: model });
+                this.$el.append(ChapterReportView1.render().el);   
+
+                // this.$el.append( this.template(model.attributes));
 
                 
 
