@@ -938,3 +938,8 @@ body {
 .padding-bottom {
 	padding-bottom: 40px;
 }
+
+.star {
+	float:right;
+	margin-right:15px;
+}

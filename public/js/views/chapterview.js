@@ -4,13 +4,17 @@ TRADE.ChapterView = Backbone.View.extend({
         template: _.template("<div class='chapter-title' ><h4><%= snippet %></h4><h3><%= chaptertitle %></h3></div>"),
         render : function (user) {
                 this.user = user;
-                // var x = _.findWhere(user.lessonProgress, {chapterid: model.chapterid});
-                // if (x) {
-                //     $(this.el).append("fuck yaj");
-                // }
-                 this.$el.addClass(this.model.attributes.color);
+                
+                console.dir(this.model);
+                console.dir(this.$el);
+                this.$el.addClass(this.model.attributes.color);
 
                 this.$el.html( this.template(this.model.toJSON()) );
+                var x = _.where(user.lessonProgress, {chapterid: this.model.attributes.chapterid});
+                if (x.length === this.model.attributes.lessons.length) {
+                    this.$el.children().append("<img class='star' src='imgs/complete.png'/>");
+                    console.log('wwwwwww');
+                }
                 this.model.attributes.lessons.forEach(this.addOne, this);
                 return this;
         },
