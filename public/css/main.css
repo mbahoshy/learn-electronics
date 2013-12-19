@@ -934,12 +934,37 @@ body {
 .report_card_holder {
 	margin-top:30px;
 	width:960px;
-	background-color: #C58420;
+	background-color: #FFFDD0;
 	float:left;
 	height:100%;
+	border-radius: 15px 15px 0 0;
 }
 
 #report_card_header {
-	width:960px;
-	background-color: #C52B20;
+	width:930px;
+	background-color: #FFFDD0;
+	border-radius: 15px 15px 0 0;
+	font-weight: bold;
+	border-bottom: 1px solid black;
+	padding:30px 15px;
+}
+
+.report-label {
+	font-weight: normal;
+	font-size: 14px;
+}
+
+.class-container {
+	width:930px;
+	height:100%;
+	padding:30px 15px;
+	/*border-bottom: 1px dashed rgb(202, 202, 202);*/
+	float:left;
+	border-bottom: 1px solid black;
+}
+
+.class-container h3 {
+	margin:0;
+	padding:0;
+
 }

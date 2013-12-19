@@ -21,7 +21,7 @@ TRADE.ClassCollectionView = Backbone.View.extend({
 TRADE.ClassCollectionReport = Backbone.View.extend({
         tagName: 'div',
         className: 'report_card_holder',
-        template: _.template('<div id="report_card_header"><%= name %><br>Lessons Completed: <%= lessonscompleted %> Lessons Remaining: <%= lessonsremain %><br>Problems Completed: <%= problemscompleted %><br>Average Attempts: <%= averageattempts %></div>'),
+        template: _.template('<div id="report_card_header"><span class="report-label">NAME:</span> <%= firstName %> <%= lastName %><br><%= name %><br><span class="report-label">LESSONS COMPLETED:</span> <%= lessonscompleted %><br><span class="report-label">LESSONS REMAINING:</span> <%= lessonsremain %><br><span class="report-label">PROBLEMS COMPLETED:</span> <%= problemscompleted %><br><span class="report-label">AVERAGE ATTEMPTS:</span> <%= averageattempts %></div>'),
 
         events: {
 
@@ -32,6 +32,8 @@ TRADE.ClassCollectionReport = Backbone.View.extend({
         render : function (user) {
                 var progress = {};
                 progress.lessonscompleted = user.lessonProgress.length;
+                progress.firstName = user.firstName;
+                progress.lastName = user.lastName;
                 var problemscompleted = 0;
                 _.each(user.problemProgress, function (element, index){
                     if (element.numberOfQuestions == element.unlocked.length) {

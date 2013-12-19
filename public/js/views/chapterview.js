@@ -26,8 +26,8 @@ TRADE.ChapterView = Backbone.View.extend({
 
 TRADE.ChapterReportView = Backbone.View.extend({
         tagName: 'div',
-        className: 'chapter-container',
-        template: _.template('<%= name %><br>Lessons Completed: <%= lessonscompleted %> Lessons Remaining: <%= lessonsremain %><br>Problems Completed: <%= problemscompleted %><br>Average Attempts: <%= averageattempts %>'),
+        className: 'class-container',
+        template: _.template('<h3><%= name %></h3><br><span class="report-label">LESSONS COMPLETED:</span> <%= lessonscompleted %><br><span class="report-label">LESSONS REMAINING:</span> <%= lessonsremain %><br><span class="report-label">PROBLEMS COMPLETED:</span> <%= problemscompleted %><br><span class="report-label">AVERAGE ATTEMPTS:</span> <%= averageattempts %>'),
 
         render: function (){
             this.$el.html( this.template(this.model.attributes));
