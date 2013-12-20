@@ -51,10 +51,10 @@
 	background-color: white;
 	color:red;
 	font-size:18px;
-	border-top: 4px solid rgba(21, 2, 70, 0.56);
+/*	border-top: 4px solid rgba(21, 2, 70, 0.56);
 	border-bottom: 4px solid rgba(21, 2, 70, 0.56);
 	border-left: 5px solid rgba(21, 2, 70, 1);
-	border-right: 5px solid rgba(21, 2, 70, 1);
+	border-right: 5px solid rgba(21, 2, 70, 1);*/
 	float:right;
 	padding: 5px 25px;
 	font-weight: bold;
