@@ -622,16 +622,32 @@ body {
 
 
 .slide-left {
-	width:50px;
-	height:50px;
+	width: 0px; 
+	height: 0px; 
+	border-top: 25px solid transparent;
+	border-bottom: 25px solid transparent;
+	margin:5px 10px;
+	border-right: 25px solid green;
 	float:left;
+	cursor:pointer;
 }
 
-
 .slide-right {
-	width:50px;
-	height:50px;
+	width: 0px; 
+	height: 0px; 
+	border-top: 25px solid transparent;
+	border-bottom: 25px solid transparent;
+	margin:5px 10px;
+	border-left: 25px solid green;
 	float:right;
+}
+
+.slide-nav #slide_index {
+	display:block;
+	margin-left: auto;
+	margin-right: auto;
+	float:none;
+	font-size: 22px;
 }
 
 #slide_index {
@@ -644,7 +660,7 @@ body {
 }
 
 .slide-active {
-	font-size:22px;
+	font-size:26px;
 	font-weight:bold;
 }
 
@@ -987,6 +1003,7 @@ body {
 	padding:30px 15px;
 	/*border-bottom: 1px dashed rgb(202, 202, 202);*/
 	float:left;
+	font-weight: bold;
 	border-bottom: 1px solid black;
 }
 

@@ -41,51 +41,68 @@
 
 
 #sign_up:hover {
-	background-color: #535CAB;
+	background-color: red;
+	color:white;
 	cursor:pointer;
+	
 }
 
 #sign_up {
-	background-color: red;
-	color:white;
+	background-color: white;
+	color:red;
 	font-size:18px;
-	border-top: 2px solid #FF8686;
-	border-bottom: 2px solid #FF8686;
-	border-left: 4px solid #C80000;
-	border-right: 4px solid #C80000;
+	border-top: 4px solid rgba(21, 2, 70, 0.56);
+	border-bottom: 4px solid rgba(21, 2, 70, 0.56);
+	border-left: 5px solid rgba(21, 2, 70, 1);
+	border-right: 5px solid rgba(21, 2, 70, 1);
 	float:right;
-	padding: 3px 5px;
+	padding: 5px 25px;
 	font-weight: bold;
+	box-shadow: #929292 2px 2px 8px;
+	-moz-box-shadow: #929292 2px 2px 8px;
+	-webkit-box-shadow: #929292 2px 2px 8px;
+}
+
+.submit-green input {
+ 	background-color: rgb(0, 134, 0);	
 }
 
 #sign_up_container {
 	position:fixed;
 	z-index:6;
 	width:30%;
-	height:55%;
-	top:30%;
+	min-width: 250px;
+	padding:20px;
 	left:35%;
-	background-color: white;
-	border: 3px solid #2C0E78;
+	height:400px;
+	top:10%;
+	background-color: rgb(111, 255, 111);
+	border: 3px solid rgb(0, 134, 0);
 	
 	color:black;
+}
+
+#sign_up_container input {
+		margin:10px 0 15px 0;
 }
 
 #signup_header {
 	width:100%;
 	height:50px;
-	background-color: #472894;
+	background-color: rgb(0, 134, 0);
 	color:white;
+	text-align: center;
 	
 }
 
 #signup_header h1 {
-	padding:5px;
+	padding:10px 0;
 	margin:0;
+	font-size: 40px;
 }
 
 .light-blue {
-	background-color: rgba(90,209,90,.9);
+	background-color: rgba(255, 31, 31, 1);
 }
 
 #mid_wrapper {
@@ -93,10 +110,10 @@
 	/*height:300px;*/
 	/*background-color: #CCB8FF;*/
 	/*background-color: rgba(90,209,90,.8);*/
-	background-color: rgba(90,209,90,.7);
+	background-color: rgba(255, 50, 50, 0.9);
 	/*background-color: rgba(1, 0, 69, 0.78);*/
 	/*background-color: #5935B6;*/
-	border-top: 8px solid rgba(90,209,90,.7);
+	border-top: 8px solid rgba(255, 31, 31, 1);
 	/*border-top: 8px solid #CCB8FF;*/
 	float:left;
 	/*margin: 0;*/
@@ -129,20 +146,28 @@
 	height: 0; 
 	border-left: 160px solid transparent;
 	border-right: 160px solid transparent;
-	border-top: 40px solid rgba(90,209,90,.7);
+	border-top: 40px solid rgba(255, 31, 31, 1);
 	margin:0 0 -50px -10px;
 }
 
 #bottom_wrapper {
 	width:100%;
 	height:400px;
-	background-color: rgba(21, 2, 70, 0.56);
+	background-color: rgba(0, 206, 16, 0.56);
 	float:left;
 }
 
+#signup {
+	display: block;
+	width:200px;
+	margin-left: auto;
+	margin-right: auto;
+	height:100%;
+}
 
 #signup input, #sign_in_inputs input  { 
 	/*padding: 5px;*/
+
 	border: solid 1px #E5E5E5;
 	outline: 0;
 	font: normal 13px/100% Verdana, Tahoma, sans-serif;
