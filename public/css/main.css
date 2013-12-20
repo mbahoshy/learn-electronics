@@ -661,7 +661,7 @@ body {
 .problem-nav {
 	width:960px;
 	float:left;
-	background-color: rgba(255, 0, 0, 0.77);
+	background-color: rgba(255, 0, 0, 0.64);
 	border: 1px solid #FF9390;
 	border-radius: 8px 8px 0 0;
 }
@@ -750,6 +750,10 @@ body {
 	float:left;
 	width:300px;
 	height:100%;
+}
+
+.answer-sub-list {
+	list-style: none;
 }
 
 .answer-sub-list li:hover {
