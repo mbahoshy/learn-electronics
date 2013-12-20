@@ -59,7 +59,7 @@ TRADE.ClassCollectionReport = Backbone.View.extend({
                 })
 
              
-                var averageattempts = (Math.floor(totalattempts * 100)/100)/totalquestions;
+                var averageattempts = (Math.floor((totalattempts / totalquestions) * 100)/100);
                 progress.averageattempts = averageattempts;
                 $(this.el).prepend(this.template(progress));
                 this.user = user;
@@ -96,7 +96,7 @@ TRADE.ClassCollectionReport = Backbone.View.extend({
                 })
 
                 
-                var averageattempts = (Math.floor(totalattempts * 100)/100)/totalquestions;
+                var averageattempts = (Math.floor((totalattempts / totalquestions) * 100)/100);
                 model.attributes.averageattempts = averageattempts;
                 model.attributes.problemscompleted = problemscompleted;
 

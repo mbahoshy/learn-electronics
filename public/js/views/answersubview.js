@@ -20,10 +20,15 @@ TRADE.AnswerSubView = Backbone.View.extend({
                 var problemnumber = TRADE.GameData.slideindex;
                 var slides = $('#slide_holder > .slide'); // get slide array
                 var slidesNumber = slides.length;
+                var attemptCounter;
+
+                attemptCounter = $('#attempt_counter').html();
+                attemptCounter ++;
+                $('#attempt_counter').html(attemptCounter);
 
                 if (TRADE.GameData.answer == this.model.attributes.answerid) {
                         unlock = true;
-                        
+                        $('#attempt_counter').html('0');
                         
                         console.log("Correct Answer!");
                         TRADE.GameData.slideindex ++;
@@ -38,17 +43,19 @@ TRADE.AnswerSubView = Backbone.View.extend({
                                 $("#level_container").html('');
                                 $("#slide_nav_" + TRADE.GameData.slideindex).addClass('unlocked');
                                 $('#answer_question').trigger('click');
-                                $('#shadow').fadeToggle();
-                                $('#correct').fadeToggle();
-
+                                // $('#shadow').fadeToggle();
+                                // $('#correct').fadeToggle();
+                                $('#answer_result').html('<h3 class="correct">Correct!</h3>');
+                                
                                 var template = $(slides[TRADE.GameData.slideindex]).html();
                                 
                                 $("#slide_container").html(_.template(template));
                         }
                 } else {
                         unlock = false;
-                        $('#shadow').fadeToggle();
-                        $('#incorrect').fadeToggle();
+                        // $('#shadow').fadeToggle();
+                        // $('#incorrect').fadeToggle();
+                        $('#answer_result').html('<h3 class="incorrect">Incorrect</h3>');
                 }
 
                 $.post('/problem/' + classid + '/' + problemname + '/' + problemid + '/' + level + '/' + problemnumber + '/' + unlock + '/' + slidesNumber, function (data) {

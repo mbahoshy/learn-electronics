@@ -20,11 +20,11 @@ TRADE.GameData = {
 };
 
 TRADE.FUNC = (function () {
-	this.slideChange = function () {
+	this.slideChange = function (chapterid, lessonid, that) {
 			var slides = $('#slide_holder > .slide'); // get slide array
 			var slidesNumber = (slides.length - 1); // get number of slides
-			var direction = $(this).data('direction'); // get the direction to move the slide
-			console.log('slide-number' + slidesNumber);
+			var direction = $(that).data('direction'); // get the direction to move the slide
+
 			if (direction === 'left' && TRADE.GameData.slideindex !== 0) {
 				$('.slide-active').removeClass('slide-active');
 				$('#level_container').html('');
@@ -34,15 +34,30 @@ TRADE.FUNC = (function () {
 				var template = $(slides[TRADE.GameData.slideindex]).html();
 				$("#slide_container").html(_.template(template));
 			}
+			
+			if (direction === 'right' && TRADE.GameData.slideindex === slidesNumber) {
+				
+                
+                TRADE.router.navigate('#', {trigger: true});
+			}
+
+
 			if (direction === 'right' && TRADE.GameData.slideindex !== slidesNumber) {
 				$('#level_container').html('');
 				$('.slide-active').removeClass('slide-active')
 				TRADE.GameData.slideindex ++;
+				if (TRADE.GameData.slideindex === slidesNumber) {
+					var date = new Date().getTime();
+					$.post('/user/' + chapterid + '/' + lessonid + '/' + date, function(data){
+	                    console.log('User updated successfully');
+	                });
+				}
 				$('#slide_nav_' + TRADE.GameData.slideindex).addClass('slide-active');
 				console.log('slide-index' + TRADE.GameData.slideindex);
 				var template = $(slides[TRADE.GameData.slideindex]).html();
 				$("#slide_container").html(_.template(template));
 			}
+			
 		}
 
 		this.slideIndexNav = function () {

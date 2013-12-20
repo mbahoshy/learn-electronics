@@ -87,20 +87,14 @@ TRADE.Router = Backbone.Router.extend({
                 
                 $("#slide_container").html(_.template(template));
   
-                    $('.slide-left').on('click', TRADE.FUNC.slideChange);
-                    $('.slide-right').on('click', TRADE.FUNC.slideChange);
+                    $('.slide-left').on('click', function () {
+                        TRADE.FUNC.slideChange(chapterid, lessonid, this);
+                    });
+                    $('.slide-right').on('click', function  () {
+                        TRADE.FUNC.slideChange(chapterid, lessonid, this);
+                    });
                     TRADE.FUNC.slideIndexNav();
                     $('#slide_nav_' + TRADE.GameData.slideindex).addClass('slide-active');
-                    $('#slide_container').on('click', ".finish", function () {
-                        var date = new Date().getTime();
-
-                        $.post('/user/' + chapterid + '/' + lessonid + '/' + date, function(data){
-                            console.log('User updated successfully');
-                        });
-                        
-                        TRADE.router.navigate('#', {trigger: true});
-                        
-                    });
                     
             });
         }
@@ -319,11 +313,6 @@ TRADE.Router = Backbone.Router.extend({
                         $('#answer_options').html('');
                         $('.bold').removeClass('bold');
                     });
-                });
-                $('#shadow').on('click', function () {
-                    $(this).fadeToggle();
-                    $('#correct').css('display', 'none');
-                    $('#incorrect').css('display', 'none');
                 });
             }
         }               
