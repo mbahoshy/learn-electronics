@@ -1,7 +1,7 @@
 TRADE.ChapterListView = Backbone.View.extend({
         tagName: 'div',
         className: 'classroom-title',
-        template: _.template("<h3><%= navname %></h3>"),
+        template: _.template("<h2><%= navname %></h2>"),
         events: {
                 "click .chapter-list": "chapterClick"
 

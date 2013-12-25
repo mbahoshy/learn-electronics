@@ -367,10 +367,11 @@ body {
 
 }
 
-.classroom-title h3 {
+.classroom-title h2 {
 	font-size: 30px;
 	float:left;
 	margin:15px 0 0 0;
+	color:#373737;
 }
 
 #lesson_container {
@@ -432,6 +433,7 @@ body {
 	padding:10px;
 	color:black;
 	box-shadow: 4px 4px 5px #CACACA;
+	background-color: white;
 }
 
 .lesson-list h5 {
@@ -456,11 +458,11 @@ body {
 }
 
 .green .lesson-list, .green .problem-list {
-	background-color: rgba(90,209,90,.8);
+	border: 1px solid rgba(90,209,90,1);
 }
 
 .green .chapter-title {
-	border-bottom: 1px solid rgba(90,209,90,.3);
+	border-bottom: 4px solid rgba(90,209,90,.8);
 }
 
 .yellow {
@@ -468,11 +470,11 @@ body {
 }
 
 .yellow .lesson-list, .yellow .problem-list {
-	background-color: rgba(255, 173, 0, .8);
+	border: 1px solid rgba(255, 173, 0, 1);
 }
 
 .yellow .chapter-title {
-	border-bottom: 1px solid rgba(255, 173, 0, .3);
+	border-bottom: 4px solid rgba(255, 173, 0, .8);
 }
 
 .red {
@@ -480,11 +482,11 @@ body {
 }
 
 .red .lesson-list, .red .problem-list {
-	background-color: rgba(255, 10, 10, .8);
+	border: 1px solid rgba(255, 10, 10, 1);
 }
 
 .red .chapter-title {
-	border-bottom: 1px solid rgba(255, 10, 10, .3);
+	border-bottom: 4px solid rgba(255, 10, 10, .8);
 }
 
 .check {
