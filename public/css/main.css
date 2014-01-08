@@ -50,7 +50,7 @@ body {
 #header h1 {
 	color:#9f0909;
 	margin:0px;
-	font-size: 30px;
+	font-size: 36px;
 	padding-top:20px;
 	font-family: 'title';
 	font-weight: normal;
@@ -59,12 +59,10 @@ body {
 
 #header a {
 	text-decoration: none;
-	color:#FFFFFF;
 }
 
 #header a:visited {
 	text-decoration: none;
-	color:#FFFFFF;
 }
 
 #header h2 {
@@ -74,6 +72,29 @@ body {
 	font-family: 'titleh2';
 	display:inline;
 }
+
+.header-nav {
+	display:inline;
+	float:right;
+
+	margin-top: 25px;
+
+}
+
+.header-nav a{
+	font-weight: bold;
+	padding: 10px 8px;
+	margin-left: 20px;
+	font-size:17px;
+	color: #000;
+}
+
+.header-nav a:hover{
+	background-color: red;
+}
+
+
+
 #header_wrapper .relative {
 	height:60px;
 }
@@ -458,7 +479,7 @@ body {
 }
 
 .green {
-	color:rgb(90,209,90);
+	color:#007223 !important;
 }
 
 .green .lesson-list, .green .problem-list {
@@ -482,7 +503,7 @@ body {
 }
 
 .red {
-	color:rgb(255, 10, 10);
+	color:#d21515 !important;
 }
 
 .red .lesson-list, .red .problem-list {
