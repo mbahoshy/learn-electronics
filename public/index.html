@@ -42,21 +42,22 @@
 				<a class='green' href="">Learn More</a>
 				<a href="">For Business</a>
 				<a class='red' href="">Sign Up!</a>
-				<a href="">Sign In</a>
+				<a id='sign_in'>Sign In</a>
+				<div class='clear'></div>
+				<div id='sign_in_form' class='fright hidden'>
+					<form action='/login' method='post'>
+				        <label>Email:</label>
+				        <input type="text" name="email" value="mbahoshy@gmail.com" />   	
+				        <label>Password:</label>
+				        <input type="password" name="password" value="ross"/>
+				        <input id='submit_button' type='submit' value='Go'/>
+				    </form>
+		    	</div>
 			</div>
-				<form id='sign_in_form' action="/login" method="post">
-						<div id='sign_in'><input id='submit_button' type='submit' value='Sign In'/></div>
-						<div id='sign_in_inputs' class='fright hidden'>
-					        <label>Email:</label>
-					        <input type="text" name="email" value="mbahoshy@gmail.com" />   	
-					        <label>Password:</label>
-					        <input type="password" name="password" value="ross"/>
-				    	</div>
-
-				        <br>
-						
-				</form>
-			</div>
+		<!-- 		<form id='sign_in_form' action="/login" method="post">
+						<div id='sign_in'><input id='submit_button' type='submit' value='Sign In'/></div>					
+				</form> -->
+		</div>
 			<div id='sign_up_form' class='hidden'>
 				<div id='shadow'></div>
 				<div id='sign_up_container'>

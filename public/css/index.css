@@ -1,13 +1,12 @@
-#sign_in {
+/*#sign_in {
 	color:white;
 	font-size:14px;
 	border-left: 1px solid white;
 	border-right: 1px solid white;
 	float:right;
-	/*padding: 0 5px;*/
 	margin:0;
-	/*height:30px;*/
 }
+*/
 #sign_in input {
 	width: 70px;
 	height:30px;
@@ -25,7 +24,6 @@
 }
 
 #sign_in_inputs {
-	margin-right:15px;
 	color:white;
 }
 
@@ -34,9 +32,8 @@
 }
 
 #sign_in_form {
-	float:right;
-	margin-top:15px;
-	padding:0;
+	font-size: 13px;
+	
 }
 
 
