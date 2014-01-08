@@ -134,10 +134,16 @@
 }
 
 .tagline {
-	font-size: 22px;
+	font-size: 30px;
+	width:960px;
 	color:#150246;
 	padding:0;
-	margin:0;
+	margin:10px 0 10px 0;
+	font-family: Georgia;
+	text-align: center;
+
+	font-weight: normal;
+
 }
 
 .arrow-down {

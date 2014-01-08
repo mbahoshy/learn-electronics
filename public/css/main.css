@@ -3,7 +3,7 @@ body {
 	height:100%;
 	margin:0px;
 	font-family: Arial, Helvetica, Sans-serif;
-	background-color: #F7F7F7;
+	background-color: #efeee3;
 }
 
 @font-face {
@@ -40,12 +40,15 @@ body {
 
 #header {
 	width:100%;
-	height:60px;
-	background-color: rgba(21, 2, 70, 0.56);
+	height:80px;
+	background-color: #FFF;
+	border-bottom:1px solid #989abc;
+	/*background-color: rgba(21, 2, 70, 0.56);*/
 	/*background-color: #2C0E78;*/
 }
 
 #header h1 {
+	color:#9f0909;
 	margin:0px;
 	font-size: 30px;
 	padding-top:20px;

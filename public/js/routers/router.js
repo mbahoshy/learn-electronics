@@ -12,7 +12,7 @@ TRADE.Router = Backbone.Router.extend({
     classroomFunction: function () {
         $('#body_container').html(''); //clear html
         $('#lesson_container').html(''); //clear html
-
+        console.log('classroom function called');
 
         $.get("/getClasses", function(data, status){
             var classCollection1 = new TRADE.ClassCollection();
