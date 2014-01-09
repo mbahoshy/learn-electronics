@@ -3,6 +3,7 @@ TRADE.ClassModel = Backbone.Model.extend({
 		id: "",
 		name: "",
 		snippet: "",
+		level:"",
 		chapters:""
 	}
 });

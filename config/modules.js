@@ -18,7 +18,7 @@ db.once('open', function callback () {
 });
 
 function getClasses (req, res) {
-	Nav.find({}, 'name snippet active', function(err, documents) {
+	Nav.find({}, 'name snippet active level', function(err, documents) {
 		res.json(documents);
 	});
 }
