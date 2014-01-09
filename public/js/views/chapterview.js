@@ -4,9 +4,7 @@ TRADE.ChapterView = Backbone.View.extend({
         template: _.template("<div class='chapter-title' ><h4><%= snippet %></h4><h3><%= chaptertitle %></h3></div>"),
         render : function (user) {
                 this.user = user;
-                
-                console.dir(this.model);
-                console.dir(this.$el);
+
                 this.$el.addClass(this.model.attributes.color);
 
                 this.$el.html( this.template(this.model.toJSON()) );

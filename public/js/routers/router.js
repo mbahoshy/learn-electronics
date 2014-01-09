@@ -1,7 +1,7 @@
 TRADE.Router = Backbone.Router.extend({
     routes: {
         "": "displayListOfClassrooms", //displays classes
-        "class/:classid": "classFunction", //displays chapters
+        "class/:classid": "displayChapter", //displays chapters
         // "chapter/:chapterid": "chapterFunction", //displays lessons
         "slides/:chapterid/:lessonid": "slideFunction",
         "problems/:level": "problemListFunction",
@@ -29,7 +29,7 @@ TRADE.Router = Backbone.Router.extend({
 
 
 
-    classFunction: function (classid) {
+    displayChapter: function (classid) {
         $('#body_container').html(''); //clear html
         $('#lesson_container').html(''); //clear html
 
