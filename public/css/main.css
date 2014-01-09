@@ -439,6 +439,28 @@ body {
 	color:black;
 }
 
+.chapter-header {
+	width:960px;
+	float:left;
+}
+
+.chapter-subnav {
+	width:960px;
+	height:20px;
+	background-color: blue;
+	float:left;
+}
+
+.chapter-subnav span {
+	float:right;
+	display:inline;
+}
+
+#chapter_description {
+	float:left;
+}
+
+
 #lesson_list_container {
 	border: 1px solid #9094FF;
 	float:left;

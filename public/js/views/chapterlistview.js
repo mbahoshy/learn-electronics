@@ -1,7 +1,8 @@
 TRADE.ChapterListView = Backbone.View.extend({
         tagName: 'div',
         className: 'classroom-title',
-        template: _.template("<h2><%= navname %></h2>"),
+        template: _.template("<div class='fleft'><h2><%= navname %></h2></div>"),
+        template2:_.template("<%= name %> <%= snippet %>"),
         events: {
                 "click .chapter-list": "chapterClick"
 
@@ -12,7 +13,7 @@ TRADE.ChapterListView = Backbone.View.extend({
         },
         initialize: function () {
                 var ChapterNavView1 = new TRADE.ChapterNavView({collection: this.collection});
-                this.$el.append(ChapterNavView1.render());
+                this.$el.append(ChapterNavView1.render(0));
 
         },
         render : function (user, navname) {
@@ -28,19 +29,38 @@ TRADE.ChapterListView = Backbone.View.extend({
 
 TRADE.ChapterNavView = Backbone.View.extend({
         tagName: 'div',
-        className: 'chapter-subnav',
-        template: _.template("<a><%= chaptertitle %></a>"),
+        className: 'chapter-header',
+        template0: _.template ("<div id='chapter_description'><%= name %> <%= snippet %><div>"),
+        template: _.template("<div class='chapter-subnav'><span class='chapterlink'><%= chaptertitle %></span></div>"),
         initialize:function () {
-                console.dir(this.collection);
+                console.dir(this);
+                this.listenTo(this.collection, 'reset', this.render);
         },
-        render: function () {
+        events: {
+                "click .chapterlink": "chapterClick"
+
+        },
+        chapterClick: function () {
+                alert("Hello");
+                this.updateChapterInfo(1);
+        },
+        updateChapterInfo: function (modelnumber) {
+                console.log('dicks');
+                $('#chapter_description').remove();
+                this.$el.prepend(this.template0(this.collection.models[modelnumber].attributes));
+
+        },
+        render: function (modelnumber) {
                 this.collection.forEach(this.buildNav, this);
-                // this.$el.append(this.template);
-                 return (this.$el);
+                console.dir(this.collection.models);
+                this.$el.prepend(this.template0(this.collection.models[modelnumber].attributes));
+                return (this.$el);
         },
         buildNav: function (model) {
                 console.dir(model);
+                var x = ("<div")
                 this.$el.append(this.template(model.attributes));
+                
         }
 
 })
