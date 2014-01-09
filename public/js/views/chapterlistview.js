@@ -1,10 +1,9 @@
 TRADE.ChapterListView = Backbone.View.extend({
         tagName: 'div',
-        className: 'classroom-title',
-        template: _.template("<div class='fleft'><h2><%= navname %></h2></div>"),
-        template2:_.template("<%= name %> <%= snippet %>"),
+        className: 'chapter-header',
+        template: _.template ("<h2><%= navname %></h2><div id='chapter_description'><%= attributes.name %> <%= attributes.snippet %><div>"),
         events: {
-                "click .chapter-list": "chapterClick"
+                "click .chapterlink": "chapterClick"
 
         },
         chapterClick: function () {
@@ -12,14 +11,34 @@ TRADE.ChapterListView = Backbone.View.extend({
 
         },
         initialize: function () {
-                var ChapterNavView1 = new TRADE.ChapterNavView({collection: this.collection});
-                this.$el.append(ChapterNavView1.render(0));
+                
 
         },
         render : function (user, navname) {
+                var attributes;
                 this.user = user;
-                this.collection.forEach(this.addOne, this);
-                this.$el.prepend( this.template({navname: navname}));
+                attributes = this.collection.models[0].attributes;
+
+                
+                this.$el.prepend(this.template({attributes: attributes, navname: navname}));
+        
+                var ChapterNavView1 = new TRADE.ChapterNavView({collection: this.collection});
+                this.$el.append(ChapterNavView1.render(0));
+                this.renderLessons(0);
+                
+                // this.collection.forEach(this.addOne, this);
+
+        },
+        renderLessons : function (modelnumber) {
+                var lessons = this.collection.models[modelnumber].attributes.lessons;
+                console.dir(lessons);
+                // var lessonview1 = TRADE.LessonCardView(lessons[key]);
+                var LessonView1 = new TRADE.LessonView({ model: lessons });
+                this.$el.append(LessonView1.render(this.user).el);
+                
+        },
+        renderProblems :function () {
+
         },
         addOne: function (model) {
                 var ChapterView1 = new TRADE.ChapterView({ model: model });
@@ -29,17 +48,16 @@ TRADE.ChapterListView = Backbone.View.extend({
 
 TRADE.ChapterNavView = Backbone.View.extend({
         tagName: 'div',
-        className: 'chapter-header',
-        template0: _.template ("<div id='chapter_description'><%= name %> <%= snippet %><div>"),
-        template: _.template("<div class='chapter-subnav'><span class='chapterlink'><%= chaptertitle %></span></div>"),
+        className: 'chapter-subnav',
+        template: _.template("<span class='chapterlink'><%= chaptertitle %></span>"),
         initialize:function () {
                 console.dir(this);
                 this.listenTo(this.collection, 'reset', this.render);
         },
-        events: {
-                "click .chapterlink": "chapterClick"
+        // events: {
+        //         "click .chapterlink": "chapterClick"
 
-        },
+        // },
         chapterClick: function () {
                 alert("Hello");
                 this.updateChapterInfo(1);
@@ -53,14 +71,32 @@ TRADE.ChapterNavView = Backbone.View.extend({
         render: function (modelnumber) {
                 this.collection.forEach(this.buildNav, this);
                 console.dir(this.collection.models);
-                this.$el.prepend(this.template0(this.collection.models[modelnumber].attributes));
+                
                 return (this.$el);
         },
         buildNav: function (model) {
                 console.dir(model);
-                var x = ("<div")
+                
                 this.$el.append(this.template(model.attributes));
+                
                 
         }
 
-})
+});
+
+TRADE.LessonCardView = Backbone.View.extend({
+        tagName: 'div',
+        className: 'lesson-container',
+        template: _.template("<a class='no-decoration' href='#slides/<%= chapterid %>/<%= lessonid %>'><div class='lesson-list'><h5><%= name %></h5><h6><%= snippet %></h6></div></a>"),
+        render : function () {
+                // var completed = _.findWhere(user.lessonProgress, {lessonid: this.model.lessonid});
+                // this.$el.html( this.template(this.model));
+                // if (completed) {
+                //         $(this.el).children().children().prepend('<img class="check" src="imgs/lessoncheck.png"/>');
+                // }
+                // this.$el.html( this.template(this.model));
+                // return (this.$el);
+                console.dir(model);
+                
+        }        
+});
