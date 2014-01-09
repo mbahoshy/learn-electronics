@@ -54,8 +54,11 @@ TRADE.Router = Backbone.Router.extend({
             if (wait === 2) {
                 var ChapterCollection1 = new TRADE.ChapterCollection ();
                 ChapterCollection1.reset(nav.chapters);
+                ChapterCollection1.user = user;
+                ChapterCollection1.navname = nav.name;
                 var ChapterListView1 = new TRADE.ChapterListView ({collection: ChapterCollection1});
-                ChapterListView1.render(user, nav.name);
+                ChapterListView1.render(0);
+                // ChapterListView1.render(user, nav.name);
 
                 //append to dom
                 $('#body_container').prepend(ChapterListView1.$el);

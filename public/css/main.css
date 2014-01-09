@@ -450,14 +450,16 @@ body {
 	background-color: white;
 	border-top: 1px solid blue;
 	border-bottom: 1px solid blue;
+	text-align: right;
 	float:left;
 }
 
 .chapter-subnav span {
-	float:right;
 	display:inline;
 	margin:0 0  0 15px;
 	padding:5px 8px;
+	float:right;
+
 }
 
 .chapter-subnav span:hover {
