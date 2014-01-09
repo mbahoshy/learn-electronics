@@ -64,7 +64,7 @@ var gamejson = mongoose.model('gamejson',
 
 function getUser (req, res){
 	var tmpuser = {};
-	tmpuser = _.omit(req.user, 'pword', 'email', 'hash', 'salt');
+	tmpuser = _.omit(req.user, ['pword', 'email', 'hash', 'salt']);
 	res.json(req.user);
 	
 }
@@ -107,7 +107,8 @@ function updateLessonProgress (req, res) {
 
 function updateProblemProgress (req, res) {
 	var problemname = req.param("problemname"),
-		classid = req.param("classid"),
+		classid = req.session.classid,
+		chapterid = req.param("chapterid"),
 		problemid = req.param("problemid"),
 		level = req.param("level"),
 		problemnumber = req.param("problemnumber"),

@@ -5,7 +5,7 @@ TRADE.Router = Backbone.Router.extend({
         // "chapter/:chapterid": "chapterFunction", //displays lessons
         "slides/:chapterid/:lessonid": "slideFunction",
         "problems/:level": "problemListFunction",
-        "problemslides/:classid/:level/:problemname/:problemid": "problemSlideFunction",
+        "problemslides/:chapterid/:level/:problemname/:problemid": "problemSlideFunction",
         "report" : "reportFunction"
     },
 
@@ -239,7 +239,7 @@ TRADE.Router = Backbone.Router.extend({
 
     },
 
-    problemSlideFunction: function (classid, level, problemname, problemid) {
+    problemSlideFunction: function (chapterid, level, problemname, problemid) {
 
         var allSlides,
             wait = 0;
@@ -260,7 +260,7 @@ TRADE.Router = Backbone.Router.extend({
             $('#answer_container').data('level', level);
             $('#answer_container').data('problemname', problemname);
             $('#answer_container').data('problemid', problemid);
-            $('#answer_container').data('classroomid', classid);
+            $('#answer_container').data('chapterid', chapterid);
             wait ++;
             renderProblemSlide();
             

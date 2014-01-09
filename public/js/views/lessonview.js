@@ -1,7 +1,7 @@
 TRADE.LessonView = Backbone.View.extend({
         tagName: 'div',
         className: 'lesson-container',
-        template: _.template("<a class='no-decoration' href='#slides/<%= chapterid %>/<%= lessonid %>'><div class='lesson-list'><h5><%= name %></h5><h6><%= snippet %></h6></div></a>"),
+        template: _.template("<a class='no-decoration' href='#slides/<%= chapterid %>/<%= model.lessonid %>'><div class='lesson-list'><h5><%= model.name %></h5><h6><%= model.snippet %></h6></div></a>"),
         events: {
                 "mouseover": "lessonMouseover",
                 "mouseout": "lessonMouseout"
@@ -15,8 +15,10 @@ TRADE.LessonView = Backbone.View.extend({
                 $(this.el).children().children().removeClass('card-hover');
 
         },
-        render : function (user) {
-                console.dir(this.model);
+        render : function (user, chapterid) {
+                console.dir(this);
+                this.chapterid = chapterid;
+                this.user = user;
                 this.model.forEach(this.renderCard, this);
                 // var completed = _.findWhere(user.lessonProgress, {lessonid: this.model.lessonid});
                 // this.$el.html( this.template(this.model));
@@ -28,6 +30,6 @@ TRADE.LessonView = Backbone.View.extend({
         },
         renderCard : function (model) {
                 console.dir(model);
-                this.$el.append( this.template(model));
+                this.$el.append( this.template({model: model, chapterid: this.chapterid}));
         }
 });
