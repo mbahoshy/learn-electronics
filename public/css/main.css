@@ -446,14 +446,22 @@ body {
 
 .chapter-subnav {
 	width:960px;
-	height:20px;
-	background-color: blue;
+	height:30px;
+	background-color: white;
+	border-top: 1px solid blue;
+	border-bottom: 1px solid blue;
 	float:left;
 }
 
 .chapter-subnav span {
 	float:right;
 	display:inline;
+	margin:0 0  0 15px;
+	padding:5px 8px;
+}
+
+.chapter-subnav span:hover {
+	background-color: red;
 }
 
 #chapter_description {
@@ -467,19 +475,19 @@ body {
 }
 
 .lesson-container {
-	width:240px;
+	width:320px;
 	float:left;
 	padding:0;
-	margin:10px 0 0 0;
+	margin:0;
 }
 
 .lesson-list {
-	width:190px;
+
 	height:190px;
-	margin:5px 15px;
-	padding:10px;
+	margin:15px;
+	padding:25px 15px;
 	color:black;
-	box-shadow: 4px 4px 5px #CACACA;
+	box-shadow: 3px 3px 0 #CACACA;
 	background-color: white;
 }
 
@@ -494,6 +502,31 @@ body {
 	font-weight: normal;
 	margin:8px 0 0 0;
 }
+
+.problem-container {
+	width:320px;
+	float:left;
+	display:inline;
+	padding:0;
+	margin:0;
+}
+.problem-list {
+	height:190px;
+	margin:15px;
+	padding:25px 15px;
+	color:black;
+	box-shadow: 3px 3px 0 #CACACA;
+	background-color: white;
+}
+
+.problem-list h5 {
+	font-weight: bold;
+	font-style: italic;
+	font-size:16px;
+	margin:0;
+	padding:0;
+}
+
 
 .lesson-img {
 	float:left;
@@ -571,13 +604,6 @@ body {
 
 }
 
-.problem-container {
-	width:240px;
-	float:left;
-	display:inline;
-	padding:0;
-	margin:0;
-}
 
 .problem-container a {
 	text-decoration: none;
@@ -587,24 +613,6 @@ body {
 	width:720px;
 	float:left;
 }
-
-.problem-list {
-	width:190px;
-	height:140px;
-	margin:10px 15px;
-	padding:10px;
-	color:black;
-	box-shadow: 4px 4px 5px #CACACA;
-}
-
-.problem-list h5 {
-	font-weight: bold;
-	font-style: italic;
-	font-size:16px;
-	margin:0;
-	padding:0;
-}
-
 
 #problem_subnav {
 	width:240px;
