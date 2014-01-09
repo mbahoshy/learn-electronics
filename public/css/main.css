@@ -916,25 +916,56 @@ body {
 
 /* ------------- class list --------------------- */
 
-.class-list {
-	width:480px;
-
+.classroom-card {
+	max-width:450px;
+	min-width:250px;
+	height:250px;
+	margin:20px 0 20px 20px;
+	background-color: #FFFFFF;
+	border: 1px solid #58595b;
 	float:left;
-	/*background-color: red;*/
 }
 
-.class-item {
-	margin:20px 20px 0 20px;
-	width:400px;
-	height:275px;
-	padding:20px;
-	background-color: rgba(0, 0, 255, 0.15);
+.classroom-card h3 {
+	text-transform:uppercase;
+	font-size: 17px;
 	text-align: center;
+	/*font-weight: bold;*/
+	color:white;
+	width:450px;
+	background-color: #58595b;
+	padding:8px 0;
+	margin:0;
 }
 
-.class-item h2 {
-	margin:0;
-	padding:0;
+.classroom-card p {
+	padding:0 15px;
+	line-height: 26px;
+}
+
+.classroom-card label {
+	font-size: 13px;
+}
+
+.classroom-card-list {
+	float:left;
+	border-left:16px solid #989abc;
+	height:100%;
+}
+
+.classroom-card-list > h2{
+	margin:20px 0 0 20px;
+	font-size: 30px;
+	font-family: Georgia;
+	font-weight: normal;
+}
+
+.classroom-card-list > h3 {
+	margin:20px;
+	padding-left: 20px;
+	font-size: 23px;
+	font-family: Georgia;
+	font-weight: normal;
 }
 
 /* --------------------- SUBNAV --------------------- */

@@ -1,8 +1,10 @@
-TRADE.ClassCollectionView = Backbone.View.extend({
+TRADE.ClassroomCardList = Backbone.View.extend({
         tagName: 'div',
-        className: 'fleft',
+        className: 'classroom-card-list',
+        template:_.template('<h2>Welcome back username</h2><h3>Choose a class to get started.</h3>'),
  
         render : function () {
+                this.$el.html( this.template);
                 this.collection.forEach(this.addOne, this);
         },
 

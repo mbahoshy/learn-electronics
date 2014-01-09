@@ -11,19 +11,19 @@ TRADE.ClassTitleView = Backbone.View.extend({
 
 TRADE.ClassView = Backbone.View.extend({
         tagName: 'div',
-        className: 'class-list',
-        template: _.template("<div class='class-item'><h3><%= name %></h3><p><%= snippet %></p><p><b>Topics Covered:</b></p></div>"),
+        className: 'classroom-card',
+        template: _.template("<h3><%= name %></h3><p><label>LEVEL:</label> </p><p><label>DESCRIPTION:</label> <%= snippet %></p><p><b>Topics Covered:</b></p>"),
         events: {
                 "mouseover": "chapterMouseover",
                 "mouseout": "chapterMouseout",
                 "click": "tester"
         },
         chapterMouseover: function () {
-                $(this.el).children().addClass('card-hover');
+                $(this.el).addClass('card-hover');
         },
 
         chapterMouseout: function () {
-                $(this.el).children().removeClass('card-hover');
+                $(this.el).removeClass('card-hover');
         },
         tester: function () {
                 console.dir(this.model.toJSON()._id);

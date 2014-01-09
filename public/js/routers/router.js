@@ -1,6 +1,6 @@
 TRADE.Router = Backbone.Router.extend({
     routes: {
-        "": "classroomFunction", //displays classes
+        "": "displayListOfClassrooms", //displays classes
         "class/:classid": "classFunction", //displays chapters
         // "chapter/:chapterid": "chapterFunction", //displays lessons
         "slides/:chapterid/:lessonid": "slideFunction",
@@ -9,19 +9,25 @@ TRADE.Router = Backbone.Router.extend({
         "report" : "reportFunction"
     },
 
-    classroomFunction: function () {
+
+
+
+    displayListOfClassrooms: function () {
         $('#body_container').html(''); //clear html
         $('#lesson_container').html(''); //clear html
-        console.log('classroom function called');
 
-        $.get("/getClasses", function(data, status){
+        $.get("/getClasses", function(data, status){ 
             var classCollection1 = new TRADE.ClassCollection();
             classCollection1.reset(data);
-            var classCollectionView1 = new TRADE.ClassCollectionView ({collection: classCollection1});
+            var classCollectionView1 = new TRADE.ClassroomCardList ({collection: classCollection1});
             classCollectionView1.render();
             $('#body_container').append(classCollectionView1.$el);
         });
     },
+
+
+
+
 
     classFunction: function (classid) {
         $('#body_container').html(''); //clear html
