@@ -444,10 +444,34 @@ body {
 	float:left;
 }
 
+.chapter-header h2 {
+	font-size: 40px;
+	float:left;
+	padding: 35px 0 0 0;
+	margin:0;
+}
+
+.chapter-header h3 {
+	font-size: 17px;
+	float:left;
+	font-family:Georgia;
+	padding:25px 0 40px 25px;
+	margin:0;
+}
+
+.chapter-header h4 {
+	margin:0;
+	padding:40px 0 0 0;
+	font-size: 17px;
+	float:right;
+	font-family:Georgia;
+	font-style: italic;
+}
+
 .chapter-subnav {
 	width:960px;
 	height:30px;
-	background-color: white;
+	background-color: #f5f4ed;
 	border-top: 1px solid blue;
 	border-bottom: 1px solid blue;
 	text-align: right;
@@ -459,6 +483,8 @@ body {
 	margin:0 0  0 15px;
 	padding:5px 8px;
 	float:right;
+	color:#5366ab;
+	font-weight: bold;
 
 }
 
@@ -466,14 +492,28 @@ body {
 	background-color: red;
 }
 
-#chapter_description {
-	float:left;
-}
-
 
 #lesson_list_container {
 	border: 1px solid #9094FF;
 	float:left;
+}
+
+.test-container {
+	width:320px;
+	float:left;
+	padding:0;
+	margin:0;
+}
+
+.test-list {
+
+	height:100px;
+	margin:20px;
+	padding:25px 15px;
+	color:black;
+	box-shadow: 4px 4px 0 #CACACA;
+	background-color: white;
+	border-radius: 10px;
 }
 
 .lesson-container {
@@ -485,12 +525,13 @@ body {
 
 .lesson-list {
 
-	height:190px;
-	margin:15px;
+	height:100px;
+	margin:20px;
 	padding:25px 15px;
 	color:black;
-	box-shadow: 3px 3px 0 #CACACA;
+	box-shadow: 4px 4px 0 #CACACA;
 	background-color: white;
+	border-radius: 10px;
 }
 
 .lesson-list h5 {
@@ -513,12 +554,13 @@ body {
 	margin:0;
 }
 .problem-list {
-	height:190px;
-	margin:15px;
+	height:100px;
+	margin:20px;
 	padding:25px 15px;
 	color:black;
-	box-shadow: 3px 3px 0 #CACACA;
+	box-shadow: 4px 4px 0 #CACACA;
 	background-color: white;
+	border-radius: 10px;
 }
 
 .problem-list h5 {
