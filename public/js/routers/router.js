@@ -14,7 +14,6 @@ TRADE.Router = Backbone.Router.extend({
 
     displayListOfClassrooms: function () {
         $('#body_container').html(''); //clear html
-        $('#lesson_container').html(''); //clear html
 
         $.get("/getClasses", function(data, status){ 
             var classCollection1 = new TRADE.ClassCollection();
@@ -27,7 +26,6 @@ TRADE.Router = Backbone.Router.extend({
 
     displayChapter: function (classid) {
         $('#body_container').html(''); //clear html
-        $('#lesson_container').html(''); //clear html
 
         var user,
             nav,
@@ -65,7 +63,6 @@ TRADE.Router = Backbone.Router.extend({
 
         //clear html
         $('#body_container').html('');
-        $('#lesson_container').html('');
 
         var template,
             slides,
@@ -73,13 +70,14 @@ TRADE.Router = Backbone.Router.extend({
 
         $.get('/slideTemplate/lesson', function(data, status) {
             var template = $(data).html();
-            $("#lesson_container").append(_.template(template));
+            console.dir(template);
+            $("#body_container").append(_.template(template));
             wait ++;
             loadSlides();
         });
 
         $.get('/slides/' + lessonid, function(data, status){
-            $('#lesson_container').append('<div class="hidden">' + data + '</div>');
+            $('#body_container').append('<div class="hidden">' + data + '</div>');
             wait ++;
             loadSlides();
         });
@@ -145,21 +143,25 @@ TRADE.Router = Backbone.Router.extend({
 
         $.get("/user", function(data, status){
             TRADE.UserData = data;
+            wait ++;
+            renderProblemSlide();
         });
          
 
         //clear html
         $('#body_container').html('');
-        $('#lesson_container').html('');
 
         $.get('/slideTemplate/problem', function(data, status) {
             template = $(data).html();
-            $("#lesson_container").append(_.template(template));
+            $("#body_container").append(_.template(template));
             //save data about problem, so it can be posted later in answersubview
             $('#answer_container').data('level', level);
             $('#answer_container').data('problemname', problemname);
             $('#answer_container').data('problemid', problemid);
             $('#answer_container').data('chapterid', chapterid);
+
+            
+
             wait ++;
             renderProblemSlide();
             
@@ -173,30 +175,36 @@ TRADE.Router = Backbone.Router.extend({
 
         //loads outer slide template after json is complete
         function renderProblemSlide () {
-            if (wait === 2) {
-                $('#lesson_container').append('<div class="hidden">' + allSlides + '</div>');
+            if (wait === 3) {
+                console.log('function called');
+                var problemTemplate;
+                $('#body_container').append('<div class="hidden">' + allSlides + '</div>');
                 var slides = $('#slide_holder > .slide');
                 TRADE.FUNC.problemIndexNav();
                 var currentProblem = _.findWhere(TRADE.UserData.problemProgress, {problemid: problemid});
                 if (currentProblem) {
                     var unlockedlength = currentProblem.unlocked.length;
+                    var maxlength = currentProblem.numberOfQuestions;
                     for (var i = 0; i <= unlockedlength; i++) {
                         $("#slide_nav_" + i).addClass('unlocked');
                         if(i === unlockedlength) {
                             $("#slide_nav_" + i).addClass('problem-nav-active');
-                            var problemTemplate = $(slides[i]).html();
+                           
+                            problemTemplate = $(slides[i]).html();
                             TRADE.GameData.slideindex = i; //keeps track of current slide
+                        }
+                        if (i == maxlength) {
+                            problemTemplate = $(slides[(maxlength - 1)]).html();
                         }
                         // $("#slide_nav_0").addClass('problem-nav-active');
                     }
                 } else {
                     $("#slide_nav_" + 0).addClass('problem-nav-active');
-                    var problemTemplate = $(slides[0]).html();
+                    problemTemplate = $(slides[0]).html();
                     TRADE.GameData.slideindex = 0; //keeps track of current slide
-                }
+                }            
 
-                
-
+                console.dir(problemTemplate);
                 $("#slide_container").html(_.template(problemTemplate));
 
                 

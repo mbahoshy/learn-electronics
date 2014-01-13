@@ -398,12 +398,6 @@ body {
 	color:#373737;
 }
 
-#lesson_container {
-	float:left;
-	height:100%;
-	margin-top:30px;
-}
-
 .chapter-container {
 	width:960px;
 	height:100%;
@@ -727,7 +721,10 @@ body {
 	float: left;
 	width:960px;
 	border: 1px solid #bebebe;
-	background-color: #FFF;
+/*	background-color: #FFF;
+	background-color: #FBFFDB;
+*/	background-color: #FCFFE8;
+	margin-top: 30px;
 }
 
 .slide-left {
@@ -750,21 +747,18 @@ body {
 	float:right;
 }
 
-.slide-nav #slide_index {
+.slide-right:hover {
+	background-color: #41A3FD;
+}
+
+#slide_index {
 	display:block;
 	margin-left: auto;
 	margin-right: auto;
 	float:none;
-}
-
-#slide_index {
-
-	font-size: 17px;
 	text-align:center;
-	padding:10px 0;
-	float:right;
-	margin:0 60px;
 	color:#bebebe;
+	padding:10px 0 0 0;
 }
 
 #slide_index span {
@@ -780,37 +774,59 @@ body {
 #slide_wrapper {
 	border-top:0;
 	float:left;
+	width:960px;
+}
+
+#slide_container {
+	padding:25px 50px;
+}
+
+#level_container {
+	height:100%;
 	padding:15px;
-	width:930px;
+}
+
+.half {
+	width:400px;
+}
+
+#slide_container p {
+	line-height: 175%;
+	font-size: 17px;
+
 }
 
 .problem-nav {
 	width:960px;
 	float:left;
-	background-color: rgba(255, 0, 0, 0.64);
-	border: 1px solid #FF9390;
-	border-radius: 8px 8px 0 0;
+	border-bottom: 1px solid #417ffd;
 }
 
-.problem-wrapper{
+.problem-nav #slide_index {
+	float:right;
+}
+
+/*.problem-wrapper{
 	border: 1px solid #FF9390 !important;
 }
-
+*/
 .problem-index {
-	display:inline-block;
-	padding:5px 8px;
-	width:30px;
-	border-radius: 8px;
-	margin:0 5px;
+/*	display:inline-block;*/
+	padding:8px 20px;
 	text-align: center;
-	font-size: 16px;
-	color:red;
-	border: 1px solid red;
-	background-color: #A7A7A7;
+	font-size: 23px;
+	color:#417ffd;
+	border-radius: 20px;
+/*	border: 1px solid red;
+	background-color: #A7A7A7;*/
+}
+
+.problem-holder {
+	margin-top: 30px;
 }
 
 .unlocked {
-	background-color: #FFFFFF !important;
+/*	background-color: #FFFFFF !important;*/
 }
 
 .unlocked:hover {
@@ -822,14 +838,14 @@ body {
 }
 
 #answer_question {
-	position:absolute;
-	top:15px;
-	left:20px;
-	font-size: 20px;
+	float:left;
+	font-size: 17px;
 	color:#FFFFFF;
 	font-weight:bold;
 	margin:0;
-	padding:0;
+	padding:15px 30px;
+	background-color: #417ffd;
+	border-radius: 0 20px 0 0;
 
 }
 
@@ -925,19 +941,16 @@ body {
 }*/
 
 #answer_result {
-	float:right;
-	width:130px;
-	height:36px;
-	background-color: rgb(181, 255, 181);
-	margin:10px 15px;
-	text-align: center
+	width:20px;
+	float:left;
+	margin:0 20px;
+	text-align: center;
 }
 
 #answer_result h3 {
-	font-size: 24px;
+	font-size: 23px;
 	margin:0;
-	padding:9px;
-	font-family: 'title';
+	padding-top:10px;
 }
 
 .incorrect {
@@ -1156,19 +1169,18 @@ body {
 }
 
 #counter_container {
-	color:white;
-	margin: 15px 15px;
-	font-size: 20px;
-	float:right;
+	color:black;
+	font-size: 17px;
+	float:left;
+	padding-top:15px;
+	margin: 0 10px 0 20px;
 }
 
 #attempt_counter {
-	background-color: white;
-	margin:10px 15px;
 	color:black;
-	padding:8px 10px;
-	float:right;
+	padding-top:10px;
+
+	float:left;
 	font-weight: bold;
-	font-family: 'title';
-	font-size: 26px;
+	font-size: 23px;
 }

@@ -72,7 +72,7 @@ TRADE.FUNC = (function () {
 			var slides = $('#slide_holder > .slide'); // get slide array
 			var slidesNumber = slides.length;
 			for (var i=0; i<slidesNumber; i++) {
-				$('#slide_index').append('<span class="problem-index" data-nav="' + i + '" id="slide_nav_' + i + '">' + (i + 1) + ' </span>');
+				$('#slide_index').append('<span class="problem-index" data-nav="' + i + '" id="slide_nav_' + i + '">' + (i + 1) + '</span>');
 			}
 			$('#slide_index').on('click', '.unlocked', function () {
 				var nav = $(this).data('nav');

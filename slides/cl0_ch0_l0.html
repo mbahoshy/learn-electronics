@@ -1,28 +1,13 @@
 <div id='slide_holder'>
 	<script type="text/html" class='slide' id='slide1b'>
-		<p>This is slide 1. </p>
-		<div class='test1'>
-			Hello World
+		<div class='half fleft'>
+			<h3>What is a Volt?</h3>
+			<p>A volt is a measurement of the potential for electric current. To help imagine this, lets pretend that we a bucket full of water. This bucket has a bottom that slides out, allowing you to control the flow of water. When it is all the way shut, no water is flowing.</p>
+			<p>With the bottom all the way closed, there is the potential for water to flow (even though it is not actually flowing). Voltage is a measurement of how much potential there exists for electric flow (even if no electricity is flowing).</p>
 		</div>
-		<%  TRADE.CIRC.Create(700, 350);
-			TRADE.CIRC.Set('problem_0', 'switch');
-			TRADE.CIRC.Line1('line1', 50, 40);
-
-			TRADE.CIRC.Contact('c2', 50, 120);
-			TRADE.CIRC.Contact('c3', 625, 212);
-		
-			TRADE.CIRC.Neutral('n1', 625, 40);
-
-			//TRADE.CIRC.SPSTSwitch('spst1', 120, 120, 'sc1', 'sc2', 'noswitch');
-			//TRADE.CIRC.LightBulb('l1', 290, 60, 'lc1', 'lc2');
-
-			TRADE.CIRC.DrawWire('w1', 'blue', 3, [50, 40, 50, 120]);
-			TRADE.CIRC.DrawWire('w2', 'blue', 3, [50, 120, 120, 120]);
-			TRADE.CIRC.DrawWire('w3', 'blue', 3, [160, 210, 290, 210]);
-			TRADE.CIRC.DrawWire('w4', 'blue', 3, [360, 210, 625, 210]);
-			TRADE.CIRC.DrawWire('w5', 'blue', 3, [625, 210, 625, 40]);
-			
-		%>
+		<div class='half fright'>
+			<p>Voltage is a measure of potential. Knowing what the voltage is, tells us nothing about whether or not there is electric current.</p>
+		</div>
 	</script>
 
 	<script type="text/html" class='slide' id='slide1'>
