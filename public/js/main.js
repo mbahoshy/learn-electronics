@@ -63,7 +63,7 @@ TRADE.FUNC = (function () {
 		this.slideIndexNav = function () {
 			var slidesNumber = $('#slide_holder > .slide').length;
 			for (var i=0; i<slidesNumber; i++) {
-				$('#slide_index').append('<span id="slide_nav_' + i + '">' + (i + 1) + ' </span>');
+				$('#slide_index').append('<span id="slide_nav_' + i + '">' + (i + 1) + '</span>');
 
 			}
 		}

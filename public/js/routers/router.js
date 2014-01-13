@@ -54,7 +54,6 @@ TRADE.Router = Backbone.Router.extend({
                 ChapterCollection1.navname = nav.name;
                 var ChapterListView1 = new TRADE.ChapterListView ({collection: ChapterCollection1});
                 ChapterListView1.render(0);
-                // ChapterListView1.render(user, nav.name);
 
                 //append to dom
                 $('#body_container').prepend(ChapterListView1.$el);
@@ -68,43 +67,41 @@ TRADE.Router = Backbone.Router.extend({
         $('#body_container').html('');
         $('#lesson_container').html('');
 
+        var template,
+            slides,
+            wait = 0;
 
-        slideTemplate();
+        $.get('/slideTemplate/lesson', function(data, status) {
+            var template = $(data).html();
+            $("#lesson_container").append(_.template(template));
+            wait ++;
+            loadSlides();
+        });
 
-        //loads outer slide template after json is complete
-        function slideTemplate () {
-            $.get('/slideTemplate/lesson', function(data, status) {
-              var template = $(data).html();
-                $("#lesson_container").append(_.template(template));
-                slides();
-            });
-        } 
+        $.get('/slides/' + lessonid, function(data, status){
+            $('#lesson_container').append('<div class="hidden">' + data + '</div>');
+            wait ++;
+            loadSlides();
+        });
 
-        //loads individual slides after slide template is loaded
-        function slides () {
-            $.get('/slides/' + lessonid, function(data, status){
-
-                $('#lesson_container').append('<div class="hidden">' + data + '</div>');
+        function loadSlides () {
+            if (wait === 2) {
                 var slides = $('#slide_holder > .slide');
 
-                var template = $(slides[0]).html();
+                var currentslide = $(slides[0]).html();
                 TRADE.GameData.slideindex = 0; //keeps track of current slide
-                
-                $("#slide_container").html(_.template(template));
-  
-                    $('.slide-left').on('click', function () {
-                        TRADE.FUNC.slideChange(chapterid, lessonid, this);
-                    });
-                    $('.slide-right').on('click', function  () {
-                        TRADE.FUNC.slideChange(chapterid, lessonid, this);
-                    });
-                    TRADE.FUNC.slideIndexNav();
-                    $('#slide_nav_' + TRADE.GameData.slideindex).addClass('slide-active');
-                    
-            });
+                $("#slide_container").html(_.template(currentslide));
+
+                $('.slide-left').on('click', function () {
+                    TRADE.FUNC.slideChange(chapterid, lessonid, this);
+                });
+                $('.slide-right').on('click', function  () {
+                    TRADE.FUNC.slideChange(chapterid, lessonid, this);
+                });
+                TRADE.FUNC.slideIndexNav();
+                $('#slide_nav_' + TRADE.GameData.slideindex).addClass('slide-active');
+            }
         }
-       
-        //TRADE.Lesson = lessonid;
     },
 
     reportFunction: function () {
