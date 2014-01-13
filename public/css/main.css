@@ -716,12 +716,19 @@ body {
 .slide-nav {
 	width:960px;
 	float:left;
-	border-top: 1px solid #bebebe;
-	border-left: 1px solid #bebebe;
-	border-right: 1px solid #bebebe;
-	background-color: #FFF;
 }
 
+.slide-footer {
+	width:960px;
+	float:left;
+}
+
+.lesson-holder {
+	float: left;
+	width:960px;
+	border: 1px solid #bebebe;
+	background-color: #FFF;
+}
 
 .slide-left {
 
@@ -736,12 +743,10 @@ body {
 }
 
 .slide-right {
-	width: 0px; 
-	height: 0px; 
-	border-top: 25px solid transparent;
-	border-bottom: 25px solid transparent;
-	margin:5px 10px;
-	border-left: 25px solid  #bebebe;
+	padding:15px 30px;
+	border-radius: 20px 0 0 0;
+	background-color: #417ffd;
+	color:#FFF;
 	float:right;
 }
 
@@ -773,8 +778,6 @@ body {
 }
 
 #slide_wrapper {
-	background-color: #FFFFFF;
-	border: 1px solid #bebebe;
 	border-top:0;
 	float:left;
 	padding:15px;
