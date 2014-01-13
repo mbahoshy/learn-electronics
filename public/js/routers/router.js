@@ -25,10 +25,6 @@ TRADE.Router = Backbone.Router.extend({
         });
     },
 
-
-
-
-
     displayChapter: function (classid) {
         $('#body_container').html(''); //clear html
         $('#lesson_container').html(''); //clear html
@@ -143,103 +139,6 @@ TRADE.Router = Backbone.Router.extend({
 
             }
         }
-    },
-
-    problemListFunction: function (id) {
-        var problems,
-            wait = 0;
-
-        // var activenav = $('#subnav_container').data('problemactivenav'); //grabs active nav
-        // var exists = $('#problem_subnav').data("exists"); //checks if template exists
-
-        // if (!exists && !activenav) { 
-        //     level = level0;
-        // } else if (!exists) {//assigns correct level to be shown
-        //     level = activenav;
-        // } else {
-        //     level = level0;
-        // }
-        $('#body_container').html('');
-        $('#lesson_container').html('');
-
-        $.get("/problems/" + id , function(data, status){ //gets a list of problems for level
-            problems = data;
-            console.dir(problems);
-            wait ++;
-            renderProblems();
-        });
-
-        $.get("/user", function(data, status){
-            TRADE.UserData = data;
-            wait ++;
-            renderProblems();
-        });
-
-        $.get("/template/problemlisttemplate", function (data, status){
-            template = $(data).html();
-            renderTemplate();
-            wait ++;
-            renderProblems();
-        });
-
-        // if (!exists) { //clears html if page does not exists
-           
-            
-        // } else {
-        //     
-        //     wait ++;
-        //     renderProblems();
-        // }
-
-        
-
-        function renderProblems () {
-            if (wait === 3) {
-                // var findLevel = _.where(problems.list, {problemlevel:"Rookie"});
-                // $('#subnav_container').data('problemactivenav', level);
-                var problemCollection1 = new TRADE.ProblemCollection();
-                problemCollection1.classid = id;
-                problemCollection1.reset(problems.list);
-
-                var ProblemListView1 = new TRADE.ProblemListView ({collection: problemCollection1});
-                ProblemListView1.render();
-                $('#body_container').append(ProblemListView1.$el);
-
-                $('#level_list').on('click', 'li', function () {
-                    $('.problem-list-container').html('');
-                    var level = $(this).data('level');
-                    var newLevel;
-                    if (level === 'All') {
-                        newLevel = problems.list;
-                    } else {
-                        newLevel = _.where(problems.list, {problemlevel:level});
-                    }
-
-                    problemCollection1.reset(newLevel);
-                });
-                $('#classroom_list').on('click', 'li', function () {
-                    $('.problem-list-container').html('');
-                    var newid = $(this).data('classroomid');
-
-                    $('.active-problem-nav').removeClass('active-problem-nav');
-                    $(this).addClass('active-problem-nav');
-                    $.get("/problems/" + newid , function(data, status){ //gets a list of problems for level
-
-                        // $('#current_classroom').html();
-                        problems = data;
-                        problemCollection1.classid = newid;
-                        problemCollection1.reset(data.list);
-                    });
-                });
-            }
-        }
-
-        function renderTemplate () {
-            var rtemplate = _.template(template);
-            $('#body_container').prepend(rtemplate);
-            // $('#problem_subnav').append();
-        }
-
     },
 
     problemSlideFunction: function (chapterid, level, problemname, problemid) {
@@ -456,5 +355,103 @@ Backbone.history.start({root: "/"});
     //         $('#lesson_list_container').append(userchapterview1.$el);
     //     }
         
+
+    // },
+
+
+    // problemListFunction: function (id) {
+    //     var problems,
+    //         wait = 0;
+
+    //     // var activenav = $('#subnav_container').data('problemactivenav'); //grabs active nav
+    //     // var exists = $('#problem_subnav').data("exists"); //checks if template exists
+
+    //     // if (!exists && !activenav) { 
+    //     //     level = level0;
+    //     // } else if (!exists) {//assigns correct level to be shown
+    //     //     level = activenav;
+    //     // } else {
+    //     //     level = level0;
+    //     // }
+    //     $('#body_container').html('');
+    //     $('#lesson_container').html('');
+
+    //     $.get("/problems/" + id , function(data, status){ //gets a list of problems for level
+    //         problems = data;
+    //         console.dir(problems);
+    //         wait ++;
+    //         renderProblems();
+    //     });
+
+    //     $.get("/user", function(data, status){
+    //         TRADE.UserData = data;
+    //         wait ++;
+    //         renderProblems();
+    //     });
+
+    //     $.get("/template/problemlisttemplate", function (data, status){
+    //         template = $(data).html();
+    //         renderTemplate();
+    //         wait ++;
+    //         renderProblems();
+    //     });
+
+    //     // if (!exists) { //clears html if page does not exists
+           
+            
+    //     // } else {
+    //     //     
+    //     //     wait ++;
+    //     //     renderProblems();
+    //     // }
+
+        
+
+    //     function renderProblems () {
+    //         if (wait === 3) {
+    //             // var findLevel = _.where(problems.list, {problemlevel:"Rookie"});
+    //             // $('#subnav_container').data('problemactivenav', level);
+    //             var problemCollection1 = new TRADE.ProblemCollection();
+    //             problemCollection1.classid = id;
+    //             problemCollection1.reset(problems.list);
+
+    //             var ProblemListView1 = new TRADE.ProblemListView ({collection: problemCollection1});
+    //             ProblemListView1.render();
+    //             $('#body_container').append(ProblemListView1.$el);
+
+    //             $('#level_list').on('click', 'li', function () {
+    //                 $('.problem-list-container').html('');
+    //                 var level = $(this).data('level');
+    //                 var newLevel;
+    //                 if (level === 'All') {
+    //                     newLevel = problems.list;
+    //                 } else {
+    //                     newLevel = _.where(problems.list, {problemlevel:level});
+    //                 }
+
+    //                 problemCollection1.reset(newLevel);
+    //             });
+    //             $('#classroom_list').on('click', 'li', function () {
+    //                 $('.problem-list-container').html('');
+    //                 var newid = $(this).data('classroomid');
+
+    //                 $('.active-problem-nav').removeClass('active-problem-nav');
+    //                 $(this).addClass('active-problem-nav');
+    //                 $.get("/problems/" + newid , function(data, status){ //gets a list of problems for level
+
+    //                     // $('#current_classroom').html();
+    //                     problems = data;
+    //                     problemCollection1.classid = newid;
+    //                     problemCollection1.reset(data.list);
+    //                 });
+    //             });
+    //         }
+    //     }
+
+    //     function renderTemplate () {
+    //         var rtemplate = _.template(template);
+    //         $('#body_container').prepend(rtemplate);
+    //         // $('#problem_subnav').append();
+    //     }
 
     // },
