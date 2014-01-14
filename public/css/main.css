@@ -980,6 +980,47 @@ body {
 }
 
 
+.test-holder {
+	float: left;
+	width:960px;
+	border: 1px solid #bebebe;
+	/*background-color: #F0FFF2;*/
+	background-color: #FCFFE8;
+	margin-top: 30px;
+}
+
+.question-txt {
+	width:720px;
+	font-size: 23px;
+	display:block;
+	margin: 60px auto;
+	text-align: center;
+}
+
+.option-txt {
+	width:600px;
+	padding:10px 15px;
+	background-color: #FFFFFF;
+	box-shadow: 2px 2px 1px #CCCCCC;
+	font-size: 23px;
+	display: block;
+	color:#417ffd;
+	margin:20px auto;
+}
+
+.option-hover {
+	background-color: #417ffd;
+	color:white;
+}
+
+.option-nav {
+	display: block;
+	margin:40px auto 20px auto;
+	font-style: italic;
+	font-size: 13px;
+	text-align: center;
+}
+
 /* -------------------------------------------------- */
 
 #mycanvas {

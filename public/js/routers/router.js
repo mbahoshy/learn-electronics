@@ -237,7 +237,12 @@ TRADE.Router = Backbone.Router.extend({
     displayTest: function (testid, chapterid) {
         $('#body_container').html(''); //clear html
 
-        $.get("/test/" + testid, function(data, status){ 
+        $.get("/test/" + testid, function(data, status){
+            var questioncollection1 = new TRADE.QuestionCollection();
+            questioncollection1.reset(data.questions);
+            var testcollectionview = new TRADE.TestSlides({collection: questioncollection1});
+            testcollectionview.render(0);
+            $('#body_container').append(testcollectionview.$el);
             console.dir(data);
         });
     }
