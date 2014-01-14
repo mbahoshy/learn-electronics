@@ -10,7 +10,8 @@ var userSchema = new mongoose.Schema({
 	pword: String,
 	level:      String,
 	lessonProgress:  	Array,
-	problemProgress:  	Array
+	problemProgress:  	Array,
+	testProgress: Array
 });
 
 userSchema.statics.isValidUserPassword = function(email, password, done) {

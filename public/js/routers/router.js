@@ -240,6 +240,8 @@ TRADE.Router = Backbone.Router.extend({
         $.get("/test/" + testid, function(data, status){
             var questioncollection1 = new TRADE.QuestionCollection();
             questioncollection1.reset(data.questions);
+            questioncollection1.testid = testid;
+            questioncollection1.chapterid = chapterid;
             var testcollectionview = new TRADE.TestSlides({collection: questioncollection1});
             testcollectionview.render(0);
             $('#body_container').append(testcollectionview.$el);

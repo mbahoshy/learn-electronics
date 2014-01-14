@@ -184,7 +184,7 @@ function updateProblemProgress (req, res) {
 	Users.update(conditions, update, options, callback);
 
 	
- 	currentProblem = _.findWhere(user.problemProgress, {problemid: problemid, level:level});
+ 	// currentProblem = _.findWhere(user.problemProgress, {problemid: problemid, level:level});
  	console.log('update problem');
  	console.log(currentProblem);
 
@@ -243,6 +243,52 @@ function getTest (req, res) {
 	});
 }
 
+function postTest (req, res) {
+	var testid = req.param("testid"),
+		chapterid = req.param("chapterid"),
+		optionid = req.param("optionid"),
+		classid = req.session.classid,
+		user = req.user,
+		userid = req.user._id,
+		conditions,
+		update,
+		options = { multi: false };
+
+ 	var currentTest = _.findWhere(user.testProgress, {testid: testid});
+
+	if (currentTest) {
+		console.log('test exists');
+		// conditions = { _id: userid, "problemProgress.problemid": problemid };
+		res.end();
+	} else {
+		conditions = { _id: userid };
+		var testmodel = {
+		  classid: classid,
+	      chapterid: chapterid,
+	      testid: testid,
+	      submissions: [optionid]
+	    };
+
+		update = { $addToSet: { testProgress: testmodel }};
+
+		console.log("Problem Does Not Exist");
+	}
+
+
+
+	Users.update(conditions, update, options, callback);
+
+    function callback (err, numAffected) {
+		if(err) throw err;
+		res.end();
+	}
+
+	console.log(testid + '   ' + chapterid + '   ' + optionid + '   ' + classid);
+	res.end();
+
+}
+
+exports.postTest = postTest;
 exports.getTest = getTest;
 exports.signUp = signUp;
 exports.getSession = getSession;

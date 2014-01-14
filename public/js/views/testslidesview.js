@@ -28,15 +28,45 @@ TRADE.TestSlides = Backbone.View.extend({
                 console.log(answer);
         },
         submitOption: function (e) {
-                var optionid = $('#submit_option').data('optionid');
-                console.dir(optionid);
+                var optionid,
+                    that = this;
+
+                optionid = $('#submit_option').data('optionid');
+
+                $.post('/test/' + this.collection.chapterid + '/' + this.collection.testid + '/' + optionid, function (){
+                    console.log("Test successfully updated!");
+                    $(that.el).html('');
+                    that.collection.questionindex++;
+                    that.render();
+                })
         },
-        render : function (questionindex) {
-                console.dir(this.collection.models[questionindex]);
-                var questiontxt = this.collection.models[questionindex].attributes.qtxt;
-                var numquestions = this.collection.models.length;
+        render : function (qindex) {
+                var questionindex,
+                    questiontxt,
+                    numquestions,
+                    options;
+
+                numquestions = this.collection.models.length;
+
+                if (this.collection.questionindex) {
+                    if (this.collection.questionindex === numquestions) {
+                        console.log('the end');
+                        TRADE.router.navigate('/', {trigger: true});
+                        return;
+                    }
+                    questionindex = this.collection.questionindex;
+                } else {
+                    questionindex = qindex;
+                    this.collection.questionindex = qindex;
+                }
+
+                questiontxt = this.collection.models[questionindex].attributes.qtxt;
+                options = this.collection.models[questionindex].attributes.options;
+
+
+ 
+                // order is important !!!
                 this.$el.append(this.template({questiontxt: questiontxt}));
-                var options = this.collection.models[questionindex].attributes.options;
                 options.forEach(this.renderOptions, this);
                 this.$el.append(this.submittemplate);
                 this.$el.append(this.navtemplate({currentquestion: questionindex, numquestions: numquestions}));
