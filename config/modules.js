@@ -3,6 +3,7 @@ var path = require("path"),
     _ = require("underscore"),
     mongoose = require('mongoose'),
     Users = require('../models/user'),
+    Test = require('../models/test'),
     Nav = require('../models/nav'),
     Problem = require('../models/problem');
 
@@ -235,7 +236,14 @@ function signUp (req, res, next) {
 	});
 }
 
+function getTest (req, res) {
+	var testid = req.param("testid");
+	Test.findById(testid, 'questions', function(err, documents){
+		res.json(documents);
+	});
+}
 
+exports.getTest = getTest;
 exports.signUp = signUp;
 exports.getSession = getSession;
 exports.getUser = getUser;

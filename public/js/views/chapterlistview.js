@@ -84,7 +84,7 @@ TRADE.ChapterNavView = Backbone.View.extend({
 TRADE.TestView = Backbone.View.extend({
         tagName: 'div',
         className: 'test-container',
-        template: _.template("<a class='no-decoration' href=''><div class='test-list'><h5><%= model.testname %></h5><h6><%= model.testsnippet %></h6></div></a>"),
+        template: _.template("<a class='no-decoration' href='#test/<%= model.testid %>/ <%= chapterid %>'><div class='test-list'><h5><%= model.testname %></h5><h6><%= model.testsnippet %></h6></div></a>"),
         events: {
                 "mouseover a": "lessonMouseover",
                 "mouseout a": "lessonMouseout"

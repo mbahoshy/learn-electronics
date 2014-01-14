@@ -6,7 +6,8 @@ TRADE.Router = Backbone.Router.extend({
         "slides/:chapterid/:lessonid": "slideFunction",
         "problems/:level": "problemListFunction",
         "problemslides/:chapterid/:level/:problemname/:problemid": "problemSlideFunction",
-        "report" : "reportFunction"
+        "report" : "reportFunction",
+        "test/:testid/:chapterid" : "displayTest"
     },
 
 
@@ -231,6 +232,14 @@ TRADE.Router = Backbone.Router.extend({
             }
         }               
         
+    },
+
+    displayTest: function (testid, chapterid) {
+        $('#body_container').html(''); //clear html
+
+        $.get("/test/" + testid, function(data, status){ 
+            console.dir(data);
+        });
     }
 });
 
