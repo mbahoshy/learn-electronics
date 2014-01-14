@@ -195,6 +195,7 @@ TRADE.Router = Backbone.Router.extend({
                         }
                         if (i == maxlength) {
                             problemTemplate = $(slides[(maxlength - 1)]).html();
+                            $("#slide_nav_" + (maxlength - 1)).addClass('problem-nav-active');
                         }
                         // $("#slide_nav_0").addClass('problem-nav-active');
                     }
@@ -224,7 +225,7 @@ TRADE.Router = Backbone.Router.extend({
                 $('#answer_question').on('click', function () {
                     $('#answer_container').slideToggle(function(){
                         $('#answer_options').html('');
-                        $('.bold').removeClass('bold');
+                        $('.active-category').removeClass('active-category');
                     });
                 });
             }

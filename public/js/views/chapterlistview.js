@@ -86,16 +86,16 @@ TRADE.TestView = Backbone.View.extend({
         className: 'test-container',
         template: _.template("<a class='no-decoration' href=''><div class='test-list'><h5><%= model.testname %></h5><h6><%= model.testsnippet %></h6></div></a>"),
         events: {
-                "mouseover": "lessonMouseover",
-                "mouseout": "lessonMouseout"
+                "mouseover a": "lessonMouseover",
+                "mouseout a": "lessonMouseout"
         },
-        lessonMouseover: function () {
-                $(this.el).children().children().addClass('card-hover');
+        lessonMouseover: function (e) {
+                $(e.currentTarget).children().addClass('card-hover');
 
         },
 
-        lessonMouseout: function () {
-                $(this.el).children().children().removeClass('card-hover');
+        lessonMouseout: function (e) {
+                $(e.currentTarget).children().removeClass('card-hover');
 
         },
         render : function (user, chapterid) {
@@ -122,16 +122,16 @@ TRADE.LessonView = Backbone.View.extend({
         className: 'lesson-container',
         template: _.template("<a class='no-decoration' href='#slides/<%= chapterid %>/<%= model.lessonid %>'><div class='lesson-list'><h5><%= model.name %></h5><h6><%= model.snippet %></h6></div></a>"),
         events: {
-                "mouseover": "lessonMouseover",
-                "mouseout": "lessonMouseout"
+                "mouseover a": "lessonMouseover",
+                "mouseout a": "lessonMouseout"
         },
-        lessonMouseover: function () {
-                $(this.el).children().children().addClass('card-hover');
+        lessonMouseover: function (e) {
+                $(e.currentTarget).children().addClass('card-hover');
 
         },
 
-        lessonMouseout: function () {
-                $(this.el).children().children().removeClass('card-hover');
+        lessonMouseout: function (e) {
+                $(e.currentTarget).children().removeClass('card-hover');
 
         },
         render : function (user, chapterid) {
@@ -160,16 +160,16 @@ TRADE.ProblemView = Backbone.View.extend({
         template: _.template("<a href ='#/problemslides/<%= chapterid %>/<%= model.problemlevel %>/<%= model.problemname %>/<%= model.problemid %>'><div class='problem-list'><h5><%= model.problemname %></h5><br>Problems Completed: <%= model.problemscompleted %>/<%= model.numproblems %></div></a>"),
         template2: _.template("<a href ='#/problemslides/<%= chapterid %>/<%= model.problemlevel %>/<%= model.problemname %>/<%= model.problemid %>'><div class='problem-list'><h5><%= model.problemname %></h5><br></div></a>"),
         events: {
-                "mouseover": "lessonMouseover",
-                "mouseout": "lessonMouseout"
+                "mouseover a": "lessonMouseover",
+                "mouseout a": "lessonMouseout"
         },
-        lessonMouseover: function () {
-                $(this.el).children().children().addClass('card-hover');
+        lessonMouseover: function (e) {
+                $(e.currentTarget).children().addClass('card-hover');
 
         },
 
-        lessonMouseout: function () {
-                $(this.el).children().children().removeClass('card-hover');
+        lessonMouseout: function (e) {
+                $(e.currentTarget).children().removeClass('card-hover');
 
         },
         render : function (user, chapterid) {

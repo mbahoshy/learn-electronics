@@ -13,7 +13,7 @@ TRADE.AnswerView = Backbone.View.extend({
         
         expand: function () {
 
-                $('.bold').removeClass('bold');
+                $('.active-category').removeClass('active-category');
                 $('#answer_options').html('');
 
                 var answercollection2 = new TRADE.AnswerCollection ();
@@ -26,7 +26,7 @@ TRADE.AnswerView = Backbone.View.extend({
                 //$(this.$el[0]).append(answerlistview2.$el);
                 //$(this.$el[0]).find('.answer-sub-list').slideToggle();
                 $('#answer_options').find('.answer-sub-list').slideToggle();
-                this.$el.addClass('bold');
+                this.$el.addClass('active-category');
 
         }
         
