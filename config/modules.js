@@ -258,15 +258,19 @@ function postTest (req, res) {
 
 	if (currentTest) {
 		console.log('test exists');
-		// conditions = { _id: userid, "problemProgress.problemid": problemid };
-		res.end();
+		conditions = { _id: userid, "testProgress.testid": testid };
+		console.log(currentTest.score);
+		currentTest.score.push(optionid);
+		console.log(currentTest.score);
+		update = { $set: { "testProgress.$.score": currentTest.score }};
+
 	} else {
 		conditions = { _id: userid };
 		var testmodel = {
 		  classid: classid,
 	      chapterid: chapterid,
 	      testid: testid,
-	      submissions: [optionid]
+	      score: [optionid]
 	    };
 
 		update = { $addToSet: { testProgress: testmodel }};
