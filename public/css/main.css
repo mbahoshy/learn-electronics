@@ -4,6 +4,7 @@ body {
 	margin:0px;
 	font-family: Arial, Helvetica, Sans-serif;
 	background-color: #efeee3;
+	font-size: 17px;
 }
 
 @font-face {
@@ -65,13 +66,13 @@ body {
 	text-decoration: none;
 }
 
-#header h2 {
+/*#header h2 {
 	margin:0 15px;
 	font-size: 18px;
 	width:600px;
 	font-family: 'titleh2';
 	display:inline;
-}
+}*/
 
 .header-nav {
 	display:inline;
@@ -85,7 +86,6 @@ body {
 	font-weight: bold;
 	padding: 10px 8px;
 	margin-left: 20px;
-	font-size:17px;
 	color: #000;
 }
 
@@ -112,8 +112,6 @@ body {
 	display:block;
 	margin-left:auto;
 	margin-right:auto;
-	font-size:16px;
-
 }
 
 .hidden{
@@ -1270,4 +1268,17 @@ body {
 	float:left;
 	font-weight: bold;
 	font-size: 23px;
+}
+
+#test_timer {
+	background-color: #FFFFFF;
+	float: right;
+	width:60px;
+	padding:8px 20px;
+	margin-right: 120px;
+	text-align: center;
+	border-left: 1px solid #bebebe;
+	border-right: 1px solid #bebebe;
+	border-bottom: 1px solid #bebebe;
+	color:#bebebe;
 }

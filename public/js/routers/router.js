@@ -244,8 +244,9 @@ TRADE.Router = Backbone.Router.extend({
             questioncollection1.chapterid = chapterid;
             var testcollectionview = new TRADE.TestSlides({collection: questioncollection1});
             testcollectionview.render(0);
+            testcollectionview.setTimer();
             $('#body_container').append(testcollectionview.$el);
-            console.dir(data);
+            
         });
     }
 });

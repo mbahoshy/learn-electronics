@@ -5,6 +5,7 @@ TRADE.TestSlides = Backbone.View.extend({
         optiontemplate: _.template("<div data-optionid='<%= optionid %>' class='option-txt'><%= optionid %>. <%= optiontxt %></div>"),
         navtemplate: _.template("<div class='option-nav'>QUESTION <%= (currentquestion + 1) %> OF <%= numquestions %></div>"),
         submittemplate: _.template("<div class='option-submit'><div id='submit_option'>Submit</div></div>"),
+        timertemplate: _.template("<div id='test_timer'><%= mins %> : <%= secs %></div>"),
         events: {
                 "mouseover .option-txt": "lessonMouseover",
                 "mouseout .option-txt": "lessonMouseout",
@@ -35,9 +36,11 @@ TRADE.TestSlides = Backbone.View.extend({
 
                 $.post('/test/' + this.collection.chapterid + '/' + this.collection.testid + '/' + optionid, function (){
                     console.log("Test successfully updated!");
+                    var detached = $('#test_timer').detach();
                     $(that.el).html('');
                     that.collection.questionindex++;
                     that.render();
+                    $(that.el).prepend(detached);
                 })
         },
         render : function (qindex) {
@@ -75,7 +78,49 @@ TRADE.TestSlides = Backbone.View.extend({
         renderOptions: function (model) {
             this.$el.append(this.optiontemplate(model));
         },
-        expand: function () {
-                
+        setTimer: function () {
+            var mins,
+                secs,
+                timer,
+                t,
+                count = 30;
+
+            t = getMinutes(count);
+
+            this.$el.prepend(this.timertemplate(t));
+
+            console.dir(mins + secs);
+            $('#test_timer').html(mins + ' : ' + secs);
+            
+            timer = setInterval(tick, 1000);
+
+            function tick () {
+                count--;
+
+                if (count <= 0) {
+                    clearInterval(timer);
+                    $('#test_timer').html('END');
+                    return;
+                }
+               
+                t = getMinutes(count);
+
+                $('#test_timer').html(t.mins + ' : ' + t.secs);
+            }
+
+            function getMinutes (remaining) {
+                mins = Math.floor(count/60);
+                secs = Math.floor(count%60);
+
+                if (secs < 10) {
+                    secs = "0" + secs;
+                }
+
+                if (mins < 1 && secs < 20) {
+                    $('#test_timer').addClass('red');
+                }
+
+                return {mins: mins, secs: secs};
+            }
         }
 });
