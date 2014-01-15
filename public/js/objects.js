@@ -442,9 +442,10 @@ TRADE.CIRC = (function () {
 					level1.current_set = set;
 			}
 
+			this.Intervals = {}
+
 			this.Heater = function (id, left, top, c0, c1) {
-				var setint;
-				
+
 				//create html and append
 				(function() {
 					var $html = $("<div style='top:" + top + "px;left:" + left + "px' id='" + id + "' class='heater'><canvas id='" + id + "_hcanvas' width=220 height=50 id='" + id + "canvas'></canvas><div style='top:10px;left:-10px' id='" + c0 + "' class='contact'></div><div style='top:10px;right:-10px' id ='" + c1 + "' class='contact'></div></div>");
@@ -452,6 +453,7 @@ TRADE.CIRC = (function () {
 				})();
 				
 				function glow () {
+					console.log('heat');
 					$('#' + id + ' > .heater-on').fadeIn(2500);
 					$('#' + id + ' > .heater-on').fadeOut(2500);
 					
@@ -463,7 +465,7 @@ TRADE.CIRC = (function () {
 					if (on === false) {
 						//$('#' + id + '_hon').removeClass('heater-on');
 						
-						clearInterval (setint);
+						clearInterval (this.Intervals[id]);
 						$('#' + id + '_hon').remove();
 						//$('#' + id + ' > .heater-on').css("display:none");
 						
@@ -473,7 +475,7 @@ TRADE.CIRC = (function () {
 							$('#' + id).prepend("<div id='" + id + "_hon' class='heater-on'></div>");
 						
 						glow();
-						setint = setInterval(function(){glow()}, 5000);					
+						this.Intervals[id] = setInterval(function(){glow()}, 5000);					
 					}
 				
 				}

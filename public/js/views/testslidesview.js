@@ -81,10 +81,10 @@ TRADE.TestSlides = Backbone.View.extend({
         setTimer: function () {
             var mins,
                 secs,
-                timer,
                 t,
                 count = 30;
 
+            clearInterval(TRADE.router.intervals.timer);
             t = getMinutes(count);
 
             this.$el.prepend(this.timertemplate(t));
@@ -92,17 +92,18 @@ TRADE.TestSlides = Backbone.View.extend({
             console.dir(mins + secs);
             $('#test_timer').html(mins + ' : ' + secs);
             
-            timer = setInterval(tick, 1000);
+            TRADE.router.intervals.timer = setInterval(tick, 1000);
 
             function tick () {
                 count--;
 
                 if (count <= 0) {
-                    clearInterval(timer);
+                    clearInterval(TRADE.router.intervals.timer);
                     $('#test_timer').html('END');
                     return;
                 }
-               
+                
+                console.log(count);
                 t = getMinutes(count);
 
                 $('#test_timer').html(t.mins + ' : ' + t.secs);

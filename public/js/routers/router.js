@@ -11,10 +11,10 @@ TRADE.Router = Backbone.Router.extend({
     },
 
 
-
+    intervals: {},
 
     displayListOfClassrooms: function () {
-        $('#body_container').html(''); //clear html
+        this.clearBody();   
 
         $.get("/getClasses", function(data, status){ 
             var classCollection1 = new TRADE.ClassCollection();
@@ -26,7 +26,7 @@ TRADE.Router = Backbone.Router.extend({
     },
 
     displayChapter: function (classid) {
-        $('#body_container').html(''); //clear html
+        this.clearBody();
 
         var user,
             nav,
@@ -63,7 +63,7 @@ TRADE.Router = Backbone.Router.extend({
     slideFunction: function (chapterid, lessonid) {
 
         //clear html
-        $('#body_container').html('');
+        this.clearBody();
 
         var template,
             slides,
@@ -104,8 +104,8 @@ TRADE.Router = Backbone.Router.extend({
     },
 
     reportFunction: function () {
-        $('#body_container').html('');
-        $('#lesson_container').html('');
+        this.clearBody();
+
         var user,
             nav,
             wait = 0;
@@ -139,6 +139,8 @@ TRADE.Router = Backbone.Router.extend({
 
     problemSlideFunction: function (chapterid, level, problemname, problemid) {
 
+        this.clearBody();
+
         var allSlides,
             wait = 0;
 
@@ -148,9 +150,6 @@ TRADE.Router = Backbone.Router.extend({
             renderProblemSlide();
         });
          
-
-        //clear html
-        $('#body_container').html('');
 
         $.get('/slideTemplate/problem', function(data, status) {
             template = $(data).html();
@@ -235,7 +234,7 @@ TRADE.Router = Backbone.Router.extend({
     },
 
     displayTest: function (testid, chapterid) {
-        $('#body_container').html(''); //clear html
+        this.clearBody();
 
         $.get("/test/" + testid, function(data, status){
             var questioncollection1 = new TRADE.QuestionCollection();
@@ -248,6 +247,29 @@ TRADE.Router = Backbone.Router.extend({
             $('#body_container').append(testcollectionview.$el);
             
         });
+    },
+
+    clearBody: function() {
+        $('#body_container').html('');
+        
+        var routerIntervals = _.keys(this.intervals);
+        var numRouterIntervals = p.length;
+
+        if (numRouterIntervals != 0) {
+            for (var i = 0; i <numRouterIntervals; i++) {
+                clearInterval(this.intervals[p[i]]);
+            }
+        }
+
+        var gameIntervals = _.keys(TRADE.CIRC.Intervals);
+        var numGameIntervals = gameIntervals.length;
+
+        if (numGameIntervals != 0) {
+            for (var i = 0; i <numGameIntervals; i++) {
+                clearInterval(TRADE.CIRC.Intervals[y[i]]);
+            }
+        }
+
     }
 });
 
