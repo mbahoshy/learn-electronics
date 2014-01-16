@@ -38,7 +38,7 @@ module.exports = function (app, passport) {
 	app.get('/slideTemplate/:type', Auth.isAuthenticated, mod.slideTemplate);
 	app.get('/template/:name', Auth.isAuthenticated, mod.Template);
 	app.get('/test/:testid', Auth.isAuthenticated, mod.getTest);
-	app.post('/test/:chapterid/:testid/:optionid', Auth.isAuthenticated, mod.postTest);
+	app.post('/test/:chapterid/:testid/:optionid/:questionid', Auth.isAuthenticated, mod.postTest);
 	
 
 	

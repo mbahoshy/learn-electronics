@@ -4,7 +4,7 @@ TRADE.TestSlides = Backbone.View.extend({
         template: _.template("<div class='question-txt'><%= questiontxt %></div>"),
         optiontemplate: _.template("<div data-optionid='<%= optionid %>' class='option-txt'><%= optionid %>. <%= optiontxt %></div>"),
         navtemplate: _.template("<div class='option-nav'>QUESTION <%= (currentquestion + 1) %> OF <%= numquestions %></div>"),
-        submittemplate: _.template("<div class='option-submit'><div id='submit_option'>Submit</div></div>"),
+        submittemplate: _.template("<div class='option-submit'><div id='submit_option' data-qid='<%= qid %>' >Submit</div></div>"),
         timertemplate: _.template("<div id='test_timer'><%= mins %> : <%= secs %></div>"),
         events: {
                 "mouseover .option-txt": "lessonMouseover",
@@ -30,11 +30,13 @@ TRADE.TestSlides = Backbone.View.extend({
         },
         submitOption: function (e) {
                 var optionid,
+                    questionid,
                     that = this;
 
                 optionid = $('#submit_option').data('optionid');
+                questionid = $('#submit_option').data('qid');
 
-                $.post('/test/' + this.collection.chapterid + '/' + this.collection.testid + '/' + optionid, function (){
+                $.post('/test/' + this.collection.chapterid + '/' + this.collection.testid + '/' + optionid + '/' + questionid, function (){
                     console.log("Test successfully updated!");
                     var detached = $('#test_timer').detach();
                     $(that.el).html('');
@@ -47,6 +49,7 @@ TRADE.TestSlides = Backbone.View.extend({
                 var questionindex,
                     questiontxt,
                     numquestions,
+                    qid,
                     options;
 
                 numquestions = this.collection.models.length;
@@ -64,6 +67,8 @@ TRADE.TestSlides = Backbone.View.extend({
                 }
                 console.dir(this.collection);
                 questiontxt = this.collection.models[questionindex].attributes.qtxt;
+                qid = this.collection.models[questionindex].attributes.qid;
+                console.log(qid);
                 options = this.collection.models[questionindex].attributes.options;
 
 
@@ -71,7 +76,7 @@ TRADE.TestSlides = Backbone.View.extend({
                 // order is important !!!
                 this.$el.append(this.template({questiontxt: questiontxt}));
                 options.forEach(this.renderOptions, this);
-                this.$el.append(this.submittemplate);
+                this.$el.append(this.submittemplate ({qid: qid}));
                 this.$el.append(this.navtemplate({currentquestion: questionindex, numquestions: numquestions}));
         },
 

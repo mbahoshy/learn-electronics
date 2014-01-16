@@ -255,6 +255,7 @@ function getTest (req, res) {
 
 				tmpobject.qtxt = qdata.qtxt;
 				tmpobject.options = _.where(qdata.options, {active:true});
+				tmpobject.qid = qdata._id;
 
 				response.push(tmpobject);
 				wait ++;
@@ -277,6 +278,7 @@ function postTest (req, res) {
 	var testid = req.param("testid"),
 		chapterid = req.param("chapterid"),
 		optionid = req.param("optionid"),
+		questionid = req.param("questionid"),
 		classid = req.session.classid,
 		user = req.user,
 		userid = req.user._id,
@@ -290,7 +292,7 @@ function postTest (req, res) {
 		console.log('test exists');
 		conditions = { _id: userid, "testProgress.testid": testid };
 		console.log(currentTest.score);
-		currentTest.score.push(optionid);
+		currentTest.score.push({option: optionid, question: questionid} );
 		console.log(currentTest.score);
 		update = { $set: { "testProgress.$.score": currentTest.score }};
 
@@ -300,7 +302,7 @@ function postTest (req, res) {
 		  classid: classid,
 	      chapterid: chapterid,
 	      testid: testid,
-	      score: [optionid]
+	      score: [{option: optionid, question: questionid} ]
 	    };
 
 		update = { $addToSet: { testProgress: testmodel }};
