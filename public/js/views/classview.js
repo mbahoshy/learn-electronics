@@ -12,7 +12,7 @@ TRADE.ClassTitleView = Backbone.View.extend({
 TRADE.ClassView = Backbone.View.extend({
         tagName: 'div',
         className: 'classroom-card',
-        template: _.template("<h3><%= name %></h3><p><label>LEVEL:</label> <%= level %></p><p><label>DESCRIPTION:</label> <%= snippet %></p><p><b>Topics Covered:</b></p>"),
+        template: _.template("<h3><%= name %></h3><div class='chapter-description'><p><label>DESCRIPTION:</label> <%= snippet %></p></div>"),
         events: {
                 "mouseover": "chapterMouseover",
                 "mouseout": "chapterMouseout",
