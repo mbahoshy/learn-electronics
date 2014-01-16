@@ -31,10 +31,20 @@ TRADE.TestSlides = Backbone.View.extend({
         submitOption: function (e) {
                 var optionid,
                     questionid,
+                    numquestions,
+                    completed,
                     that = this;
 
+                numquestions = this.collection.models.length;
                 optionid = $('#submit_option').data('optionid');
                 questionid = $('#submit_option').data('qid');
+
+                console.log(numquestions);
+                if (numquestions == (this.collection.questionindex +1 )) {
+                    completed = true;
+                } else {
+                    completed = false;
+                }
 
                 $.post('/test/' + this.collection.chapterid + '/' + this.collection.testid + '/' + optionid + '/' + questionid, function (){
                     console.log("Test successfully updated!");

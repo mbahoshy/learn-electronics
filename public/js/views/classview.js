@@ -30,8 +30,14 @@ TRADE.ClassView = Backbone.View.extend({
                 TRADE.router.navigate('#class/' + this.model.toJSON()._id, {trigger:true});
         },
         render : function () {
+                var user = this.model.user;
                 this.$el.html( this.template(this.model.toJSON()) );
                 console.dir(this.model);
+                console.dir(this.model.user);
+                var x = _.where(user.lessonProgress, {classid : this.model.attributes._id, completed:true});
+                var y = _.where(user.problemProgress, {classid : this.model.attributes._id, completed:true});
+                console.dir(x);
+                console.dir(y);
                 return this;
         }
 });

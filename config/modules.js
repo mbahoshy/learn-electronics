@@ -92,7 +92,6 @@ function updateLessonProgress (req, res) {
 	      classid: classid,
 	      attemps: "",
 	      timestamp: date,
-
 	      completed: true
 	    };
 
@@ -133,7 +132,10 @@ function updateProblemProgress (req, res) {
 
  	var currentProblem = _.findWhere(user.problemProgress, {problemid: problemid, level:level});
 
+ 	console.log("problem number" + problemnumber);
+
 	if (currentProblem) {
+		
 		conditions = { _id: userid, "problemProgress.problemid": problemid };
 		var currentAttempts = currentProblem.score[problemnumber];
 		if (isNaN(currentAttempts)) {
@@ -146,15 +148,22 @@ function updateProblemProgress (req, res) {
 		// var c = _.indexOf(t, problemid);
 
 		currentProblem.score[problemnumber] = currentAttempts;
-		console.log(unlock);
-		console.log(currentProblem.unlocked[problemnumber]);
+		console.log("unlock length : " + currentProblem.unlocked.length);
+		console.log("number of questions : " + numberOfQuestions);
 		if (currentProblem.unlocked[problemnumber] === true) {
 			console.log('no update');
 			update = {};
 		} else if (unlock === true) {
-			console.log('unlock');
+			console.log('unlock new problem');
 			currentProblem.unlocked[problemnumber] = true;
-			update = { $set: { "problemProgress.$.score": currentProblem.score, "problemProgress.$.unlocked": currentProblem.unlocked }};
+			console.log("unlock length : " + currentProblem.unlocked.length);
+				if (currentProblem.unlocked.length == numberOfQuestions) {
+					console.log('problem complete');
+					update = { $set: { "problemProgress.$.score": currentProblem.score, "problemProgress.$.unlocked": currentProblem.unlocked, "problemProgress.$.completed": true }};
+				} else {
+					console.log('problem not finished');
+					update = { $set: { "problemProgress.$.score": currentProblem.score, "problemProgress.$.unlocked": currentProblem.unlocked }};
+				}	
 		} else {
 			update = { $set: { "problemProgress.$.score": currentProblem.score }};
 		}
@@ -168,6 +177,7 @@ function updateProblemProgress (req, res) {
 	      problemname: problemname,
 	      problemid: problemid,
 	      numberOfQuestions: numberOfQuestions,
+	      completed: false,
 	      level: level,
 	      score: [1],
 	      unlocked: []
@@ -184,10 +194,6 @@ function updateProblemProgress (req, res) {
 
 	Users.update(conditions, update, options, callback);
 
-	
- 	// currentProblem = _.findWhere(user.problemProgress, {problemid: problemid, level:level});
- 	console.log('update problem');
- 	console.log(currentProblem);
 
     function callback (err, numAffected) {
 		if(err) throw err;

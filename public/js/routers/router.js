@@ -14,15 +14,31 @@ TRADE.Router = Backbone.Router.extend({
     intervals: {},
 
     displayListOfClassrooms: function () {
-        this.clearBody();   
+        this.clearBody();
+
+        var classes,
+            wait = 0,
+            classCollection1 = new TRADE.ClassCollection();
+
+        $.get("/user", function(data, status){
+            classCollection1.user = data;
+            wait ++;
+            renderClasses();
+        });   
 
         $.get("/getClasses", function(data, status){ 
-            var classCollection1 = new TRADE.ClassCollection();
             classCollection1.reset(data);
-            var classCollectionView1 = new TRADE.ClassroomCardList ({collection: classCollection1});
-            classCollectionView1.render();
-            $('#body_container').append(classCollectionView1.$el);
+            wait ++;
+            renderClasses();
         });
+
+        function renderClasses() {
+            if (wait === 2) {
+                var classCollectionView1 = new TRADE.ClassroomCardList ({collection: classCollection1});
+                classCollectionView1.render();
+                $('#body_container').append(classCollectionView1.$el);
+            }
+        }
     },
 
     displayChapter: function (classid) {

@@ -9,7 +9,7 @@ TRADE.ClassroomCardList = Backbone.View.extend({
         },
 
         addOne: function (model) {
-
+                model.user = this.collection.user;
                 if (model.toJSON().active === true) {
                     var ClassView1 = new TRADE.ClassView({ model: model });
                 } else {
