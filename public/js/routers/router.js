@@ -251,13 +251,13 @@ TRADE.Router = Backbone.Router.extend({
 
     clearBody: function() {
         $('#body_container').html('');
-        
+
         var routerIntervals = _.keys(this.intervals);
-        var numRouterIntervals = p.length;
+        var numRouterIntervals = routerIntervals.length;
 
         if (numRouterIntervals != 0) {
             for (var i = 0; i <numRouterIntervals; i++) {
-                clearInterval(this.intervals[p[i]]);
+                clearInterval(this.intervals[routerIntervals[i]]);
             }
         }
 
@@ -266,7 +266,7 @@ TRADE.Router = Backbone.Router.extend({
 
         if (numGameIntervals != 0) {
             for (var i = 0; i <numGameIntervals; i++) {
-                clearInterval(TRADE.CIRC.Intervals[y[i]]);
+                clearInterval(TRADE.CIRC.Intervals[gameIntervals[i]]);
             }
         }
 
