@@ -40,13 +40,13 @@ TRADE.TestSlides = Backbone.View.extend({
                 questionid = $('#submit_option').data('qid');
 
                 console.log(numquestions);
-                if (numquestions == (this.collection.questionindex +1 )) {
+                if (numquestions == (this.collection.questionindex + 1 )) {
                     completed = true;
                 } else {
                     completed = false;
                 }
 
-                $.post('/test/' + this.collection.chapterid + '/' + this.collection.testid + '/' + optionid + '/' + questionid, function (){
+                $.post('/test/' + this.collection.chapterid + '/' + this.collection.testid + '/' + optionid + '/' + questionid + '/' + completed, function (){
                     console.log("Test successfully updated!");
                     var detached = $('#test_timer').detach();
                     $(that.el).html('');
@@ -97,7 +97,11 @@ TRADE.TestSlides = Backbone.View.extend({
             var mins,
                 secs,
                 t,
+                that = this,
                 count = 30;
+
+            console.log("collection");
+            console.dir(this.collection);
 
             clearInterval(TRADE.router.intervals.timer);
             t = getMinutes(count);
@@ -110,11 +114,28 @@ TRADE.TestSlides = Backbone.View.extend({
             TRADE.router.intervals.timer = setInterval(tick, 1000);
 
             function tick () {
+                var optionid,
+                    questionid,
+                    completed;
+
                 count--;
 
                 if (count <= 0) {
+                    optionid = $('#submit_option').data('optionid');
+                    questionid = $('#submit_option').data('qid');
+
+                    if (!optionid) {
+                        console.log("no option selected");
+                        optionid = null;
+                    }
+
                     clearInterval(TRADE.router.intervals.timer);
                     $('#test_timer').html('END');
+                    completed = true;
+                     $.post('/test/' + that.collection.chapterid + '/' + that.collection.testid + '/' + optionid + '/' + questionid + '/' + completed, function (){
+                        console.log("Test over");
+                        TRADE.router.navigate('/', {trigger: true});
+                    })
                     return;
                 }
                 

@@ -285,6 +285,7 @@ function postTest (req, res) {
 		chapterid = req.param("chapterid"),
 		optionid = req.param("optionid"),
 		questionid = req.param("questionid"),
+		completed = req.param("completed"),
 		classid = req.session.classid,
 		user = req.user,
 		userid = req.user._id,
@@ -296,11 +297,24 @@ function postTest (req, res) {
 
 	if (currentTest) {
 		console.log('test exists');
-		conditions = { _id: userid, "testProgress.testid": testid };
-		console.log(currentTest.score);
-		currentTest.score.push({option: optionid, question: questionid} );
-		console.log(currentTest.score);
-		update = { $set: { "testProgress.$.score": currentTest.score }};
+
+		if (currentTest.completed !== true) {
+			console.log("Updating test ... ");
+			conditions = { _id: userid, "testProgress.testid": testid };
+
+			currentTest.score.push({option: optionid, question: questionid} );
+			console.log("completed");
+			console.log(completed);
+			if (completed == 'true') {
+				console.log("complete true");
+				update = { $set: { "testProgress.$.score": currentTest.score, "testProgress.$.completed": true }};
+			} else {
+				update = { $set: { "testProgress.$.score": currentTest.score }};
+			}
+		} else {
+			console.log("Test has already been completed. No update.");
+			res.end();
+		}
 
 	} else {
 		conditions = { _id: userid };
@@ -308,6 +322,7 @@ function postTest (req, res) {
 		  classid: classid,
 	      chapterid: chapterid,
 	      testid: testid,
+	      completed: false,
 	      score: [{option: optionid, question: questionid} ]
 	    };
 
@@ -322,6 +337,7 @@ function postTest (req, res) {
 
     function callback (err, numAffected) {
 		if(err) throw err;
+		console.log("Test update complete");
 		res.end();
 	}
 
