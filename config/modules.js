@@ -20,8 +20,49 @@ db.once('open', function callback () {
 });
 
 function getClasses (req, res) {
-	Nav.find({}, 'name snippet active level', function(err, documents) {
-		res.json(documents);
+	Nav.find({}, '', function(err, data) {
+	    var classdata = [];
+        var numClasses = data.length;
+        for (var i = 0; i < numClasses; i ++) {
+        	var datajson = data[i].toJSON();
+            var z = _.pluck(datajson.chapters, 'lessons');
+            var y = _.pluck(datajson.chapters, 'problems');
+            var x = _.pluck(datajson.chapters, 'tests');
+
+            var numlessons = getLength(z);
+            var numproblems = getLength(y);
+            var numtest = getLength(x);
+
+            var t = {};
+            t.snippet = datajson.snippet;
+            t._id = datajson._id;
+            t.level = datajson.level;
+            t.active = datajson.active;
+            t.name = datajson.name;
+            t.total = numlessons + numproblems + numClasses;
+
+            classdata.push(t);
+
+            console.log("data");
+            console.log(z);
+
+
+            function getLength(category) {
+                var length = category.length;
+                var number = 0;
+
+                for (var q = 0; q < length; q++) {
+                    number = number + category[q].length;
+                }
+                console.log(number);
+                return number;
+            }
+        }
+
+
+        console.log(classdata);
+
+    	res.json(classdata);
 	});
 }
 

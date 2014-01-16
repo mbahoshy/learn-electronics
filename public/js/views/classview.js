@@ -36,6 +36,7 @@ TRADE.ClassView = Backbone.View.extend({
                 console.dir(this.model.user);
                 var x = _.where(user.lessonProgress, {classid : this.model.attributes._id, completed:true});
                 var y = _.where(user.problemProgress, {classid : this.model.attributes._id, completed:true});
+                var y = _.where(user.testProgress, {classid : this.model.attributes._id, completed:true});
                 console.dir(x);
                 console.dir(y);
                 return this;

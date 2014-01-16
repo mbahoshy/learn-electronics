@@ -27,6 +27,8 @@ TRADE.Router = Backbone.Router.extend({
         });   
 
         $.get("/getClasses", function(data, status){ 
+            console.dir(data);
+
             classCollection1.reset(data);
             wait ++;
             renderClasses();
