@@ -4,6 +4,7 @@ var path = require("path"),
     mongoose = require('mongoose'),
     Users = require('../models/user'),
     Test = require('../models/test'),
+    Question = require('../models/question'),
     Nav = require('../models/nav'),
     Problem = require('../models/problem');
 
@@ -238,9 +239,38 @@ function signUp (req, res, next) {
 
 function getTest (req, res) {
 	var testid = req.param("testid");
-	Test.findById(testid, 'questions', function(err, documents){
-		res.json(documents);
+	var response = [];
+	var wait = 0;
+	
+	Test.findById(testid,  function(err, documents){
+		var test = documents.toJSON();
+		var numquestions = test.questions.length;
+
+		for (var i = 0; i < numquestions; i++) {
+
+			Question.findById(test.questions[i], function(qerr, doc) {
+				
+				var qdata = doc.toJSON();
+				var tmpobject = {};
+
+				tmpobject.qtxt = qdata.qtxt;
+				tmpobject.options = _.where(qdata.options, {active:true});
+
+				response.push(tmpobject);
+				wait ++;
+				respond();
+				
+			});
+			function respond () {
+				if (wait === numquestions) {
+					res.json(response);
+				}
+			}
+		}
+
 	});
+
+
 }
 
 function postTest (req, res) {

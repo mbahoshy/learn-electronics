@@ -62,7 +62,7 @@ TRADE.TestSlides = Backbone.View.extend({
                     questionindex = qindex;
                     this.collection.questionindex = qindex;
                 }
-
+                console.dir(this.collection);
                 questiontxt = this.collection.models[questionindex].attributes.qtxt;
                 options = this.collection.models[questionindex].attributes.options;
 
