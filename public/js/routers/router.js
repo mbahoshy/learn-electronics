@@ -245,6 +245,7 @@ TRADE.Router = Backbone.Router.extend({
                 //append to dom
                 $('#answer_categories').append(answerlistview1.$el);
                 $('#answer_question').on('click', function () {
+                    $('#answer_question').toggleClass('answer-question-pressed');
                     $('#answer_container').slideToggle(function(){
                         $('#answer_options').html('');
                         $('.active-category').removeClass('active-category');

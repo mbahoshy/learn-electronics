@@ -491,125 +491,87 @@ body {
 	float:left;
 }
 
-.test-container {
+.activity-label {
+	float:left;
+	padding:8px 20px;
+	border-radius: 8px;
+	color:white;
+	font-style: normal;
+	font-weight: bold;
+	opacity: .8;
+}
+
+.activity-list {
+	margin:30px;
+	color:black;
+	box-shadow: 4px 4px 2px #CACACA;
+	background-color: #FCFFE8;
+	border-radius: 10px;
+}
+
+.activity-list p {
+	padding: 0 8px;
+	margin: 0;
+	font-size: 14px;
+}
+
+.activity-list h5 {
+	font-size: 17px;
+	font-weight: bold;
+	margin:0;
+	clear:both;
+	padding:5px 8px;
+}
+
+.activity-container {
 	width:320px;
 	float:left;
 	padding:0;
 	margin:0;
+
 }
 
 .test-list {
-
-	height:100px;
-	margin:30px;
-	padding:25px 15px;
-	color:black;
-	box-shadow: 4px 4px 0 #CACACA;
-	background-color: white;
-	border-radius: 10px;
+	height:150px;
 }
 
-.lesson-container {
-	width:319px;
-	float:left;
-	padding:0;
-	margin:0;
-	border-right: 1px solid rgb(170, 170, 170);
-}
 
 .lesson-list {
-	height:100px;
-	margin:30px;
-	padding:25px 15px;
-	color:black;
-	box-shadow: 4px 4px 2px #CACACA;
-	background-color: white;
+	height:150px;
 }
 
-.lesson-list h5 {
-	font-size: 16px;
-	font-weight: bold;
-	margin:0;
-}
 
-.lesson-list h6 {
-	font-size: 14px;
-	font-weight: normal;
-	margin:8px 0 0 0;
-}
-
-.problem-container {
-	width:319px;
-	float:left;
-	display:inline;
-	padding:0;
-	margin:0;
-	border-right: 1px solid rgb(170, 170, 170);
-}
 .problem-list {
-	height:190px;
-	margin:30px;
-	padding:25px 15px;
-	color:black;
-	box-shadow: 4px 4px 2px #CACACA;
-	background-color: white;
-	border-radius: 5px;
-}
-
-.problem-list h5 {
-	font-weight: bold;
-	font-style: italic;
-	font-size:16px;
-	margin:0;
-	padding:0;
+	height:240px;
 }
 
 
-.lesson-img {
-	float:left;
-	margin:10px 35px;
+.test-list .activity-label {
+	background-color: #d40202;
 }
+
+.lesson-list .activity-label {
+	background-color: #167c05;
+}
+
+.problem-list .activity-label {
+	background-color: #083898;
+}
+
+
+
 
 .green {
 	color:#007223 !important;
 }
 
-.green .lesson-list, .green .problem-list {
-	border: 1px solid rgba(90,209,90,1);
-}
 
-.green .chapter-title {
-	border-bottom: 4px solid rgba(90,209,90,.8);
-}
-
-.yellow {
-	color:rgb(255, 173, 0);
-}
-
-.yellow .lesson-list, .yellow .problem-list {
-	border: 1px solid rgba(255, 173, 0, 1);
-}
-
-.yellow .chapter-title {
-	border-bottom: 4px solid rgba(255, 173, 0, .8);
-}
 
 .red {
 	color:#d21515 !important;
 }
 
-.red .lesson-list, .red .problem-list {
-	border: 1px solid rgba(255, 10, 10, 1);
-}
 
-.red .chapter-title {
-	border-bottom: 4px solid rgba(255, 10, 10, .8);
-}
-
-.check {
-	float:right;
-	margin:-5px 0 0 0;
-}
 
 
 #problem_nav_level {
@@ -741,13 +703,15 @@ body {
 .slide-right {
 	padding:15px 30px;
 	border-radius: 20px 0 0 0;
-	background-color: #417ffd;
+	background-color: #167c05;
 	color:#FFF;
 	float:right;
+	font-weight:bold;
+	opacity: .8;
 }
 
 .slide-right:hover {
-	background-color: #41A3FD;
+	background-color: #1AB900;
 }
 
 #slide_index {
@@ -842,11 +806,18 @@ body {
 	float:left;
 	font-size: 17px;
 	color:#FFFFFF;
-	margin:0;
+	margin:0 0 5px 0;
 	padding:10px 15px;
-	background-color: #417ffd;
-	border-radius: 0 20px 0 0;
+	background-color: #083898;
+	/*background-color: #417ffd;*/
+	border-radius: 10px;
+	box-shadow: 2px 2px 2px #CCCCCC;
+	font-weight: bold;
 
+}
+
+.answer-question-pressed {
+	background-color: #8799BD !important;
 }
 
 #answer_container {
@@ -856,8 +827,8 @@ body {
 	padding:0;
 	color:rgb(56, 56, 56);
 	font-size:17px;
-	background-color: #FFFFFF;
-	box-shadow: 3px 3px 2px #888888;
+	background-color: #FCFFE8;
+	box-shadow: 2px 2px 2px #888888;
 	/*background-color: #E6E6E6;*/
 /*	background-color: #CADBFF;*/
 /*	border-left: 1px solid #417ffd !important;
@@ -871,15 +842,17 @@ body {
 
 .active-category {
 	font-weight:bold;
-	background-color: #FFFFFF !important;
+	background-color: #FCFFE8 !important;
+	color:#000 !important;
 }
 
 #answer_container ul {
 	margin:0;
 	padding:12px 0 12px 20px;
 	list-style: none;
-	color:#000;
-	background-color: #CACACA;
+	color:#FFF;
+	background-color: #083898;
+	/*background-color: #CACACA;*/
 }
 
 #answer_container li {
@@ -893,7 +866,7 @@ body {
 }
 
 #answer_categories ul:hover {
-	background-color: #EEEEEE;
+	background-color: rgba(8, 56, 152, 0.5);
 }
 
 #answer_options {

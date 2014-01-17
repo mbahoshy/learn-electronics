@@ -87,8 +87,8 @@ TRADE.ChapterNavView = Backbone.View.extend({
 
 TRADE.TestView = Backbone.View.extend({
         tagName: 'div',
-        className: 'test-container',
-        template: _.template("<a class='no-decoration' href='#test/<%= classid %>/<%= chapterid %>/<%= model.testid %>'><div class='test-list'><h5><%= model.testname %></h5><h6><%= model.testsnippet %></h6></div></a>"),
+        className: 'test-container activity-container',
+        template: _.template("<a class='no-decoration' href='#test/<%= classid %>/<%= chapterid %>/<%= model.testid %>'><div class='test-list activity-list'><span class='activity-label'>TEST</span><h5><%= model.testname %></h5><p><%= model.testsnippet %></p></div></a>"),
         events: {
                 "mouseover a": "lessonMouseover",
                 "mouseout a": "lessonMouseout"
@@ -124,8 +124,8 @@ TRADE.TestView = Backbone.View.extend({
 
 TRADE.LessonView = Backbone.View.extend({
         tagName: 'div',
-        className: 'lesson-container',
-        template: _.template("<a class='no-decoration' href='#slides/<%= classid %>/<%= chapterid %>/<%= model.lessonid %>'><div class='lesson-list'><h5><%= model.name %></h5><h6><%= model.snippet %></h6></div></a>"),
+        className: 'lesson-container activity-container',
+        template: _.template("<a class='no-decoration' href='#slides/<%= classid %>/<%= chapterid %>/<%= model.lessonid %>'><div class='lesson-list activity-list'><span class='activity-label'>LESSON</span><h5><%= model.name %></h5><p><%= model.snippet %></p></div></a>"),
         events: {
                 "mouseover a": "lessonMouseover",
                 "mouseout a": "lessonMouseout"
@@ -162,9 +162,9 @@ TRADE.LessonView = Backbone.View.extend({
 
 TRADE.ProblemView = Backbone.View.extend({
         tagName: 'div',
-        className: 'problem-container',
-        template: _.template("<a href ='#/problemslides/<%= classid %>/<%= chapterid %>/<%= model.problemlevel %>/<%= model.problemname %>/<%= model.problemid %>'><div class='problem-list'><h5><%= model.problemname %></h5><br>Problems Completed: <%= model.problemscompleted %>/<%= model.numproblems %></div></a>"),
-        template2: _.template("<a href ='#/problemslides/<%= classid %>/<%= chapterid %>/<%= model.problemlevel %>/<%= model.problemname %>/<%= model.problemid %>'><div class='problem-list'><h5><%= model.problemname %></h5><br></div></a>"),
+        className: 'problem-container activity-container',
+        template: _.template("<a href ='#/problemslides/<%= classid %>/<%= chapterid %>/<%= model.problemlevel %>/<%= model.problemname %>/<%= model.problemid %>'><div class='problem-list activity-list'><span class='activity-label'>PROBLEM</span><h5><%= model.problemname %></h5><br>Problems Completed: <%= model.problemscompleted %>/<%= model.numproblems %></div></a>"),
+        template2: _.template("<a href ='#/problemslides/<%= classid %>/<%= chapterid %>/<%= model.problemlevel %>/<%= model.problemname %>/<%= model.problemid %>'><div class='problem-list activity-list'><span class='activity-label'>PROBLEM</span><h5><%= model.problemname %></h5><br></div></a>"),
         events: {
                 "mouseover a": "lessonMouseover",
                 "mouseout a": "lessonMouseout"
