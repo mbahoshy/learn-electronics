@@ -501,7 +501,7 @@ body {
 .test-list {
 
 	height:100px;
-	margin:20px;
+	margin:30px;
 	padding:25px 15px;
 	color:black;
 	box-shadow: 4px 4px 0 #CACACA;
@@ -510,21 +510,20 @@ body {
 }
 
 .lesson-container {
-	width:320px;
+	width:319px;
 	float:left;
 	padding:0;
 	margin:0;
+	border-right: 1px solid rgb(170, 170, 170);
 }
 
 .lesson-list {
-
 	height:100px;
-	margin:20px;
+	margin:30px;
 	padding:25px 15px;
 	color:black;
-	box-shadow: 4px 4px 0 #CACACA;
+	box-shadow: 4px 4px 2px #CACACA;
 	background-color: white;
-	border-radius: 10px;
 }
 
 .lesson-list h5 {
@@ -540,20 +539,21 @@ body {
 }
 
 .problem-container {
-	width:320px;
+	width:319px;
 	float:left;
 	display:inline;
 	padding:0;
 	margin:0;
+	border-right: 1px solid rgb(170, 170, 170);
 }
 .problem-list {
-	height:100px;
-	margin:20px;
+	height:190px;
+	margin:30px;
 	padding:25px 15px;
 	color:black;
-	box-shadow: 4px 4px 0 #CACACA;
+	box-shadow: 4px 4px 2px #CACACA;
 	background-color: white;
-	border-radius: 10px;
+	border-radius: 5px;
 }
 
 .problem-list h5 {
@@ -1133,7 +1133,7 @@ body {
 
 .battery {
 	float:right;
-	margin-right: 20px;
+	margin-top: 140px;
 	opacity: .7;
 }
 
