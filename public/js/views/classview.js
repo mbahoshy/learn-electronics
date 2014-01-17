@@ -34,11 +34,34 @@ TRADE.ClassView = Backbone.View.extend({
                 this.$el.html( this.template(this.model.toJSON()) );
                 console.dir(this.model);
                 console.dir(this.model.user);
-                var x = _.where(user.lessonProgress, {classid : this.model.attributes._id, completed:true});
-                var y = _.where(user.problemProgress, {classid : this.model.attributes._id, completed:true});
-                var y = _.where(user.testProgress, {classid : this.model.attributes._id, completed:true});
-                console.dir(x);
-                console.dir(y);
+                var x = _.where(user.lessonProgress, {classid : this.model.attributes._id, completed:true}).length;
+                var y = _.where(user.problemProgress, {classid : this.model.attributes._id, completed:true}).length;
+                var y = _.where(user.testProgress, {classid : this.model.attributes._id, completed:true}).length;
+
+                var numcompleted = x + y + x;
+                var total = this.model.attributes.total;
+
+                var percent = Math.floor((numcompleted/total)*100);
+                console.dir('percent');
+                console.dir(percent);
+                if (percent>= 0 && percent <15) {
+                    this.$el.prepend("<img class='battery' src='/imgs/battery_0.png' />");
+                } else if (percent>= 15 && percent <30) {
+                    this.$el.prepend("<img class='battery' src='/imgs/battery_1.png' />");
+                } else if (percent>= 30 && percent <44) {
+                    this.$el.prepend("<img class='battery' src='/imgs/battery_2.png' />");
+                } else if (percent>= 44 && percent <58) {
+                    this.$el.prepend("<img class='battery' src='/imgs/battery_3.png' />");
+                } else if (percent>= 58 && percent <72) {
+                    this.$el.prepend("<img class='battery' src='/imgs/battery_4.png' />");
+                } else if (percent>= 72 && percent <86) {
+                    this.$el.prepend("<img class='battery' src='/imgs/battery_5.png' />");
+                } else if (percent>= 86 && percent <100) {
+                    this.$el.prepend("<img class='battery' src='/imgs/battery_6.png' />");
+                } else if (percent === 100) {
+                    this.$el.prepend("<img class='battery' src='/imgs/battery_7.png' />");
+                }
+
                 return this;
         }
 });

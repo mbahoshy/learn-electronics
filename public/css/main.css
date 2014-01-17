@@ -1131,6 +1131,12 @@ body {
 	font-size: 13px;
 }
 
+.battery {
+	float:right;
+	margin-right: 20px;
+	opacity: .7;
+}
+
 .classroom-card-list {
 	float:left;
 	height:100%;

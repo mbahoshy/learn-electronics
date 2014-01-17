@@ -42,11 +42,7 @@ function getClasses (req, res) {
             t.total = numlessons + numproblems + numClasses;
 
             classdata.push(t);
-
-            console.log("data");
-            console.log(z);
-
-
+            
             function getLength(category) {
                 var length = category.length;
                 var number = 0;
@@ -54,13 +50,10 @@ function getClasses (req, res) {
                 for (var q = 0; q < length; q++) {
                     number = number + category[q].length;
                 }
-                console.log(number);
+
                 return number;
             }
         }
-
-
-        console.log(classdata);
 
     	res.json(classdata);
 	});
