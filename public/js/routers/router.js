@@ -1,13 +1,13 @@
 TRADE.Router = Backbone.Router.extend({
     routes: {
         "": "displayListOfClassrooms", //displays classes
-        "class/:classid": "displayChapter", //displays chapters
+        "class/:classid/:chapterindex": "displayChapter", //displays chapters
         // "chapter/:chapterid": "chapterFunction", //displays lessons
-        "slides/:chapterid/:lessonid": "slideFunction",
+        "slides/:classid/:chapterid/:lessonid": "slideFunction",
         "problems/:level": "problemListFunction",
-        "problemslides/:chapterid/:level/:problemname/:problemid": "problemSlideFunction",
+        "problemslides/:classid/:chapterid/:level/:problemname/:problemid": "problemSlideFunction",
         "report" : "reportFunction",
-        "test/:testid/:chapterid" : "displayTest"
+        "test/:classid/:chapterid/:testid" : "displayTest"
     },
 
 
@@ -43,8 +43,10 @@ TRADE.Router = Backbone.Router.extend({
         }
     },
 
-    displayChapter: function (classid) {
+    displayChapter: function (classid, chapterindex) {
         this.clearBody();
+        console.log('vagina');
+        console.dir(chapterindex);
 
         var user,
             nav,
@@ -66,11 +68,13 @@ TRADE.Router = Backbone.Router.extend({
         function renderChapters () {
             if (wait === 2) {
                 var ChapterCollection1 = new TRADE.ChapterCollection ();
+                ChapterCollection1.classid = classid;
                 ChapterCollection1.reset(nav.chapters);
                 ChapterCollection1.user = user;
                 ChapterCollection1.navname = nav.name;
                 var ChapterListView1 = new TRADE.ChapterListView ({collection: ChapterCollection1});
-                ChapterListView1.render(0);
+
+                ChapterListView1.render(chapterindex);
 
                 //append to dom
                 $('#body_container').prepend(ChapterListView1.$el);
@@ -78,7 +82,7 @@ TRADE.Router = Backbone.Router.extend({
         }
     },
 
-    slideFunction: function (chapterid, lessonid) {
+    slideFunction: function (classid, chapterid, lessonid) {
 
         //clear html
         this.clearBody();
@@ -110,10 +114,10 @@ TRADE.Router = Backbone.Router.extend({
                 $("#slide_container").html(_.template(currentslide));
 
                 $('.slide-left').on('click', function () {
-                    TRADE.FUNC.slideChange(chapterid, lessonid, this);
+                    TRADE.FUNC.slideChange(classid, chapterid, lessonid, this);
                 });
                 $('.slide-right').on('click', function  () {
-                    TRADE.FUNC.slideChange(chapterid, lessonid, this);
+                    TRADE.FUNC.slideChange(classid, chapterid, lessonid, this);
                 });
                 TRADE.FUNC.slideIndexNav();
                 $('#slide_nav_' + TRADE.GameData.slideindex).addClass('slide-active');
@@ -155,7 +159,7 @@ TRADE.Router = Backbone.Router.extend({
         }
     },
 
-    problemSlideFunction: function (chapterid, level, problemname, problemid) {
+    problemSlideFunction: function (classid, chapterid, level, problemname, problemid) {
 
         this.clearBody();
 
@@ -251,7 +255,7 @@ TRADE.Router = Backbone.Router.extend({
         
     },
 
-    displayTest: function (testid, chapterid) {
+    displayTest: function (classid, chapterid, testid) {
         this.clearBody();
 
         $.get("/test/" + testid, function(data, status){

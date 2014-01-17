@@ -20,7 +20,7 @@ TRADE.GameData = {
 };
 
 TRADE.FUNC = (function () {
-	this.slideChange = function (chapterid, lessonid, that) {
+	this.slideChange = function (classid, chapterid, lessonid, that) {
 			var slides = $('#slide_holder > .slide'); // get slide array
 			var slidesNumber = (slides.length - 1); // get number of slides
 			var direction = $(that).data('direction'); // get the direction to move the slide
@@ -38,7 +38,7 @@ TRADE.FUNC = (function () {
 			if (direction === 'right' && TRADE.GameData.slideindex === slidesNumber) {
 				
                 
-                TRADE.router.navigate('#', {trigger: true});
+                TRADE.router.navigate('#/class/' + classid + '/' + chapterid, {trigger: true});
 			}
 
 
@@ -48,7 +48,7 @@ TRADE.FUNC = (function () {
 				TRADE.GameData.slideindex ++;
 				if (TRADE.GameData.slideindex === slidesNumber) {
 					var date = new Date().getTime();
-					$.post('/user/' + chapterid + '/' + lessonid + '/' + date, function(data){
+					$.post('/lesson/' + classid + '/' + chapterid + '/' + lessonid + '/' + date, function(data){
 	                    console.log('User updated successfully');
 	                });
 				}

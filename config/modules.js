@@ -42,7 +42,7 @@ function getClasses (req, res) {
             t.total = numlessons + numproblems + numClasses;
 
             classdata.push(t);
-            
+
             function getLength(category) {
                 var length = category.length;
                 var number = 0;
@@ -109,7 +109,7 @@ function updateLessonProgress (req, res) {
 	var chapterid = req.param("chapterid"),
 		lessonid = req.param("lessonid"),
 		date = req.param("date"),
-		classid = req.session.classid,
+		classid = req.param("classid"),
 		update,
 		user = req.user,
 		userid = req.user._id;
