@@ -7,17 +7,26 @@ TRADE.CIRC = (function () {
 			var stage;
 			var layer;
 
-			this.Create = function (width, height) {
+			this.Intervals = {}
+
+			this.Create = function (width, height, multimeter) {
 				var styles = ["float:right"];
 				level1 = new Level();
 				
 				var $html = $("<div id='tools' class='fleft'></div><div style='float:right;'><div id='canvas'><div id='mycanvas'></div></div></div>");
 				$('#level_container').append($html);
+
 				multiMeter1 = new MultiMeter();
+				$('.multimeter_button').click(meterClickHandler);
+
+				if (multimeter === false) {
+					$('#tools').css('display', 'none');
+				}
+
 				$('#canvas').css({'width': width, 'height': height});
 				$('#canvas').on('click', '.contact', contactClickHandler);
 				
-				$('.multimeter_button').click(meterClickHandler);
+				
 
 				stage = new Kinetic.Stage({
 					container: 'mycanvas',
@@ -441,8 +450,6 @@ TRADE.CIRC = (function () {
 					level1.current_problem = problem;
 					level1.current_set = set;
 			}
-
-			this.Intervals = {}
 
 			this.Heater = function (id, left, top, c0, c1) {
 

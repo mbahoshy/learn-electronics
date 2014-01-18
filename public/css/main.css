@@ -151,11 +151,6 @@ body {
 	user-select: none;
 }
 
-#level_container {
-
-	margin-top:25px;
-}
-
 #res_canvas {
 	position: absolute;
 	top:0px;
@@ -747,7 +742,6 @@ body {
 
 #level_container {
 	height:100%;
-	padding:15px;
 }
 
 .half {
@@ -1268,4 +1262,11 @@ body {
 	border-right: 1px solid #bebebe;
 	border-bottom: 1px solid #bebebe;
 	color:#bebebe;
+}
+
+.center-720 {
+	float:left;
+	margin-right: 120px !important;
+	margin-left: 120px !important;
+
 }

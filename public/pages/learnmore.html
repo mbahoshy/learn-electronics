@@ -6,6 +6,7 @@
 	<title>HVAC Game</title>
 	<link rel='stylesheet' href='/css/main.css'	/>
 	<link rel='stylesheet' href='/css/index.css'	/>
+	<link rel='stylesheet' href='/css/hvac.css'	/>
 	
 	<!-- load scripts -->
 	<!--<script src='http://code.jquery.com/jquery-1.9.1.js'></script>
@@ -13,11 +14,84 @@
 		<script src='scripts/functions.js'></script>
 	-->
 	<script src='/js/main.js'></script>
-	
+	<script src='/js/objects.js'></script>
+	<script src="/libs/kinetic.js"></script>
 	<script src="/libs/jquery.js"></script>
 	<script src="/libs/underscore.js"></script>
 
+	<script>
+		$(document).ready(function () {
+			TRADE.GameData.gamejson = {
+				"problem_0" : {
+					"switch": {
 
+						"c2": {"Volts": "l1", "Ohms": .1, "Ferads": '', "Device": 'break1'},
+						"c3": {"Volts": "l2", "Ohms": .1, "Ferads": '', "Device": 'break2'},
+
+						"n1": {"Volts": "l1", "Ohms": .1, "Ferads": '', "Device": 'break1'},
+						"line1": {"Volts": "l1", "Ohms": .1, "Ferads": '', "Device": 'break1'},
+
+						"l1": {"on": true},
+						"lc1": {"Volts": "l2", "Ohms": .1, "Ferads": '', "Device": 'break2'},
+						"lc2": {"Volts": "l2", "Ohms": .1, "Ferads": '', "Device": 'break2'},
+
+						"spst1": {"on": true},
+						"sc1": {"Volts": "l2", "Ohms": .1, "Ferads": '', "Device": 'break2'},
+						"sc2": {"Volts": "l2", "Ohms": .1, "Ferads": '', "Device": 'break2'},
+
+						"w1": {"Amps": 42.5},
+						"w2": {"Amps": 2.5},
+						"w3": {"Amps": 2.5},
+						"w4": {"Amps": 2.5},
+						"w5": {"Amps": 2.5}
+					},
+					"noswitch": {
+
+						"c2": {"Volts": "l1", "Ohms": .1, "Ferads": '', "Device": 'break1'},
+						"c3": {"Volts": "l2", "Ohms": .1, "Ferads": '', "Device": 'break2'},
+
+						"n1": {"Volts": "l1", "Ohms": .1, "Ferads": '', "Device": 'break1'},
+						"line1": {"Volts": "l1", "Ohms": .1, "Ferads": '', "Device": 'break1'},
+
+						"l1": {"on": false},
+						"lc1": {"Volts": "l2", "Ohms": .1, "Ferads": '', "Device": 'break2'},
+						"lc2": {"Volts": "l2", "Ohms": .1, "Ferads": '', "Device": 'break2'},
+
+						"spst1": {"on": false},
+						"sc1": {"Volts": "l2", "Ohms": .1, "Ferads": '', "Device": 'break2'},
+						"sc2": {"Volts": "l2", "Ohms": .1, "Ferads": '', "Device": 'break2'},
+
+						"w1": {"Amps": 42.5},
+						"w2": {"Amps": 2.5},
+						"w3": {"Amps": 2.5},
+						"w4": {"Amps": 2.5},
+						"w5": {"Amps": 2.5}
+					}
+				}
+			}
+
+
+
+		    TRADE.CIRC.Create(718, 250, false);
+			TRADE.CIRC.Set('problem_0', 'switch');
+			TRADE.CIRC.Line1('line1', 50, 30);
+
+			// TRADE.CIRC.Contact('c2', 50, 120);
+			TRADE.CIRC.Contact('c3', 625, 202);
+		
+			TRADE.CIRC.Neutral('n1', 625, 30);
+
+			TRADE.CIRC.SPSTSwitch('spst1', 60, 110, 'sc1', 'sc2', 'noswitch');
+			TRADE.CIRC.LightBulb('l1', 'lc1', 'lc2', 290, 50);
+
+			TRADE.CIRC.DrawWire('w1', 'blue', 3, [50, 30, 50, 110]);
+			// TRADE.CIRC.DrawWire('w2', 'blue', 3, [50, 120, 120, 120]);
+			TRADE.CIRC.DrawWire('w3', 'blue', 3, [100, 200, 290, 200]);
+			TRADE.CIRC.DrawWire('w4', 'blue', 3, [360, 200, 625, 200]);
+			TRADE.CIRC.DrawWire('w5', 'blue', 3, [625, 200, 625, 30]);
+			
+		});
+	</script>
 
 <!-- 
 	<script src='js/routers/router.js'></script>
@@ -55,23 +129,26 @@
 		</div>
 
 	</div>
-	<div id='top_wrapper' class=''>
-		<div class='wrapper'>
 
+		<div class='wrapper'>
+			<div class='center-720 learnmore-header'>
+				<h2>Why learn HVAC online?</h2>
+				<div id='level_container'></div>
+			</div>
 		</div>
-	</div>
+
 	<div class='wrapper'>
 			<div class='two-third'>
 				<div class='perk-card'>
-					<h3>Earn more money</h3>
+					<h3>EARN MORE MONEY</h3>
 					<p>HVAC service technicians are the most in demand skilled trade career. Put in the time to learn, and watch your paycheck grow!</p>
 				</div>
 				<div class='perk-card'>
-					<h3>Keep your job</h3>
+					<h3>KEEP YOUR JOB</h3>
 					<p>Cars, tools, kids ... we get it -- you've got bills to pay. Keep your job while you learn essential skills to up your paygrade.</p>
 				</div>
 				<div class='perk-card'>
-					<h3>Advance your career</h3>
+					<h3>ADVANCE YOUR CAREER</h3>
 					<p>Have you ever wanted to advance your career, but never had the time or money for conventional HVAC schools? Tradepro is easy on your wallet, and works on your schedule.</p>
 				</div>
 			</div>

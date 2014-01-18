@@ -196,18 +196,23 @@ input:hover, input:focus, {
 	background: -moz-linear-gradient(top, #FFFFFF, #D8D8D8 1px, #FFFFFF 25px);
 	}*/
 
-#top_wrapper {
-	width:100%;
-	height:270px;
-	background-color: #9d9d9d;
-	float:left;
-}
 
 #learn_mid_wrapper {
 	width:100%;
 	height:270px;
 	background-color: #FFDAA3;
 	float:left;
+}
+
+.learnmore-header {
+	margin:30px 0;
+}
+
+.learnmore-header h2 {
+	font-family: Georgia;
+	font-size:30px;
+	text-align: center;
+	font-weight: normal;
 }
 
 .two-third {
@@ -234,7 +239,6 @@ input:hover, input:focus, {
 .perk-card h3 {
 	font-size: 23px;
 	color: #083898;
-	font-style: italic;
 	padding: 0;
 	margin:0;
 
