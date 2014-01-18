@@ -142,7 +142,7 @@ function updateLessonProgress (req, res) {
 
 function updateProblemProgress (req, res) {
 	var problemname = req.param("problemname"),
-		classid = req.session.classid,
+		classid = req.param("classid"),
 		chapterid = req.param("chapterid"),
 		problemid = req.param("problemid"),
 		level = req.param("level"),

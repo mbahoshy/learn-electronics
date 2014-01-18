@@ -17,6 +17,7 @@ TRADE.AnswerSubView = Backbone.View.extend({
                 var problemname = $('#answer_container').data('problemname');
                 var problemid = $('#answer_container').data('problemid');
                 var chapterid = $('#answer_container').data('chapterid');
+                var classid = $('#answer_container').data('classid');
                 var problemnumber = TRADE.GameData.slideindex;
                 var slides = $('#slide_holder > .slide'); // get slide array
                 var slidesNumber = slides.length;
@@ -58,7 +59,7 @@ TRADE.AnswerSubView = Backbone.View.extend({
                         $('#answer_result').html('<h3 class="incorrect">Incorrect</h3>');
                 }
 
-                $.post('/problem/' + chapterid + '/' + problemname + '/' + problemid + '/' + level + '/' + problemnumber + '/' + unlock + '/' + slidesNumber, function (data) {
+                $.post('/problem/' + classid + '/' + chapterid + '/' + problemid + '/' + problemnumber + '/' + unlock + '/' + problemname + '/' + level + '/' + slidesNumber, function (data) {
                                 console.log('problem successfully updated');
                 });
                 //console.dir(this.model.attributes.answerid);
