@@ -443,17 +443,20 @@ body {
 	font-size: 17px;
 	float:left;
 	font-family:Georgia;
-	padding:25px 0 30px 25px;
+	padding:20px 0 30px 20px;
 	margin:0;
+	font-weight: normal;
+	font-style: italic;
+	width: 720px;
 }
 
 .chapter-header h4 {
 	margin:0;
-	padding:40px 0 0 0;
+	padding:60px 0 0 0;
 	font-size: 17px;
 	float:right;
-	font-family:Georgia;
-	font-style: italic;
+	text-transform: uppercase;
+	color:#AAAAAA;
 }
 
 .chapter-subnav {
@@ -503,6 +506,7 @@ body {
 	box-shadow: 4px 4px 2px #CACACA;
 	background-color: #FCFFE8;
 	border-radius: 10px;
+	text-align: center;
 }
 
 .activity-list p {
@@ -516,7 +520,7 @@ body {
 	font-weight: bold;
 	margin:0;
 	clear:both;
-	padding:5px 8px;
+	padding:15px 8px 8px;
 }
 
 .activity-container {

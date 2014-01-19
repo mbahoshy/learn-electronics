@@ -58,7 +58,7 @@ TRADE.ClassView = Backbone.View.extend({
                     this.$el.prepend("<img class='battery' src='/imgs/battery_5.png' />");
                 } else if (percent>= 86 && percent <100) {
                     this.$el.prepend("<img class='battery' src='/imgs/battery_6.png' />");
-                } else if (percent === 100) {
+                } else if (percent >= 100) {
                     this.$el.prepend("<img class='battery' src='/imgs/battery_7.png' />");
                 }
 

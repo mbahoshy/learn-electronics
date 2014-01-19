@@ -45,8 +45,6 @@ TRADE.Router = Backbone.Router.extend({
 
     displayChapter: function (classid, chapterindex) {
         this.clearBody();
-        console.log('vagina');
-        console.dir(chapterindex);
 
         var user,
             nav,
