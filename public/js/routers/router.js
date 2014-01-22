@@ -264,6 +264,7 @@ TRADE.Router = Backbone.Router.extend({
             questioncollection1.reset(data);
             questioncollection1.testid = testid;
             questioncollection1.chapterid = chapterid;
+            questioncollection1.classid = classid;
             var testcollectionview = new TRADE.TestSlides({collection: questioncollection1});
             testcollectionview.render(0);
             testcollectionview.setTimer();

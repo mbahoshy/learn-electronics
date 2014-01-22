@@ -337,49 +337,67 @@ function postTest (req, res) {
 		userid = req.user._id,
 		conditions,
 		update,
+		tags,
+		correct,
 		options = { multi: false };
+
+ 	
+
+ 	Question.findById(questionid, function (err, documents) {
+ 		var data = documents.toJSON();
+ 		tags = data.tags;
+ 		if (data.answer == optionid) {
+ 			correct = true;
+ 		} else {
+ 			correct = false;
+ 		}
+
+ 		updateTest();
+ 	});
 
  	var currentTest = _.findWhere(user.testProgress, {testid: testid});
 
-	if (currentTest) {
-		console.log('test exists');
+ 	function updateTest () {
+		if (currentTest) {
+			console.log('test exists');
 
-		if (currentTest.completed !== true) {
-			console.log("Updating test ... ");
-			conditions = { _id: userid, "testProgress.testid": testid };
+			if (currentTest.completed !== true) {
+				console.log("Updating test ... ");
+				conditions = { _id: userid, "testProgress.testid": testid };
 
-			currentTest.score.push({option: optionid, question: questionid} );
-			console.log("completed");
-			console.log(completed);
-			if (completed == 'true') {
-				console.log("complete true");
-				update = { $set: { "testProgress.$.score": currentTest.score, "testProgress.$.completed": true }};
+				currentTest.score.push({option: optionid, question: questionid, correct: correct, tags: tags} );
+				console.log("completed");
+				console.log(completed);
+				if (completed == 'true') {
+					console.log("complete true");
+					update = { $set: { "testProgress.$.score": currentTest.score, "testProgress.$.completed": true }};
+				} else {
+					update = { $set: { "testProgress.$.score": currentTest.score }};
+				}
 			} else {
-				update = { $set: { "testProgress.$.score": currentTest.score }};
+				console.log("Test has already been completed. No update.");
+				res.end();
 			}
+
 		} else {
-			console.log("Test has already been completed. No update.");
-			res.end();
+			conditions = { _id: userid };
+			var testmodel = {
+			  classid: classid,
+		      chapterid: chapterid,
+		      testid: testid,
+		      completed: false,
+		      score: [{option: optionid, question: questionid, correct: correct, tags: tags} ]
+		    };
+
+			update = { $addToSet: { testProgress: testmodel }};
+
+			console.log("Problem Does Not Exist");
 		}
 
-	} else {
-		conditions = { _id: userid };
-		var testmodel = {
-		  classid: classid,
-	      chapterid: chapterid,
-	      testid: testid,
-	      completed: false,
-	      score: [{option: optionid, question: questionid} ]
-	    };
 
-		update = { $addToSet: { testProgress: testmodel }};
 
-		console.log("Problem Does Not Exist");
+		Users.update(conditions, update, options, callback);
 	}
-
-
-
-	Users.update(conditions, update, options, callback);
 
     function callback (err, numAffected) {
 		if(err) throw err;
