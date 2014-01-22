@@ -140,7 +140,6 @@ TRADE.LessonView = Backbone.View.extend({
 
         },
         render : function (user, chapterid, classid) {
-                console.dir(this);
                 this.chapterid = chapterid;
                 this.classid = classid;
                 this.user = user;
@@ -154,7 +153,6 @@ TRADE.LessonView = Backbone.View.extend({
                 
         },
         renderCard : function (model) {
-                console.dir(model);
                 this.$el.append( this.template({model: model, chapterid: this.chapterid, classid: this.classid}));
         }
 });
@@ -180,35 +178,22 @@ TRADE.ProblemView = Backbone.View.extend({
         },
         render : function (user, chapterid, classid) {
                 // this.model.attributes.level = $('#subnav_container').data('problemactivenav');
-                console.dir(this);
+
                 this.chapterid = chapterid;
                 this.classid = classid;
                 this.user = user;
-                console.dir(user);
+
                 this.model.forEach(this.renderCard, this);
                 
-                // var colorClass;
-                // switch (this.model.attributes.problemlevel) {
-                //         case "Rookie":
-                //                 colorClass = "green";
-                //                 break;
-                //         case "Apprentice":
-                //                 colorClass = "yellow";
-                //                 break;
-                //         case "Journeyman":
-                //                 colorClass = "red";
-                //                 break;
-                // }
-                // $(this.el).addClass(colorClass);
                 return this;
                 
         },
         renderCard: function (model) {
-                console.dir(model);
-                console.dir(this);
-                var completed = _.findWhere(TRADE.UserData.problemProgress, {problemid: model.problemid});
+
+                var completed = _.findWhere(this.user.problemProgress, {problemid: model.problemid});
+
                 if (completed) {
-                        var problemscompleted = completed.unlocked.length;
+                        var problemscompleted = _.where(completed.score, {unlocked: true}).length;
                         var numproblems = completed.numberOfQuestions;
                         
                         model.problemscompleted = problemscompleted;

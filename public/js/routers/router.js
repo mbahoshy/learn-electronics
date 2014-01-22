@@ -162,10 +162,12 @@ TRADE.Router = Backbone.Router.extend({
         this.clearBody();
 
         var allSlides,
+            user,
             wait = 0;
 
         $.get("/user", function(data, status){
             TRADE.UserData = data;
+            user = data;
             wait ++;
             renderProblemSlide();
         });
@@ -181,8 +183,6 @@ TRADE.Router = Backbone.Router.extend({
             $('#answer_container').data('chapterid', chapterid);
             $('#answer_container').data('classid', classid);
             $('#answer_container').data('answerid', answerid);
-
-            
 
             wait ++;
             renderProblemSlide();
@@ -203,9 +203,9 @@ TRADE.Router = Backbone.Router.extend({
                 $('#body_container').append('<div class="hidden">' + allSlides + '</div>');
                 var slides = $('#slide_holder > .slide');
                 TRADE.FUNC.problemIndexNav();
-                var currentProblem = _.findWhere(TRADE.UserData.problemProgress, {problemid: problemid});
+                var currentProblem = _.findWhere(user.problemProgress, {problemid: problemid});
                 if (currentProblem) {
-                    var unlockedlength = currentProblem.unlocked.length;
+                    var unlockedlength = _.where(currentProblem.score, {unlocked:true}).length;
                     var maxlength = currentProblem.numberOfQuestions;
                     for (var i = 0; i <= unlockedlength; i++) {
                         $("#slide_nav_" + i).addClass('unlocked');
