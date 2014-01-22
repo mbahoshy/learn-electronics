@@ -145,96 +145,104 @@ function updateProblemProgress (req, res) {
 		classid = req.param("classid"),
 		chapterid = req.param("chapterid"),
 		problemid = req.param("problemid"),
+		answerid = req.param("answerid"),
+		optionid = req.param("optionid"),
 		level = req.param("level"),
 		problemnumber = req.param("problemnumber"),
-		unlock = req.param("unlock"),
 		numberOfQuestions = req.param("numberOfQuestions"),
 		user = req.user,
 		userid = req.user._id,
 		conditions,
 		update,
+		unlock,
 		options = { multi: false };
 
+		console.log('answerid');
+		console.log(answerid);
 
-	if (unlock === 'true') {
-		unlock = true;
-	} else {
-		unlock = null;
-	}
-
-	console.log(problemname + problemid + level + problemnumber);
-
- 	var currentProblem = _.findWhere(user.problemProgress, {problemid: problemid, level:level});
-
- 	console.log("problem number" + problemnumber);
-
-	if (currentProblem) {
-		
-		conditions = { _id: userid, "problemProgress.problemid": problemid };
-		var currentAttempts = currentProblem.score[problemnumber];
-		if (isNaN(currentAttempts)) {
-			currentAttempts = 0;
-		}
-
-		currentAttempts++;
-
-		// var t = _.pluck(user.problemProgress, "problemid");
-		// var c = _.indexOf(t, problemid);
-
-		currentProblem.score[problemnumber] = currentAttempts;
-		console.log("unlock length : " + currentProblem.unlocked.length);
-		console.log("number of questions : " + numberOfQuestions);
-		if (currentProblem.unlocked[problemnumber] === true) {
-			console.log('no update');
-			update = {};
-		} else if (unlock === true) {
-			console.log('unlock new problem');
-			currentProblem.unlocked[problemnumber] = true;
-			console.log("unlock length : " + currentProblem.unlocked.length);
-				if (currentProblem.unlocked.length == numberOfQuestions) {
-					console.log('problem complete');
-					update = { $set: { "problemProgress.$.score": currentProblem.score, "problemProgress.$.unlocked": currentProblem.unlocked, "problemProgress.$.completed": true }};
-				} else {
-					console.log('problem not finished');
-					update = { $set: { "problemProgress.$.score": currentProblem.score, "problemProgress.$.unlocked": currentProblem.unlocked }};
-				}	
+	Problem.findById(answerid, function(err, documents){
+		var data = documents.toJSON();
+		var answer = _.findWhere(data.answers, {problemnumber: problemnumber});
+		console.log('answer');
+		console.log(optionid);
+		console.log(answer.answerid);
+		if (answer.answerid == optionid) {
+			unlock = true;
 		} else {
-			update = { $set: { "problemProgress.$.score": currentProblem.score }};
+			unlock = null;
+		}
+		updateProblem();
+	});
+
+ 	
+
+ 	function updateProblem () {
+ 		var currentProblem = _.findWhere(user.problemProgress, {problemid: problemid, level:level});
+		if (currentProblem) {
+			
+			conditions = { _id: userid, "problemProgress.problemid": problemid };
+			var currentAttempts = currentProblem.score[problemnumber];
+			if (isNaN(currentAttempts)) {
+				currentAttempts = 0;
+			}
+
+			currentAttempts++;
+
+			currentProblem.score[problemnumber] = currentAttempts;
+
+			if (currentProblem.unlocked[problemnumber] === true) {
+				console.log('no update');
+				update = {};
+			} else if (unlock === true) {
+				console.log('unlock new problem');
+				currentProblem.unlocked[problemnumber] = true;
+				console.log("unlock length : " + currentProblem.unlocked.length);
+					if (currentProblem.unlocked.length == numberOfQuestions) {
+						console.log('problem complete');
+						update = { $set: { "problemProgress.$.score": currentProblem.score, "problemProgress.$.unlocked": currentProblem.unlocked, "problemProgress.$.completed": true }};
+					} else {
+						console.log('problem not finished');
+						update = { $set: { "problemProgress.$.score": currentProblem.score, "problemProgress.$.unlocked": currentProblem.unlocked }};
+					}	
+			} else {
+				update = { $set: { "problemProgress.$.score": currentProblem.score }};
+			}
+
+			
+		
+		} else {
+			conditions = { _id: userid };
+			var problemmodel = {
+			  classid: classid,
+		      problemname: problemname,
+		      problemid: problemid,
+		      numberOfQuestions: numberOfQuestions,
+		      completed: false,
+		      level: level,
+		      score: [1],
+		      unlocked: []
+		    };
+
+		    if(unlock === true) {
+		    	problemmodel.unlocked = [true];
+		    }
+
+			update = { $addToSet: { problemProgress: problemmodel }};
+
+			console.log("Problem Does Not Exist");
 		}
 
-		
-	
-	} else {
-		conditions = { _id: userid };
-		var problemmodel = {
-		  classid: classid,
-	      problemname: problemname,
-	      problemid: problemid,
-	      numberOfQuestions: numberOfQuestions,
-	      completed: false,
-	      level: level,
-	      score: [1],
-	      unlocked: []
-	    };
-
-	    if(unlock === true) {
-	    	problemmodel.unlocked = [true];
-	    }
-
-		update = { $addToSet: { problemProgress: problemmodel }};
-
-		console.log("Problem Does Not Exist");
+		Users.update(conditions, update, options, callback);
 	}
-
-	Users.update(conditions, update, options, callback);
 
 
     function callback (err, numAffected) {
 		if(err) throw err;
-		res.end();
+		console.log('unlock');
+		console.log(unlock);
+		res.json({unlock: unlock});
 	}
 
-    res.end();
 }
 
 function slideTemplate (req, res) {
