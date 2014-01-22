@@ -463,7 +463,7 @@ body {
 	width:960px;
 	height:30px;
 
-	border-bottom: 1px solid #417ffd;
+	border-bottom: 1px solid #CCCCCC;
 	text-align: right;
 	float:left;
 }
@@ -492,7 +492,7 @@ body {
 .activity-label {
 	float:left;
 	padding:8px 20px;
-	border-radius: 8px;
+	border-radius: 8px 0;
 	color:white;
 	font-style: normal;
 	font-weight: bold;
@@ -551,6 +551,8 @@ body {
 }
 
 .lesson-list .activity-label {
+	/*background-color: #4D4D4D;*/
+	/*background-color: #7C3905;*/
 	background-color: #167c05;
 }
 
@@ -558,13 +560,23 @@ body {
 	background-color: #083898;
 }
 
-
+.check-box {
+	width:20px;
+	height:20px;
+	border-radius:5px;
+	margin:5px 5px 0 0 ;
+	background-color: #e1e1e1;
+	float:right;
+}
 
 
 .green {
 	color:#007223 !important;
 }
 
+.check-green {
+	background-color: #b0d779;
+}
 
 
 .red {

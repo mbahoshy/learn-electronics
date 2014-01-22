@@ -88,7 +88,7 @@ TRADE.ChapterNavView = Backbone.View.extend({
 TRADE.TestView = Backbone.View.extend({
         tagName: 'div',
         className: 'test-container activity-container',
-        template: _.template("<a class='no-decoration' href='#test/<%= classid %>/<%= chapterid %>/<%= model.testid %>'><div class='test-list activity-list'><span class='activity-label'>TEST</span><h5><%= model.testname %></h5><p><%= model.testsnippet %></p></div></a>"),
+        template: _.template("<a class='no-decoration' href='#test/<%= classid %>/<%= chapterid %>/<%= model.testid %>'><div class='test-list activity-list'><span class='activity-label'>TEST</span><div class='check-box'></div><h5><%= model.testname %></h5><p><%= model.testsnippet %></p></div></a>"),
         events: {
                 "mouseover a": "lessonMouseover",
                 "mouseout a": "lessonMouseout"
@@ -119,13 +119,18 @@ TRADE.TestView = Backbone.View.extend({
         renderCard : function (model) {
                 console.dir(model);
                 this.$el.append( this.template({model: model, chapterid: this.chapterid, classid: this.classid}));
+                var completed = _.findWhere(this.user.testProgress, {testid: model.testid});
+
+                if (completed && completed.completed === true) {
+                        $(this.el).find('.check-box').addClass('check-green');
+                }
         }
 });
 
 TRADE.LessonView = Backbone.View.extend({
         tagName: 'div',
         className: 'lesson-container activity-container',
-        template: _.template("<a class='no-decoration' href='#slides/<%= classid %>/<%= chapterid %>/<%= model.lessonid %>'><div class='lesson-list activity-list'><span class='activity-label'>LESSON</span><h5><%= model.name %></h5><p><%= model.snippet %></p></div></a>"),
+        template: _.template("<a class='no-decoration' href='#slides/<%= classid %>/<%= chapterid %>/<%= model.lessonid %>'><div class='lesson-list activity-list'><span class='activity-label'>LESSON</span><div class='check-box'></div><h5><%= model.name %></h5><p><%= model.snippet %></p></div></a>"),
         events: {
                 "mouseover a": "lessonMouseover",
                 "mouseout a": "lessonMouseout"
@@ -154,6 +159,11 @@ TRADE.LessonView = Backbone.View.extend({
         },
         renderCard : function (model) {
                 this.$el.append( this.template({model: model, chapterid: this.chapterid, classid: this.classid}));
+                var completed = _.findWhere(this.user.lessonProgress, {lessonid: model.lessonid});
+
+                if (completed) {
+                        $(this.el).find('.check-box').addClass('check-green');
+                }
         }
 });
 
@@ -161,8 +171,8 @@ TRADE.LessonView = Backbone.View.extend({
 TRADE.ProblemView = Backbone.View.extend({
         tagName: 'div',
         className: 'problem-container activity-container',
-        template: _.template("<a href ='#/problemslides/<%= classid %>/<%= chapterid %>/<%= model.problemid %>/<%= model.answerid %>/<%= model.problemlevel %>/<%= model.problemname %>'><div class='problem-list activity-list'><span class='activity-label'>PROBLEM</span><h5><%= model.problemname %></h5><br>Problems Completed: <%= model.problemscompleted %>/<%= model.numproblems %></div></a>"),
-        template2: _.template("<a href ='#/problemslides/<%= classid %>/<%= chapterid %>/<%= model.problemid %>/<%= model.answerid %>/<%= model.problemlevel %>/<%= model.problemname %>'><div class='problem-list activity-list'><span class='activity-label'>PROBLEM</span><h5><%= model.problemname %></h5><br></div></a>"),
+        template: _.template("<a href ='#/problemslides/<%= classid %>/<%= chapterid %>/<%= model.problemid %>/<%= model.answerid %>/<%= model.problemlevel %>/<%= model.problemname %>'><div class='problem-list activity-list'><span class='activity-label'>PROBLEM</span><div class='check-box'></div><h5><%= model.problemname %></h5><br>Problems Completed: <%= model.problemscompleted %>/<%= model.numproblems %></div></a>"),
+        template2: _.template("<a href ='#/problemslides/<%= classid %>/<%= chapterid %>/<%= model.problemid %>/<%= model.answerid %>/<%= model.problemlevel %>/<%= model.problemname %>'><div class='problem-list activity-list'><span class='activity-label'>PROBLEM</span><div class='check-box'></div><h5><%= model.problemname %></h5><br></div></a>"),
         events: {
                 "mouseover a": "lessonMouseover",
                 "mouseout a": "lessonMouseout"
@@ -182,9 +192,7 @@ TRADE.ProblemView = Backbone.View.extend({
                 this.chapterid = chapterid;
                 this.classid = classid;
                 this.user = user;
-
                 this.model.forEach(this.renderCard, this);
-                
                 return this;
                 
         },
@@ -199,6 +207,9 @@ TRADE.ProblemView = Backbone.View.extend({
                         model.problemscompleted = problemscompleted;
                         model.numproblems = numproblems;
                         this.$el.append( this.template({model: model, chapterid: this.chapterid, classid: this.classid}));
+                        if (completed.completed === true) {
+                                $(this.el).find('.check-box').addClass('check-green');
+                        }
                 } else {
                         this.$el.append( this.template2({model: model, chapterid: this.chapterid, classid: this.classid}));
                 }

@@ -187,36 +187,33 @@ function updateProblemProgress (req, res) {
 				var currentAttempts = currentProblem.score[problemnumber].attempts;
 				currentAttempts++;
 				currentProblem.score[problemnumber].attempts = currentAttempts;
-
-
-				if (currentProblem.score[problemnumber].unlocked === true) {
-					console.log('no update');
-					update = {};
-				} else if (unlock === true) {
-					console.log('unlock new problem');
-					currentProblem.score[problemnumber].unlocked = true;
-					var unlockedlength = _.where(currentProblem.score, {unlocked:true}).length;
-					console.log("unlock length : " + unlockedlength);
-						if (unlockedlength == numberOfQuestions) {
-							console.log('problem complete');
-							update = { $set: { "problemProgress.$.score": currentProblem.score, "problemProgress.$.unlocked": currentProblem.unlocked, "problemProgress.$.completed": true }};
-						} else {
-							console.log('problem not finished');
-							update = { $set: { "problemProgress.$.score": currentProblem.score}};
-						}	
-				} else {
-					update = { $set: { "problemProgress.$.score": currentProblem.score }};
-				}
 			} else {
 				currentProblem.score[problemnumber] = {
 					attempts: 1,
-					unlocked: unlock,
+					unlocked: false,
 					tags: []
 				}
-				update = { $set: { "problemProgress.$.score": currentProblem.score }}
+
 			}
 
-			
+			if (currentProblem.score[problemnumber].unlocked === true) {
+				console.log('no update');
+				update = {};
+			} else if (unlock === true) {
+				console.log('unlock new problem');
+				currentProblem.score[problemnumber].unlocked = true;
+				var unlockedlength = _.where(currentProblem.score, {unlocked:true}).length;
+				console.log("unlock length : " + unlockedlength);
+					if (unlockedlength == numberOfQuestions) {
+						console.log('problem complete');
+						update = { $set: { "problemProgress.$.score": currentProblem.score, "problemProgress.$.completed": true }};
+					} else {
+						console.log('problem not finished');
+						update = { $set: { "problemProgress.$.score": currentProblem.score}};
+					}	
+			} else {
+				update = { $set: { "problemProgress.$.score": currentProblem.score }};
+			}
 		
 		} else {
 			conditions = { _id: userid };
