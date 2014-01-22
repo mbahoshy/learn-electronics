@@ -181,31 +181,39 @@ function updateProblemProgress (req, res) {
 		if (currentProblem) {
 			
 			conditions = { _id: userid, "problemProgress.problemid": problemid };
-			var currentAttempts = currentProblem.score[problemnumber];
-			if (isNaN(currentAttempts)) {
-				currentAttempts = 0;
-			}
+			var currentScore = currentProblem.score[problemnumber];
 
-			currentAttempts++;
+			if (currentScore) {
+				var currentAttempts = currentProblem.score[problemnumber].attempts;
+				currentAttempts++;
+				currentProblem.score[problemnumber].attempts = currentAttempts;
 
-			currentProblem.score[problemnumber] = currentAttempts;
 
-			if (currentProblem.unlocked[problemnumber] === true) {
-				console.log('no update');
-				update = {};
-			} else if (unlock === true) {
-				console.log('unlock new problem');
-				currentProblem.unlocked[problemnumber] = true;
-				console.log("unlock length : " + currentProblem.unlocked.length);
-					if (currentProblem.unlocked.length == numberOfQuestions) {
-						console.log('problem complete');
-						update = { $set: { "problemProgress.$.score": currentProblem.score, "problemProgress.$.unlocked": currentProblem.unlocked, "problemProgress.$.completed": true }};
-					} else {
-						console.log('problem not finished');
-						update = { $set: { "problemProgress.$.score": currentProblem.score, "problemProgress.$.unlocked": currentProblem.unlocked }};
-					}	
+				if (currentProblem.score[problemnumber].unlocked === true) {
+					console.log('no update');
+					update = {};
+				} else if (unlock === true) {
+					console.log('unlock new problem');
+					currentProblem.score[problemnumber].unlocked = true;
+					var unlockedlength = _.where(currentProblem.score, {unlocked:true}).length;
+					console.log("unlock length : " + unlockedlength);
+						if (unlockedlength == numberOfQuestions) {
+							console.log('problem complete');
+							update = { $set: { "problemProgress.$.score": currentProblem.score, "problemProgress.$.unlocked": currentProblem.unlocked, "problemProgress.$.completed": true }};
+						} else {
+							console.log('problem not finished');
+							update = { $set: { "problemProgress.$.score": currentProblem.score}};
+						}	
+				} else {
+					update = { $set: { "problemProgress.$.score": currentProblem.score }};
+				}
 			} else {
-				update = { $set: { "problemProgress.$.score": currentProblem.score }};
+				currentProblem.score[problemnumber] = {
+					attempts: 1,
+					unlocked: unlock,
+					tags: []
+				}
+				update = { $set: { "problemProgress.$.score": currentProblem.score }}
 			}
 
 			
@@ -219,13 +227,9 @@ function updateProblemProgress (req, res) {
 		      numberOfQuestions: numberOfQuestions,
 		      completed: false,
 		      level: level,
-		      score: [1],
-		      unlocked: []
+		      score: [{attempts: 1, unlocked: unlock, tags:[] }],
 		    };
 
-		    if(unlock === true) {
-		    	problemmodel.unlocked = [true];
-		    }
 
 			update = { $addToSet: { problemProgress: problemmodel }};
 
