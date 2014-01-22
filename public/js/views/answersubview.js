@@ -31,43 +31,45 @@ TRADE.AnswerSubView = Backbone.View.extend({
 
 
                 $.post('/problem/' + classid + '/' + chapterid + '/' + problemid + '/' + answerid + '/' + optionid + '/' + problemnumber + '/' + problemname + '/' + level + '/' + slidesNumber, function (data) {
-                                console.log('problem successfully updated');
+                        console.log('problem successfully updated');
                         console.dir('data');
                         console.dir(data);
+                        unlock = data.unlock;
+                        updateProblem ();
                 });
 
-                if (TRADE.GameData.answer == this.model.attributes.answerid) {
-                        unlock = true;
-                        $('#attempt_counter').html('0');
-                        
-                        console.log("Correct Answer!");
-                        TRADE.GameData.slideindex ++;
-                        
-                        if (slidesNumber === TRADE.GameData.slideindex) {
-                                console.log("last problem");
+                function updateProblem () {
+                        if (unlock === true) {
+                                $('#attempt_counter').html('0');
                                 
+                                console.log("Correct Answer!");
+                                TRADE.GameData.slideindex ++;
+                                
+                                if (slidesNumber === TRADE.GameData.slideindex) {
+                                        console.log("last problem");
+                                        
+                                } else {
+                                        
+                                        $('.problem-nav-active').removeClass('problem-nav-active');
+                                        $("#slide_nav_" + TRADE.GameData.slideindex).addClass('problem-nav-active');
+                                        $("#level_container").html('');
+                                        $("#slide_nav_" + TRADE.GameData.slideindex).addClass('unlocked');
+                                        $('#answer_question').trigger('click');
+                                        // $('#shadow').fadeToggle();
+                                        // $('#correct').fadeToggle();
+                                        $('#answer_result').html('<h3 class="correct">Correct!</h3>');
+                                        
+                                        var template = $(slides[TRADE.GameData.slideindex]).html();
+                                        
+                                        $("#slide_container").html(_.template(template));
+                                }
                         } else {
-                                
-                                $('.problem-nav-active').removeClass('problem-nav-active');
-                                $("#slide_nav_" + TRADE.GameData.slideindex).addClass('problem-nav-active');
-                                $("#level_container").html('');
-                                $("#slide_nav_" + TRADE.GameData.slideindex).addClass('unlocked');
-                                $('#answer_question').trigger('click');
+                                unlock = false;
                                 // $('#shadow').fadeToggle();
-                                // $('#correct').fadeToggle();
-                                $('#answer_result').html('<h3 class="correct">Correct!</h3>');
-                                
-                                var template = $(slides[TRADE.GameData.slideindex]).html();
-                                
-                                $("#slide_container").html(_.template(template));
+                                // $('#incorrect').fadeToggle();
+                                $('#answer_result').html('<h3 class="incorrect">Incorrect</h3>');
                         }
-                } else {
-                        unlock = false;
-                        // $('#shadow').fadeToggle();
-                        // $('#incorrect').fadeToggle();
-                        $('#answer_result').html('<h3 class="incorrect">Incorrect</h3>');
                 }
-
 
                 //console.dir(this.model.attributes.answerid);
 
