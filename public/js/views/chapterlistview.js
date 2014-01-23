@@ -122,7 +122,7 @@ TRADE.TestView = Backbone.View.extend({
                 var completed = _.findWhere(this.user.testProgress, {testid: model.testid});
 
                 if (completed && completed.completed === true) {
-                        $(this.el).find('.check-box').addClass('check-green');
+                        $(this.el).find('.check-box').last().addClass('check-green');
                 }
         }
 });
@@ -160,9 +160,10 @@ TRADE.LessonView = Backbone.View.extend({
         renderCard : function (model) {
                 this.$el.append( this.template({model: model, chapterid: this.chapterid, classid: this.classid}));
                 var completed = _.findWhere(this.user.lessonProgress, {lessonid: model.lessonid});
-
+                console.dir(model);
+                console.dir(completed);
                 if (completed) {
-                        $(this.el).find('.check-box').addClass('check-green');
+                        $(this.el).find('.check-box').last().addClass('check-green');
                 }
         }
 });
@@ -208,7 +209,7 @@ TRADE.ProblemView = Backbone.View.extend({
                         model.numproblems = numproblems;
                         this.$el.append( this.template({model: model, chapterid: this.chapterid, classid: this.classid}));
                         if (completed.completed === true) {
-                                $(this.el).find('.check-box').addClass('check-green');
+                                $(this.el).find('.check-box').last().addClass('check-green');
                         }
                 } else {
                         this.$el.append( this.template2({model: model, chapterid: this.chapterid, classid: this.classid}));
