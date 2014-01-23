@@ -67,7 +67,7 @@ TRADE.TestSlides = Backbone.View.extend({
                 if (this.collection.questionindex) {
                     if (this.collection.questionindex === numquestions) {
                         console.log('the end');
-                        TRADE.router.navigate('#/class/' + this.collection.classid + '/' + this.collection.chapterid, {trigger: true});
+                        TRADE.router.navigate('#/testReport/' + this.collection.testid, {trigger: true});
                         return;
                     }
                     questionindex = this.collection.questionindex;
@@ -134,7 +134,8 @@ TRADE.TestSlides = Backbone.View.extend({
                     completed = true;
                      $.post('/test/' + that.collection.chapterid + '/' + that.collection.testid + '/' + optionid + '/' + questionid + '/' + completed, function (){
                         console.log("Test over");
-                        TRADE.router.navigate('#/class/' + this.collection.classid + '/' + this.collection.chapterid, {trigger: true});
+
+                        TRADE.router.navigate('#/testReport/' + that.collection.testid, {trigger: true});
                     })
                     return;
                 }

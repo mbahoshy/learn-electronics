@@ -403,7 +403,7 @@ function postTest (req, res) {
 	}
 
 	console.log(testid + '   ' + chapterid + '   ' + optionid + '   ' + classid);
-	res.end();
+	// res.end();
 
 }
 
