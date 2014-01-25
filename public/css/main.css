@@ -50,9 +50,8 @@ body {
 
 #header h1 {
 	color:#9f0909;
-	margin:0px;
+	margin:20px 0 0 0;
 	font-size: 36px;
-	padding-top:20px;
 	font-family: 'title';
 	font-weight: normal;
 
@@ -435,7 +434,7 @@ body {
 .chapter-header h2 {
 	font-size: 40px;
 	float:left;
-	padding: 35px 0 0 0;
+	padding: 35px 0 0 20px;
 	margin:0;
 }
 
@@ -452,7 +451,7 @@ body {
 
 .chapter-header h4 {
 	margin:0;
-	padding:60px 0 0 0;
+	padding:60px 20px 0 0;
 	font-size: 17px;
 	float:right;
 	text-transform: uppercase;
@@ -462,7 +461,7 @@ body {
 .chapter-subnav {
 	width:960px;
 	height:30px;
-
+	margin:0 20px 0 0;
 	border-bottom: 1px solid #CCCCCC;
 	text-align: right;
 	float:left;

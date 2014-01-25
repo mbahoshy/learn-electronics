@@ -286,6 +286,11 @@ TRADE.Router = Backbone.Router.extend({
 
         function renderReport () {
             var test = _.findWhere(user.testProgress, {testid: testid});
+            var questioncollection1 = new TRADE.QuestionCollection();
+            questioncollection1.reset(test.score);
+            var testcollectionview = new TRADE.TestReport({collection: questioncollection1});
+            testcollectionview.render();     
+            $('#body_container').append(testcollectionview.$el);       
             console.dir(test);
         }
 

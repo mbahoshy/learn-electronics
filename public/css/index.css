@@ -33,6 +33,7 @@
 
 #sign_in_form {
 	font-size: 13px;
+	margin:15px 0 0 0;
 	
 }
 
@@ -285,4 +286,17 @@ input:hover, input:focus, {
 	box-shadow: 2px 2px 2px #CCCCCC;
 	border-radius: 20px;
 	font-size: 23px;
+}
+
+.header-tall {
+	height:120px !important;
+}
+
+.header-tall h1 {
+	font-size: 56px !important;
+	margin:30px 0 0 0 !important;
+}
+
+.header-tall .header-nav {
+	margin-top:30px;
 }
