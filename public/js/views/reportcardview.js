@@ -1,8 +1,8 @@
 TRADE.ReportCardView = Backbone.View.extend({
         tagName: 'div',
-        className: 'report-card',
+        className: 'report-card-holder',
         titletemplate: _.template("<h3>Report Card</h3>"),
-        template: _.template("<div class=''><%= title %></div>"),
+        template: _.template("<div class='skill-category'><p><%= title %></p><div class='progress-container'><div data-width='<%= progress %>%' class='progress-green'></div></div></div>"),
         events: {
                 "mouseover .option-txt": "lessonMouseover",
 
@@ -70,7 +70,7 @@ TRADE.ReportCardView = Backbone.View.extend({
                var progress = Math.floor(((problempar + ratiocorrect)/2)*100);
                console.log(progress);
 
-               this.$el.append(this.template({title: model.attributes.title}));
+               this.$el.append(this.template({title: model.attributes.title, progress:progress}));
         }
 
 });

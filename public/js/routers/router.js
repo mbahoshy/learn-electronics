@@ -152,6 +152,14 @@ TRADE.Router = Backbone.Router.extend({
                 classCollectionReport1.render(user);
                 $('#body_container').append(classCollectionReport1.$el);
 
+                var bars = $('.progress-green');
+                var numbars = bars.length;
+
+                for (var i = 0; i < numbars; i ++) {
+                    var width = $(bars[i]).data('width');
+                    $(bars[i]).animate({width: width}, 1000, function () {});
+                }
+
             }
         }
     },
