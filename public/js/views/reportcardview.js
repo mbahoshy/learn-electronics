@@ -43,6 +43,7 @@ TRADE.ReportCardView = Backbone.View.extend({
 
                });
 
+               var progress;
                var numcorrect = 0;
                var numquestions = questionresults.length;
                for (var i = 0; i <numquestions; i ++) {
@@ -67,7 +68,14 @@ TRADE.ReportCardView = Backbone.View.extend({
 
                var problempar = Math.floor((1 / avgattempts)*100)/100;
                var ratiocorrect = Math.floor((numcorrect/numquestions)*100)/100;
-               var progress = Math.floor(((problempar + ratiocorrect)/2)*100);
+
+               if (isNaN(problempar)) {
+                 progress = ratiocorrect*100;
+               } else if (isNaN(ratiocorrect)) {
+                 progress = problempar*100;
+               } else {
+                 progress = Math.floor(((problempar + ratiocorrect)/2)*100);
+                }
                console.log(progress);
 
                this.$el.append(this.template({title: model.attributes.title, progress:progress}));
