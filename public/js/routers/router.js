@@ -288,6 +288,7 @@ TRADE.Router = Backbone.Router.extend({
             var test = _.findWhere(user.testProgress, {testid: testid});
             var questioncollection1 = new TRADE.QuestionCollection();
             questioncollection1.reset(test.score);
+            questioncollection1.numberOfQuestions = test.numberOfQuestions;
             var testcollectionview = new TRADE.TestReport({collection: questioncollection1});
             testcollectionview.render();     
             $('#body_container').append(testcollectionview.$el);       

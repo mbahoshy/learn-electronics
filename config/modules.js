@@ -330,6 +330,7 @@ function postTest (req, res) {
 		questionid = req.param("questionid"),
 		completed = req.param("completed"),
 		classid = req.session.classid,
+		numquestions = req.param("numberOfQuestions"),
 		user = req.user,
 		userid = req.user._id,
 		conditions,
@@ -338,6 +339,7 @@ function postTest (req, res) {
 		correct,
 		options = { multi: false };
 
+		if (completed == "true") {completed = true;}
  	
 
  	Question.findById(questionid, function (err, documents) {
@@ -365,7 +367,7 @@ function postTest (req, res) {
 				currentTest.score.push({option: optionid, question: questionid, correct: correct, tags: tags} );
 				console.log("completed");
 				console.log(completed);
-				if (completed == 'true') {
+				if (completed === true) {
 					console.log("complete true");
 					update = { $set: { "testProgress.$.score": currentTest.score, "testProgress.$.completed": true }};
 				} else {
@@ -382,7 +384,8 @@ function postTest (req, res) {
 			  classid: classid,
 		      chapterid: chapterid,
 		      testid: testid,
-		      completed: false,
+		      completed: completed,
+		      numberOfQuestions: numquestions,
 		      score: [{option: optionid, question: questionid, correct: correct, tags: tags} ]
 		    };
 
