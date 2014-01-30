@@ -32,6 +32,7 @@ module.exports = function (app, passport) {
 
 	app.get('/problems/:id', Auth.isAuthenticated, mod.getProblemList);
 	app.get('/problemslides/:id', Auth.isAuthenticated, mod.getProblemSlides);
+	app.get('/report', Auth.isAuthenticated, mod.sendReport);
 
 	// app.get('/json/:id', Auth.isAuthenticated, mod.returnJson);
 

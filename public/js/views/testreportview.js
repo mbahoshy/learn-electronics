@@ -2,7 +2,7 @@ TRADE.TestReport = Backbone.View.extend({
         tagName: 'div',
         className: 'test-holder test-report',
         titletemplate: _.template("<h3>Test Report</h3>"),
-        template: _.template("<div class='test-result-footer'><div class='review-test'>Review Test</div><div class='finish-test'>Done</div></div>"),
+        template: _.template("<div class='test-result-footer'><div class='review-test'>Review Test</div><a href='#/class/<%= classid %>/<%= chapterid %>'><div class='finish-test'>Done</div></div></a>"),
         events: {
                 "mouseover .option-txt": "lessonMouseover",
                 "mouseout .option-txt": "lessonMouseout",
@@ -16,7 +16,7 @@ TRADE.TestReport = Backbone.View.extend({
                 var testresultsmiddle = new TRADE.TestResultsMiddle({collection: this.collection});
                 testresultsmiddle.render();
                 this.$el.append(testresultsmiddle.$el);
-                this.$el.append(this.template);
+                this.$el.append(this.template ({classid: this.collection.classid, chapterid: this.collection.chapterid}));
 
         },
         renderQuestion: function (model) {

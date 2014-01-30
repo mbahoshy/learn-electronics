@@ -155,6 +155,7 @@ function updateProblemProgress (req, res) {
 		conditions,
 		update,
 		unlock,
+		tags,
 		options = { multi: false };
 
 		console.log('answerid');
@@ -166,6 +167,7 @@ function updateProblemProgress (req, res) {
 		console.log('answer');
 		console.log(optionid);
 		console.log(answer.answerid);
+		tags = answer.tags
 		if (answer.answerid == optionid) {
 			unlock = true;
 		} else {
@@ -191,7 +193,7 @@ function updateProblemProgress (req, res) {
 				currentProblem.score[problemnumber] = {
 					attempts: 1,
 					unlocked: false,
-					tags: []
+					tags: tags
 				}
 
 			}
@@ -265,6 +267,10 @@ function returnSlides (req, res) {
 
 
 	res.sendfile('./slides/' + id + '.html');
+}
+
+function sendReport (req, res) {
+	res.json(reportTemplate);
 }
 
 function getSession (req, res) {
@@ -424,6 +430,37 @@ exports.getClasses = getClasses;
 exports.getNav = getNav;
 exports.getProblemList = getProblemList;
 exports.getProblemSlides = getProblemSlides;
+exports.sendReport = sendReport;
+
+
+
+var reportTemplate = [
+	{title:"Breaker", tag:"brkr", expand:['breaker_120', 'breaker_240']},
+	{title:"Relay", tag:"relay", expand:['relay_120', 'relay_240']},
+	{title:"Capacitor", tag:"cap", expand:[]},
+	{title:"Sequencer", tag:"seq", expand:[]},
+	{title:"Thermostat", tag:"stat", expand:[]},
+	{title:"Motors", tag:"motor", expand:['i-fan_120', 'i-fan_240', 'o-fan_120', 'o-fan_240']},
+
+
+
+
+]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // exports.getClassroom = getClassroom;
 // exports.returnJson = returnJson;

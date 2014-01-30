@@ -134,23 +134,21 @@ TRADE.Router = Backbone.Router.extend({
         $.get("/user", function(data, status){
             user = data;
             wait ++;
-            renderTemplate();
+            renderReport ();
         });
 
-        $.get("/getNav/all", function(data, status){
+        $.get("/report", function(data, status){
+            console.dir(data);
             nav = data;
             wait ++;
-            renderTemplate();
+            renderReport ();
         });
 
-        function renderTemplate () {
+        function renderReport () {
             if (wait === 2) {
-                // var rtemplate = _.template(template, user);
-                // $('#body_container').append(rtemplate);
-
-                var classCollection1 = new TRADE.ClassCollection();
-                classCollection1.reset(nav);
-                var classCollectionReport1 = new TRADE.ClassCollectionReport ({collection: classCollection1});
+                var skillCollection = new TRADE.ClassCollection();
+                skillCollection.reset(nav);
+                var classCollectionReport1 = new TRADE.ReportCardView ({collection: skillCollection});
                 classCollectionReport1.render(user);
                 $('#body_container').append(classCollectionReport1.$el);
 
@@ -289,6 +287,8 @@ TRADE.Router = Backbone.Router.extend({
             var questioncollection1 = new TRADE.QuestionCollection();
             questioncollection1.reset(test.score);
             questioncollection1.numberOfQuestions = test.numberOfQuestions;
+            questioncollection1.chapterid = test.chapterid;
+            questioncollection1.classid = test.classid;
             var testcollectionview = new TRADE.TestReport({collection: questioncollection1});
             testcollectionview.render();     
             $('#body_container').append(testcollectionview.$el);       
