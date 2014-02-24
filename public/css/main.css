@@ -1081,7 +1081,8 @@ body {
 
 .classroom-card {
 	width:410px;
-	height:250px;
+	height:150px;
+	/*height:250px;*/
 	margin:34px;
 	background-color: #FFFFFF;
 	border: 1px solid #58595b;
@@ -1116,7 +1117,8 @@ body {
 
 .battery {
 	float:right;
-	margin-top: 140px;
+	margin-top: 30px;
+	margin-right: 10px;
 	opacity: .7;
 }
 
