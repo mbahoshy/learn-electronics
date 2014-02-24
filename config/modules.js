@@ -9,7 +9,7 @@ var path = require("path"),
     Problem = require('../models/problem');
 
 
-var MONGOHQ_URL = 'mongodb://mbahoshy:07maryJ68@dharma.mongohq.com:10062/tradeTrainer';
+var MONGOHQ_URL = 'mongodb://mbahoshy:07maryJ68@widmore.mongohq.com:10000/tradeTrainer_copy';
 var Schema = mongoose.Schema;
 
 mongoose.connect(MONGOHQ_URL);
