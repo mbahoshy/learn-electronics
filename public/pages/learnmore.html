@@ -19,6 +19,7 @@
 	<script src="/libs/jquery.js"></script>
 	<script src="/libs/underscore.js"></script>
 
+
 	<script>
 		$(document).ready(function () {
 			TRADE.GameData.gamejson = {
@@ -90,6 +91,10 @@
 			TRADE.CIRC.DrawWire('w4', 'blue', 3, [360, 200, 625, 200]);
 			TRADE.CIRC.DrawWire('w5', 'blue', 3, [625, 200, 625, 30]);
 			
+			$('#sign_in').on('click', function(e){
+				e.preventDefault();
+				$('#sign_in_form').fadeToggle();
+			});
 		});
 	</script>
 
@@ -105,62 +110,58 @@
 				<a href="/"><h1>TradePro</h1></a>
 				
 			</div>
-			
+
 			
 			<div class='header-nav'>
-				<a class='green' href="">Learn More</a>
-				<a href="">For Business</a>
-				<a class='red' href="">Sign Up!</a>
-				<a id='sign_in'>Sign In</a>
+				<div class='fright'>
+					<a class='green' href="">Learn More</a>
+					<a href="">For Business</a>
+					<a class='red' href="">Sign Up!</a>
+					<a id='sign_in'>Sign In</a>
+				</div>
 				<div class='clear'></div>
 				<div id='sign_in_form' class='fright hidden'>
 					<form action='/login' method='post'>
-				        <label>Email:</label>
-				        <input type="text" name="email" value="mbahoshy@gmail.com" />   	
-				        <label>Password:</label>
-				        <input type="password" name="password" value="ross"/>
+				        <label>EMAIL:</label>
+				        <input type="text" name="email" value="" />   	
+				        <label>PASSWORD:</label>
+				        <input type="password" name="password" value=""/>
 				        <input id='submit_button' type='submit' value='Go'/>
 				    </form>
 		    	</div>
+
 			</div>
-		<!-- 		<form id='sign_in_form' action="/login" method="post">
-						<div id='sign_in'><input id='submit_button' type='submit' value='Sign In'/></div>					
-				</form> -->
+			<h2 class='tagline fleft'>Why learn HVAC online?</h2>
+
 		</div>
 
 	</div>
 
 		<div class='wrapper'>
 			<div class='center-720 learnmore-header'>
-				<h2>Why learn HVAC online?</h2>
 				<div id='level_container'></div>
 			</div>
 		</div>
 
 	<div class='wrapper'>
-			<div class='two-third'>
+			<div class='one-third'>
 				<div class='perk-card'>
-					<h3>EARN MORE MONEY</h3>
+					<h3>Earn more money</h3>
 					<p>HVAC service technicians are the most in demand skilled trade career. Put in the time to learn, and watch your paycheck grow!</p>
 				</div>
+			</div>
+
+			<div class='one-third'>
 				<div class='perk-card'>
-					<h3>KEEP YOUR JOB</h3>
+					<h3>Keep your job</h3>
 					<p>Cars, tools, kids ... we get it -- you've got bills to pay. Keep your job while you learn essential skills to up your paygrade.</p>
 				</div>
-				<div class='perk-card'>
-					<h3>ADVANCE YOUR CAREER</h3>
-					<p>Have you ever wanted to advance your career, but never had the time or money for conventional HVAC schools? Tradepro is easy on your wallet, and works on your schedule.</p>
-				</div>
 			</div>
+
 			<div class='one-third'>
-				<div class='free-month-wrapper'>
-					GET A FREE MONTH
-				</div>
-				<div class='free-month-dialogue'>
-					Yeah that's right ... sign up today and get a <b>free month</b> of training!
-				</div>
-				<div class='sign-up-free-month'>
-					Sign Up!
+				<div class='perk-card'>
+					<h3>Advance your career</h3>
+					<p>Have you ever wanted to advance your career, but never had the time or money for conventional HVAC schools? Tradepro is easy on your wallet, and works on your schedule.</p>
 				</div>
 			</div>
 	</div>
