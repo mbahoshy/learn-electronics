@@ -106,8 +106,7 @@ function getUser (req, res){
 }
 
 function updateLessonProgress (req, res) {
-	var chapterid = req.param("chapterid"),
-		lessonid = req.param("lessonid"),
+	var lessonid = req.param("lessonid"),
 		date = req.param("date"),
 		classid = req.param("classid"),
 		update,
@@ -122,9 +121,7 @@ function updateLessonProgress (req, res) {
 	if (!lessonCheck) {
 		var lessonmodel = {
 	      lessonid: lessonid,
-	      chapterid: chapterid,
 	      classid: classid,
-	      attemps: "",
 	      timestamp: date,
 	      completed: true
 	    };
@@ -143,7 +140,6 @@ function updateLessonProgress (req, res) {
 function updateProblemProgress (req, res) {
 	var problemname = req.param("problemname"),
 		classid = req.param("classid"),
-		chapterid = req.param("chapterid"),
 		problemid = req.param("problemid"),
 		answerid = req.param("answerid"),
 		optionid = req.param("optionid"),
@@ -331,7 +327,6 @@ function getTest (req, res) {
 
 function postTest (req, res) {
 	var testid = req.param("testid"),
-		chapterid = req.param("chapterid"),
 		optionid = req.param("optionid"),
 		questionid = req.param("questionid"),
 		completed = req.param("completed"),
@@ -388,7 +383,6 @@ function postTest (req, res) {
 			conditions = { _id: userid };
 			var testmodel = {
 			  classid: classid,
-		      chapterid: chapterid,
 		      testid: testid,
 		      completed: completed,
 		      numberOfQuestions: numquestions,
@@ -411,7 +405,7 @@ function postTest (req, res) {
 		res.end();
 	}
 
-	console.log(testid + '   ' + chapterid + '   ' + optionid + '   ' + classid);
+
 	// res.end();
 
 }

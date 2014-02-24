@@ -48,7 +48,7 @@ TRADE.TestSlides = Backbone.View.extend({
 
                 console.dir();
 
-                $.post('/test/' + this.collection.chapterid + '/' + this.collection.testid + '/' + optionid + '/' + questionid + '/' + completed + '/' + numquestions, function (){
+                $.post('/test/' + this.collection.testid + '/' + optionid + '/' + questionid + '/' + completed + '/' + numquestions, function (){
                     console.log("Test successfully updated!");
                     var detached = $('#test_timer').detach();
                     $(that.el).html('');
@@ -134,7 +134,7 @@ TRADE.TestSlides = Backbone.View.extend({
                     clearInterval(TRADE.router.intervals.timer);
                     $('#test_timer').html('END');
                     completed = true;
-                     $.post('/test/' + that.collection.chapterid + '/' + that.collection.testid + '/' + optionid + '/' + questionid + '/' + completed + '/' + that.collection.models.length, function (){
+                     $.post('/test/' + that.collection.testid + '/' + optionid + '/' + questionid + '/' + completed + '/' + that.collection.models.length, function (){
                         console.log("Test over");
 
                         TRADE.router.navigate('#/testReport/' + that.collection.testid, {trigger: true});

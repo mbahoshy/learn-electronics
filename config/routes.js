@@ -24,9 +24,9 @@ module.exports = function (app, passport) {
 
 	//respond with user info
 	app.get("/user", Auth.isAuthenticated, mod.getUser);
-	app.post("/lesson/:classid/:chapterid/:lessonid/:date", Auth.isAuthenticated, mod.updateLessonProgress);
+	app.post("/lesson/:classid/:lessonid/:date", Auth.isAuthenticated, mod.updateLessonProgress);
 
-	app.post("/problem/:classid/:chapterid/:problemid/:answerid/:optionid/:problemnumber/:problemname/:level/:numberOfQuestions", Auth.isAuthenticated, mod.updateProblemProgress);
+	app.post("/problem/:classid/:problemid/:answerid/:optionid/:problemnumber/:problemname/:level/:numberOfQuestions", Auth.isAuthenticated, mod.updateProblemProgress);
 
 	app.get('/slides/:id', Auth.isAuthenticated, mod.returnSlides);
 
@@ -39,7 +39,7 @@ module.exports = function (app, passport) {
 	app.get('/slideTemplate/:type', Auth.isAuthenticated, mod.slideTemplate);
 	app.get('/template/:name', Auth.isAuthenticated, mod.Template);
 	app.get('/test/:testid', Auth.isAuthenticated, mod.getTest);
-	app.post('/test/:chapterid/:testid/:optionid/:questionid/:completed/:numberOfQuestions', Auth.isAuthenticated, mod.postTest);
+	app.post('/test/:testid/:optionid/:questionid/:completed/:numberOfQuestions', Auth.isAuthenticated, mod.postTest);
 	
 
 	

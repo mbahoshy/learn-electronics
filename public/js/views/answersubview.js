@@ -16,7 +16,6 @@ TRADE.AnswerSubView = Backbone.View.extend({
                 var level = $('#answer_container').data('level');
                 var problemname = $('#answer_container').data('problemname');
                 var problemid = $('#answer_container').data('problemid');
-                var chapterid = $('#answer_container').data('chapterid');
                 var answerid = $('#answer_container').data('answerid');
                 var optionid = this.model.attributes.answerid;
                 var classid = $('#answer_container').data('classid');
@@ -30,7 +29,7 @@ TRADE.AnswerSubView = Backbone.View.extend({
                 $('#attempt_counter').html(attemptCounter);
 
 
-                $.post('/problem/' + classid + '/' + chapterid + '/' + problemid + '/' + answerid + '/' + optionid + '/' + problemnumber + '/' + problemname + '/' + level + '/' + slidesNumber, function (data) {
+                $.post('/problem/' + classid + '/' + problemid + '/' + answerid + '/' + optionid + '/' + problemnumber + '/' + problemname + '/' + level + '/' + slidesNumber, function (data) {
                         console.log('problem successfully updated');
                         console.dir('data');
                         console.dir(data);

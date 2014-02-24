@@ -27,7 +27,7 @@ TRADE.ClassView = Backbone.View.extend({
         },
         tester: function () {
                 console.dir(this.model.toJSON()._id);
-                TRADE.router.navigate('#class/' + this.model.toJSON()._id + '/0', {trigger:true});
+                TRADE.router.navigate('#class/' + this.model.toJSON()._id, {trigger:true});
         },
         render : function () {
                 var user = this.model.user;

@@ -1,13 +1,13 @@
 TRADE.Router = Backbone.Router.extend({
     routes: {
         "": "displayListOfClassrooms", //displays classes
-        "class/:classid/:chapterindex": "displayChapter", //displays chapters
+        "class/:classid": "displayChapter", //displays chapters
         // "chapter/:chapterid": "chapterFunction", //displays lessons
-        "slides/:classid/:chapterid/:lessonid": "slideFunction",
+        "slides/:classid/:lessonid": "slideFunction",
         "problems/:level": "problemListFunction",
-        "problemslides/:classid/:chapterid/:problemid/:answerid/:level/:problemname": "problemSlideFunction",
+        "problemslides/:classid/:problemid/:answerid/:level/:problemname": "problemSlideFunction",
         "report" : "reportFunction",
-        "test/:classid/:chapterid/:testid" : "displayTest",
+        "test/:classid/:testid" : "displayTest",
         "testReport/:testid" : "reportTest"
     },
 
@@ -44,7 +44,7 @@ TRADE.Router = Backbone.Router.extend({
         }
     },
 
-    displayChapter: function (classid, chapterindex) {
+    displayChapter: function (classid) {
         this.clearBody();
 
         var user,
@@ -53,6 +53,7 @@ TRADE.Router = Backbone.Router.extend({
 
         $.get("/getNav/" + classid, function(data, status){
             nav = data;
+            console.dir(data);
             wait ++;
             renderChapters();
         });
@@ -66,14 +67,14 @@ TRADE.Router = Backbone.Router.extend({
 
         function renderChapters () {
             if (wait === 2) {
-                var ChapterCollection1 = new TRADE.ChapterCollection ();
-                ChapterCollection1.classid = classid;
-                ChapterCollection1.reset(nav.chapters);
-                ChapterCollection1.user = user;
-                ChapterCollection1.navname = nav.name;
-                var ChapterListView1 = new TRADE.ChapterListView ({collection: ChapterCollection1});
+                // var ChapterCollection1 = new TRADE.ChapterCollection ();
+                // ChapterCollection1.classid = classid;
+                // ChapterCollection1.reset(nav.chapters);
+                // ChapterCollection1.user = user;
+                // ChapterCollection1.navname = nav.name;
+                var ChapterListView1 = new TRADE.ChapterListView ();
 
-                ChapterListView1.render(chapterindex);
+                ChapterListView1.render(nav, user);
 
                 //append to dom
                 $('#body_container').prepend(ChapterListView1.$el);
@@ -81,7 +82,7 @@ TRADE.Router = Backbone.Router.extend({
         }
     },
 
-    slideFunction: function (classid, chapterid, lessonid) {
+    slideFunction: function (classid, lessonid) {
 
         //clear html
         this.clearBody();
@@ -113,10 +114,11 @@ TRADE.Router = Backbone.Router.extend({
                 $("#slide_container").html(_.template(currentslide));
 
                 $('.slide-left').on('click', function () {
-                    TRADE.FUNC.slideChange(classid, chapterid, lessonid, this);
+                    TRADE.FUNC.slideChange(classid, lessonid, this);
                 });
                 $('.slide-right').on('click', function  () {
-                    TRADE.FUNC.slideChange(classid, chapterid, lessonid, this);
+                    console.log(classid);
+                    TRADE.FUNC.slideChange(classid, lessonid, this);
                 });
                 TRADE.FUNC.slideIndexNav();
                 $('#slide_nav_' + TRADE.GameData.slideindex).addClass('slide-active');
@@ -164,7 +166,7 @@ TRADE.Router = Backbone.Router.extend({
         }
     },
 
-    problemSlideFunction: function (classid, chapterid, problemid, answerid, level, problemname) {
+    problemSlideFunction: function (classid, problemid, answerid, level, problemname) {
 
         this.clearBody();
 
@@ -187,7 +189,6 @@ TRADE.Router = Backbone.Router.extend({
             $('#answer_container').data('level', level);
             $('#answer_container').data('problemname', problemname);
             $('#answer_container').data('problemid', problemid);
-            $('#answer_container').data('chapterid', chapterid);
             $('#answer_container').data('classid', classid);
             $('#answer_container').data('answerid', answerid);
 
@@ -263,14 +264,13 @@ TRADE.Router = Backbone.Router.extend({
         
     },
 
-    displayTest: function (classid, chapterid, testid) {
+    displayTest: function (classid, testid) {
         this.clearBody();
-
+        console.dir(testid);
         $.get("/test/" + testid, function(data, status){
             var questioncollection1 = new TRADE.QuestionCollection();
             questioncollection1.reset(data);
             questioncollection1.testid = testid;
-            questioncollection1.chapterid = chapterid;
             questioncollection1.classid = classid;
             var testcollectionview = new TRADE.TestSlides({collection: questioncollection1});
             testcollectionview.render(0);
@@ -295,7 +295,6 @@ TRADE.Router = Backbone.Router.extend({
             var questioncollection1 = new TRADE.QuestionCollection();
             questioncollection1.reset(test.score);
             questioncollection1.numberOfQuestions = test.numberOfQuestions;
-            questioncollection1.chapterid = test.chapterid;
             questioncollection1.classid = test.classid;
             var testcollectionview = new TRADE.TestReport({collection: questioncollection1});
             testcollectionview.render();     
