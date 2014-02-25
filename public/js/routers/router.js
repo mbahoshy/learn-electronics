@@ -53,7 +53,7 @@ TRADE.Router = Backbone.Router.extend({
 
         $.get("/getNav/" + classid, function(data, status){
             nav = data;
-            console.dir(data);
+            // console.dir(data);
             wait ++;
             renderChapters();
         });
