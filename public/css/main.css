@@ -49,7 +49,7 @@ body {
 }
 
 #header h1 {
-	color:#9f0909;
+	color:#09159F;
 	margin:20px 0 0 0;
 	font-size: 36px;
 	font-family: 'title';
@@ -491,7 +491,7 @@ body {
 .activity-label {
 	float:left;
 	padding:8px 20px;
-	border-radius: 8px 0;
+	border-radius: 0 0 8px 0;
 	color:white;
 	font-style: normal;
 	font-weight: bold;
@@ -500,12 +500,10 @@ body {
 }
 
 .activity-list {
-	margin:30px;
 	color:black;
-	box-shadow: 4px 4px 2px #CACACA;
-	background-color: #FCFFE8;
-	border-radius: 10px;
+	border-bottom: 1px solid #CCCCCC;
 	text-align: center;
+	height:150px;
 }
 
 .activity-list p {
@@ -520,6 +518,7 @@ body {
 	margin:0;
 	clear:both;
 	padding:15px 8px 8px;
+
 }
 
 .activity-container {
@@ -527,21 +526,6 @@ body {
 	float:left;
 	padding:0;
 	margin:0;
-
-}
-
-.test-list {
-	height:150px;
-}
-
-
-.lesson-list {
-	height:150px;
-}
-
-
-.problem-list {
-	height:240px;
 }
 
 
@@ -1092,7 +1076,6 @@ body {
 }
 
 .classroom-card h3 {
-	text-transform:uppercase;
 	font-size: 17px;
 	text-align: center;
 	/*font-weight: bold;*/
@@ -1102,7 +1085,7 @@ body {
 	background-color: #58595b;
 	padding:8px 0;
 	margin:0;
-	border-radius: 8px;
+	border-radius: 8px 0 8px 0;
 }
 
 .classroom-card p {
@@ -1378,4 +1361,19 @@ body {
 	height:20px;
 	border-radius: 10px;
 	box-shadow: 2px 2px 2px #CCCCCC;
+}
+
+.task-container {
+	width:478px;
+	float:left;
+	background-color: white;
+	border: 1px solid #CCCCCC;
+	border-radius: 10px;
+	margin-top:90px;
+	box-shadow: 2px 2px 2px #CCCCCC;
+}
+
+.info-container {
+	width:480px;
+	float:left;
 }
