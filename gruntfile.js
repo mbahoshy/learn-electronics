@@ -48,12 +48,11 @@ module.exports = function(grunt) {
 		}
 	});
 
-	// Load the plugin that provides the "uglify" task.
-	// grunt.loadNpmTasks('grunt-contrib-uglify');
+	// load npm tasks
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-express-server');
 
-	// Default task(s).
+	// register tasks
 	grunt.registerTask('default', ['express:dev', 'watch']);
 	grunt.registerTask('console', 'confirm task', function () {
 		console.log("File Changed ...")
